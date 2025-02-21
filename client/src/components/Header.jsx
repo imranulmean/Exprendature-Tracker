@@ -6,6 +6,9 @@ import { signoutSuccess } from '../redux/user/userSlice';
 export default function Header(){
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { currentUser } = useSelector((state) => state.user);
+
     const handleSignout = async () => {
         dispatch(signoutSuccess());
         // try {
@@ -24,39 +27,40 @@ export default function Header(){
       };    
     
     return (
-        <Navbar fluid rounded>
-          <Navbar.Brand href="https://flowbite-react.com">
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Exp Tracker</span>
-          </Navbar.Brand>
+        <Navbar fluid rounded className="border-b border-gray-400 mb-5 sticky top-0">
+          <Link to="/">
+            <img src="/logo.PNG" className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
+          </Link>
+          <Link className="text-lg font-bold leading-none text-gray-900 dark:text-white" to='/'>Home</Link>
+          <Link className="text-lg font-bold leading-none text-gray-900 dark:text-white" to='/insertion'>Insertion</Link>
           <div className="flex md:order-2">
             <Dropdown
               arrowIcon={false}
               inline
               label={
-                <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                <Avatar alt='user' img={currentUser.profilePicture} rounded />
               }
             >
               <Dropdown.Header>
-                <span className="block text-sm">Bonnie Green</span>
-                <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+                <span className="block text-sm">{currentUser.displayName}</span>
+                <span className="block truncate text-sm font-medium">{currentUser.email}</span>
               </Dropdown.Header>
-              <Dropdown.Item>Dashboard</Dropdown.Item>
+              {/* <Dropdown.Item>Dashboard</Dropdown.Item>
               <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Earnings</Dropdown.Item>
+              <Dropdown.Item>Earnings</Dropdown.Item> */}
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleSignout}>Logout</Dropdown.Item>
             </Dropdown>
-            <Navbar.Toggle />
+            {/* <Navbar.Toggle /> */}
           </div>
-          <Navbar.Collapse>
-            <Navbar.Link href="#" active>
-              Home
+          {/* <Navbar.Collapse>
+            <Navbar.Link active as={'div'}>
+              <Link to='/'>Home</Link>
             </Navbar.Link>
-            <Navbar.Link href="#">About</Navbar.Link>
-            <Navbar.Link href="#">Services</Navbar.Link>
-            <Navbar.Link href="#">Pricing</Navbar.Link>
-            <Navbar.Link href="#">Contact</Navbar.Link>
-          </Navbar.Collapse>
+            <Navbar.Link as={'div'}>
+              <Link to='/insertion'>Insertion</Link>
+            </Navbar.Link>
+          </Navbar.Collapse> */}
         </Navbar>
       ); 
 }

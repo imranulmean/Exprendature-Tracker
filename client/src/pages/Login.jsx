@@ -3,6 +3,8 @@ import OAuth from "../components/OAuth";
 export default function Login(){
 
     return (
-        <OAuth/>
+        <div className="min-h-screen flex justify-center items-center">
+          <OAuth/>
+        </div>        
       );    
 }

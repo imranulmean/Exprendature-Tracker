@@ -15,29 +15,26 @@ export default function OAuth() {
         provider.setCustomParameters({ prompt: 'select_account' })
         try {
             const resultsFromGoogle = await signInWithPopup(auth, provider);
-            console.log(resultsFromGoogle.user);
-            dispatch(signInSuccess(resultsFromGoogle.user))
-            navigate('/')
-            // const res = await fetch('/api/auth/google', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({
-            //         name: resultsFromGoogle.user.displayName,
-            //         email: resultsFromGoogle.user.email,
-            //         googlePhotoUrl: resultsFromGoogle.user.photoURL,
-            //     }),
-            //     })
-            // const data = await res.json()
-            // if (res.ok){
-            //     dispatch(signInSuccess(data))
-            //     navigate('/')
-            // }
+            const res = await fetch('/api/auth/google', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    displayName: resultsFromGoogle.user.displayName,
+                    email: resultsFromGoogle.user.email,
+                    googlePhotoUrl: resultsFromGoogle.user.photoURL,
+                }),
+                })
+            const data = await res.json()
+            if (res.ok){
+                dispatch(signInSuccess(data))
+                navigate('/')
+            }
         } catch (error) {
             console.log(error);
         }
     } 
   return (
-        <div className='flex justify-center align-center'>
+        <div>
             <Card className="max-w-sm">
                 <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={handleGoogleClick}>
                     <AiFillGoogleCircle className='w-6 h-6 mr-2'/>

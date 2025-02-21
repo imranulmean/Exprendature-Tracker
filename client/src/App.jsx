@@ -5,6 +5,8 @@ import Leftbar from './components/Leftbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
+import Insertion from './pages/Insertion';
+import UpdateExp from './pages/UpdateExp';
 
 export default function App(){
 
@@ -16,6 +18,8 @@ export default function App(){
         <Route path='/login' element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />
+          <Route path='/insertion' element={<Insertion />} />
+          <Route path='/updateExp/:userId/:monthName/:year' element={<UpdateExp />} />
         </Route>        
       </Routes>
     </BrowserRouter>    
