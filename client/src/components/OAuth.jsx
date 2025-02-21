@@ -36,6 +36,7 @@ export default function OAuth() {
   return (
         <div>
             <Card className="max-w-sm">
+                <img src="/logo.PNG"/>
                 <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={handleGoogleClick}>
                     <AiFillGoogleCircle className='w-6 h-6 mr-2'/>
                     Continue with Google
