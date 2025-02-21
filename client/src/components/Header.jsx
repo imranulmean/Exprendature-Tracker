@@ -27,7 +27,7 @@ export default function Header(){
       };    
     
     return (
-        <Navbar fluid rounded className="border-b border-gray-400 mb-5 sticky top-0">
+        <Navbar fluid rounded className="border-b border-gray-400 mb-5 sticky top-0 z-10">
           <Link to="/">
             <img src="/logo.PNG" className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
           </Link>
