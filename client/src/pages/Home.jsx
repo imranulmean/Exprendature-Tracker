@@ -8,6 +8,7 @@ import { HiArrowNarrowRight, HiCalendar } from "react-icons/hi";
 
 export default function Home(){
 
+    const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const [expList, setExpList] = useState([]);
     const { currentUser } = useSelector((state) => state.user);
 
@@ -18,7 +19,7 @@ export default function Home(){
     const getExpData = async()=>{
 
         try {
-            const res= await fetch(`/api/expenses/getExpenses/${currentUser._id}`);
+            const res= await fetch(`${BASE_API}/api/expenses/getExpenses/${currentUser._id}`);
             const data= await res.json();
             setExpList(data);
 

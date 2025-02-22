@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Insertion(){
 
+    const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
     const [expData, setExpData] = useState({expName:'', amount:''});
     const [expList, setExpList] = useState([]);    
@@ -34,7 +35,7 @@ export default function Insertion(){
             monthName
         };
         try {
-            const res= await fetch('/api/expenses/getCurrentMonth',{
+            const res= await fetch(`${BASE_API}/api/expenses/getCurrentMonth`,{
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body:JSON.stringify(formData),
@@ -91,7 +92,7 @@ export default function Insertion(){
             total
         };
         try{
-            const res= await fetch('/api/expenses/addExpenses',{
+            const res= await fetch(`${BASE_API}/api/expenses/addExpenses`,{
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
