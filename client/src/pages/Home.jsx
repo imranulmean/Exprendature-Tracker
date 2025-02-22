@@ -34,7 +34,7 @@ export default function Home(){
           
           <div className="w-full flex-col">   
             <div className="w-full flex flex-col justify-center items-center mb-3">
-            <a href='/tuts.webm' className="truncate text-md font-medium text-blue-900 dark:text-white">{'How to Add Data >>'}</a>
+            <a href='https://drive.google.com/file/d/1KY7v3Z77lRBWYVNYwo2OerlZku8L0-s7/view' className="truncate text-md font-medium text-blue-900 dark:text-white">{'How to Add Data >>'}</a>
               <Link  to='/insertion' className="truncate text-md font-medium text-blue-900 dark:text-white">{'Click to Add Your Data Here >>'}</Link>              
             </div>            
             <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2">
