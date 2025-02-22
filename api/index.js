@@ -8,6 +8,7 @@ import expRoutes from './routes/exp.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import http from 'http';
+import cors from 'cors';
 
 
 dotenv.config();
@@ -26,6 +27,10 @@ const __dirname = path.resolve();
 const app = express();
 const server= http.createServer(app);
 
+app.use(cors({
+  origin: '*',
+  credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 
