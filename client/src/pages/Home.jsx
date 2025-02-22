@@ -20,7 +20,6 @@ export default function Home(){
         try {
             const res= await fetch(`/api/expenses/getExpenses/${currentUser._id}`);
             const data= await res.json();
-            console.log(data);
             setExpList(data);
 
         }
