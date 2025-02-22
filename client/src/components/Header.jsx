@@ -27,12 +27,13 @@ export default function Header(){
       };    
     
     return (
-        <Navbar fluid rounded className="border-b border-gray-400 mb-5 sticky top-0 z-10">
+        <Navbar fluid className="bg-gray-900 border-b border-gray-400 sticky top-0 z-10" 
+              style={{'background':"#000"}}>
           <Link to="/">
-            <img src="/logo.PNG" className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
+            <img src="/logo.PNG" style={{'filter': 'invert(1)'}} className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
           </Link>
-          <Link className="text-lg font-bold leading-none text-gray-900 dark:text-white" to='/'>Home</Link>
-          <Link className="text-lg font-bold leading-none text-gray-900 dark:text-white" to='/insertion'>Insertion</Link>
+          <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/'>Home</Link>
+          <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/insertion'>Insertion</Link>
           <div className="flex md:order-2">
             <Dropdown
               arrowIcon={false}

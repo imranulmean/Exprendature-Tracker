@@ -115,7 +115,7 @@ export default function Insertion(){
     return (
         <>
             <Header />
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-4 bg-gray-100">
                 <Card className="w-full md:w-[500px]">
                     <div className="mb-4 flex-col items-center justify-between gap-2">
                     <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">{formatMonth(today)} {formatYear(today)}</h5>

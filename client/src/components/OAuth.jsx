@@ -5,6 +5,7 @@ import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 export default function OAuth() {
     
@@ -12,7 +13,10 @@ export default function OAuth() {
     const auth = getAuth(app)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [loading, setLoading]= useState(false);
+
     const handleGoogleClick = async () =>{
+        setLoading(true);
         const provider = new GoogleAuthProvider()
         provider.setCustomParameters({ prompt: 'select_account' })
         try {
@@ -27,6 +31,7 @@ export default function OAuth() {
                 }),
                 })
             const data = await res.json()
+            setLoading(false);
             if (res.ok){
                 dispatch(signInSuccess(data))
                 navigate('/')
@@ -37,9 +42,9 @@ export default function OAuth() {
     } 
   return (
         <div>
-            <Card className="max-w-sm">
+            <Card className="max-w-sm flashing-border">
                 <img src="/logo.PNG"/>
-                <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={handleGoogleClick}>
+                <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={handleGoogleClick} disabled={loading}>
                     <AiFillGoogleCircle className='w-6 h-6 mr-2'/>
                     Continue with Google
                 </Button>
