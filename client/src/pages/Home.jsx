@@ -11,6 +11,7 @@ import ExpCard from "../components/ExpCard";
 
 export default function Home(){
 
+    const navigate=useNavigate();
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const [expList, setExpList] = useState([]);
     const { currentUser } = useSelector((state) => state.user);
@@ -26,6 +27,13 @@ export default function Home(){
               method:"GET",
               credentials: "include"
             });
+
+            if(!res.ok){
+              const failed= await res.json();
+              if(failed.statusCode===401){
+                navigate('/login');
+              }
+            }
             const data= await res.json();
             setExpList(data);
 
