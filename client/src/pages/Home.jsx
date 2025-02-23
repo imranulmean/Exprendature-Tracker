@@ -14,18 +14,9 @@ export default function Home(){
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const [expList, setExpList] = useState([]);
     const { currentUser } = useSelector((state) => state.user);
-    const navigate = useNavigate();
 
     useEffect(()=>{
-      const token = document.cookie.split('; ').find(row => row.startsWith('access_token='));
-      console.log(token);
-      if(!token){
-          navigate('/login');        
-      }
-      else{
         getExpData();
-      }
-        
     },[])
 
     const getExpData = async()=>{

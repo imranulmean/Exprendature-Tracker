@@ -11,9 +11,9 @@ export const google = async (req, res, next) => {
           { id: user._id },
           process.env.JWT_SECRET
         );
-         // httpOnly: true,
         const { password, ...rest } = user._doc;
-        res.status(200).cookie('access_token', token, {           
+        res.status(200).cookie('access_token', token, {
+            httpOnly: true,
             secure: true,  
             sameSite: "None",
           }).json(rest);
