@@ -1,21 +1,21 @@
 import ExpDetail from '../models/expDetail.model.js'; // Importing the model
 
 export const addExpenses = async (req, res) => {
-    const { userId, year, monthName, expList, total } = req.body;
-  
+
+    const { userId, year, monthName, expList, total } = req.body;  
     try {
-      // Check if the document already exists for the given userId, year, and monthName
+
       const existingExpDetail = await ExpDetail.findOne({ userId, year, monthName });
   
       if (existingExpDetail) {
-        // If the record exists, update it with the new expList and total
+
         existingExpDetail.expList = expList;
         existingExpDetail.total = total;
   
-        await existingExpDetail.save(); // Save the updated record
-        res.status(200).json(existingExpDetail); // Respond with the updated document
+        await existingExpDetail.save(); 
+        res.status(200).json(existingExpDetail);
       } else {
-        // If no record exists, create a new one
+
         const newExpDetail = new ExpDetail({
           userId,
           year,
@@ -24,8 +24,8 @@ export const addExpenses = async (req, res) => {
           total
         });
   
-        await newExpDetail.save(); // Save the new document
-        res.status(201).json(newExpDetail); // Respond with the newly created document
+        await newExpDetail.save(); 
+        res.status(201).json(newExpDetail);
       }
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });

@@ -9,7 +9,6 @@ export default function Header(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
-    console.log(currentUser);
     const handleSignout = async () => {
         dispatch(signoutSuccess());
         // try {
@@ -35,7 +34,7 @@ export default function Header(){
           </Link>
           <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/'>Home</Link>
           <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/insertion'>Insertion</Link>
-          <div className="flex md:order-2">
+          <div className="flex md:order-2 gap-2">
             <Dropdown
               arrowIcon={false}
               inline
@@ -53,13 +52,12 @@ export default function Header(){
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleSignout}>Logout</Dropdown.Item>
             </Dropdown>
+            {
+              currentUser.isAdmin &&
+              <AdminDrawer />
+            }
             {/* <Navbar.Toggle /> */}
-          </div>
-          {
-            currentUser.isAdmin &&
-            <AdminDrawer />
-          }
-          
+          </div>          
 
           {/* <Navbar.Collapse>
             <Navbar.Link active as={'div'}>

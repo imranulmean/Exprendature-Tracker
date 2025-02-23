@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Insertion from './pages/Insertion';
 import UpdateExp from './pages/UpdateExp';
+import { Navigate } from "react-router-dom";
 
 export default function App(){
 
@@ -14,13 +15,14 @@ export default function App(){
     <BrowserRouter>      
       {/* <Megamenu /> */}
       {/* <Leftbar /> */}
-      <Routes>
+      <Routes>        
         <Route path='/login' element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />
           <Route path='/insertion' element={<Insertion />} />
           <Route path='/updateExp/:userId/:monthName/:year' element={<UpdateExp />} />
-        </Route>        
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />   
       </Routes>
     </BrowserRouter>    
   )
