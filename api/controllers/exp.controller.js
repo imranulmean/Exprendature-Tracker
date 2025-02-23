@@ -3,18 +3,23 @@ import ExpDetail from '../models/expDetail.model.js'; // Importing the model
 export const addExpenses = async (req, res) => {
 
     const { userId, year, monthName, expList, total } = req.body;  
+    
     try {
-
       const existingExpDetail = await ExpDetail.findOne({ userId, year, monthName });
-  
+      
       if (existingExpDetail) {
+        expList.map((item,index)=>{
+          if(!item._id){
+            existingExpDetail.expList.push(item);
+          }            
+        })
 
-        existingExpDetail.expList = expList;
         existingExpDetail.total = total;
   
         await existingExpDetail.save(); 
         res.status(200).json(existingExpDetail);
-      } else {
+      } 
+      else {
 
         const newExpDetail = new ExpDetail({
           userId,
