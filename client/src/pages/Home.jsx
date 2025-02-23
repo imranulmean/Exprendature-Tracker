@@ -19,7 +19,7 @@ export default function Home(){
     useEffect(()=>{
       const token = document.cookie.split('; ').find(row => row.startsWith('access_token='));
       if(!token){
-        navigate('/sign-in');
+        navigate('/login');
         return;
       }
         getExpData();
