@@ -2,13 +2,14 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signoutSuccess } from '../redux/user/userSlice';
+import AdminDrawer from "./AdminDrawer";
 
 export default function Header(){
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
-
+    console.log(currentUser);
     const handleSignout = async () => {
         dispatch(signoutSuccess());
         // try {
@@ -54,6 +55,9 @@ export default function Header(){
             </Dropdown>
             {/* <Navbar.Toggle /> */}
           </div>
+          <>
+            <AdminDrawer />
+          </>
           {/* <Navbar.Collapse>
             <Navbar.Link active as={'div'}>
               <Link to='/'>Home</Link>
