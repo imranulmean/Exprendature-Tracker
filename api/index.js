@@ -28,7 +28,7 @@ const app = express();
 const server= http.createServer(app);
 
 app.use(cors({
-  origin: '*',
+  origin: ['http://localhost:5173',"https://exp-tracker-face.vercel.app"],
   credentials: true,
 }));
 app.use(express.json());

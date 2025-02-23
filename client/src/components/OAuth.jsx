@@ -24,6 +24,7 @@ export default function OAuth() {
             const res = await fetch(`${BASE_API}/api/auth/google`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: "include",
                 body: JSON.stringify({
                     displayName: resultsFromGoogle.user.displayName,
                     email: resultsFromGoogle.user.email,

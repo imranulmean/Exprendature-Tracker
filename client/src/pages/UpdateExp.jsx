@@ -38,6 +38,7 @@ export default function UpdateExp(){
             const res= await fetch(`${BASE_API}/api/expenses/getCurrentMonth`,{
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
+                credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -80,6 +81,7 @@ export default function UpdateExp(){
             const res= await fetch(`${BASE_API}/api/expenses/addExpenses`,{
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
+                credentials: "include",
                 body: JSON.stringify(formData),
             })
             // await getExpData();
