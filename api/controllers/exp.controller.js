@@ -8,12 +8,8 @@ export const addExpenses = async (req, res) => {
       const existingExpDetail = await ExpDetail.findOne({ userId, year, monthName });
       
       if (existingExpDetail) {
-        expList.map((item,index)=>{
-          if(!item._id){
-            existingExpDetail.expList.push(item);
-          }            
-        })
 
+        existingExpDetail.expList=expList
         existingExpDetail.total = total;
   
         await existingExpDetail.save(); 
