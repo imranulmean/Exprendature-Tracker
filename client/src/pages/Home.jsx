@@ -34,8 +34,11 @@ export default function Home(){
                 navigate('/login');
               }
             }
-            const data= await res.json();
-            setExpList(data);
+            else{
+              const data= await res.json();
+              setExpList(data);
+            }
+
 
         }
         catch(e){
