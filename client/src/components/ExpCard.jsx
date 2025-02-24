@@ -42,10 +42,14 @@ export default function ExpCard({item, currentUser}){
                             <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">{item.total}</div>
                         </div>
                     </li>                                   
-                    </ul>                                                 
-                    <Button color="light">
-                     <Link to={`/updateExp/${currentUser._id}/${item.monthName}/${item.year}`}>Update</Link>
-                    </Button>  
+                    </ul>
+                    {
+                        item.userId.toString()==currentUser._id &&
+                        <Button color="light">
+                            <Link to={`/updateExp/${currentUser._id}/${item.monthName}/${item.year}`}>Update</Link>
+                       </Button>
+                    }                                          
+
                 </div>                        
                 </div>                          
             </Card>            
