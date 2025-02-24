@@ -2,7 +2,13 @@ import ExpDetail from '../models/expDetail.model.js'; // Importing the model
 
 export const addExpenses = async (req, res) => {
 
-    const { userId, year, monthName, expList, total } = req.body;  
+    const { userId, year, monthName, expList, total } = req.body;
+   
+    const { _id, isAdmin } = req.user;
+    
+    if( _id.toString() !== userId){      
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
+    }
     
     try {
       const existingExpDetail = await ExpDetail.findOne({ userId, year, monthName });
@@ -37,7 +43,13 @@ export const getCurrentMonthExpenses = async (req, res) => {
 
     const { userId, year, monthName } = req.body;
     if(!userId || userId===''){
-        return res.status(401).json({ success: false, message: "Unauthorized: userId is required" });
+        return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
+    }
+
+    const { _id, isAdmin } = req.user;
+    
+    if( _id.toString() !== userId && !isAdmin){      
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
     }
 
     try {
@@ -56,7 +68,13 @@ export const getCurrentMonthExpenses = async (req, res) => {
 
 export const getExpenses = async (req, res) => {
 
-    const {userId}=req.params;
+    const { userId }=req.params;
+    const { _id, isAdmin } = req.user;
+
+    if( _id.toString() !== userId && !isAdmin){      
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised" });
+    }
+
     try {
         const existingExpDetail = await ExpDetail.find({ userId});
         res.status(200).json(existingExpDetail);
