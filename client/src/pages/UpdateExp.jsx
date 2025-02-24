@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { HiOutlinePencilAlt, HiX  } from "react-icons/hi";
 
 export default function UpdateExp(){
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
@@ -16,6 +17,8 @@ export default function UpdateExp(){
     const [expTotal, setExpTotal]= useState(0);
     let total=0;
     const [loading, setLoading]= useState(false);
+    const [openExpEditIndex, setOpenExpEditIndex] = useState(-1);
+    const [updateExpData, setUpdateExpData]= useState({});
 
     useEffect(()=>{
         total= expList.reduce((acc, e) => acc + Number(e.amount), 0);
@@ -65,7 +68,9 @@ export default function UpdateExp(){
     const handleChange = (e) => {
         setExpData({ ...expData, [e.target.name]: e.target.value });
       };
-     
+    const handleUpdate = (e) =>{
+        setUpdateExpData({...updateExpData, [e.target.name]:e.target.value});
+    }
     const handleSubmit= async() =>{
         
         setLoading(true);
@@ -99,6 +104,22 @@ export default function UpdateExp(){
         setExpList(newList);
     }
 
+    const openEditExp= (index, item) => {
+        setUpdateExpData(item);
+        setOpenExpEditIndex(index);
+    }
+
+    const handleUpdateExp=(index)=>{
+        if(!updateExpData.expName || !updateExpData.amount){
+            alert("input data to update")
+            return;
+        }
+        
+        const updatedExpList=[...expList];
+        updatedExpList[index]['expName']=updateExpData.expName;
+        updatedExpList[index]['amount']=updateExpData.amount;
+        setExpList(updatedExpList);
+    }
     return (
         <>
             <Header />
@@ -116,16 +137,25 @@ export default function UpdateExp(){
                                 expList.map((item,index)=>{
                                     return(
                                         <>
-                                            <li className="py-3 sm:py-4">
+                                            <li className="py-3 sm:py-4 flex flex-col gap-2">
                                                 <div className="flex items-center space-x-4">
                                                     <div className="min-w-0 flex-1">
                                                         <p className="truncate text-sm font-medium text-gray-900 dark:text-white">{item.expName}</p>
                                                     </div>
                                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">{item.amount}</div>
                                                     <div className="flex gap-2">
-                                                        <Button onClick={()=>removeItem(index)}>X</Button>
+                                                            <HiOutlinePencilAlt className="cursor-pointer" onClick={()=>openEditExp(index, item)}/>
+                                                            <HiX className="cursor-pointer" onClick={()=>removeItem(index)}/>
                                                     </div>
                                                 </div>
+                                                {
+                                                    openExpEditIndex == index &&
+                                                        <div className="flex flex-row gap-2">
+                                                            <TextInput onChange={handleUpdate} value={updateExpData.expName} name="expName" type="text" placeholder="Exp Name" required /><br/>
+                                                            <TextInput onChange={handleUpdate} value={updateExpData.amount} name="amount" type="number" placeholder="Amount" required /><br/> 
+                                                            <Button onClick={()=>handleUpdateExp(index)}>Update</Button>
+                                                        </div>                                                    
+                                                }                      
                                             </li>                                    
                                         </>
                                     )
