@@ -11,7 +11,10 @@ export const google = async (req, res, next) => {
           { id: user._id },
           process.env.JWT_SECRET
         );
-        const { password, ...rest } = user._doc;
+        const { password, isAdmin, ...rest } = user._doc;
+        if(isAdmin===true){
+          rest['isAdmin']=isAdmin;
+        }
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
             secure: true,  
@@ -34,7 +37,7 @@ export const google = async (req, res, next) => {
           { id: newUser._id },
           process.env.JWT_SECRET
         );
-        const { password, ...rest } = newUser._doc;
+        const { password, isAdmin, ...rest } = newUser._doc;
         res
           .status(200)
           .cookie('access_token', token, {
@@ -42,6 +45,17 @@ export const google = async (req, res, next) => {
           })
           .json(rest);
       }
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  export const signout = (req, res, next) => {
+    try {
+      res
+        .clearCookie('access_token')
+        .status(200)
+        .json('User has been signed out');
     } catch (error) {
       next(error);
     }

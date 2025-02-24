@@ -12,6 +12,7 @@ import {
   HiUsers,
 } from "react-icons/hi";
 import { FaAlignJustify } from "react-icons/fa6";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function AdminDrawer(){
     const [isOpen, setIsOpen] = useState(false);
@@ -45,8 +46,8 @@ export default function AdminDrawer(){
                       <Sidebar.Item href="/e-commerce/products" icon={HiShoppingBag}>
                         Products
                       </Sidebar.Item>
-                      <Sidebar.Item href="/users/list" icon={HiUsers}>
-                        Users list
+                      <Sidebar.Item icon={HiUsers}>
+                        <Link to='/users'>Users list</Link>                        
                       </Sidebar.Item>
                       <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
                         Sign in

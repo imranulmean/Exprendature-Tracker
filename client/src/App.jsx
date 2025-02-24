@@ -8,6 +8,8 @@ import PrivateRoute from './components/PrivateRoute';
 import Insertion from './pages/Insertion';
 import UpdateExp from './pages/UpdateExp';
 import { Navigate } from "react-router-dom";
+import AdminPrivateRoute from './components/AdminPrivateRoute';
+import Users from './pages/Users';
 
 export default function App(){
 
@@ -22,6 +24,11 @@ export default function App(){
           <Route path='/insertion' element={<Insertion />} />
           <Route path='/updateExp/:userId/:monthName/:year' element={<UpdateExp />} />
         </Route>
+
+        <Route element= {<AdminPrivateRoute/>} >
+          <Route path='/users' element={<Users />} />
+        </Route> 
+
         <Route path="*" element={<Navigate to="/" />} />   
       </Routes>
     </BrowserRouter>    

@@ -6,24 +6,26 @@ import AdminDrawer from "./AdminDrawer";
 
 export default function Header(){
     
+    const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
+
     const handleSignout = async () => {
-        dispatch(signoutSuccess());
-        // try {
-        //   const res = await fetch('/api/user/signout', {
-        //     method: 'POST',
-        //   });
-        //   const data = await res.json();
-        //   if (!res.ok) {
-        //     console.log(data.message);
-        //   } else {
-        //     dispatch(signoutSuccess());
-        //   }
-        // } catch (error) {
-        //   console.log(error.message);
-        // }
+        try {
+          const res = await fetch(`${BASE_API}/api/auth/signout`, {
+            method: 'POST',
+            credentials: "include",
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            console.log(data.message);
+          } else {
+            dispatch(signoutSuccess());
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
       };    
     
     return (
