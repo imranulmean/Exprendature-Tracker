@@ -76,7 +76,7 @@ export const getExpenses = async (req, res) => {
     }
 
     try {
-        const existingExpDetail = await ExpDetail.find({ userId});
+        const existingExpDetail = await ExpDetail.find({ userId}).sort({createdAt:-1});
         res.status(200).json(existingExpDetail);
     } 
     catch (error) {
