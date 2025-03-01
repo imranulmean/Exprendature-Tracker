@@ -35,7 +35,8 @@ export default function Header(){
             <img src="/logo.PNG" style={{'filter': 'invert(1)'}} className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
           </Link>
           <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/'>Home</Link>
-          <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/insertion'>Insertion</Link>
+          <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/insertion'>Expense</Link>
+          {/* <Link className="text-lg font-bold leading-none text-gray-900 text-white" to='/income'>Income</Link> */}
           <div className="flex md:order-2 gap-2">
             <Dropdown
               arrowIcon={false}

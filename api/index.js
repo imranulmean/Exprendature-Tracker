@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 // import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import expRoutes from './routes/exp.route.js';
+import incomeRoutes from './routes/income.route.js';
 import adminRoutes from './routes/adminApi.route.js';
 // import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
@@ -44,6 +45,7 @@ server.listen(3000, () => {
 // app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expRoutes);
+app.use('/api/income', incomeRoutes);
 app.use('/api/adminApi', adminRoutes);
 // app.use('/api/comment', commentRoutes);
 
