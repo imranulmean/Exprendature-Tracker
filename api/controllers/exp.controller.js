@@ -1,4 +1,4 @@
-import ExpDetail from '../models/expDetail.model.js'; // Importing the model
+import ExpDetail from '../models/expDetail.model.js'; 
 
 export const addExpenses = async (req, res) => {
 

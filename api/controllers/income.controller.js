@@ -1,9 +1,9 @@
-import IncomeDetail from '../models/incomeDetail.model.js'; // Importing the model
+import IncomeDetail from '../models/incomeDetail.model.js'; 
+import ExpDetail from '../models/expDetail.model.js';
 
 export const addIncome = async (req, res) => {
 
     const { userId, year, monthName, incomeList, total } = req.body;
-   
     const { _id, isAdmin } = req.user;
     
     if( _id.toString() !== userId){      
@@ -11,24 +11,30 @@ export const addIncome = async (req, res) => {
     }
     
     try {
-      const existingIncomeDetail = await IncomeDetail.findOne({ userId, year, monthName });
       
+      const existingIncomeDetail = await IncomeDetail.findOne({ userId, year, monthName });
+      const existingExpDetail = await ExpDetail.findOne({ userId, year, monthName });
+      let existingExpTotal=0;
+        //////////////// Checking current month exp detail //////////
+      if(existingExpDetail){
+        existingExpTotal=existingExpDetail.total;
+      }
       if (existingIncomeDetail) {
-
         existingIncomeDetail.incomeList=incomeList
-        existingIncomeDetail.total = total;
+        existingIncomeDetail.total = total - existingExpTotal;
   
         await existingIncomeDetail.save(); 
         res.status(200).json(existingIncomeDetail);
       } 
       else {
-
+        ////// Add the Income Total after minus exp total if there
+        let newTotal= total - existingExpTotal;
         const newIncomeDetail = new IncomeDetail({
           userId,
           year,
           monthName,
           incomeList,
-          total
+          total: newTotal
         });
   
         await newIncomeDetail.save(); 
@@ -37,10 +43,11 @@ export const addIncome = async (req, res) => {
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });
     }
-  };
+};
 
 export const getCurrentMonthIncome = async (req, res) => {
 
+  console.log(req.body)
     const { userId, year, monthName } = req.body;
     if(!userId || userId===''){
         return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
@@ -59,6 +66,7 @@ export const getCurrentMonthIncome = async (req, res) => {
             ...(monthName!=='' && {monthName}),
         }
         const existingIncomeDetail = await IncomeDetail.find(query);
+        console.log(existingIncomeDetail);
         res.status(200).json(existingIncomeDetail);
     } 
     catch (error) {

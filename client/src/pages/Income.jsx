@@ -100,8 +100,12 @@ export default function Income(){
                 credentials: "include",
                 body: JSON.stringify(formData),
             })
-            setLoading(false);
-            navigate('/')
+            if(res.ok){
+                setLoading(false);
+                navigate('/')
+            }
+
+
             // await getincomeData();
         }   
         catch(e){
