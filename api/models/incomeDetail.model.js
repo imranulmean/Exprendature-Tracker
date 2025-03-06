@@ -14,8 +14,8 @@ const incomeDetailSchema = new mongoose.Schema({
     monthName: { type: String, required: true }, 
     incomeList: [ incomeItemSchema ],
     total: { type: Number, required: true },
-    totalCashInHand: { type: Number, required: true },
-    monthlyCashInHand: { type: Number, required: true },
+    totalCashInHand: { type: Number, default:0 },
+    monthlyCashInHand: { type: Number, default:0 },
   }, { timestamps: true });
   
 const IncomeDetail = mongoose.model('IncomeDetail', incomeDetailSchema);

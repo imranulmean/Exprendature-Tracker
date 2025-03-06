@@ -17,6 +17,9 @@ export default function Income(){
     const [incomeTotal, setincomeTotal]= useState(0);
     let total=0;
     const [loading, setLoading]= useState(false);
+    const [showBox, setShowBox]= useState(false);
+    const [totalCash, setTotalCash]= useState(0);
+    const [currentIncome, setCurrentIncome]= useState({});
 
     useEffect(()=>{
         total= incomeList.reduce((acc, e) => acc + Number(e.amount), 0);
@@ -28,6 +31,7 @@ export default function Income(){
     },[])
 
     const getincomeData = async()=>{
+        setLoading(true);
         const monthName=formatMonth(today);
         const year=formatYear(today);
         const formData={
@@ -43,8 +47,9 @@ export default function Income(){
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
-            setincomeList(data[0].incomeList);
-
+            setincomeList(data.incomeList);
+            setCurrentIncome(data)
+            setLoading(false);
         }
         catch(e){
             console.log(e);
@@ -81,7 +86,6 @@ export default function Income(){
       };
      
     const handleSubmit= async() =>{
-
         setLoading(true);
         const monthName=formatMonth(today);
         const year=formatYear(today);
@@ -119,6 +123,38 @@ export default function Income(){
         setincomeList(newList);
     }
 
+    const openTotalCash = () =>{
+        setShowBox((prev)=>!prev);
+    }
+
+    const handleTotalCash= (e) =>{
+        setTotalCash(e.target.value);
+    }
+
+    const addTotalCash = async() =>{
+        console.log(totalCash);
+        setLoading(true);
+        const formData={
+            userId:currentUser._id,
+            totalCash
+        };
+        try{
+            const res= await fetch(`${BASE_API}/api/income/addTotalCash`,{
+                method:"POST",
+                headers: { 'Content-Type': 'application/json' },
+                credentials: "include",
+                body: JSON.stringify(formData),
+            })
+            if(res.ok){
+                setLoading(false);
+                alert("Total Cash in hand Added")
+            }
+        }   
+        catch(e){
+            console.log(e);
+        }        
+    }
+
     return (
         <>
             <Header />
@@ -128,15 +164,20 @@ export default function Income(){
                         <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">{formatMonth(today)} {formatYear(today)}</h5>
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="totalCashInHand" value={`Tota Cash in Hand:${incomeData.totalCashInHand}`} />
+                                {
+                                    
+                                    // <Label htmlFor="totalCashInHand" value={`Overall Tota Cash:${currentIncome.overAllTotalCash.totalCash}`} />
+                                }
+                                
                             </div>
-                            {/* <TextInput id="totalCashInHand" name="totalCashInHand" type="number" placeholder="Input Total Cash in Hand" required /> */}
-                            <Button>If You have Previous Total Cash in Hand Click to Add Here</Button>
-                        </div>
-                        <div className="mb-2">
-                            <div className="mb-2 block">
-                                <Label htmlFor="monthlyCashInHand" value={`Monthly Cash in Hand:${incomeData.monthlyCashInHand}`} />
-                            </div>                            
+                            <Button onClick={openTotalCash}>If You have Previous Total Cash in Hand Click to Add Here</Button>
+                            {
+                                showBox &&
+                                <>
+                                    <TextInput onChange={handleTotalCash} id="totalCashInHand" name="totalCashInHand" type="number" placeholder="Input Total Cash in Hand" required />
+                                    <Button onClick={addTotalCash}>Add Total Cash</Button>
+                                </>
+                            }                                                        
                         </div>
                         <Label value="Input  Income Below:" />                   
                         <TextInput onChange={handleChange} value={incomeData.incomeName} name="incomeName" type="text" placeholder="Income Name" required /><br/>
@@ -166,6 +207,12 @@ export default function Income(){
                             }                        
                         </ul>
                         Total: {incomeTotal}
+                        <div className="mb-2">
+                            <div className="mb-2">
+                                <p>Monthly Cash in Hand: {currentIncome.monthlyCashInHand}</p>
+                                <p>Total Cash (this month):{currentIncome.totalCashInHand}</p>                                
+                            </div>                            
+                        </div>
                     </div>
                     <Button onClick={handleSubmit} disabled={loading}>Final Submit</Button>
                 </Card>                

@@ -1,4 +1,6 @@
 import ExpDetail from '../models/expDetail.model.js'; 
+import IncomeDetail from '../models/incomeDetail.model.js';
+import TotalCashDetail from '../models/totalCash.model.js';
 
 export const addExpenses = async (req, res) => {
 
@@ -12,14 +14,24 @@ export const addExpenses = async (req, res) => {
     
     try {
       const existingExpDetail = await ExpDetail.findOne({ userId, year, monthName });
-      
-      if (existingExpDetail) {
+      const existingIncomeDetail = await IncomeDetail.findOne({ userId, year, monthName });
+      const existingTotalCashDetail= await TotalCashDetail.findOne({userId});
+      let existingTotalCash=0;
 
+      if(existingTotalCashDetail){
+        existingTotalCash=existingTotalCashDetail.totalCash;
+      }
+
+      if (existingExpDetail) {
         existingExpDetail.expList=expList
         existingExpDetail.total = total;
-  
-        await existingExpDetail.save(); 
+        await existingExpDetail.save();         
         res.status(200).json(existingExpDetail);
+
+        if(existingTotalCashDetail){
+          existingTotalCashDetail.totalCash = existingTotalCash - total;
+          await existingTotalCashDetail.save();
+        }        
       } 
       else {
 
@@ -33,7 +45,26 @@ export const addExpenses = async (req, res) => {
   
         await newExpDetail.save(); 
         res.status(201).json(newExpDetail);
+
+        if(existingTotalCashDetail){
+          existingTotalCashDetail.totalCash = existingTotalCash - total;
+          await existingTotalCashDetail.save();
+        }        
       }
+
+      //////// now change the income table data ///////
+      if(existingIncomeDetail){
+        let existingMonthlyCashInHand= existingIncomeDetail.total - total
+        existingIncomeDetail.monthlyCashInHand=existingMonthlyCashInHand;
+        await existingIncomeDetail.save();
+
+        if(existingTotalCashDetail){
+          existingTotalCashDetail.totalCash = existingTotalCash + existingIncomeDetail.monthlyCashInHand;
+          await existingTotalCashDetail.save();
+        }         
+        
+      }
+
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });
     }
