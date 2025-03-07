@@ -1,12 +1,15 @@
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import TotalCashDetail from '../models/totalCash.model.js';
 
 export const google = async (req, res, next) => {
     const { email, displayName, googlePhotoUrl } = req.body;
+    let userId="";
     try {
       const user = await User.findOne({ email });
       if (user) {
+        userId=user._id;
         const token = jwt.sign(
           { id: user._id },
           process.env.JWT_SECRET
@@ -33,17 +36,21 @@ export const google = async (req, res, next) => {
           profilePicture: googlePhotoUrl,
         });
         await newUser.save();
+        userId=newUser._id;
         const token = jwt.sign(
           { id: newUser._id },
           process.env.JWT_SECRET
         );
         const { password, isAdmin, ...rest } = newUser._doc;
-        res
-          .status(200)
-          .cookie('access_token', token, {
-            httpOnly: true,
-          })
-          .json(rest);
+        res.status(200).cookie('access_token', token, {httpOnly: true,}).json(rest);
+      }
+      const existingTotalCash = await TotalCashDetail.findOne({ userId});
+      if(!existingTotalCash){
+        const newTotalCash = new TotalCashDetail({
+          userId,
+          totalCash:0
+        });
+        await newTotalCash.save();
       }
     } catch (error) {
       next(error);

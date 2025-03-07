@@ -3,12 +3,13 @@ import { Card, TextInput, Button, Label } from "flowbite-react";
 import { useState } from "react";
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function Income(){
+export default function UpdateIncome(){
 
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
+    const { userId, monthName, year } = useParams();
     const [incomeData, setincomeData] = useState({incomeName:'', amount:'', totalCashInHand:0, monthlyCashInHand:0});
     const [incomeList, setincomeList] = useState([]);    
     const today = new Date();
@@ -134,6 +135,7 @@ export default function Income(){
     }
 
     const addTotalCash = async() =>{
+        console.log(totalCash);
         setLoading(true);
         const formData={
             userId:currentUser._id,
@@ -148,8 +150,7 @@ export default function Income(){
             })
             if(res.ok){
                 setLoading(false);
-                setShowBox(false);
-                alert("Total Cash in hand Added")                
+                alert("Total Cash in hand Added")
             }
         }   
         catch(e){
@@ -165,22 +166,14 @@ export default function Income(){
                     <div className="mb-4 flex-col items-center justify-between gap-2">
                         <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">Income of {formatMonth(today)} {formatYear(today)}</h5>
                         <div>
-                            <Button onClick={openTotalCash}>
+                            <Button>
                                 <div className="flex flex-col z-0">
                                 {
                                     currentIncome.overAllTotalCash &&
                                     <p>OverAll Total Cash:{currentIncome.overAllTotalCash.totalCash}</p>
                                 }                                
-                                <p>If You have Previous Total Cash in Hand Click to Add Here</p>
                                 </div>
-                            </Button>
-                            {
-                                showBox &&
-                                <>
-                                    <TextInput onChange={handleTotalCash} id="totalCashInHand" name="totalCashInHand" type="number" placeholder="Input Total Cash in Hand" required />
-                                    <Button onClick={addTotalCash} disabled={loading}>Add Total Cash</Button>
-                                </>
-                            }                                                        
+                            </Button>                                                        
                         </div>
                         <Label value="Input  Income Below:" />                   
                         <TextInput onChange={handleChange} value={incomeData.incomeName} name="incomeName" type="text" placeholder="Income Name" required /><br/>

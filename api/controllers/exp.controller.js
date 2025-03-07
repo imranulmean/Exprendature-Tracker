@@ -17,21 +17,17 @@ export const addExpenses = async (req, res) => {
       const existingIncomeDetail = await IncomeDetail.findOne({ userId, year, monthName });
       const existingTotalCashDetail= await TotalCashDetail.findOne({userId});
       let existingTotalCash=0;
-
+      let prevExpTotal=0;
       if(existingTotalCashDetail){
         existingTotalCash=existingTotalCashDetail.totalCash;
       }
 
       if (existingExpDetail) {
+        prevExpTotal = existingExpDetail.total;
         existingExpDetail.expList=expList
         existingExpDetail.total = total;
         await existingExpDetail.save();         
-        res.status(200).json(existingExpDetail);
-
-        if(existingTotalCashDetail){
-          existingTotalCashDetail.totalCash = existingTotalCash - total;
-          await existingTotalCashDetail.save();
-        }        
+        res.status(200).json(existingExpDetail);       
       } 
       else {
 
@@ -46,25 +42,27 @@ export const addExpenses = async (req, res) => {
         await newExpDetail.save(); 
         res.status(201).json(newExpDetail);
 
-        if(existingTotalCashDetail){
-          existingTotalCashDetail.totalCash = existingTotalCash - total;
-          await existingTotalCashDetail.save();
-        }        
       }
 
       //////// now change the income table data ///////
       if(existingIncomeDetail){
-        let existingMonthlyCashInHand= existingIncomeDetail.total - total
-        existingIncomeDetail.monthlyCashInHand=existingMonthlyCashInHand;
-        await existingIncomeDetail.save();
+        let prevMonthlyCashInHand=existingIncomeDetail.monthlyCashInHand + prevExpTotal;
+        prevMonthlyCashInHand= prevMonthlyCashInHand - total
+        existingIncomeDetail.monthlyCashInHand=prevMonthlyCashInHand;
 
-        if(existingTotalCashDetail){
-          existingTotalCashDetail.totalCash = existingTotalCash + existingIncomeDetail.monthlyCashInHand;
-          await existingTotalCashDetail.save();
-        }         
-        
+        let prevTotalCashInHand=existingIncomeDetail.totalCashInHand + prevExpTotal;
+        prevTotalCashInHand=prevTotalCashInHand - total;
+        existingIncomeDetail.totalCashInHand=prevTotalCashInHand
+
+        await existingIncomeDetail.save();              
       }
 
+      if(existingTotalCashDetail){
+        let prevOverallCash= existingTotalCashDetail.totalCash + prevExpTotal;
+        prevOverallCash = prevOverallCash - total
+        existingTotalCashDetail.totalCash = prevOverallCash;
+        await existingTotalCashDetail.save();
+      } 
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });
     }

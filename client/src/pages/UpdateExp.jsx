@@ -126,7 +126,7 @@ export default function UpdateExp(){
             <div className="flex justify-center pt-4 bg-gray-100">
                 <Card className="w-full md:w-[500px]">
                     <div className="mb-4 flex-col items-center justify-between gap-2">
-                    <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">{monthName} {year}</h5>
+                    <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">Expense of {monthName} {year}</h5>
                         <TextInput onChange={handleChange} value={expData.expName} name="expName" type="text" placeholder="Exp Name" required /><br/>
                         <TextInput onChange={handleChange} value={expData.amount} name="amount" type="number" placeholder="Amount" required /><br/> 
                         <Button onClick={addToList}>Add To List</Button>

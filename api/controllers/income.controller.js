@@ -18,9 +18,10 @@ export const addIncome = async (req, res) => {
       const existingTotalCashDetail= await TotalCashDetail.findOne({userId});
       let existingExpTotal=0;
       let existingTotalCash=0;
+      let prevTotalMonthCash=0;
         //////////////// Checking current month exp detail //////////
       if(existingTotalCashDetail){
-        existingTotalCash=existingTotalCashDetail.totalCash;
+        existingTotalCash=existingTotalCashDetail.totalCash;        
       }
 
       if(existingExpDetail){
@@ -31,21 +32,29 @@ export const addIncome = async (req, res) => {
         
         existingIncomeDetail.incomeList=incomeList
         existingIncomeDetail.total = total;
+        prevTotalMonthCash= existingIncomeDetail.monthlyCashInHand;        
         existingIncomeDetail.monthlyCashInHand = total - existingExpTotal;
-        console.log(`existingExpTotal: ${existingExpTotal}, existingTotalCash:${existingTotalCash}`)
-        existingIncomeDetail.totalCashInHand= existingTotalCash - existingExpTotal;
-        await existingIncomeDetail.save(); 
-        res.status(200).json(existingIncomeDetail);
+        let updateTotalCashDetail=0;
         if(existingTotalCashDetail){
-          let updateTotalCashDetail= existingTotalCash + existingIncomeDetail.monthlyCashInHand;
+          updateTotalCashDetail= existingTotalCash - prevTotalMonthCash;
+          updateTotalCashDetail= updateTotalCashDetail + existingIncomeDetail.monthlyCashInHand;
           existingTotalCashDetail.totalCash=updateTotalCashDetail;
           await existingTotalCashDetail.save();
         }
+        existingIncomeDetail.totalCashInHand= existingTotalCashDetail.totalCash;
+        await existingIncomeDetail.save(); 
+        res.status(200).json(existingIncomeDetail);
       } 
       else {
-        ////// Add the Income Total after minus exp total if there
+        
         let newMonthlyCashInHand= total - existingExpTotal
-        let newTotalCashInHand= existingTotalCash - existingExpTotal;
+        if(existingTotalCashDetail){
+          let updateTotalCashDetail= existingTotalCash - prevTotalMonthCash;          
+          updateTotalCashDetail= updateTotalCashDetail + newMonthlyCashInHand;
+          existingTotalCashDetail.totalCash=updateTotalCashDetail;
+          await existingTotalCashDetail.save();
+        }        
+        let newTotalCashInHand= existingTotalCashDetail.totalCash;
         const newIncomeDetail = new IncomeDetail({
           userId,
           year,
@@ -56,12 +65,7 @@ export const addIncome = async (req, res) => {
           totalCashInHand:newTotalCashInHand
         });
         await newIncomeDetail.save(); 
-        res.status(201).json(newIncomeDetail);
-        if(existingTotalCashDetail){
-          let updateTotalCashDetail= existingTotalCash + newMonthlyCashInHand;
-          existingTotalCashDetail.totalCash=updateTotalCashDetail;
-          await existingTotalCashDetail.save();
-        }        
+        res.status(201).json(newIncomeDetail);        
       }
 
     } catch (error) {
@@ -88,9 +92,17 @@ export const getCurrentMonthIncome = async (req, res) => {
             ...(monthName!=='' && {monthName}),
         }
         let existingIncomeDetail = await IncomeDetail.find(query);
-        existingIncomeDetail=existingIncomeDetail[0].toObject();
+        if(existingIncomeDetail.length>0){
+          existingIncomeDetail=existingIncomeDetail[0].toObject();
+        }
+        else{
+          existingIncomeDetail={};
+        }
         const overAllTotalCash= await TotalCashDetail.findOne({userId});
-        existingIncomeDetail['overAllTotalCash']=overAllTotalCash;
+        if(overAllTotalCash){
+          existingIncomeDetail['overAllTotalCash']=overAllTotalCash;
+        }
+        
         res.status(200).json(existingIncomeDetail);
     } 
     catch (error) {
