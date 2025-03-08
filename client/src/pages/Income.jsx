@@ -177,7 +177,7 @@ export default function Income(){
                             {
                                 showBox &&
                                 <>
-                                    <TextInput onChange={handleTotalCash} id="totalCashInHand" name="totalCashInHand" type="number" placeholder="Input Total Cash in Hand" required />
+                                    <TextInput value={totalCash} onChange={handleTotalCash} id="totalCashInHand" name="totalCashInHand" type="number" placeholder="Input Total Cash in Hand default 0" required />
                                     <Button onClick={addTotalCash} disabled={loading}>Add Total Cash</Button>
                                 </>
                             }                                                        

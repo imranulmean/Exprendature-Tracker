@@ -12,8 +12,6 @@ export default function UpdateIncome(){
     const { userId, monthName, year } = useParams();
     const [incomeData, setincomeData] = useState({incomeName:'', amount:'', totalCashInHand:0, monthlyCashInHand:0});
     const [incomeList, setincomeList] = useState([]);    
-    const today = new Date();
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const { currentUser } = useSelector((state) => state.user);
     const [incomeTotal, setincomeTotal]= useState(0);
     let total=0;
@@ -33,8 +31,6 @@ export default function UpdateIncome(){
 
     const getincomeData = async()=>{
         setLoading(true);
-        const monthName=formatMonth(today);
-        const year=formatYear(today);
         const formData={
             userId:currentUser._id,
             year,
@@ -61,19 +57,6 @@ export default function UpdateIncome(){
         }
     }
 
-    const formatYear = (date) => {        
-        // const day = String(date.getDate()).padStart(2, '0');
-        // const month = monthNames[date.getMonth()];
-        const year = date.getFullYear();
-        return `${year}`;
-    };
-
-    const formatMonth = (date) => {        
-        // const day = String(date.getDate()).padStart(2, '0');
-        const month = monthNames[date.getMonth()];
-        // const year = date.getFullYear();
-        return `${month}`;
-    };
 
     const addToList=()=>{
         if(!incomeData.incomeName || !incomeData.amount){
@@ -134,37 +117,13 @@ export default function UpdateIncome(){
         setTotalCash(e.target.value);
     }
 
-    const addTotalCash = async() =>{
-        console.log(totalCash);
-        setLoading(true);
-        const formData={
-            userId:currentUser._id,
-            totalCash
-        };
-        try{
-            const res= await fetch(`${BASE_API}/api/income/addTotalCash`,{
-                method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
-                body: JSON.stringify(formData),
-            })
-            if(res.ok){
-                setLoading(false);
-                alert("Total Cash in hand Added")
-            }
-        }   
-        catch(e){
-            console.log(e);
-        }        
-    }
-
     return (
         <>
             <Header />
             <div className="flex justify-center pt-4 bg-gray-100">
                 <Card className="w-full md:w-[500px]">
                     <div className="mb-4 flex-col items-center justify-between gap-2">
-                        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">Income of {formatMonth(today)} {formatYear(today)}</h5>
+                        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white mb-2">Income of {monthName} {year}</h5>
                         <div>
                             <Button>
                                 <div className="flex flex-col z-0">

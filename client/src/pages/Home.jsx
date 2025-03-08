@@ -75,12 +75,15 @@ export default function Home(){
     return (
         <>
           <Header />
-          <Jumbotron />          
-          <div className="w-full flex-col pt-4">   
-            <div className="w-full flex flex-col justify-center items-center mb-3">
-              <a href='https://drive.google.com/file/d/1KY7v3Z77lRBWYVNYwo2OerlZku8L0-s7/view' className="truncate text-md font-medium text-blue-900 dark:text-white">{'How to Add Data >>'}</a>
-              <Link  to='/insertion' className="truncate text-md font-medium text-blue-900 dark:text-white">{'Click to Add Your Data Here >>'}</Link>              
+          <div className="flex flex-row">
+            <Jumbotron />
+            <div className="w-full flex flex-col justify-center items-center bg-gray-900">
+              <a href='https://drive.google.com/file/d/1KY7v3Z77lRBWYVNYwo2OerlZku8L0-s7/view' className="truncate text-md font-medium text-white dark:text-white">{'How to Add Data >>'}</a>
+              <Link  to='/insertion' className="truncate text-md font-medium text-white">{'Click to Add Your Data Here >>'}</Link>              
             </div>
+          </div>          
+          <div className="w-full flex-col pt-4">   
+
             {/* {
                 expList.length>0 &&
                 <ExpSlider expList={expList} currentUser={currentUser} />
@@ -89,20 +92,26 @@ export default function Home(){
               <Tabs aria-label="Full width tabs" variant="fullWidth">
                 <Tabs.Item active title="Expense" icon={HiUserCircle}>
                     <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
-                      { 
-                        expList.map((item,index)=>{
-                          return(
-                            <>
-                                <ExpCard item={item} currentUser={currentUser} />                  
-                            </>
-                          )
-                        
-                        })
-                      }              
+                      <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Expense List</h5>
+                      <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                        { 
+                          expList.map((item,index)=>{
+                            return(
+                              <>
+                                  <ExpCard item={item} currentUser={currentUser} />                  
+                              </>
+                            )
+                          
+                          })
+                        }
+                      </div>
+              
                     </div>
                 </Tabs.Item>
                 <Tabs.Item title="Income" icon={MdDashboard}>
                 <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                  <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Income List</h5>
+                  <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
                       { 
                         incomeList.map((item,index)=>{
                           return(
@@ -112,8 +121,9 @@ export default function Home(){
                           )
                         
                         })
-                      }              
-                    </div>
+                      }  
+                  </div>            
+                </div>
                 </Tabs.Item>
               </Tabs>
             </div>            

@@ -25,7 +25,7 @@ export default function Jumbotron(){
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 text-white">
                         {ctime}
                     </h5>
-                    <p className="font-normal text-white">
+                    <p className="text-sm font-normal text-white">
                         {date}
                     </p>
                 </div>

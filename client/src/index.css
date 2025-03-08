@@ -45,3 +45,7 @@ body{
     border-image-slice: 1;
     animation: flashing-border 2s linear infinite;
   }
+
+  .focus\:ring-4:focus {
+    box-shadow: none !important;
+}
