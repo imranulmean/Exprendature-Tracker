@@ -55,6 +55,12 @@ export default function AdminDrawer(){
                       <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
                         Sign up
                       </Sidebar.Item>
+                      <Sidebar.Item href="/qrCodeGenerator">
+                        QRcode Generator
+                      </Sidebar.Item>
+                      <Sidebar.Item href="/qrCodeReader">
+                      QRcode Reader
+                      </Sidebar.Item>                      
                     </Sidebar.ItemGroup>
                     <Sidebar.ItemGroup>
                       <Sidebar.Item href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>

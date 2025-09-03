@@ -12,6 +12,8 @@ import AdminPrivateRoute from './components/AdminPrivateRoute';
 import Users from './pages/Users';
 import Income from './pages/Income';
 import UpdateIncome from './pages/UpdateIncom';
+import QRcodeGenerator from './pages/QRcodeGenerator';
+import QrReader from './pages/QrReader';
 
 export default function App(){
 
@@ -27,6 +29,8 @@ export default function App(){
           <Route path='/income' element={<Income />} />
           <Route path='/updateExp/:userId/:monthName/:year' element={<UpdateExp />} />
           <Route path='/updateIncome/:userId/:monthName/:year' element={<UpdateIncome />} />
+          <Route path='/qrCodeGenerator' element={<QRcodeGenerator />} />
+          <Route path='/qrCodeReader' element={<QrReader />} />
         </Route>
 
         <Route element= {<AdminPrivateRoute/>} >
