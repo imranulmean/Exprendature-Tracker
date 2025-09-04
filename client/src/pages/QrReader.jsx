@@ -19,7 +19,10 @@ export default function QrReader(){
                     // Add other options as needed
                 }
             );
-            scannerRef.current.start();
+            scannerRef.current.start().catch((err)=>{
+                console.error("Camera start failed:", err);
+                setScannedResult(`⚠️ ${err}`);
+            });
         }
 
         return () => {
@@ -35,7 +38,7 @@ export default function QrReader(){
             <Header />
             <Jumbotron />        
             <div>
-                <video ref={videoRef} style={{ width: '100%' }}> </video>
+                <video ref={videoRef} style={{ width: '150px', border:"1px solid" }}> </video>
                 {scannedResult && <p>Scanned Result: {scannedResult}</p>}
             </div>       
        </> 
