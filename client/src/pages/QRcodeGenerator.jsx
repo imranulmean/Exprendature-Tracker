@@ -43,7 +43,7 @@ export default function QRcodeGenerator(){
     
     const handleGenerateBatch = () => {
       if (!inputValue) return;
-      const newList = Array.from({ length: count }, (_, i) => ({
+      const newList = Array.from({ length: count }, (_,i) => ({
         id: i,
         value: inputValue,
       }));
