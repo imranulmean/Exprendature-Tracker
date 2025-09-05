@@ -29,7 +29,7 @@ export default function Header(){
       };    
     
     return (
-        <Navbar fluid className="bg-gray-900 border-b border-gray-400 sticky top-0 z-10" 
+        <Navbar fluid className="bg-gray-900 border-b border-gray-400 sticky top-0 z-10 print:hidden" 
               style={{'background':"#000"}}>
           <Link to="/">
             <img src="/logo.PNG" style={{'filter': 'invert(1)'}} className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
