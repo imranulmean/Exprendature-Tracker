@@ -4,8 +4,9 @@ import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from "react";
+
 
 export default function OAuth() {
     
@@ -49,6 +50,7 @@ export default function OAuth() {
                     <AiFillGoogleCircle className='w-6 h-6 mr-2'/>
                     Continue with Google
                 </Button>
+                <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center" to='/startPractice'>Start Practice </Link>                
             </Card>
         </div>
   )
