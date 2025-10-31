@@ -13,15 +13,17 @@ export default function ReactSpeech(){
         browserSupportsSpeechRecognition
       } = useSpeechRecognition();
 
-    useEffect(()=>{
+    useEffect(()=>{        
         if (!browserSupportsSpeechRecognition) {
             return <span>Browser doesn't support speech recognition.</span>;
-          }        
+          }
     },[])
 
 
-
-
+    const startListening = () => SpeechRecognition.startListening({
+        continuous: true,
+        language: 'en-US'
+      });
 
     return(
         <>
@@ -29,7 +31,7 @@ export default function ReactSpeech(){
             React Speech Test
             <p>Microphone: {listening ? 'on' : 'off'}</p>
 
-            <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={SpeechRecognition.startListening}>
+            <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={startListening}>
                 Start
             </Button>            
             <Button type='button' gradientDuoTone='pinkToOrange' outline onClick={SpeechRecognition.stopListening}>
