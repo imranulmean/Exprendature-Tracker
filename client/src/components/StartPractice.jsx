@@ -9,7 +9,7 @@ import HeaderPublic from "./HeaderPublic";
 // - Keeps only unique matched names per session
 // - Saves latest 3 scores to localStorage
 // - Shows missed names and previous 3 scores
-
+ 
 const ALLAH_NAMES = [
   { arabic: "الرَّحْمَنُ", english: "Ar-Rahman", meaning: "The Most Compassionate" },
   { arabic: "الرَّحِيمُ", english: "Ar-Rahim", meaning: "The Most Merciful" },

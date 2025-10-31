@@ -16,6 +16,7 @@ import UpdateIncome from './pages/UpdateIncom';
 import QRcodeGenerator from './pages/QRcodeGenerator';
 import QrReader from './pages/QrReader';
 import StartPractice from './components/StartPractice';
+import ReactSpeech from './components/ReactSpeech';
 
 export default function App(){
 
@@ -26,7 +27,8 @@ export default function App(){
       <Routes>        
         <Route path='/login' element={<Login />} />
         <Route path='/startPractice' element={<StartPractice />} />
-
+        <Route path='/speechTest' element={<ReactSpeech />} />
+        
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />
           <Route path='/insertion' element={<Insertion />} />

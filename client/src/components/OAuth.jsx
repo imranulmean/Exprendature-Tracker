@@ -50,7 +50,8 @@ export default function OAuth() {
                     <AiFillGoogleCircle className='w-6 h-6 mr-2'/>
                     Continue with Google
                 </Button>
-                <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center" to='/startPractice'>Start Practice </Link>                
+                <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center" to='/startPractice'>Start Practice </Link>
+                <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center" to='/speechTest'>Speech Test </Link>
             </Card>
         </div>
   )

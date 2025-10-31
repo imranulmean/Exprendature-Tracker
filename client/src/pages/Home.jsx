@@ -9,7 +9,7 @@ import Jumbotron from "../components/Jumbotron";
 import ExpCard from "../components/ExpCard";
 // import ExpSlider from "../components/ExpSlider";
 
-import { Tabs } from "flowbite-react";
+import { Tabs } from "flowbite-react"; 
 import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
 import IncomeCard from "../components/IncomeCard";
