@@ -2,7 +2,9 @@ import nodemailer from 'nodemailer'
 import XLSX from 'xlsx'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import dotenv from 'dotenv';
 
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url)
 
 const __dirname = path.dirname(__filename)
@@ -10,62 +12,21 @@ const __dirname = path.dirname(__filename)
 const workbook = XLSX.readFile(path.join(__dirname, 'Contacts_2025_12_18.xlsx'))
 
 const sheet = workbook.Sheets[workbook.SheetNames[0]]
-// const users = XLSX.utils.sheet_to_json(sheet)
+const users = XLSX.utils.sheet_to_json(sheet)
 
-const users = [
-    {
-        'Contact Name':"Fahad",
-        'Email':'imranulhasan73@gmail.com'
-    },
-    {
-        'Contact Name':"jhonny SK",
-        'Email':'jhonnysk007@gmail.com'
-    },    
-]
+// const users = [
+//     {
+//         'Contact Name':"Fahad",
+//         'Email':'imranulhasan73@gmail.com'
+//     },
+//     {
+//         'Contact Name':"jhonny SK",
+//         'Email':'jhonnysk007@gmail.com'
+//     },    
+// ]
 
-const transporter = nodemailer.createTransport({
-    host: 'smtp.hostinger.com',  
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'imranul@sysnolodge.com.au',
-      pass: '6z>S;U]jO',
-    }
-  })
-
-  // Optional: verify SMTP
-await transporter.verify()
-console.log('SMTP server ready')
 
 const christmasTemplate = (name = 'Valued Customer') => 
-// `
-// <div style="font-family:Arial;background:#f4f4f4;padding:20px">
-//   <table width="600" align="center" style="background:#ffffff;border-radius:8px">
-//     <tr>
-//       <td style="background:#b71c1c;color:#fff;padding:20px;text-align:center">
-//         <h1>🎄 Merry Christmas 🎄</h1>
-//       </td>
-//     </tr>
-//     <tr>
-//       <td style="padding:20px;text-align:center">
-//         <p>Dear <strong>${name}</strong>,</p>
-//         <p>
-//           Warm Christmas wishes from <strong>Sysnolodge</strong>.
-//         </p>
-//         <p>
-//           Thank you for being part of our journey.
-//           May your holidays be filled with joy and success.
-//         </p>
-//       </td>
-//     </tr>
-//     <tr>
-//       <td style="background:#f0f0f0;padding:12px;text-align:center;font-size:12px">
-//         © 2025 Sysnolodge | sysnolodge.com.au
-//       </td>
-//     </tr>
-//   </table>
-// </div>
-// `
 `
 <table width="100%" cellpadding="0" cellspacing="0" style="background-color:rgb(244,244,244)">
   <tbody>
@@ -187,10 +148,57 @@ const christmasTemplate = (name = 'Valued Customer') =>
   </tbody>
 </table>
 `
+
+const createModifiedList = () =>{
+    //  Filter users (non-public email domains)
+    const blockedDomains = [
+        '@gmail.com',
+        '@yahoo.com',
+        '@hotmail.com',
+        '@outlook.com',
+        '@zoho.com',
+        '@zohocorp.com',
+    ]
+    const filteredUsers = users.filter(user => {
+    if (!user.Email) return false
+
+    const email = user.Email.toLowerCase();
+    const fUser=!blockedDomains.some(domain => email.endsWith(domain));
+    return fUser
+    })
+
+    // Create new workbook
+    const newWorkbook = XLSX.utils.book_new()
+    const newSheet = XLSX.utils.json_to_sheet(filteredUsers)
+
+    XLSX.utils.book_append_sheet(newWorkbook, newSheet, 'Filtered Contacts')
+
+    //  Write to new Excel file
+    const OUTPUT_FILE = path.join(__dirname, 'Modified Contact.xlsx')
+    XLSX.writeFile(newWorkbook, OUTPUT_FILE)
+
+    console.log(`✅ ${filteredUsers.length} contacts saved to "Modified Contact.xlsx"`)
+
+}
+
 const sendChristmasEmails = async () => {
+
+    const transporter = nodemailer.createTransport({
+        host: process.env.SMTP,  
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.SYS_EMAIL,
+          pass: process.env.SYS_PASS,
+        }
+      })
+
+    await transporter.verify()
+    console.log('SMTP server ready')
+      
     for (const user of users) {
       if (!user['Email']) continue
-  
+        
       try {
        const messageId= await transporter.sendMail({
           from: `Sysnolodge 🎄 <imranul@sysnolodge.com.au>`,
@@ -211,4 +219,5 @@ const sendChristmasEmails = async () => {
     }
   }
   
-  await sendChristmasEmails()
+//   createModifiedList();
+//   await sendChristmasEmails()
