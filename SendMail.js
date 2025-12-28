@@ -14,17 +14,6 @@ const workbook = XLSX.readFile(path.join(__dirname, 'Contacts_2025_12_18.xlsx'))
 const sheet = workbook.Sheets[workbook.SheetNames[0]]
 const users = XLSX.utils.sheet_to_json(sheet)
 
-// const users = [
-//     {
-//         'Contact Name':"Fahad",
-//         'Email':'imranulhasan73@gmail.com'
-//     },
-//     {
-//         'Contact Name':"jhonny SK",
-//         'Email':'jhonnysk007@gmail.com'
-//     },    
-// ]
-
 
 const christmasTemplate = (name = 'Valued Customer') => 
 `
@@ -201,7 +190,7 @@ const sendChristmasEmails = async () => {
         
       try {
        const messageId= await transporter.sendMail({
-          from: `Sysnolodge 🎄 <imranul@sysnolodge.com.au>`,
+          from: `${process.env.COMPANY} 🎄 <${process.env.SYS_EMAIL}>`,
           to: user['Email'],
           subject: '🎅 Merry Christmas from Sysnolodge',
           html: christmasTemplate(user['Contact Name']),
@@ -220,4 +209,4 @@ const sendChristmasEmails = async () => {
   }
   
 //   createModifiedList();
-//   await sendChristmasEmails()
+  // await sendChristmasEmails()
