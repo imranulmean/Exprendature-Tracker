@@ -17,6 +17,7 @@ import QRcodeGenerator from './pages/QRcodeGenerator';
 import QrReader from './pages/QrReader';
 import StartPractice from './components/StartPractice';
 import ReactSpeech from './components/ReactSpeech';
+import UploadFile from './pages/UploadFile';
 
 export default function App(){
 
@@ -27,7 +28,8 @@ export default function App(){
       <Routes>        
         <Route path='/login' element={<Login />} />
         <Route path='/startPractice' element={<StartPractice />} />
-        <Route path='/speechTest' element={<ReactSpeech />} />
+        <Route path='/speechTest' element={<ReactSpeech />} />v
+        <Route path='/upload' element={<UploadFile />} />
         
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />

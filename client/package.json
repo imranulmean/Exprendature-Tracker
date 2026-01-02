@@ -14,6 +14,7 @@
     "exp-tracker": "file:..",
     "firebase": "^11.3.1",
     "flowbite-react": "^0.10.2",
+    "nosleep.js": "^0.12.0",
     "qr-scanner": "^1.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
