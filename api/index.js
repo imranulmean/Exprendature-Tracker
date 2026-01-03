@@ -13,17 +13,22 @@ import http from 'http';
 import cors from 'cors';
 import multer from 'multer'
 
+import { google } from "googleapis";
+import fs from "fs";
+import { Readable } from "stream";
+
+
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGO)
-  .then(() => {
-    console.log('MongoDb is connected');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// mongoose
+//   .connect(process.env.MONGO)
+//   .then(() => {
+//     console.log('MongoDb is connected');
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 const __dirname = path.resolve();
 
@@ -52,6 +57,75 @@ app.use('/api/adminApi', adminRoutes);
 
 //To Upload Files //
 
+
+// const upload = multer({
+//   storage: multer.memoryStorage() 
+// });
+
+// const oauth2Client = new google.auth.OAuth2(
+//   process.env.CLIENT_ID,
+//   process.env.CLIENT_SECRET,
+//   process.env.URL
+// );
+
+// // 2. Set the Refresh Token (This is your "Master Key")
+// oauth2Client.setCredentials({
+//   refresh_token: process.env.REFRESH_TOKEN
+// });
+
+// const drive = google.drive({ version: 'v3', auth: oauth2Client });
+
+// app.post("/upload", (req, res) => {
+//   upload.array("files")(req, res, async (err) => {
+//     if (err) return res.status(500).json({ error: err.message });
+//     if (!req.files || req.files.length === 0) return res.status(400).json({ error: "No files" });
+
+//     const folderId = process.env.FOLDER_ID;
+//     const uploadedFiles = [];
+
+//     console.log(`Starting upload for ${req.files.length} files...`);
+
+//     try {
+//       // SEQUENTIAL UPLOAD: Crucial for mobile stability
+//       for (const file of req.files) {
+//         console.log(`Uploading: ${file.originalname}`);
+//         const customFileName = Date.now() + "-" + file.originalname;
+//         const response = await drive.files.create({
+//           requestBody: {
+//             name: customFileName,
+//             parents: [folderId],
+//           },
+//           media: {
+//             mimeType: file.mimetype,
+//             body: Readable.from(file.buffer),
+//           },
+//           fields: 'id, name',
+//         });
+
+//         // Set permission to "anyone with link can view"
+//         await drive.permissions.create({
+//           fileId: response.data.id,
+//           requestBody: {
+//             role: 'reader',
+//             type: 'anyone',
+//           },
+//         });
+
+//         uploadedFiles.push({
+//           name: response.data.name,
+//           id: response.data.id,
+//           url: `https://drive.google.com/uc?id=${response.data.id}`
+//         });
+//       }
+
+//       res.json({ success: true, count: uploadedFiles.length, files: uploadedFiles });
+//     } catch (error) {
+//       console.error("Upload Loop Error:", error);
+//       res.status(500).json({ error: "Drive upload failed", details: error.message });
+//     }
+//   });
+// });
+///////////////////////
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
@@ -84,7 +158,7 @@ app.post("/upload", (req, res) => {
     }
   });
 });
-
+////////////////////////////////
 // app.use('/api/comment', commentRoutes);
 
 // app.use(express.static(path.join(__dirname, '/client/dist')));

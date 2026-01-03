@@ -1,6 +1,7 @@
 import {useState, useRef} from "react";
 import {Button } from "flowbite-react";
 import NoSleep from "nosleep.js";
+import axios from "axios";
 
 export default function UploadFile(){
 
@@ -80,39 +81,20 @@ export default function UploadFile(){
         }
       
         try {
-          await new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", `${BASE_API}/upload`);
-      
-            // ✅ PROGRESS TRACKING
-            xhr.upload.onprogress = (event) => {
-              if (event.lengthComputable) {
-                const percent = Math.round(
-                  (event.loaded / event.total) * 100
-                );
-                setProgress(percent);
-                console.log("Upload:", percent + "%");
-              }
-            };
-      
-            xhr.onload = () => {
-              if (xhr.status >= 200 && xhr.status < 300) {
-                resolve(xhr.response);
-              } else {
-                reject(xhr.statusText);
-              }
-            };
-      
-            xhr.onerror = () => reject("Upload failed");
-      
-            xhr.send(formData);
-          });
-      
-          alert("Files Uploaded Success");
+            const res = await axios.post(`${BASE_API}/upload`,formData,{
+                onUploadProgress:(event)=>{
+                if (event.lengthComputable) {
+                    const percent = Math.round((event.loaded / event.total) * 100);
+                    setProgress(percent);
+                    console.log("Upload:", percent + "%");
+                }
+                }
+            })
+            if(res.data.success) alert("Files Uploaded Success");
       
         } catch (err) {
           console.error(err);
-          alert("Upload Error");
+          alert(err);
         } finally {
           disableNoSleep();
           setLoading(false);
