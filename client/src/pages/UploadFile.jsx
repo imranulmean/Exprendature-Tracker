@@ -40,7 +40,7 @@ export default function UploadFile(){
           console.error("NoSleep disable failed:", err);
         }
       };    
-    const handleUpload = async () => {
+    const handleUpload = async (uploadDestination) => {
         if (!files?.length) return alert("Select Files");
       
         setLoading(true);
@@ -53,7 +53,7 @@ export default function UploadFile(){
         }
       
         try {
-            const res = await axios.post(`${BASE_API}/upload`,formData,{
+            const res = await axios.post(`${BASE_API}/${uploadDestination}`,formData,{
                 onUploadProgress:(event)=>{
                 if (event.lengthComputable) {
                     const percent = Math.round((event.loaded / event.total) * 100);
@@ -79,33 +79,33 @@ export default function UploadFile(){
         }
       };    
 
-      const getFiles = async() =>{
-        const res= await fetch(`${BASE_API}/getFiles`);
-        const data2=await res.json();
-        setDriveFiles(data2);
-        
-      }
+    const getFiles = async() =>{
+      const res= await fetch(`${BASE_API}/getFiles`);
+      const data2=await res.json();
+      setDriveFiles(data2);
+      
+    }
 
-      const deleteFiles = async(fileId) =>{
-        setDeleting(true);
-        try{
-          const res= await fetch(`${BASE_API}/delete-file/${fileId}`,{
-            method:'DELETE'
-          });
-          const result = await res.json();
-          if(result.success){
-            await getFiles();
-          }
-        }catch(err){
-          alert(err);
+    const deleteFiles = async(fileId) =>{
+      setDeleting(true);
+      try{
+        const res= await fetch(`${BASE_API}/delete-file/${fileId}`,{
+          method:'DELETE'
+        });
+        const result = await res.json();
+        if(result.success){
+          await getFiles();
         }
-        finally{
-          setDeleting(false);
-        }
+      }catch(err){
+        alert(err);
       }
+      finally{
+        setDeleting(false);
+      }
+    }
 
     return(
-        <>
+        <div className="w-full bg-gray-200">
           <div className="p-4">
             File uploader
             <input type="file" accept="image/*,video/*" multiple onChange={(e)=>setFiles(e.target.files)}  ref={fileInputRef} disabled={loading}/>
@@ -118,8 +118,12 @@ export default function UploadFile(){
             }
             {
               progress==100 && <p>Processing...</p>
-            }         
-            <Button onClick={handleUpload} disabled={loading}>Upload</Button>
+            } 
+            <div className="flex gap-2 p-2">
+              <Button onClick={()=>handleUpload('uploadDrive')} disabled={loading}>Upload Drive</Button>
+              <Button color='light' onClick={()=>handleUpload('uploadLocal')} disabled={loading}>Upload Local</Button>              
+            </div>        
+
             {
                 wakeLockActivate && <p>Wake lock Activated</p>
             }
@@ -132,7 +136,7 @@ export default function UploadFile(){
           <div className="flex flex-col md:flex-row justify-center gap-2 flex-wrap">
             {driveFiles?.fileDetails.map((file) => (
               <div key={file.id} >
-                <Card className=" flex w-full bg-gray-200 overflow-hidden justify-center items-center">
+                <Card className=" flex w-full overflow-hidden justify-center items-center">
                   <iframe
                     src={file.webViewLink.replace('/view?usp=drivesdk', '/preview')}
                     width="100%"
@@ -143,9 +147,9 @@ export default function UploadFile(){
                     <Button color="light">
                         <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
                     </Button>
-                    <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
+                    {/* <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
                         Delete file
-                    </Button>                              
+                    </Button>                               */}
                   </div> 
 
                 </Card>                  
@@ -154,6 +158,6 @@ export default function UploadFile(){
           </div>
         </div>
 
-        </>
+        </div>
     )
 }
