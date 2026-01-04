@@ -1,7 +1,7 @@
-import {useState, useRef} from "react";
-import {Button } from "flowbite-react";
+import {useState, useRef, useEffect} from "react";
 import NoSleep from "nosleep.js";
 import axios from "axios";
+import { Card, TextInput, Button, Timeline  } from "flowbite-react";
 
 export default function UploadFile(){
 
@@ -12,11 +12,16 @@ export default function UploadFile(){
     const [wakeLockActivate, setWakeLockActivate] = useState(false);
     const [progress, setProgress] = useState(0);
     const noSleepRef = useRef(null);
+    const [driveFiles, setDriveFiles] = useState(null);
+    const [deleting, setDeleting]= useState(false);
 
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
       }
 
+      useEffect(()=>{
+        getFiles();
+      },[])
     const enableNoSleep = async () => {
         try {
             noSleepRef.current.enable();
@@ -35,39 +40,6 @@ export default function UploadFile(){
           console.error("NoSleep disable failed:", err);
         }
       };    
-    // const handleUpload=async()=>{        
-    //     if(!files) return alert("select Files")
-    //     setLoading(true);
-    //     await enableNoSleep();
-    //     const fomrData= new FormData();
-    //     for (let i=0; i< files.length; i++){
-    //         fomrData.append("files", files[i]);
-    //     }
-    //     try {
-    //         const res= await fetch(`${BASE_API}/upload`,{
-    //             method:"POST",
-    //             body:fomrData
-    //         })
-    //         if(res.ok){
-    //             alert("Files Uploaded Succes")
-
-    //         } 
-
-    //     }
-    //     catch(e){
-    //         alert(e)
-    //         setFiles(null);
-    //     }
-    //     finally{
-    //         disableNoSleep();
-    //         setLoading(false);
-    //         setFiles(null);
-    //         if (fileInputRef.current) {
-    //           fileInputRef.current.value = "";
-    //         }
-    //     }
-    // }
-
     const handleUpload = async () => {
         if (!files?.length) return alert("Select Files");
       
@@ -100,29 +72,88 @@ export default function UploadFile(){
           setLoading(false);
           setFiles(null);
           setProgress(0);
-      
+          await getFiles();
           if (fileInputRef.current) {
             fileInputRef.current.value = "";
           }
         }
       };    
 
+      const getFiles = async() =>{
+        const res= await fetch(`${BASE_API}/getFiles`);
+        const data2=await res.json();
+        setDriveFiles(data2);
+        
+      }
+
+      const deleteFiles = async(fileId) =>{
+        setDeleting(true);
+        try{
+          const res= await fetch(`${BASE_API}/delete-file/${fileId}`,{
+            method:'DELETE'
+          });
+          const result = await res.json();
+          if(result.success){
+            await getFiles();
+          }
+        }catch(err){
+          alert(err);
+        }
+        finally{
+          setDeleting(false);
+        }
+      }
+
     return(
         <>
+          <div className="p-4">
             File uploader
-            <input type="file" multiple onChange={(e)=>setFiles(e.target.files)}  ref={fileInputRef}/>
+            <input type="file" accept="image/*,video/*" multiple onChange={(e)=>setFiles(e.target.files)}  ref={fileInputRef} disabled={loading}/>
             {loading && 
                 <div>
                     <p>Uploading...{progress}%</p>
                     <progress value={progress} max="100" />
                 </div>
                 
-            }            
+            }
+            {
+              progress==100 && <p>Processing...</p>
+            }         
             <Button onClick={handleUpload} disabled={loading}>Upload</Button>
             {
                 wakeLockActivate && <p>Wake lock Activated</p>
             }
-            
+          </div>
+
+
+        <div className="p-4">
+          <h2>My Drive Files ({driveFiles?.totalFiles})</h2>
+          
+          <div className="flex flex-col md:flex-row justify-center gap-2 flex-wrap">
+            {driveFiles?.fileDetails.map((file) => (
+              <div key={file.id} >
+                <Card className=" flex w-full bg-gray-200 overflow-hidden justify-center items-center">
+                  <iframe
+                    src={file.webViewLink.replace('/view?usp=drivesdk', '/preview')}
+                    width="100%"
+                    allow="autoplay"
+                    className="rounded-lg"
+                  ></iframe>                 
+                  <div className="flex gap-2">                          
+                    <Button color="light">
+                        <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
+                    </Button>
+                    <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
+                        Delete file
+                    </Button>                              
+                  </div> 
+
+                </Card>                  
+              </div>
+            ))}
+          </div>
+        </div>
+
         </>
     )
 }
