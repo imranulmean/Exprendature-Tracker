@@ -12,10 +12,10 @@ export default defineConfig({
   //   },
   // },
 
-  // server: {
-  //   host: '192.168.0.107',
-  //   port: 5173,
-  // },  
+  server: {
+    host: '192.168.0.107',
+    port: 5173,
+  },  
 
   // server: {
   //   proxy: {

@@ -79,7 +79,8 @@ export default function Home(){
             <Jumbotron />
             <div className="w-full flex flex-col justify-center items-center bg-gray-900">
               <a href='https://drive.google.com/file/d/1KY7v3Z77lRBWYVNYwo2OerlZku8L0-s7/view' className="truncate text-md font-medium text-white dark:text-white">{'How to Add Data >>'}</a>
-              <Link  to='/insertion' className="truncate text-md font-medium text-white">{'Click to Add Your Data Here >>'}</Link>              
+              <Link  to='/insertion' className="truncate text-md font-medium text-white">{'Click to Add Your Data Here >>'}</Link>
+              <Link  to='/upload' className="truncate text-md font-medium text-white">{'Upload File >>'}</Link>
             </div>
           </div>          
           <div className="w-full flex-col pt-4">   

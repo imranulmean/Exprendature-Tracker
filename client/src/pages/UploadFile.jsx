@@ -151,7 +151,8 @@ export default function UploadFile(){
 
         <div className="p-4">
           <h2>My Drive Files ({driveFiles?.totalFiles})</h2>
-          <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>                
+          <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
+            <ModalHeader></ModalHeader>                
             <ModalBody>
               <iframe
                 src={fileLink}
@@ -185,6 +186,9 @@ export default function UploadFile(){
                     <Button color="light">
                         <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
                     </Button>
+                    <Button  onClick={()=>  openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))} >
+                        Full View
+                      </Button>                    
                     {
                       currentUser&&
                       <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>

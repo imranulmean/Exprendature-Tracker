@@ -18,10 +18,12 @@ export const google = async (req, res, next) => {
         if(isAdmin===true){
           rest['isAdmin']=isAdmin;
         }
+
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
-            secure: true,  
-            sameSite: "None",
+            secure: false,  
+            sameSite: "Lax",
+            // sameSite: "None",
           }).json(rest);
       } 
       else {

@@ -13,6 +13,7 @@ dist-ssr
 *.local
 uploads
 DriveUploads
+vite.config.js
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
