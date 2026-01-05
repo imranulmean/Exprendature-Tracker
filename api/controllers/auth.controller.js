@@ -22,8 +22,8 @@ export const google = async (req, res, next) => {
         res.status(200).cookie('access_token', token, {
             httpOnly: true,
             secure: true,  
-            // sameSite: "Lax",
             sameSite: "None",
+            sameSite: "Lax",
           }).json(rest);
       } 
       else {
