@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from "react";
 import NoSleep from "nosleep.js";
 import axios from "axios";
-import { Card, TextInput, Button, Timeline  } from "flowbite-react";
+import { Card, TextInput, Button, Timeline, Modal, ModalBody, ModalFooter, ModalHeader  } from "flowbite-react";
 import { useSelector } from 'react-redux';
 
 export default function UploadFile(){
@@ -16,6 +16,8 @@ export default function UploadFile(){
     const noSleepRef = useRef(null);
     const [driveFiles, setDriveFiles] = useState(null);
     const [deleting, setDeleting]= useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [fileLink, setFileLink]= useState(null);
 
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
@@ -87,7 +89,11 @@ export default function UploadFile(){
       setDriveFiles(data2);
       
     }
-  
+    const openFileInModal= (fl) =>{
+      console.log(fl)
+      setFileLink(fl)
+      setOpenModal(true);
+    }
     const deleteFiles = async(fileId) =>{
       setDeleting(true);
       const obj={
@@ -105,7 +111,9 @@ export default function UploadFile(){
         if(result.success){
           await getFiles();
         }
-        
+        else{
+          alert(result.message)
+        }
 
       }catch(err){
         alert(err);
@@ -143,17 +151,36 @@ export default function UploadFile(){
 
         <div className="p-4">
           <h2>My Drive Files ({driveFiles?.totalFiles})</h2>
-          
+          <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>                
+            <ModalBody>
+              <iframe
+                src={fileLink}
+                width="100%"
+                height="500px"
+                className="rounded-lg"
+                allowFullScreen>
+              </iframe>
+             
+            </ModalBody>
+          </Modal>            
           <div className="flex flex-col md:flex-row justify-center gap-2 flex-wrap">
             {driveFiles?.fileDetails.map((file) => (
-              <div key={file.id} >
+              <div key={file.id} >              
                 <Card className=" flex w-full overflow-hidden justify-center items-center">
-                  {/* <iframe
-                    src={file.webViewLink.replace('/view?usp=drivesdk', '/preview')}
-                    width="100%"
-                    allow="autoplay"
-                    className="rounded-lg"
-                  ></iframe>                  */}
+                  {
+                    file.thumbnailLink ?
+                    <img src={file.thumbnailLink.replace('=s220','=s400')} 
+                          referrerPolicy="no-referrer"
+                          crossOrigin="anonymous" 
+                          onClick={() => openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))} 
+                          // onClick={() => openFileInModal(file.thumbnailLink.replace('=s220','=s0'))}
+                          />
+                    :
+                    <img src='https://www.biblecenterchurch.com/wp-content/uploads/2018/10/video-placeholder-300x169.png' 
+                         onClick={() => openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))}  
+                    />
+                  }
+                  
                   <div className="flex gap-2">                          
                     <Button color="light">
                         <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
