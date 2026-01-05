@@ -111,6 +111,15 @@ export const uploadDrive = async(req, res) =>{
                     body: Readable.from(file.buffer),
                 },
                 fields: 'id, name, webContentLink, webViewLink',
+            }, {
+                // THIS IS THE KEY PART:
+                onUploadProgress: (evt) => {
+                    const progress = (evt.bytesRead / file.size) * 100;
+                    console.log(`Uploading ${file.originalname}: ${Math.round(progress)}%`);
+                    
+                    // If using Socket.io, you could emit the progress here:
+                    // io.emit('uploadProgress', { fileName: file.originalname, progress });
+                },
             });
             if(response.data.id) console.log(`Uploaded-----: ${file.originalname}`);
             // Set permission to "anyone with link can view"
