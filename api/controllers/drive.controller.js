@@ -20,7 +20,18 @@ const storageLocal = multer.diskStorage({
     },
 });
 
+
+const storageDrive = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "DriveUploads/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname);
+    },
+});
+
 const uploadLocalMul = multer({ storage:storageLocal });  
+const uploadDriveStorage = multer({ storage:storageDrive });  
 
 const oauth2Client = new google.auth.OAuth2(
     process.env.CLIENT_ID,
@@ -86,7 +97,7 @@ export const getFile = async (req, res) =>{
 
 export const uploadDrive = async(req, res) =>{
     try{
-        upload.array("files")(req, res, async (err) => {
+        uploadDriveStorage.array("files")(req, res, async (err) => {
         if (err){
             console.log(err)
             return res.status(500).json({ error: err.message });
@@ -108,20 +119,18 @@ export const uploadDrive = async(req, res) =>{
                 },
                 media: {
                     mimeType: file.mimetype,
-                    body: Readable.from(file.buffer),
+                    body: fs.createReadStream(file.path),
+                    // body: Readable.from(file.buffer),
                 },
                 fields: 'id, name, webContentLink, webViewLink',
             }, {
-                // THIS IS THE KEY PART:
-                onUploadProgress: (evt) => {
-                    const progress = (evt.bytesRead / file.size) * 100;
-                    console.log(`Uploading ${file.originalname}: ${Math.round(progress)}%`);
-                    
-                    // If using Socket.io, you could emit the progress here:
-                    // io.emit('uploadProgress', { fileName: file.originalname, progress });
-                },
+                timeout: 0,
+                maxContentLength: Infinity,
+                maxBodyLength: Infinity
             });
             if(response.data.id) console.log(`Uploaded-----: ${file.originalname}`);
+            // Delete local file after successful upload to save disk space
+            fs.unlinkSync(file.path);
             // Set permission to "anyone with link can view"
             await drive.permissions.create({
                 fileId: response.data.id,
@@ -131,12 +140,12 @@ export const uploadDrive = async(req, res) =>{
                 },
             });
     
-            uploadedFiles.push({
-                name: response.data.name,
-                id: response.data.id,
-                url: `https://drive.google.com/uc?id=${response.data.id}`,
-                res:response.data
-            });
+                uploadedFiles.push({
+                    name: response.data.name,
+                    id: response.data.id,
+                    url: `https://drive.google.com/uc?id=${response.data.id}`,
+                    res:response.data
+                });
             }
     
             res.json({ success: true, count: uploadedFiles.length, files: uploadedFiles });

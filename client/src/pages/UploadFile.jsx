@@ -101,7 +101,7 @@ export default function UploadFile(){
           body:JSON.stringify(obj)
         });
         const result = await res.json();
-        alert(result.message)
+        // alert(result.message)
         if(result.success){
           await getFiles();
         }
@@ -148,12 +148,12 @@ export default function UploadFile(){
             {driveFiles?.fileDetails.map((file) => (
               <div key={file.id} >
                 <Card className=" flex w-full overflow-hidden justify-center items-center">
-                  <iframe
+                  {/* <iframe
                     src={file.webViewLink.replace('/view?usp=drivesdk', '/preview')}
                     width="100%"
                     allow="autoplay"
                     className="rounded-lg"
-                  ></iframe>                 
+                  ></iframe>                  */}
                   <div className="flex gap-2">                          
                     <Button color="light">
                         <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
