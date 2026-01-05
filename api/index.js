@@ -11,20 +11,20 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import http from 'http';
 import cors from 'cors';
-import { deleteFile, getFiles, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
+import { deleteFile, getFile, getFiles, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
 
 
 
 dotenv.config();
 
-// mongoose
-//   .connect(process.env.MONGO)
-//   .then(() => {
-//     console.log('MongoDb is connected');
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+mongoose
+  .connect(process.env.MONGO)
+  .then(() => {
+    console.log('MongoDb is connected');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const __dirname = path.resolve();
 
@@ -32,8 +32,8 @@ const app = express();
 const server= http.createServer(app);
 
 app.use(cors({
-  // origin: ['http://localhost:5173',"https://exp-tracker-face.vercel.app"],
-  origin: '*',
+  origin: ['http://localhost:5173',"https://exp-tracker-face.vercel.app"],
+  // origin: '*',
   credentials: true,
 }));
 app.use(express.json());
@@ -52,12 +52,12 @@ app.use('/api/income', incomeRoutes);
 app.use('/api/adminApi', adminRoutes);
 
 
-app.get("/getFiles", getFiles)
-
+app.get("/getFiles", getFiles);
+// app.get("/getFile/:fileId", getFile);
 app.post("/uploadDrive", uploadDrive);
 app.post("/uploadLocal", uploadLocal);
 
-app.delete("/delete-file/:fileId", deleteFile);
+app.post("/delete-file", deleteFile);
 
 // app.use(express.static(path.join(__dirname, '/client/dist')));
 

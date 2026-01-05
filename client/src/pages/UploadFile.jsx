@@ -2,9 +2,11 @@ import {useState, useRef, useEffect} from "react";
 import NoSleep from "nosleep.js";
 import axios from "axios";
 import { Card, TextInput, Button, Timeline  } from "flowbite-react";
+import { useSelector } from 'react-redux';
 
 export default function UploadFile(){
 
+    const { currentUser } = useSelector((state) => state.user);
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const fileInputRef = useRef(null);
     const [files, setFiles]=useState();
@@ -85,17 +87,26 @@ export default function UploadFile(){
       setDriveFiles(data2);
       
     }
-
+  
     const deleteFiles = async(fileId) =>{
       setDeleting(true);
+      const obj={
+        userEmail:currentUser.email,
+        fileId
+      }
       try{
-        const res= await fetch(`${BASE_API}/delete-file/${fileId}`,{
-          method:'DELETE'
+        const res= await fetch(`${BASE_API}/delete-file`,{
+          method:'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:JSON.stringify(obj)
         });
         const result = await res.json();
+        alert(result.message)
         if(result.success){
           await getFiles();
         }
+        
+
       }catch(err){
         alert(err);
       }
@@ -147,9 +158,13 @@ export default function UploadFile(){
                     <Button color="light">
                         <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
                     </Button>
-                    {/* <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
+                    {
+                      currentUser&&
+                      <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
                         Delete file
-                    </Button>                               */}
+                      </Button> 
+                    }               
+                             
                   </div> 
 
                 </Card>                  

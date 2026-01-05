@@ -65,6 +65,25 @@ export const getFiles = async(req, res) =>{
     }
 }
 
+export const getFile = async (req, res) =>{
+    const { fileId, userEmail } = req.params;
+    if(!userEmail) return res.status(500).json({success:false, message:"You are not allowed to Delete"});
+    try {
+        const data=await drive.files.get({
+            fileId: fileId,
+            fields:'owners'
+        });
+        const owners=data.data.owners;
+        for(let o of owners){
+            console.log(o.emailAddress);
+        }
+        res.json({ success: true, message: "File deleted successfully" , data});
+    } catch (error) {
+        console.error("Delete Error:", error);
+        res.status(500).json({ error: "Failed to delete file", details: error.message });
+    }
+}
+
 export const uploadDrive = async(req, res) =>{
     try{
         upload.array("files")(req, res, async (err) => {
@@ -79,22 +98,21 @@ export const uploadDrive = async(req, res) =>{
         console.log(`Starting upload for ${req.files.length} files...`);
     
         try {
-            // SEQUENTIAL UPLOAD: Crucial for mobile stability
             for (const file of req.files) {
             console.log(`Uploading: ${file.originalname}`);
             const customFileName = Date.now() + "-" + file.originalname;
             const response = await drive.files.create({
                 requestBody: {
-                name: customFileName,
-                parents: [folderId],
+                    name: customFileName,
+                    parents: [folderId],
                 },
                 media: {
-                mimeType: file.mimetype,
-                body: Readable.from(file.buffer),
+                    mimeType: file.mimetype,
+                    body: Readable.from(file.buffer),
                 },
                 fields: 'id, name, webContentLink, webViewLink',
             });
-    
+            if(response.data.id) console.log(`Uploaded-----: ${file.originalname}`);
             // Set permission to "anyone with link can view"
             await drive.permissions.create({
                 fileId: response.data.id,
@@ -125,15 +143,28 @@ export const uploadDrive = async(req, res) =>{
 } 
 
 export const deleteFile = async (req, res) =>{
-    const { fileId } = req.params;    
+    const { fileId, userEmail } = req.body;
+    if(!userEmail) return res.status(403).json({success:false, message:"No Email Found"});
     try {
         // This permanently deletes the file. 
         // Use drive.files.update with trashed: true if you want to move it to trash instead.
-        await drive.files.delete({
-        fileId: fileId,
+        const data=await drive.files.get({
+            fileId: fileId,
+            fields:'owners'
         });
-    
-        res.json({ success: true, message: "File deleted successfully" });
+        const owners=data.data.owners;
+        const isOwner=owners.some((o)=>{
+            return o.emailAddress == userEmail
+        })        
+        if (isOwner) {
+            await drive.files.delete({
+                fileId: fileId,
+            });
+            return res.json({ success: true, message: "File deleted successfully" });
+        } else {
+            return res.status(403).json({ success: false, message: "You are not allowed to delete this file" });
+        }       
+            
     } catch (error) {
         console.error("Delete Error:", error);
         res.status(500).json({ error: "Failed to delete file", details: error.message });
