@@ -23,7 +23,7 @@ export const google = async (req, res, next) => {
             httpOnly: true,
             secure: true,  
             sameSite: "None",
-            // sameSite: "Lax",
+
           }).json(rest);
       } 
       else {
