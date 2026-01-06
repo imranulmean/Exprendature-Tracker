@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const upload = multer({
+const uploadMemory = multer({
     storage: multer.memoryStorage() 
   });
 
@@ -97,7 +97,7 @@ export const getFile = async (req, res) =>{
 
 export const uploadDrive = async(req, res) =>{
     try{
-        uploadDriveStorage.array("files")(req, res, async (err) => {
+        uploadMemory.array("files")(req, res, async (err) => {
         if (err){
             console.log(err)
             return res.status(500).json({ error: err.message });
@@ -119,8 +119,8 @@ export const uploadDrive = async(req, res) =>{
                 },
                 media: {
                     mimeType: file.mimetype,
-                    body: fs.createReadStream(file.path),
-                    // body: Readable.from(file.buffer),
+                    // body: fs.createReadStream(file.path),
+                    body: Readable.from(file.buffer),
                 },
                 fields: 'id, name, webContentLink, webViewLink',
             }, {
@@ -130,7 +130,7 @@ export const uploadDrive = async(req, res) =>{
             });
             if(response.data.id) console.log(`Uploaded-----: ${file.originalname}`);
             // Delete local file after successful upload to save disk space
-            fs.unlinkSync(file.path);
+            // fs.unlinkSync(file.path);
             // Set permission to "anyone with link can view"
             await drive.permissions.create({
                 fileId: response.data.id,

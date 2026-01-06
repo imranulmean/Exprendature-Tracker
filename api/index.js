@@ -54,7 +54,7 @@ app.use('/api/adminApi', adminRoutes);
 app.get("/getFiles", getFiles);
 // app.get("/getFile/:fileId", getFile);
 app.post("/uploadDrive", uploadDrive);
-app.post("/uploadLocal", uploadLocal);
+// app.post("/uploadLocal", uploadLocal);
 
 app.post("/delete-file", deleteFile);
 

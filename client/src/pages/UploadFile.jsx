@@ -46,7 +46,14 @@ export default function UploadFile(){
       };    
     const handleUpload = async (uploadDestination) => {
         if (!files?.length) return alert("Select Files");
-      
+        const MAX_SIZE_MB = 500;
+        const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
+        const totalSizeBytes = Array.from(files).reduce((acc, file) => acc + file.size, 0);
+        const totalSizeMB = (totalSizeBytes / (1024 * 1024)).toFixed(2);
+        if (totalSizeBytes > MAX_SIZE_BYTES) {
+          return alert(`Total file size (${totalSizeMB} MB) exceeds the ${MAX_SIZE_MB} MB limit.`);
+        }        
         setLoading(true);
         setProgress(0);
         await enableNoSleep();
@@ -55,7 +62,6 @@ export default function UploadFile(){
         for (let i = 0; i < files.length; i++) {
           formData.append("files", files[i]);
         }
-      
         try {
             const res = await axios.post(`${BASE_API}/${uploadDestination}`,formData,{
                 onUploadProgress:(event)=>{
@@ -125,31 +131,30 @@ export default function UploadFile(){
 
     return(
         <div className="w-full bg-gray-200">
-          {
-            currentUser &&
-            <div className="p-4">
-              File uploader
-              <input type="file" accept="image/*,video/*" multiple onChange={(e)=>setFiles(e.target.files)}  ref={fileInputRef} disabled={loading}/>
-              {loading && 
-                  <div>
-                      <p>Uploading...{progress}%</p>
-                      <progress value={progress} max="100" />
-                  </div>
-                  
-              }
-              {
-                progress==100 && <p>Processing...</p>
-              } 
-              <div className="flex gap-2 p-2">
-                <Button onClick={()=>handleUpload('uploadDrive')} disabled={loading}>Upload Drive</Button>
-                <Button color='light' onClick={()=>handleUpload('uploadLocal')} disabled={loading}>Upload Local</Button>              
-              </div>        
 
-              {
-                  wakeLockActivate && <p>Wake lock Activated</p>
-              }
-            </div>            
-          }
+        {/* ////////////// File Uploader ///////////// */}
+          <div className="p-4">
+            File uploader
+            <input type="file" accept="image/*,video/*" multiple onChange={(e)=>setFiles(e.target.files)}  ref={fileInputRef} disabled={loading}/>
+            {loading && 
+                <div>
+                    <p>Uploading...{progress}%</p>
+                    <progress value={progress} max="100" />
+                </div>
+                
+            }
+            {
+              progress==100 && <p>Processing...</p>
+            } 
+            <div className="flex gap-2 p-2">
+              <Button onClick={()=>handleUpload('uploadDrive')} disabled={loading}>Upload Drive</Button>
+              {/* <Button color='light' onClick={()=>handleUpload('uploadLocal')} disabled={loading}>Upload Local</Button>               */}
+            </div>        
+
+            {
+                wakeLockActivate && <p>Wake lock Activated</p>
+            }
+          </div>            
 
           <div className="p-4">
             <h2>My Drive Files ({driveFiles?.totalFiles})</h2>
