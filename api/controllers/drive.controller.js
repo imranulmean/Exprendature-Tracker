@@ -96,6 +96,7 @@ export const getFile = async (req, res) =>{
 }
 
 export const uploadDrive = async(req, res) =>{
+    console.log("Upload Api Hit")
     try{
         uploadMemory.array("files")(req, res, async (err) => {
         if (err){
