@@ -22,7 +22,7 @@ export default function UploadFile(){
     const [currentFile, setCurrentFile]= useState('');
     const [totalFileSize, setTotalFileSize] = useState(0);
     const [totalUploadedSizeMB, setTotalUploadedSizeMB] = useState(0);
-    
+    const [loadedStatus, setLoadedStatus] = useState(0);
 
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
@@ -196,6 +196,8 @@ export default function UploadFile(){
           // 3. PUT the file bytes directly to Google
           const uploadRes = await axios.put(uploadUrl, file, {
             onUploadProgress: (p) => {
+              const loadedMB = (p.loaded / (1024 * 1024)).toFixed(2);
+              setLoadedStatus(loadedMB);
               const progress = Math.round((p.loaded / p.total) * 100);
               setDirectUploadProgress(progress);
             }
@@ -237,6 +239,7 @@ export default function UploadFile(){
                     <progress value={progress} max="100" /> */}
                     <p>Total Size:{totalFileSize} MB</p>
                     <p>{currentFile} Uploading...{directUploadProgress}%</p>
+                    <p>Loaded: {loadedStatus} MB</p>
                     <progress value={directUploadProgress} max="100" />   
                     <p>TotalUploaded: {totalUploadedSizeMB} MB</p>             
                 </div>
