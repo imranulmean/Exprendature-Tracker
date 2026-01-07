@@ -208,3 +208,13 @@ export const uploadLocal = async(req, res)=>{
         }
     });
 }
+
+export const getToken = async (req, res) =>{
+    try {
+        const {token}=await oauth2Client.getAccessToken();
+        res.json({ success: true, folderId:'1I2a7_eRW6CoBsdu-0UjSaj15iSPHyWZi',token });
+    } catch (error) {
+        console.error("Server Error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }    
+} 
