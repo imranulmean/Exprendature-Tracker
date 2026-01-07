@@ -201,12 +201,12 @@ export default function UploadFile(){
     
           const fileId = uploadRes.data.id;
           setCurrentFile('');
-          console.log(`Finished ${file.name}`);
         }
     
         alert("All uploads complete!");
       } catch (err) {
         console.error("Critical upload error:", err);
+        alert(err);
       } finally {
         setLoading(false);
         setFiles(null);
