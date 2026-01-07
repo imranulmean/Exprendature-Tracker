@@ -169,7 +169,8 @@ export default function UploadFile(){
       try {
         setTotalUploadedSizeMB(0);
         setLoading(true);
-        setProgress(0);        
+        setProgress(0); 
+        await enableNoSleep();       
         // 1. Get the token once
         const token= await getToken();
         const fileList = Array.from(files);
@@ -204,6 +205,11 @@ export default function UploadFile(){
           });
     
           const fileId = uploadRes.data.id;
+          await fetch(`${BASE_API}/setFilePermission`,{
+            method:'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fileId: fileId })
+          });
           totalUploadedSizeBytes = totalUploadedSizeBytes + file.size;
           const totalUploadedMB= (totalUploadedSizeBytes/(1024*1024)).toFixed(2) ;
           setCurrentFile('');
@@ -218,6 +224,7 @@ export default function UploadFile(){
         setLoading(false);
         setFiles(null);
         setDirectUploadProgress(0);
+        disableNoSleep();
         await getFiles();
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
@@ -285,7 +292,6 @@ export default function UploadFile(){
                             referrerPolicy="no-referrer"/>
                       :
                       <img src='https://www.biblecenterchurch.com/wp-content/uploads/2018/10/video-placeholder-300x169.png' 
-                          onClick={() => openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))}  
                       />
                     }
                     

@@ -161,6 +161,26 @@ export const uploadDrive = async(req, res) =>{
     }
 } 
 
+export const setFilePermission = async (req, res) =>{
+    const { fileId } = req.body;
+
+    try {
+    
+      await drive.permissions.create({
+        fileId: fileId,
+        requestBody: {
+          role: 'reader',
+          type: 'anyone',
+        },
+      });
+  
+      res.json({ success: true, message: "File is now public" });
+    } catch (error) {
+      console.error("Permission Error:", error);
+      res.status(500).json({ error: "Failed to set permission" });
+    }    
+}
+
 export const deleteFile = async (req, res) =>{
     const { fileId, userEmail } = req.body;
     if(!userEmail) return res.status(403).json({success:false, message:"No Email Found"});
