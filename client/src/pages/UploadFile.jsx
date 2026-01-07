@@ -21,6 +21,8 @@ export default function UploadFile(){
     const [directUploadProgress, setDirectUploadProgress] = useState(0);
     const [currentFile, setCurrentFile]= useState('');
     const [totalFileSize, setTotalFileSize] = useState(0);
+    const [totalUploadedSizeMB, setTotalUploadedSizeMB] = useState(0);
+    
 
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
@@ -161,9 +163,11 @@ export default function UploadFile(){
 
     const directUpload =  async()=>{
       const isSizeValid = getTotalFileSize();
+      let totalUploadedSizeBytes= 0;
       if (!isSizeValid) return;
       /////////////////////////
       try {
+        setTotalUploadedSizeMB(0);
         setLoading(true);
         setProgress(0);        
         // 1. Get the token once
@@ -171,7 +175,6 @@ export default function UploadFile(){
         const fileList = Array.from(files);
     
         for (const file of fileList) {
-          console.log(`Uploading ${file.name}...`);
           setDirectUploadProgress(0);
           setCurrentFile(file.name);
           // 2. Initiate Resumable Session
@@ -194,13 +197,15 @@ export default function UploadFile(){
           const uploadRes = await axios.put(uploadUrl, file, {
             onUploadProgress: (p) => {
               const progress = Math.round((p.loaded / p.total) * 100);
-              console.log(`${file.name}: ${progress}%`);
               setDirectUploadProgress(progress);
             }
           });
     
           const fileId = uploadRes.data.id;
+          totalUploadedSizeBytes = totalUploadedSizeBytes + file.size;
+          const totalUploadedMB= (totalUploadedSizeBytes/(1024*1024)).toFixed(2) ;
           setCurrentFile('');
+          setTotalUploadedSizeMB(totalUploadedMB);
         }
     
         alert("All uploads complete!");
@@ -232,7 +237,8 @@ export default function UploadFile(){
                     <progress value={progress} max="100" /> */}
                     <p>Total Size:{totalFileSize} MB</p>
                     <p>{currentFile} Uploading...{directUploadProgress}%</p>
-                    <progress value={directUploadProgress} max="100" />                
+                    <progress value={directUploadProgress} max="100" />   
+                    <p>TotalUploaded: {totalUploadedSizeMB} MB</p>             
                 </div>
                 
             }
