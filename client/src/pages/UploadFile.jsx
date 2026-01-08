@@ -1,8 +1,10 @@
 import {useState, useRef, useEffect} from "react";
 import NoSleep from "nosleep.js";
 import axios from "axios";
-import { Card, TextInput, Button, Timeline, Modal, ModalBody, ModalFooter, ModalHeader  } from "flowbite-react";
+import { Card, TextInput, Button, Timeline, Modal, ModalBody, ModalFooter, ModalHeader, Tabs  } from "flowbite-react";
 import { useSelector } from 'react-redux';
+import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
+import { MdDashboard } from "react-icons/md";
 
 export default function UploadFile(){
 
@@ -23,7 +25,9 @@ export default function UploadFile(){
     const [totalFileSize, setTotalFileSize] = useState(0);
     const [totalUploadedSizeMB, setTotalUploadedSizeMB] = useState(0);
     const [loadedStatus, setLoadedStatus] = useState(0);
-
+    const [images, setImages] = useState([]);
+    const [videos, setVideos] = useState([]);
+    
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
       }
@@ -114,7 +118,10 @@ export default function UploadFile(){
       const res= await fetch(`${BASE_API}/getFiles`);
       const data2=await res.json();
       setDriveFiles(data2);
-      
+      const newVideos = data2.fileDetails.filter(df => df.mimeType.includes('video'));
+      const newImages= data2.fileDetails.filter(df => df.mimeType.includes('image'));
+      setVideos(newVideos);
+      setImages(newImages);
     }
     const openFileInModal= (fl) =>{
       console.log(fl)
@@ -267,7 +274,7 @@ export default function UploadFile(){
           </div>            
         {/* ////////////// File Uploader end///////////// */}
           <div className="p-4">
-            <h2>My Drive Files ({driveFiles?.totalFiles})</h2>
+            <h2>My Drive Files ({driveFiles?.totalFiles})</h2>            
             <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
               <ModalBody>
                 <iframe
@@ -281,40 +288,76 @@ export default function UploadFile(){
               <ModalFooter>
                 <Button onClick={() => setOpenModal(false)}>Close</Button>
               </ModalFooter>            
-            </Modal>            
-            <div className="flex flex-col md:flex-row justify-center gap-2 flex-wrap">
-              {driveFiles?.fileDetails.map((file) => (
-                <div key={file.id} >              
-                  <Card className=" flex w-full overflow-hidden justify-center items-center">
-                    {
-                      file.thumbnailLink ?
-                      <img src={file.thumbnailLink.replace('=s220','=s400')} 
-                            referrerPolicy="no-referrer"/>
-                      :
-                      <img src='https://www.biblecenterchurch.com/wp-content/uploads/2018/10/video-placeholder-300x169.png' 
-                      />
-                    }
-                    
-                    <div className="flex gap-2">                          
-                      <Button color="light">
-                          <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
-                      </Button>
-                      <Button  onClick={()=>  openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))} >
-                          Full View
-                        </Button>                    
-                      {
-                        currentUser&&
-                        <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
-                          Delete file
-                        </Button> 
-                      }               
-                              
-                    </div> 
+            </Modal>             
+            <Tabs aria-label="Full width tabs" variant="fullWidth">
+              <Tabs.Item active title="Images" icon={HiUserCircle}>
+                  <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                    <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                      {images.map((file) => (
+                        <div key={file.id} >              
+                          <Card className=" flex w-full overflow-hidden justify-center items-center">
+                            {
+                              file.thumbnailLink &&
+                              <img src={file.thumbnailLink.replace('=s220','=s400')} referrerPolicy="no-referrer"/>
+                            }
+                            
+                            <div className="flex gap-2">                          
+                              <Button color="light">
+                                  <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
+                              </Button>
+                              <Button  onClick={()=>  openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))} >
+                                  Full View
+                                </Button>                    
+                              {
+                                currentUser&&
+                                <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
+                                  Delete file
+                                </Button> 
+                              }               
+                                      
+                            </div> 
 
-                  </Card>                  
-                </div>
-              ))}
-            </div>
+                          </Card>                  
+                        </div>
+                      ))}
+                    </div>
+            
+                  </div>
+              </Tabs.Item>
+              <Tabs.Item title="Videos" icon={MdDashboard}>
+              <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                  {videos.map((file) => (
+                    <div key={file.id} >              
+                      <Card className=" flex w-full overflow-hidden justify-center items-center">
+                        {
+                          file.thumbnailLink &&
+                          <img src={file.thumbnailLink.replace('=s220','=s400')} referrerPolicy="no-referrer"/>
+                        }
+                        
+                        <div className="flex gap-2">
+                          <Button color="light">
+                              <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
+                          </Button>
+                          <Button  onClick={()=>  openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))} >
+                              Full View
+                            </Button>                    
+                          {
+                            currentUser&&
+                            <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
+                              Delete file
+                            </Button> 
+                          }               
+                                  
+                        </div> 
+
+                      </Card>                  
+                    </div>
+                  ))} 
+                </div>            
+              </div>
+              </Tabs.Item>
+            </Tabs>            
           </div>
 
         </div>
