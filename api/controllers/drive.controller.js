@@ -40,7 +40,6 @@ const oauth2Client = new google.auth.OAuth2(
 );
 
 
-// 2. Set the Refresh Token (This is your "Master Key")
 oauth2Client.setCredentials({
     refresh_token: process.env.REFRESH_TOKEN
 });
@@ -232,9 +231,26 @@ export const uploadLocal = async(req, res)=>{
 export const getToken = async (req, res) =>{
     try {
         const {token}=await oauth2Client.getAccessToken();
-        res.json({ success: true, folderId:'1I2a7_eRW6CoBsdu-0UjSaj15iSPHyWZi',token });
+        res.json({ success: true, folderId: process.env.FOLDER_ID, token });
     } catch (error) {
         console.error("Server Error:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }    
 } 
+
+export const getStorage = async (req, res)=>{
+    try{
+        const response= await drive.about.get({
+            fields:'storageQuota'
+        })
+        const limit=response.data.storageQuota.limit/(1024*1024*1024);
+        const usage=(response.data.storageQuota.usage/(1024*1024*1024)).toFixed(2);
+        const about={
+            limit, usage            
+        }
+        res.json({success:true, about})
+    }catch(err){
+        console.log(err);
+    }
+
+}

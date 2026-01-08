@@ -274,7 +274,15 @@ export default function UploadFile(){
           </div>            
         {/* ////////////// File Uploader end///////////// */}
           <div className="p-4">
-            <h2>My Drive Files ({driveFiles?.totalFiles})</h2>            
+            <h2>
+              Total Files: ({driveFiles?.totalFiles || 0}) 
+              {images && images.length > 0 && (
+                <span> | Images: {images.length}</span>
+              )}
+              {videos && videos.length > 0 && (
+                <span> | Videos: {videos.length}</span>
+              )}
+            </h2>           
             <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
               <ModalBody>
                 <iframe
@@ -338,10 +346,7 @@ export default function UploadFile(){
                         <div className="flex gap-2">
                           <Button color="light">
                               <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
-                          </Button>
-                          <Button  onClick={()=>  openFileInModal(file.webViewLink.replace('/view?usp=drivesdk', '/preview'))} >
-                              Full View
-                            </Button>                    
+                          </Button>                  
                           {
                             currentUser&&
                             <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>

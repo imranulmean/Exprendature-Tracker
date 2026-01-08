@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import http from 'http';
 import cors from 'cors';
-import { deleteFile, getFile, getFiles, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
+import { deleteFile, getFile, getFiles, getStorage, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
 
 
 
@@ -59,6 +59,7 @@ app.post("/setFilePermission", setFilePermission);
 
 app.post("/delete-file", deleteFile);
 app.get("/getToken", getToken);
+app.get("/getStorage", getStorage);
 
 // app.use(express.static(path.join(__dirname, '/client/dist')));
 
