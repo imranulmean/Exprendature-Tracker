@@ -2,12 +2,15 @@ import {useState, useRef, useEffect} from "react";
 import NoSleep from "nosleep.js";
 import axios from "axios";
 import { Card, TextInput, Button, Timeline, Modal, ModalBody, ModalFooter, ModalHeader, Tabs  } from "flowbite-react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { signoutSuccess } from '../redux/user/userSlice';
 
 export default function UploadFile(){
 
+    
     const { currentUser } = useSelector((state) => state.user);
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const fileInputRef = useRef(null);
@@ -27,7 +30,8 @@ export default function UploadFile(){
     const [loadedStatus, setLoadedStatus] = useState(0);
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
-    
+    const dispatch = useDispatch();
+
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
       }
@@ -240,9 +244,60 @@ export default function UploadFile(){
       ////////////////////////
     }
 
-    return(
-        <div className="w-full bg-gray-200">
+    const handleSignout = async () => {
+      try {
+        const res = await fetch(`${BASE_API}/api/auth/signout`, {
+          method: 'POST',
+          credentials: "include",
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          console.log(data.message);
+        } else {
+          dispatch(signoutSuccess());
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };    
 
+    return(
+        <div className="w-full bg-gray-200 flex flex-col justify-center items-center p-4">
+          {
+            !currentUser &&
+            <Link to='/login' state={{ from: '/upload' }}
+                    className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            >
+              Log in
+            </Link>             
+          }
+
+        {/* Profile Card           */}
+        {
+          currentUser &&
+          <Card className="max-w-sm">
+            <div className="flex flex-col items-center">
+              <img
+                alt="Bonnie image"
+                height="40"
+                src={currentUser.profilePicture}
+                width="40"
+                className="mb-3 rounded-full shadow-lg"
+                referrerPolicy="no-referrer"
+              />
+              <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{currentUser.displayName}</h5>
+              <span className="text-sm text-gray-500 dark:text-gray-400">{currentUser.email}</span>
+              <div className="mt-4 flex space-x-3 lg:mt-6">
+                <button onClick={handleSignout}
+                  className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                >
+                  Log out
+                </button>
+              </div>
+            </div>
+          </Card>           
+        }
+       
         {/* ////////////// File Uploader ///////////// */}
           <div className="p-4">
             File uploader

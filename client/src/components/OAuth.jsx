@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
-import { useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useState } from "react";
 
 
@@ -14,6 +14,7 @@ export default function OAuth() {
     const auth = getAuth(app)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation();
     const [loading, setLoading]= useState(false);
 
     const handleGoogleClick = async () =>{
@@ -36,7 +37,8 @@ export default function OAuth() {
             setLoading(false);
             if (res.ok){
                 dispatch(signInSuccess(data))
-                navigate('/')
+                const targetDestination = location.state?.from || '/';
+                navigate(targetDestination, { replace: true });
             }
         } catch (error) {
             console.log(error);
