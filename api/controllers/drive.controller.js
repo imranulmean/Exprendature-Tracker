@@ -3,6 +3,7 @@ import { google } from "googleapis";
 import fs from "fs";
 import { Readable } from "stream";
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -48,6 +49,10 @@ const drive = google.drive({ version: 'v3', auth: oauth2Client });
 const folderId = process.env.FOLDER_ID;
   
 export const getFiles = async(req, res) =>{
+    // console.log(req.headers.access_token)
+    // const token= req.headers.access_token.split(' ');
+    // console.log(token[1])
+    // if(token[1] == 'Token') return res.status(403).json({message:"not authorised"})
     try {
         let fileCount = 0;
         let nextPageToken = null;
@@ -253,4 +258,27 @@ export const getStorage = async (req, res)=>{
         console.log(err);
     }
 
+}
+
+export const getServerRefreshToken = async(req, res)=>{
+    // const 
+}
+
+export const getServerAccessToken = async (req, res)=>{
+    const accessTokenVal='asdadadadasdasd';
+    const signedToken= jwt.sign({id:'asdadadadasdasd'}, 'nosecret');
+    res.status(200).cookie('test_token', signedToken, {
+        httpOnly: true,
+        secure: true,  
+        sameSite: "None",
+        maxAge:15 * 1000     
+    }).json({message:'Cokie set success '})
+    // console.log(req.cookies)
+}
+
+export const decodeServerAccessToken = async (req, res)=>{
+    const token = req.cookies.test_token;
+    jwt.verify(token, 'nosecret', (err, val)=>{
+        res.json({jwtToken:val, access:token})
+    })  
 }

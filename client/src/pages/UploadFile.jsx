@@ -262,7 +262,7 @@ export default function UploadFile(){
     };    
 
     return(
-        <div className="w-full bg-gray-200 flex flex-col justify-center items-center p-4">
+        <div className="w-full bg-gray-200 flex flex-col justify-center items-center p-2">
           {
             !currentUser &&
             <Link to='/login' state={{ from: '/upload' }}
@@ -272,31 +272,31 @@ export default function UploadFile(){
             </Link>             
           }
 
-        {/* Profile Card           */}
-        {
-          currentUser &&
-          <Card className="max-w-sm">
-            <div className="flex flex-col items-center">
-              <img
-                alt="Bonnie image"
-                height="40"
-                src={currentUser.profilePicture}
-                width="40"
-                className="mb-3 rounded-full shadow-lg"
-                referrerPolicy="no-referrer"
-              />
-              <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{currentUser.displayName}</h5>
-              <span className="text-sm text-gray-500 dark:text-gray-400">{currentUser.email}</span>
-              <div className="mt-4 flex space-x-3 lg:mt-6">
-                <button onClick={handleSignout}
-                  className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                >
-                  Log out
-                </button>
+          {/* Profile Card           */}
+          {
+            currentUser &&
+            <Card className="max-w-sm">
+              <div className="flex flex-col items-center">
+                <img
+                  alt="Bonnie image"
+                  height="40"
+                  src={currentUser.profilePicture}
+                  width="40"
+                  className="mb-3 rounded-full shadow-lg"
+                  referrerPolicy="no-referrer"
+                />
+                {/* <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{currentUser.displayName}</h5> */}
+                {/* <span className="text-sm text-gray-500 dark:text-gray-400">{currentUser.email}</span> */}
+                <div className="mt-4 flex space-x-3 lg:mt-6">
+                  <button onClick={handleSignout}
+                    className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                  >
+                    Log out
+                  </button>
+                </div>
               </div>
-            </div>
-          </Card>           
-        }
+            </Card>           
+          }
        
         {/* ////////////// File Uploader ///////////// */}
           <div className="p-4">
@@ -328,7 +328,7 @@ export default function UploadFile(){
             }
           </div>            
         {/* ////////////// File Uploader end///////////// */}
-          <div className="p-4">
+          <div className="p-2">
             <h2>
               Total Files: ({driveFiles?.totalFiles || 0}) 
               {images && images.length > 0 && (
@@ -354,8 +354,7 @@ export default function UploadFile(){
             </Modal>             
             <Tabs aria-label="Full width tabs" variant="fullWidth">
               <Tabs.Item active title="Images" icon={HiUserCircle}>
-                  <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
-                    <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+                    <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 ">
                       {images.map((file) => (
                         <div key={file.id} >              
                           <Card className=" flex w-full overflow-hidden justify-center items-center">
@@ -383,13 +382,11 @@ export default function UploadFile(){
                           </Card>                  
                         </div>
                       ))}
-                    </div>
-            
-                  </div>
+                    </div>          
               </Tabs.Item>
               <Tabs.Item title="Videos" icon={MdDashboard}>
-              <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
-                <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 p-2">
+
+                <div className="w-full flex flex-col justify-center md:flex-row flex-wrap gap-2 bg-gray-100 ">
                   {videos.map((file) => (
                     <div key={file.id} >              
                       <Card className=" flex w-full overflow-hidden justify-center items-center">
@@ -415,7 +412,6 @@ export default function UploadFile(){
                     </div>
                   ))} 
                 </div>            
-              </div>
               </Tabs.Item>
             </Tabs>            
           </div>

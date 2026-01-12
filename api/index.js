@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import http from 'http';
 import cors from 'cors';
-import { deleteFile, getFile, getFiles, getStorage, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
+import { decodeServerAccessToken, deleteFile, getFile, getFiles, getServerAccessToken, getStorage, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
 
 
 
@@ -53,6 +53,8 @@ app.use('/api/adminApi', adminRoutes);
 
 app.get("/getFiles", getFiles);
 app.post("/setFilePermission", setFilePermission);
+app.get('/getServerAccessToken', getServerAccessToken);
+app.get('/decodeServerAccessToken', decodeServerAccessToken);
 // app.get("/getFile/:fileId", getFile);
 // app.post("/uploadDrive", uploadDrive);
 // app.post("/uploadLocal", uploadLocal);
