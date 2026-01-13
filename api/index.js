@@ -6,14 +6,15 @@ import authRoutes from './routes/auth.route.js';
 import expRoutes from './routes/exp.route.js';
 import incomeRoutes from './routes/income.route.js';
 import adminRoutes from './routes/adminApi.route.js';
+import postgresRoutes from './routes/postgres.route.js';
 // import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import http from 'http';
 import cors from 'cors';
 import { decodeServerAccessToken, deleteFile, getFile, getFiles, getServerAccessToken, getStorage, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
-
-
+import { pool } from './utils/initDb.js';
+import { deleteTables, initializeTables } from './utils/createTables.js';
 
 dotenv.config();
 
@@ -25,6 +26,11 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+// const postgresTime = await pool.query('select now()');
+// console.log(postgresTime.rows)
+// // await initializeTables();
+// // await deleteTables();
 
 const __dirname = path.resolve();
 
@@ -62,6 +68,9 @@ app.get('/decodeServerAccessToken', decodeServerAccessToken);
 app.post("/delete-file", deleteFile);
 app.get("/getToken", getToken);
 app.get("/getStorage", getStorage);
+
+// app.use('/postgres', postgresRoutes)
+
 
 // app.use(express.static(path.join(__dirname, '/client/dist')));
 

@@ -18,6 +18,7 @@ import QrReader from './pages/QrReader';
 import StartPractice from './components/StartPractice';
 import ReactSpeech from './components/ReactSpeech';
 import UploadFile from './pages/UploadFile';
+import Postgres from './pages/Postgres';
 
 export default function App(){
 
@@ -30,7 +31,8 @@ export default function App(){
         <Route path='/startPractice' element={<StartPractice />} />
         <Route path='/speechTest' element={<ReactSpeech />} />v
         <Route path='/upload' element={<UploadFile />} />
-        
+        <Route path='/postgres' element={<Postgres />} />
+
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />
           <Route path='/insertion' element={<Insertion />} />
