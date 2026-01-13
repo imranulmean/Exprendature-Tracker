@@ -13,8 +13,8 @@ import path from 'path';
 import http from 'http';
 import cors from 'cors';
 import { decodeServerAccessToken, deleteFile, getFile, getFiles, getServerAccessToken, getStorage, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
-import { pool } from './utils/initDb.js';
-import { deleteTables, initializeTables } from './utils/createTables.js';
+// import { pool } from './utils/initDb.js';
+// import { deleteTables, initializeTables } from './utils/createTables.js';
 
 dotenv.config();
 
