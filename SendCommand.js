@@ -1,9 +1,43 @@
 import ping from "ping";
 import { Client } from "ssh2";
-import { readFileSync } from "fs";
+import XLSX from "xlsx";
+import fs from "fs";
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const finalResult=[];
+const routersJson = fs.readFileSync('routers.json', "utf8");
+// const routersJson = fs.readFileSync('newRouter.json', "utf8");
+const parsedRouters= JSON.parse(routersJson)
+const routers=parsedRouters.routers
+console.log(routers)
+
+function exportToExcel(finalResult) {
+    const rows = finalResult.map(item => {
+      const r = item.result; 
+  
+      return {
+        branchId: r.branchId || "", 
+        name: r.router,
+        host: r.host,
+        isp1Name: r.results?.isp1?.name || "",
+        isp1Status: r.results?.isp1?.status || "UNKNOWN",
+        isp2Name: r.results?.isp2?.name || "",
+        isp2Status: r.results?.isp2?.status || "UNKNOWN",
+        routerType: r.routerType
+      };
+    });
+  
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+    const workbook = XLSX.utils.book_new();
+  
+    XLSX.utils.book_append_sheet(workbook, worksheet, "ISP Status");
+  
+    XLSX.writeFile(workbook, "isp_status.xlsx");
+  
+    console.log("✅ Excel file created: isp_status.xlsx");
+  }
 
 async function isRouterAlive(host) {
     const res = await ping.promise.probe(host,{
@@ -96,13 +130,21 @@ async function isRouterAlive(host) {
 
 function pushConfig(router, commands) {
     return new Promise((resolve, reject) => {
-      console.log(`🔐 Trying to enter ${router.name}`);
-  
+      console.log(`🔐 Trying to enter ${router.name}`);    
+    
       const conn = new Client();
       let output = "";
       let index = 0;
+      let ispIndex = 1;
       let streamRef;
-  
+      const result = {
+        branchId: router.branchId,
+        router: router.name,
+        host: router.host,
+        results: {},
+        routerType: router.routerType
+      };     
+
       conn.on("ready", () => {
         console.log(`✅ Connection Established: ${router.name}`);
   
@@ -129,9 +171,52 @@ function pushConfig(router, commands) {
             output += text;
             process.stdout.write(text);
   
+            // ❌ AUTHORIZATION FAILED
+            if (text.includes("% Authorization failed")) {
+
+                // 🚫 If no command left, CLOSE SESSION
+                if (!commands[index]) {
+                console.log(`🛑 Authorization failed on EXIT for ${router.name}, closing`);
+                stream.end();   // <-- VERY IMPORTANT
+                return;
+                }
+            
+                console.log(
+                `⚠️ Authorization failed on ${router.name} for command: ${commands[index]}`
+                );
+            
+                // Only mark ISP if the command was a ping
+                if (commands[index].startsWith("ping")) {
+                result.results[`isp${ispIndex}`] = {
+                    name: router[`isp${ispIndex}Name`],
+                    dest: router[`isp${ispIndex}Dest`],
+                    source: router[`isp${ispIndex}Source`],
+                    status: "DENIED"
+                };
+                ispIndex++;
+                }
+            
+                index++;
+                setTimeout(send, 300);
+                return;
+            }          
+
             // ✅ PING COMPLETED → move to NEXT command
             if (text.includes("Success rate")) {
+
+                const match = text.match(/Success rate is (\d+) percent/);
+                const percent = match ? Number(match[1]) : 0;
+              
+                const isUp = percent > 0;
+
+                result.results[`isp${ispIndex}`] = {
+                    name: router[`isp${ispIndex}Name`],
+                    dest: router[`isp${ispIndex}Dest`],
+                    source: router[`isp${ispIndex}Source`],
+                    status: isUp ? "UP" : "DOWN"
+                    };
               index++;
+              ispIndex++;
               stream.write("\n"); // flush Cisco prompt
               setTimeout(send, 300);
               return;
@@ -149,7 +234,8 @@ function pushConfig(router, commands) {
   
           stream.on("close", () => {
             conn.end();
-            resolve({ router: router.name, output });
+            // resolve({ router: router.name, output });
+            resolve({ result });
           });
         });
       });
@@ -188,44 +274,182 @@ function pushConfig(router, commands) {
     });
   }
 
-const routersJson = readFileSync('routers.json', "utf8");
-const parsedRouters= JSON.parse(routersJson)
-const routers=parsedRouters.routers
-console.log(routers)
+async function mikrotikConfig(router, commands) {
+    console.log(`🔐 Trying to enter ${router.name}`);
+  
+    const result = {
+      branchId: router.branchId,
+      router: router.name,
+      host: router.host,
+      results: {},
+      routerType: router.routerType
+    };
+  
+    /* ==============================
+       🟦 MIKROTIK (NO SSH)
+       ============================== */
+      const isp1Alive = await isRouterAlive(router.isp1Source);
+      const isp2Alive = await isRouterAlive(router.isp2Source);
+  
+      result.results.isp1 = {
+        name: router.isp1Name,
+        dest: router.isp1Dest,
+        source: router.isp1Source,
+        status: isp1Alive ? "UP" : "DOWN"
+      };
+  
+      result.results.isp2 = {
+        name: router.isp2Name,
+        dest: router.isp2Dest,
+        source: router.isp2Source,
+        status: isp2Alive ? "UP" : "DOWN"
+      };
+  
+      return { result };
+
+}    
 
 
-// const commands = [
-//   "terminal length 0",
-//   "show int des"
-// ];
+// ;(async () => {
+//   for (const router of routers) {
 
-;(async () => {
-  for (const router of routers) {
+//     const commands = [
+//         "terminal length 0",
+//         `ping ${router.isp1Dest} source ${router.isp1Source} repeat 2 timeout 1`,
+//         `ping ${router.isp2Dest} source ${router.isp2Source} repeat 2 timeout 1`
+//       ];    
+//     // console.log(`\n🔍 Pinging ${router.name} (${router.host})`);
 
+//     const alive = await isRouterAlive(router.host);
+//     let result;  
+//     if (!alive) {
+//       console.log(`❌ ${router.name} is DOWN (ping failed)`);
+//       let failedRouter={
+//         branchId: router.branchId,
+//         router: router.name,
+//         host: router.host,
+//         results: {
+//             isp1: {
+//                 name: router.isp1Name,
+//                 dest: router.isp1Dest,
+//                 source: router.isp1Source,
+//                 status: "DOWN"
+//             },
+//             isp2: {
+//                 name: router.isp2Name,
+//                 dest: router.isp2Dest,
+//                 source: router.isp2Source,
+//                 status:"DOWN"
+//             }                     
+//         },
+//         routerType: router.routerType
+//       }
+//       result = failedRouter;
+//       finalResult.push({result});
+//       continue;
+//     }
+  
+//     console.log(`✅ ${router.name} is UP, connecting...`);    
+
+//     try {
+//       console.log(`\n Configuring ${router.name}`);
+
+//       if(router?.mikrotik && router?.mikrotik == 'yes'){
+//         result = await mikrotikConfig(router, commands);
+//       }
+//       else{
+//          result = await pushConfig(router, commands);
+//       }
+      
+//       finalResult.push(result);
+//       console.log(`${router.name} Connection Closed`);
+//     } catch (err) {
+//       console.error(` ${router.name} failed:`, err.message);
+//     }
+//   }
+//   console.log(JSON.stringify(finalResult, null, 2));
+//     exportToExcel(finalResult);
+// })();
+
+async function processRouter(router) {
     const commands = [
-        "terminal length 0",
-        `ping ${router.isp1Dest} source ${router.isp1Source} repeat 2 timeout 1`,
-        `ping ${router.isp2Dest} source ${router.isp2Source} repeat 2 timeout 1`
-      ];    
-    // console.log(`\n🔍 Pinging ${router.name} (${router.host})`);
-
+      "terminal length 0",
+      `ping ${router.isp1Dest} source ${router.isp1Source} repeat 2 timeout 1`,
+      `ping ${router.isp2Dest} source ${router.isp2Source} repeat 2 timeout 1`
+    ];
+  
     const alive = await isRouterAlive(router.host);
+    let result;
   
     if (!alive) {
       console.log(`❌ ${router.name} is DOWN (ping failed)`);
-      continue;
+  
+      result = {
+        branchId: router.branchId,
+        router: router.name,
+        host: router.host,
+        results: {
+          isp1: {
+            name: router.isp1Name,
+            dest: router.isp1Dest,
+            source: router.isp1Source,
+            status: "DOWN"
+          },
+          isp2: {
+            name: router.isp2Name,
+            dest: router.isp2Dest,
+            source: router.isp2Source,
+            status: "DOWN"
+          }
+        },
+        routerType: router.routerType
+      };
+  
+      return { result };
     }
   
-    console.log(`✅ ${router.name} is UP, connecting...`);    
-
+    console.log(`✅ ${router.name} is UP, connecting...`);
+  
     try {
       console.log(`\n Configuring ${router.name}`);
-      const result = await pushConfig(router, commands);
-    //   console.log("\n--- COMMAND OUTPUT STORED ---");
-    //   console.log(result.output);
+  
+      if (router?.mikrotik === "yes") {
+        result = await mikrotikConfig(router, commands);
+      } else {
+        result = await pushConfig(router, commands);
+      }
+  
       console.log(`${router.name} Connection Closed`);
+      return result;
     } catch (err) {
       console.error(` ${router.name} failed:`, err.message);
+      return null;
     }
   }
-})();
+
+  async function runWithConcurrency(items, limit, worker) {
+    const results = [];
+    let index = 0;
+  
+    async function next() {
+      if (index >= items.length) return;
+      const current = index++;
+      const res = await worker(items[current]);
+      if (res) results.push(res);
+      await next();
+    }
+  
+    const workers = Array.from({ length: limit }, next);
+    await Promise.all(workers);
+  
+    return results;
+  }
+
+  ;(async () => {
+    const CONCURRENCY = 15; // safe for 500 routers
+  
+    const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
+    finalResult.push(...results);  
+    console.log(JSON.stringify(finalResult, null, 2));
+    exportToExcel(finalResult);
+  })();
