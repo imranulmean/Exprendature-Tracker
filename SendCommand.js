@@ -218,31 +218,33 @@ async function processRouter(router) {
     ];
   
     const alive = await isRouterAlive(router.host);
-    let result;
+    let result ={
+      branchId: router.branchId,
+      router: router.name,
+      host: router.host,
+      routerType: router.routerType,
+      results:{
+
+      }
+    };
   
     if (!alive) {
       console.log(`❌ ${router.name} is DOWN (ping failed)`);
   
-      result = {
-        branchId: router.branchId,
-        router: router.name,
-        host: router.host,
-        results: {
-          isp1: {
-            name: router.isp1Name,
-            dest: router.isp1Dest,
-            source: router.isp1Source,
-            status: "DOWN"
-          },
-          isp2: {
-            name: router.isp2Name,
-            dest: router.isp2Dest,
-            source: router.isp2Source,
-            status: "DOWN"
-          }
+      result.results={
+        isp1: {
+          name: router.isp1Name,
+          dest: router.isp1Dest,
+          source: router.isp1Source,
+          status: "DOWN"
         },
-        routerType: router.routerType
-      };
+        isp2: {
+          name: router.isp2Name,
+          dest: router.isp2Dest,
+          source: router.isp2Source,
+          status: "DOWN"
+        }
+      }
   
       return { result };
     }
@@ -261,8 +263,11 @@ async function processRouter(router) {
       console.log(`${router.name} Connection Closed`);
       return result;
     } catch (err) {
-      console.error(` ${router.name} failed:`, err.message);
-      return null;
+      console.error(`${router.name} failed:`, err.message);
+      result.results = {
+        error: err.message
+      };    
+      return { result };
     }
   }
 
@@ -289,6 +294,6 @@ async function processRouter(router) {
   
     const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
     finalResult.push(...results);  
-    console.log(JSON.stringify(finalResult, null, 2));
+    // console.log(JSON.stringify(finalResult, null, 2));
     exportToExcel(finalResult);
   })();
