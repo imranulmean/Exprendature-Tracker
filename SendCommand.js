@@ -18,15 +18,15 @@ function exportToExcel(finalResult) {
       const r = item.result; 
   
       return {
-        branchId: r.branchId || "", 
-        name: r.router,
-        host: r.host,
-        isp1Name: r.results?.isp1?.name || "",
-        isp1Status: r.results?.isp1?.status || "UNKNOWN",
-        isp2Name: r.results?.isp2?.name || "",
-        isp2Status: r.results?.isp2?.status || "UNKNOWN",
-        error: r.results?.error || "OK",
-        routerType: r.routerType
+        branchId: r?.branchId || "", 
+        name: r?.router || "",
+        host: r?.host || "",
+        isp1Name: r?.results?.isp1?.name || "",
+        isp1Status: r?.results?.isp1?.status || "UNKNOWN",
+        isp2Name: r?.results?.isp2?.name || "",
+        isp2Status: r?.results?.isp2?.status || "UNKNOWN",
+        error: r?.results?.error || "OK",
+        routerType: r?.routerType || "UNKNOWN"
       };
     });
   
@@ -77,10 +77,6 @@ function pushConfig(router, commands) {
             if (index < commands.length) {
               const cmd = commands[index];
               stream.write(cmd + "\n");
-            } else {
-              setTimeout(() => {
-                stream.write("exit\n");
-              }, 500);
             }
           };
   
@@ -104,30 +100,24 @@ function pushConfig(router, commands) {
             }
             // PING COMPLETED → move to NEXT command
             if (text.includes("Success rate")) {
-
-                const match = text.match(/Success rate is (\d+) percent/);
-                const percent = match ? Number(match[1]) : 0;
-              
-                const isUp = percent > 0;
-
-                result.results[`isp${ispIndex}`] = {
-                    name: router[`isp${ispIndex}Name`],
-                    dest: router[`isp${ispIndex}Dest`],
-                    source: router[`isp${ispIndex}Source`],
-                    status: isUp ? "UP" : "DOWN"
-                    };
+              const match = text.match(/Success rate is (\d+) percent/);
+              const percent = match ? Number(match[1]) : 0;            
+              const isUp = percent > 0;
+              result.results[`isp${ispIndex}`] = {
+                name: router[`isp${ispIndex}Name`],
+                dest: router[`isp${ispIndex}Dest`],
+                source: router[`isp${ispIndex}Source`],
+                status: isUp ? "UP" : "DOWN"
+              };
               index++;
               ispIndex++;
-              stream.write("\n"); // flush Cisco prompt
+              stream.write("\n"); 
               setTimeout(send, 300);
               return;
             }
   
             // NON-PING command completed (prompt)
-            if (
-              text.trim().endsWith("#") &&
-              !commands[index]?.startsWith("ping")
-            ) {
+            if ( text.trim().endsWith("#") && !commands[index]?.startsWith("ping") ) {
               index++;
               setTimeout(send, 200);
             }
@@ -135,13 +125,19 @@ function pushConfig(router, commands) {
   
           stream.on("close", () => {
             conn.end();
-            // resolve({ router: router.name, output });
             resolve({ result });
           });
         });
       });
   
-      conn.on("error", reject);
+      // conn.on("error", reject);
+      conn.on("error", err => {
+        resolve(
+          result.results = {
+            error: err.message
+          }
+        );
+      })      
   
       const username =
         router.authType === "acs"
@@ -187,7 +183,7 @@ async function mikrotikConfig(router, commands) {
     };
   
     /* ==============================
-       🟦 MIKROTIK (NO SSH)
+        MIKROTIK (NO SSH)
        ============================== */
       const isp1Alive = await isRouterAlive(router.isp1Source);
       const isp2Alive = await isRouterAlive(router.isp2Source);
@@ -214,7 +210,8 @@ async function processRouter(router) {
     const commands = [
       "terminal length 0",
       `ping ${router.isp1Dest} source ${router.isp1Source} repeat 2 timeout 1`,
-      `ping ${router.isp2Dest} source ${router.isp2Source} repeat 2 timeout 1`
+      `ping ${router.isp2Dest} source ${router.isp2Source} repeat 2 timeout 1`,
+      "exit"
     ];
   
     const alive = await isRouterAlive(router.host);
@@ -223,9 +220,7 @@ async function processRouter(router) {
       router: router.name,
       host: router.host,
       routerType: router.routerType,
-      results:{
-
-      }
+      results:{}
     };
   
     if (!alive) {
@@ -295,5 +290,6 @@ async function processRouter(router) {
     const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
     finalResult.push(...results);  
     // console.log(JSON.stringify(finalResult, null, 2));
+    fs.writeFileSync('FinalResult.json',JSON.stringify(finalResult, null, 1));
     exportToExcel(finalResult);
   })();
