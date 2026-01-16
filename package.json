@@ -10,6 +10,7 @@
     "vlan": "node vlan.js",
     "sendCommand": "node SendCommand.js",
     "convertJson": "node convertToJSON.js",
+    "convertExcel": "node convertToEXEL.js",
     "start": "node api/index.js",
     "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },

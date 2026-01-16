@@ -25,6 +25,7 @@ function exportToExcel(finalResult) {
         isp1Status: r.results?.isp1?.status || "UNKNOWN",
         isp2Name: r.results?.isp2?.name || "",
         isp2Status: r.results?.isp2?.status || "UNKNOWN",
+        error: r.results?.error || "OK",
         routerType: r.routerType
       };
     });
@@ -46,86 +47,6 @@ async function isRouterAlive(host) {
     // console.log(res)
     return res.alive;
   }
-
-// function pushConfig(router, commands) {
-//   return new Promise((resolve, reject) => {
-//     console.log(`Trying to enter ${router.name}`);
-
-//     const conn = new Client();
-//     let output = "";
-//     let username='';
-//     let password='';
-
-//     conn.on("ready", () => {
-//       console.log(`Connection Established ${router.name}`)
-//       conn.shell((err, stream) => {
-//         if (err) return reject(err);
-
-//         let i = 0;
-//         const sendNext = () => {
-//           if (i < commands.length) {
-//             stream.write(commands[i] + "\n");
-//             i++;
-//             setTimeout(sendNext, 800); 
-//           } else {
-
-//             setTimeout(() => {
-//               stream.write("exit\n");
-//             }, 2000);
-//           }
-//         };
-
-//         sendNext();
-
-//         stream.on("data", data => {
-//           const text = data.toString();
-//           output += text;
-//           process.stdout.write(text);         
-          
-//         });
-
-//         stream.on("close", () => {
-//           conn.end();
-//           resolve({ router: router.name, output });
-//         });
-//       });
-//     });
-
-//     conn.on("error", reject);
-
-//     if(router.authType ==='acs'){
-//         username= process.env.ACS_USER
-//         password= process.env.ACS_PASS
-//     }
-//     else{
-//         username= process.env.LOCAL_USER
-//         password= process.env.LOCAL_PASS        
-//     }
-//     conn.connect({
-//         host: router.host,
-//         username: username,
-//         password: password,
-//         readyTimeout: 20000,
-      
-//         algorithms: {
-//           kex: [
-//             "diffie-hellman-group14-sha1",
-//             "diffie-hellman-group1-sha1"
-//           ],
-//           cipher: [
-//             "aes128-cbc",
-//             "aes256-cbc",
-//             "aes128-ctr",
-//             "aes256-ctr"
-//           ],
-//           serverHostKey: [
-//             "ssh-rsa"
-//           ]
-//         }
-//       });    
-
-//   });
-// }
 
 
 function pushConfig(router, commands) {
@@ -155,7 +76,6 @@ function pushConfig(router, commands) {
           const send = () => {
             if (index < commands.length) {
               const cmd = commands[index];
-            //   console.log(`➡️ ${router.name}: ${cmd}`);
               stream.write(cmd + "\n");
             } else {
               setTimeout(() => {
@@ -171,37 +91,18 @@ function pushConfig(router, commands) {
             output += text;
             process.stdout.write(text);
   
-            // ❌ AUTHORIZATION FAILED
+            // AUTHORIZATION FAILED         
             if (text.includes("% Authorization failed")) {
+              console.log(`Authorization failed on ${router.name}. Skipping router.`);
 
-                // 🚫 If no command left, CLOSE SESSION
-                if (!commands[index]) {
-                console.log(`🛑 Authorization failed on EXIT for ${router.name}, closing`);
-                stream.end();   // <-- VERY IMPORTANT
-                return;
-                }
-            
-                console.log(
-                `⚠️ Authorization failed on ${router.name} for command: ${commands[index]}`
-                );
-            
-                // Only mark ISP if the command was a ping
-                if (commands[index].startsWith("ping")) {
-                result.results[`isp${ispIndex}`] = {
-                    name: router[`isp${ispIndex}Name`],
-                    dest: router[`isp${ispIndex}Dest`],
-                    source: router[`isp${ispIndex}Source`],
-                    status: "DENIED"
-                };
-                ispIndex++;
-                }
-            
-                index++;
-                setTimeout(send, 300);
-                return;
-            }          
+              result.results = {
+                error: "AUTHORIZATION_FAILED"
+              };
 
-            // ✅ PING COMPLETED → move to NEXT command
+              stream.end(); 
+              return;
+            }
+            // PING COMPLETED → move to NEXT command
             if (text.includes("Success rate")) {
 
                 const match = text.match(/Success rate is (\d+) percent/);
@@ -222,7 +123,7 @@ function pushConfig(router, commands) {
               return;
             }
   
-            // ✅ NON-PING command completed (prompt)
+            // NON-PING command completed (prompt)
             if (
               text.trim().endsWith("#") &&
               !commands[index]?.startsWith("ping")
@@ -308,68 +209,6 @@ async function mikrotikConfig(router, commands) {
       return { result };
 
 }    
-
-
-// ;(async () => {
-//   for (const router of routers) {
-
-//     const commands = [
-//         "terminal length 0",
-//         `ping ${router.isp1Dest} source ${router.isp1Source} repeat 2 timeout 1`,
-//         `ping ${router.isp2Dest} source ${router.isp2Source} repeat 2 timeout 1`
-//       ];    
-//     // console.log(`\n🔍 Pinging ${router.name} (${router.host})`);
-
-//     const alive = await isRouterAlive(router.host);
-//     let result;  
-//     if (!alive) {
-//       console.log(`❌ ${router.name} is DOWN (ping failed)`);
-//       let failedRouter={
-//         branchId: router.branchId,
-//         router: router.name,
-//         host: router.host,
-//         results: {
-//             isp1: {
-//                 name: router.isp1Name,
-//                 dest: router.isp1Dest,
-//                 source: router.isp1Source,
-//                 status: "DOWN"
-//             },
-//             isp2: {
-//                 name: router.isp2Name,
-//                 dest: router.isp2Dest,
-//                 source: router.isp2Source,
-//                 status:"DOWN"
-//             }                     
-//         },
-//         routerType: router.routerType
-//       }
-//       result = failedRouter;
-//       finalResult.push({result});
-//       continue;
-//     }
-  
-//     console.log(`✅ ${router.name} is UP, connecting...`);    
-
-//     try {
-//       console.log(`\n Configuring ${router.name}`);
-
-//       if(router?.mikrotik && router?.mikrotik == 'yes'){
-//         result = await mikrotikConfig(router, commands);
-//       }
-//       else{
-//          result = await pushConfig(router, commands);
-//       }
-      
-//       finalResult.push(result);
-//       console.log(`${router.name} Connection Closed`);
-//     } catch (err) {
-//       console.error(` ${router.name} failed:`, err.message);
-//     }
-//   }
-//   console.log(JSON.stringify(finalResult, null, 2));
-//     exportToExcel(finalResult);
-// })();
 
 async function processRouter(router) {
     const commands = [
