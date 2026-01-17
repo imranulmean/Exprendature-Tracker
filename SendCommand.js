@@ -319,58 +319,58 @@ async function processRouter(router) {
   const parsedRouters= JSON.parse(routersJson)
   const routers=parsedRouters.routers;
 
-  // main();
-  timeTest();
+  main();
+  // timeTest();
 
-  setInterval(()=>{
-    // First Check if today file exists or not. if no then create the file with today date DD/MM/YYYY.json. then Read from this file
-    const today = moment();
-    const formatToday=today.format('DD-MM-YYYY')
-    if( !running && !fs.existsSync(`${formatToday}.json`)){
-      console.log(`Creating File ${formatToday}.json`)
-      const finalRouters= routers.map(rt=>{
-        let obj={
-          result:{
-            branchId:rt.branchId,
-            router:rt.name,
-            host:rt.host,
-            routerType:rt.routerType,
-            results:{
-              isp1:{
-                "name":rt.isp1Name,
-                "dest":rt.isp1Dest,
-                "source":rt.isp1Source,
-                "prevStatus":"UP",
-                "status": "UP",
-                "downTimes":[],
-                "upTimes":[],
-                "totalDownTime":""
-              },
-              "isp2": {
-                "name":rt.isp2Name,
-                "dest":rt.isp2Dest,
-                "source":rt.isp2Source,
-                "prevStatus":"UP",
-                "status":"UP",
-                "downTimes":[],
-                "upTimes":[],
-                "totalDownTime":""
-              }          
-            }
-          }
-        }
-        return obj;
-      })
-      const jsonObj={routers: finalRouters}
-      const finatRoutersJSON= fs.writeFileSync(`${formatToday}.json`, JSON.stringify(jsonObj, null, 1));
-    }
-    else{
-      if(!running){
-        main()
-      }
-    }
+  // setInterval(()=>{
+  //   // First Check if today file exists or not. if no then create the file with today date DD/MM/YYYY.json. then Read from this file
+  //   const today = moment();
+  //   const formatToday=today.format('DD-MM-YYYY')
+  //   if( !running && !fs.existsSync(`${formatToday}.json`)){
+  //     console.log(`Creating File ${formatToday}.json`)
+  //     const finalRouters= routers.map(rt=>{
+  //       let obj={
+  //         result:{
+  //           branchId:rt.branchId,
+  //           router:rt.name,
+  //           host:rt.host,
+  //           routerType:rt.routerType,
+  //           results:{
+  //             isp1:{
+  //               "name":rt.isp1Name,
+  //               "dest":rt.isp1Dest,
+  //               "source":rt.isp1Source,
+  //               "prevStatus":"UP",
+  //               "status": "UP",
+  //               "downTimes":[],
+  //               "upTimes":[],
+  //               "totalDownTime":""
+  //             },
+  //             "isp2": {
+  //               "name":rt.isp2Name,
+  //               "dest":rt.isp2Dest,
+  //               "source":rt.isp2Source,
+  //               "prevStatus":"UP",
+  //               "status":"UP",
+  //               "downTimes":[],
+  //               "upTimes":[],
+  //               "totalDownTime":""
+  //             }          
+  //           }
+  //         }
+  //       }
+  //       return obj;
+  //     })
+  //     const jsonObj={routers: finalRouters}
+  //     const finatRoutersJSON= fs.writeFileSync(`${formatToday}.json`, JSON.stringify(jsonObj, null, 1));
+  //   }
+  //   else{
+  //     if(!running){
+  //       main()
+  //     }
+  //   }
 
-    // timeTest();
-  },1000 * 1)
+  //   // timeTest();
+  // },1000 * 1)
 
   

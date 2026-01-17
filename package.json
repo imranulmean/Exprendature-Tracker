@@ -8,7 +8,7 @@
     "dev": "nodemon api/index.js",
     "sendMail": "node sendMail.js",
     "vlan": "node vlan.js",
-    "sendCommand": "node SendCommand.js",
+    "sendCommand": "node SendCommand-gem.js",
     "convertJson": "node convertToJSON.js",
     "convertExcel": "node convertToEXEL.js",
     "start": "node api/index.js",

@@ -6,27 +6,33 @@
     "router": "Motijheel",
     "host": "192.168.11.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.16.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.8.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -36,267 +42,33 @@
     "router": "Moulvibazar, Dhaka",
     "host": "192.168.12.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "KS",
       "dest": "10.154.2.65",
       "source": "10.154.80.154",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.16.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 4,
-    "router": "Laldighirpar",
-    "host": "192.168.193.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.14.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.21.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 5,
-    "router": "Agrabad",
-    "host": "192.168.129.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.13.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.19.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 6,
-    "router": "Khulna",
-    "host": "192.168.225.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM ",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.186",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.22.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 7,
-    "router": "Rajshahi",
-    "host": "192.168.161.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.114",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.21.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 8,
-    "router": "Bogra",
-    "host": "192.168.162.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.122",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.21.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 9,
-    "router": "Khatungonj",
-    "host": "192.168.130.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.13.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.13.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 10,
-    "router": "Barisal",
-    "host": "192.168.241.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.22.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.9.34",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 11,
-    "router": "Satkhira",
-    "host": "192.168.226.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.22.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.42.190",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -306,117 +78,33 @@
     "router": "Nawabpur",
     "host": "192.168.18.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.41.209.214",
       "source": "10.154.16.58",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "KS",
       "dest": "10.1.4.18",
       "source": "10.154.80.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 13,
-    "router": "Benapole",
-    "host": "192.168.227.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.194",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.22.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 14,
-    "router": "VIP Road",
-    "host": "192.168.14.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.12.226",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 15,
-    "router": "Corporate",
-    "host": "192.168.15.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.12.242",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.18.6",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -426,207 +114,429 @@
     "router": "New Elephant Road",
     "host": "192.168.16.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ADN",
       "dest": "10.168.227.46",
       "source": "10.154.72.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "Alap",
       "dest": "10.41.209.214",
       "source": "10.154.16.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 17,
-    "router": "Uttara",
-    "host": "192.168.17.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "Bdcom",
-      "dest": "10.255.31.122",
-      "source": "10.154.14.242",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "Alap",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.50",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 18,
-    "router": "Jublee Road",
-    "host": "192.168.131.1",
+    "branchId": 6,
+    "router": "Khulna",
+    "host": "192.168.225.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BDCOM",
+      "name": "BDCOM ",
       "dest": "10.255.31.122",
-      "source": "10.154.13.226",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.10.186",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
-      "source": "10.154.19.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.22.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 19,
-    "router": "North South Road",
-    "host": "192.168.13.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ADN",
-      "dest": "10.154.2.1",
-      "source": "10.154.72.142",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.16.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 20,
-    "router": "Banani",
-    "host": "192.168.19.1",
+    "branchId": 7,
+    "router": "Rajshahi",
+    "host": "192.168.161.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.10.62",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.10.114",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.16.66",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.21.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 21,
-    "router": "Mirpur",
-    "host": "192.168.20.1",
+    "branchId": 13,
+    "router": "Benapole",
+    "host": "192.168.227.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "ADN",
-      "dest": "10.168.227.46",
-      "source": "10.154.72.146",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.10.194",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
-      "source": "10.154.96.22",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.22.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 22,
-    "router": "Mymensingh",
-    "host": "192.168.32.1",
+    "branchId": 8,
+    "router": "Bogra",
+    "host": "192.168.162.1",
     "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.122",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.21.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 11,
+    "router": "Satkhira",
+    "host": "192.168.226.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.16.170",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.22.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.42.190",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 5,
+    "router": "Agrabad",
+    "host": "192.168.129.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.13.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.19.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 10,
+    "router": "Barisal",
+    "host": "192.168.241.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.22.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.11.194",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.9.34",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 9,
+    "router": "Khatungonj",
+    "host": "192.168.130.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.13.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.13.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 15,
+    "router": "Corporate",
+    "host": "192.168.15.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.12.242",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.18.6",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 14,
+    "router": "VIP Road",
+    "host": "192.168.14.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.12.226",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.26",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 4,
+    "router": "Laldighirpar",
+    "host": "192.168.193.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.14.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.21.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:09 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -636,87 +546,177 @@
     "router": "Zindabazar",
     "host": "192.168.194.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
       "source": "10.154.14.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
       "source": "10.154.21.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 24,
-    "router": "Mouchak",
-    "host": "192.168.22.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ADN",
-      "dest": "10.168.227.46",
-      "source": "10.154.72.150",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.90",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 25,
-    "router": "Sayedpur",
-    "host": "192.168.163.1",
+    "branchId": 20,
+    "router": "Banani",
+    "host": "192.168.19.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.10.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.10.62",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "AGNI",
-      "dest": "10.154.2.177",
-      "source": "10.154.96.30",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.16.66",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 17,
+    "router": "Uttara",
+    "host": "192.168.17.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "Bdcom",
+      "dest": "10.255.31.122",
+      "source": "10.154.14.242",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "Alap",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.50",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 18,
+    "router": "Jublee Road",
+    "host": "192.168.131.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.13.226",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.19.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 22,
+    "router": "Mymensingh",
+    "host": "192.168.32.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.16.170",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.11.194",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -726,147 +726,33 @@
     "router": "O.R.Nizam",
     "host": "192.168.132.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
       "source": "10.154.13.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
       "source": "10.154.19.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 27,
-    "router": "Moulvibazar, Sylhet",
-    "host": "192.168.196.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.21.146",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.27.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 28,
-    "router": "Chowmohoni",
-    "host": "192.168.138.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.58",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.19.66",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 29,
-    "router": "Comilla",
-    "host": "192.168.134.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.19.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.122",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 30,
-    "router": "Jessore",
-    "host": "192.168.228.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.22.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.42.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -876,57 +762,321 @@
     "router": "Dhanmondi",
     "host": "192.168.23.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ADN",
       "dest": "10.154.2.1",
       "source": "10.154.72.154",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.16.98",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 32,
-    "router": "Mohadevpur",
-    "host": "192.168.164.1",
+    "branchId": 21,
+    "router": "Mirpur",
+    "host": "192.168.20.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ADN",
+      "dest": "10.168.227.46",
+      "source": "10.154.72.146",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.96.22",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 28,
+    "router": "Chowmohoni",
+    "host": "192.168.138.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.10.58",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.19.66",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 19,
+    "router": "North South Road",
+    "host": "192.168.13.1",
     "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ADN",
+      "dest": "10.154.2.1",
+      "source": "10.154.72.142",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.16.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:11 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 24,
+    "router": "Mouchak",
+    "host": "192.168.22.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ADN",
+      "dest": "10.168.227.46",
+      "source": "10.154.72.150",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.90",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 27,
+    "router": "Moulvibazar, Sylhet",
+    "host": "192.168.196.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.21.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.21.146",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
-      "source": "10.154.25.126",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.27.138",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 30,
+    "router": "Jessore",
+    "host": "192.168.228.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.22.26",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.42.42",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 25,
+    "router": "Sayedpur",
+    "host": "192.168.163.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "AGNI",
+      "dest": "10.154.2.177",
+      "source": "10.154.96.30",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 29,
+    "router": "Comilla",
+    "host": "192.168.134.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.19.42",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.122",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:12 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -936,147 +1086,69 @@
     "router": "Madhabdi",
     "host": "192.168.27.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
       "source": "10.154.10.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
       "source": "10.154.16.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 34,
-    "router": "Pagla",
-    "host": "192.168.29.1",
+    "branchId": 32,
+    "router": "Mohadevpur",
+    "host": "192.168.164.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "LINK3",
-      "dest": "10.154.1.233",
-      "source": "10.154.66.150",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.42.218",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 35,
-    "router": "Sreemangal",
-    "host": "192.168.197.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.178",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.21.154",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.21.26",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 36,
-    "router": "Joydebpur",
-    "host": "192.168.31.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "SQUARE",
-      "dest": "10.220.154.66",
-      "source": "10.154.56.170",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.162",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.126",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 37,
-    "router": "Mohammadpur",
-    "host": "192.168.24.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ADN",
-      "dest": "10.168.227.46",
-      "source": "10.154.72.158",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.106",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1086,27 +1158,69 @@
     "router": "Narayangonj",
     "host": "192.168.28.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "SQUARE",
       "dest": "10.154.1.161",
       "source": "10.154.56.174",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.16.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 34,
+    "router": "Pagla",
+    "host": "192.168.29.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "LINK3",
+      "dest": "10.154.1.233",
+      "source": "10.154.66.150",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.42.218",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1116,177 +1230,33 @@
     "router": "Companigonj",
     "host": "192.168.133.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
       "source": "10.154.26.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.19.34",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 40,
-    "router": "Gallai",
-    "host": "192.168.135.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.17.78",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.11.158",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 41,
-    "router": "Islampur",
-    "host": "192.168.25.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.114",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "KS",
-      "dest": "10.1.4.18",
-      "source": "10.154.80.158",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 42,
-    "router": "Dilkusha",
-    "host": "192.168.26.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.8.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.122",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 43,
-    "router": "Beanibazar",
-    "host": "192.168.195.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.170",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.27.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 44,
-    "router": "Kapasia",
-    "host": "192.168.30.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.16.154",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.42.210",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1296,327 +1266,357 @@
     "router": "Pragati_sarani",
     "host": "192.168.21.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ADN",
       "dest": "10.154.2.1",
       "source": "10.154.72.162",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.16.82",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 46,
-    "router": "Feni",
-    "host": "192.168.136.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.50",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.19.58",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 46,
-    "router": "Feni",
-    "host": "192.168.136.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.50",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.19.58",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 47,
-    "router": "Coxsbazar",
-    "host": "192.168.137.1",
-    "routerType": "mikrotik",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.13.194",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.46",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 48,
-    "router": "Hathazari",
-    "host": "192.168.139.1",
+    "branchId": 37,
+    "router": "Mohammadpur",
+    "host": "192.168.24.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.13.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "ADN",
+      "dest": "10.168.227.46",
+      "source": "10.154.72.158",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
-      "source": "10.154.19.74",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.16.106",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 49,
-    "router": "Amborkhana",
-    "host": "192.168.198.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.21.162",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.14.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 50,
-    "router": "Konapara",
-    "host": "192.168.33.1",
+    "branchId": 41,
+    "router": "Islampur",
+    "host": "192.168.25.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.41.209.214",
-      "source": "10.154.16.178",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.16.114",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "KS",
       "dest": "10.1.4.18",
-      "source": "10.154.80.162",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.80.158",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 51,
-    "router": "Jatrabari",
-    "host": "192.168.34.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "KS",
-      "dest": "10.1.4.18",
-      "source": "10.154.80.166",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.186",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 52,
-    "router": "Bhairab",
-    "host": "192.168.35.1",
+    "branchId": 40,
+    "router": "Gallai",
+    "host": "192.168.135.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.24.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.17.114",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.17.78",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 53,
-    "router": "Jhalokathi",
-    "host": "192.168.242.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.28.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.11.134",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.11.158",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 54,
-    "router": "Gulshan",
-    "host": "192.168.36.1",
+    "branchId": 35,
+    "router": "Sreemangal",
+    "host": "192.168.197.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.24.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.178",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.21.154",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 44,
+    "router": "Kapasia",
+    "host": "192.168.30.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.16.154",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.42.210",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 42,
+    "router": "Dilkusha",
+    "host": "192.168.26.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.8.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.122",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 36,
+    "router": "Joydebpur",
+    "host": "192.168.31.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
       "name": "SQUARE",
-      "dest": "10.154.1.161",
-      "source": "10.154.56.74",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "dest": "10.220.154.66",
+      "source": "10.154.56.170",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.162",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "connect ECONNREFUSED 192.168.31.1:22"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 43,
+    "router": "Beanibazar",
+    "host": "192.168.195.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.170",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.27.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 46,
+    "router": "Feni",
+    "host": "192.168.136.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.50",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.19.58",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:14 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1626,27 +1626,249 @@
     "router": "Keranigonj",
     "host": "192.168.37.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
       "source": "10.154.24.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "AMBER-IT",
       "dest": "10.154.1.33",
       "source": "10.154.42.206",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 48,
+    "router": "Hathazari",
+    "host": "192.168.139.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.13.42",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.19.74",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 47,
+    "router": "Coxsbazar",
+    "host": "192.168.137.1",
+    "routerType": "mikrotik",
+    "mikrotik": "yes",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.13.194",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.46",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 50,
+    "router": "Konapara",
+    "host": "192.168.33.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.178",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "KS",
+      "dest": "10.1.4.18",
+      "source": "10.154.80.162",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 46,
+    "router": "Feni",
+    "host": "192.168.136.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.50",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.19.58",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 49,
+    "router": "Amborkhana",
+    "host": "192.168.198.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.21.162",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.14.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 51,
+    "router": "Jatrabari",
+    "host": "192.168.34.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "KS",
+      "dest": "10.1.4.18",
+      "source": "10.154.80.166",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.186",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:16 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1656,87 +1878,69 @@
     "router": "Chuknagar",
     "host": "192.168.230.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "AMBER-IT",
       "dest": "10.154.1.33",
       "source": "10.154.42.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "A.D.N",
       "dest": "10.154.2.1",
       "source": "10.154.72.118",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 57,
-    "router": "Mongla",
-    "host": "192.168.229.1",
+    "branchId": 53,
+    "router": "Jhalokathi",
+    "host": "192.168.242.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
-      "source": "10.154.28.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.28.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "SQUARE",
-      "dest": "10.154.1.161",
-      "source": "10.154.56.122",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.11.134",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 58,
-    "router": "Hazaribagh",
-    "host": "192.168.38.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.24.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "KS",
-      "dest": "10.154.2.65",
-      "source": "10.154.80.146",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1746,27 +1950,141 @@
     "router": "Manda",
     "host": "192.168.39.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.41.209.214",
       "source": "10.154.16.194",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "KS",
       "dest": "10.1.4.18",
       "source": "10.154.80.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 58,
+    "router": "Hazaribagh",
+    "host": "192.168.38.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.24.26",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "KS",
+      "dest": "10.154.2.65",
+      "source": "10.154.80.146",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 52,
+    "router": "Bhairab",
+    "host": "192.168.35.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.24.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.17.114",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 57,
+    "router": "Mongla",
+    "host": "192.168.229.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.28.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "SQUARE",
+      "dest": "10.154.1.161",
+      "source": "10.154.56.122",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1776,87 +2094,69 @@
     "router": "Nandipara",
     "host": "192.168.40.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
       "source": "10.154.24.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.16.202",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 61,
-    "router": "Patherhat",
-    "host": "192.168.140.1",
+    "branchId": 54,
+    "router": "Gulshan",
+    "host": "192.168.36.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
-      "source": "10.154.26.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.24.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "LINK3",
-      "dest": "10.154.1.233",
-      "source": "10.154.66.98",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "SQUARE",
+      "dest": "10.154.1.161",
+      "source": "10.154.56.74",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:17 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 62,
-    "router": "Mothbaria",
-    "host": "192.168.243.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.218",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "LINK3",
-      "dest": "10.154.1.233",
-      "source": "10.154.66.102",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1866,57 +2166,33 @@
     "router": "Tontor bazar",
     "host": "192.168.142.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.10.74",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:18 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "AMBER-IT",
       "dest": "10.154.1.33",
       "source": "10.154.42.222",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:18 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 64,
-    "router": "B.Baria",
-    "host": "192.168.141.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.66",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "SQUARE",
-      "dest": "10.154.1.161",
-      "source": "10.154.56.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1926,27 +2202,105 @@
     "router": "Hemayatpur",
     "host": "192.168.41.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.17.246",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.12.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 62,
+    "router": "Mothbaria",
+    "host": "192.168.243.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.218",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "LINK3",
+      "dest": "10.154.1.233",
+      "source": "10.154.66.102",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 61,
+    "router": "Patherhat",
+    "host": "192.168.140.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.26.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "LINK3",
+      "dest": "10.154.1.233",
+      "source": "10.154.66.98",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -1956,87 +2310,33 @@
     "router": "Abdullahpur",
     "host": "192.168.43.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "IOL",
       "dest": "10.154.1.97",
       "source": "10.154.48.82",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.12.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 67,
-    "router": "Bodorgonj",
-    "host": "192.168.165.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 68,
-    "router": "Bhola",
-    "host": "192.168.244.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "LINK3",
-      "dest": "10.154.1.233",
-      "source": "10.154.64.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "A.D.N",
-      "dest": "10.154.2.1",
-      "source": "10.154.72.22",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2046,57 +2346,105 @@
     "router": "Kamrangirchar",
     "host": "192.168.42.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "KS",
       "dest": "10.154.2.65",
       "source": "10.154.80.150",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.11.162",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 70,
-    "router": "Madhabpur",
-    "host": "192.168.199.1",
+    "branchId": 64,
+    "router": "B.Baria",
+    "host": "192.168.141.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.11.150",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.10.66",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "SQUARE",
+      "dest": "10.154.1.161",
+      "source": "10.154.56.26",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 67,
+    "router": "Bodorgonj",
+    "host": "192.168.165.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.138",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
-      "source": "10.154.25.50",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.25.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2106,117 +2454,69 @@
     "router": "Akhaura",
     "host": "192.168.143.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.11.154",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "LINK3",
       "dest": "10.154.1.233",
       "source": "10.154.64.14",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 72,
-    "router": "Bondor",
-    "host": "192.168.44.1",
+    "branchId": 70,
+    "router": "Madhabpur",
+    "host": "192.168.199.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "PCL",
-      "dest": "10.154.2.129",
-      "source": "10.154.88.90",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.9.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.11.150",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 73,
-    "router": "Khilkhet",
-    "host": "192.168.45.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.210",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.50",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 74,
-    "router": "Mirpur-10",
-    "host": "192.168.46.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "SQUARE",
-      "dest": "10.220.154.66",
-      "source": "10.154.56.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2226,147 +2526,141 @@
     "router": "Dinajpur",
     "host": "192.168.166.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.10.146",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "SQUARE",
       "dest": "10.154.1.161",
       "source": "10.154.56.50",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 76,
-    "router": "Gazipur",
-    "host": "192.168.47.1",
+    "branchId": 68,
+    "router": "Bhola",
+    "host": "192.168.244.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.9.242",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "LINK3",
+      "dest": "10.154.1.233",
+      "source": "10.154.64.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "SQUARE",
-      "dest": "10.154.1.161",
-      "source": "10.154.56.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "A.D.N",
+      "dest": "10.154.2.1",
+      "source": "10.154.72.22",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 77,
-    "router": "South Jatrabari",
-    "host": "192.168.48.1",
+    "branchId": 73,
+    "router": "Khilkhet",
+    "host": "192.168.45.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.210",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
-      "source": "10.154.8.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.10.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "SQUARE",
-      "dest": "10.220.154.66",
-      "source": "10.154.56.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 78,
-    "router": "Bashurhat",
-    "host": "192.168.144.1",
+    "branchId": 72,
+    "router": "Bondor",
+    "host": "192.168.44.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
+      "name": "PCL",
+      "dest": "10.154.2.129",
+      "source": "10.154.88.90",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.10.82",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.9.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.54",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 79,
-    "router": "Panchdona",
-    "host": "192.168.49.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.43.190",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.17.118",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2376,57 +2670,213 @@
     "router": "Shahzadpur",
     "host": "192.168.167.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
       "source": "10.154.25.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "AMBER-IT",
       "dest": "10.154.1.33",
       "source": "10.154.42.202",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 81,
-    "router": "Kolatia",
-    "host": "192.168.50.1",
+    "branchId": 74,
+    "router": "Mirpur-10",
+    "host": "192.168.46.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BRACNET",
-      "dest": "172.35.85.50",
-      "source": "10.154.25.6",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
-      "source": "10.154.11.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.10.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "SQUARE",
+      "dest": "10.220.154.66",
+      "source": "10.154.56.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:19 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 76,
+    "router": "Gazipur",
+    "host": "192.168.47.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.9.242",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:20 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "SQUARE",
+      "dest": "10.154.1.161",
+      "source": "10.154.56.10",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:20 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 77,
+    "router": "South Jatrabari",
+    "host": "192.168.48.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.8.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "SQUARE",
+      "dest": "10.220.154.66",
+      "source": "10.154.56.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 78,
+    "router": "Bashurhat",
+    "host": "192.168.144.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.82",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.54",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 79,
+    "router": "Panchdona",
+    "host": "192.168.49.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.43.190",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.17.118",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2436,27 +2886,69 @@
     "router": "Hajigonj",
     "host": "192.168.145.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "10.154.0.161",
       "source": "10.154.25.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "AMBER-IT",
       "dest": "10.154.1.33",
       "source": "10.154.42.198",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 81,
+    "router": "Kolatia",
+    "host": "192.168.50.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "172.35.85.50",
+      "source": "10.154.25.6",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.11.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2466,177 +2958,33 @@
     "router": "Ati Bazar",
     "host": "192.168.51.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "172.35.85.50",
       "source": "10.154.25.14",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "LINK3",
       "dest": "10.4.9.42",
       "source": "10.154.64.10",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 84,
-    "router": "Panthopath",
-    "host": "192.168.52.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "BRACNET",
-      "dest": "172.35.85.50",
-      "source": "10.154.25.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "SQUARE",
-      "dest": "10.220.154.66",
-      "source": "10.154.56.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 85,
-    "router": "Dokkhinkhan",
-    "host": "192.168.53.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.22",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.16.218",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 86,
-    "router": "Natunbazar",
-    "host": "192.168.54.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.11.66",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 87,
-    "router": "Kutibazar",
-    "host": "192.168.147.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.11.146",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.43.174",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 88,
-    "router": "Stationroad",
-    "host": "192.168.146.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.30",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.17.122",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2646,27 +2994,141 @@
     "router": "Shymoli",
     "host": "192.168.55.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BRACNET",
       "dest": "172.35.85.50",
       "source": "10.154.25.34",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
       "source": "10.154.12.198",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 84,
+    "router": "Panthopath",
+    "host": "192.168.52.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "172.35.85.50",
+      "source": "10.154.25.18",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "SQUARE",
+      "dest": "10.220.154.66",
+      "source": "10.154.56.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 88,
+    "router": "Stationroad",
+    "host": "192.168.146.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.30",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.17.122",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 86,
+    "router": "Natunbazar",
+    "host": "192.168.54.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.26",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.11.66",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2676,117 +3138,33 @@
     "router": "Rahimanogor",
     "host": "192.168.148.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.19.82",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:22 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "LINK3",
       "dest": "10.154.1.233",
       "source": "10.154.66.114",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:22 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 91,
-    "router": "Valanagar",
-    "host": "192.168.56.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.16.226",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.42.226",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 92,
-    "router": "Kathgora",
-    "host": "192.168.57.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.234",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.34",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 93,
-    "router": "Ruhitpur",
-    "host": "192.168.59.1",
-    "routerType": "legacy",
-    "results": {
-     "isp1": {
-      "name": "KS",
-      "dest": "10.154.2.65",
-      "source": "10.154.80.130",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.16.250",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2796,87 +3174,141 @@
     "router": "Pabna",
     "host": "192.168.168.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.10.154",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.21.34",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 95,
-    "router": "Halishohor",
-    "host": "192.168.149.1",
+    "branchId": 87,
+    "router": "Kutibazar",
+    "host": "192.168.147.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
-      "source": "10.154.13.50",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.11.146",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "ALAP",
-      "dest": "10.154.0.97",
-      "source": "10.154.19.90",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.43.174",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:21 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 96,
-    "router": "Gollamari",
-    "host": "192.168.231.1",
+    "branchId": 91,
+    "router": "Valanagar",
+    "host": "192.168.56.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BDCOM",
-      "dest": "10.154.0.33",
-      "source": "10.154.10.202",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     },
-     "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.22.34",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.16.226",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:22 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.42.226",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:22 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 92,
+    "router": "Kathgora",
+    "host": "192.168.57.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.234",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.10.34",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -2886,147 +3318,141 @@
     "router": "Rangpur",
     "host": "192.168.169.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.10.162",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.21.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
-    }
-   }
-  },
-  {
-   "result": {
-    "branchId": 98,
-    "router": "Uttara Janapath",
-    "host": "192.168.58.1",
-    "routerType": "sdwan",
-    "results": {
-     "isp1": {
-      "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.16.242",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
-     "isp2": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.42",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
-      "upTimes": [],
-      "totalDownTime": ""
-     }
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 99,
-    "router": "Noyapur",
-    "host": "192.168.60.1",
+    "branchId": 95,
+    "router": "Halishohor",
+    "host": "192.168.149.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.24.106",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.13.50",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.154.0.97",
-      "source": "10.154.17.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "source": "10.154.19.90",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 100,
-    "router": "Rampal",
-    "host": "192.168.61.1",
-    "routerType": "sdwan",
+    "branchId": 96,
+    "router": "Gollamari",
+    "host": "192.168.231.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BRACNET",
-      "dest": "172.35.85.50",
-      "source": "10.154.25.38",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "BDCOM",
+      "dest": "10.154.0.33",
+      "source": "10.154.10.202",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.17.74",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "dest": "10.154.0.97",
+      "source": "10.154.22.34",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 102,
-    "router": "Teknaf",
-    "host": "192.168.150.1",
+    "branchId": 93,
+    "router": "Ruhitpur",
+    "host": "192.168.59.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "AMBER-IT",
-      "dest": "10.154.1.33",
-      "source": "10.154.42.2",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "KS",
+      "dest": "10.154.2.65",
+      "source": "10.154.80.130",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
-      "name": "BRACNET",
-      "dest": "10.154.0.161",
-      "source": "10.154.25.58",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.16.250",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -3036,57 +3462,141 @@
     "router": "Bormi",
     "host": "192.168.62.1",
     "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "ALAP",
       "dest": "10.154.0.97",
       "source": "10.154.17.18",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "BDCOM",
       "dest": "10.154.0.33",
       "source": "10.154.9.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
   {
    "result": {
-    "branchId": 104,
-    "router": "Barura",
-    "host": "192.168.151.1",
-    "routerType": "sdwan",
+    "branchId": 102,
+    "router": "Teknaf",
+    "host": "192.168.150.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
     "results": {
      "isp1": {
-      "name": "BDCOM",
-      "dest": "10.255.31.122",
-      "source": "10.154.10.98",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "name": "AMBER-IT",
+      "dest": "10.154.1.33",
+      "source": "10.154.42.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.58",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 99,
+    "router": "Noyapur",
+    "host": "192.168.60.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.24.106",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
-      "dest": "10.41.209.214",
-      "source": "10.154.19.98",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "dest": "10.154.0.97",
+      "source": "10.154.17.2",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 98,
+    "router": "Uttara Janapath",
+    "host": "192.168.58.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.16.242",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.10.42",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
     }
    }
   },
@@ -3096,27 +3606,141 @@
     "router": "Rampura",
     "host": "192.168.63.1",
     "routerType": "sdwan",
+    "mikrotik": "no",
     "results": {
      "isp1": {
       "name": "BDCOM",
       "dest": "10.255.31.122",
       "source": "10.154.8.138",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
+      "totalDownTime": "0 hr : 00 min"
      },
      "isp2": {
       "name": "ALAP",
       "dest": "10.41.209.214",
       "source": "10.154.17.26",
-      "prevStatus": "UP",
-      "status": "UP",
-      "downTimes": [],
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
       "upTimes": [],
-      "totalDownTime": ""
-     }
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 100,
+    "router": "Rampal",
+    "host": "192.168.61.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "172.35.85.50",
+      "source": "10.154.25.38",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.17.74",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 104,
+    "router": "Barura",
+    "host": "192.168.151.1",
+    "routerType": "sdwan",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BDCOM",
+      "dest": "10.255.31.122",
+      "source": "10.154.10.98",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.41.209.214",
+      "source": "10.154.19.98",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:23 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "Host Unreachable"
+    }
+   }
+  },
+  {
+   "result": {
+    "branchId": 85,
+    "router": "Dokkhinkhan",
+    "host": "192.168.53.1",
+    "routerType": "legacy",
+    "mikrotik": "no",
+    "results": {
+     "isp1": {
+      "name": "BRACNET",
+      "dest": "10.154.0.161",
+      "source": "10.154.25.22",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:22 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "isp2": {
+      "name": "ALAP",
+      "dest": "10.154.0.97",
+      "source": "10.154.16.218",
+      "prevStatus": "DOWN",
+      "status": "DOWN",
+      "downTimes": [
+       "January 17th 2026, 11:06:22 pm"
+      ],
+      "upTimes": [],
+      "totalDownTime": "0 hr : 00 min"
+     },
+     "error": "connect ETIMEDOUT 192.168.53.1:22"
     }
    }
   }
