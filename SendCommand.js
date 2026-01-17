@@ -3,6 +3,7 @@ import { Client } from "ssh2";
 import XLSX from "xlsx";
 import fs from "fs";
 import dotenv from 'dotenv';
+import moment from 'moment';
 
 dotenv.config();
 
@@ -284,12 +285,49 @@ async function processRouter(router) {
     return results;
   }
 
-  ;(async () => {
-    const CONCURRENCY = 15; // safe for 500 routers
+  // ;(async () => {
+  //   const CONCURRENCY = 15; // safe for 500 routers
   
+  //   const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
+  //   finalResult.push(...results);  
+  //   // console.log(JSON.stringify(finalResult, null, 2));
+  //   fs.writeFileSync('FinalResult.json',JSON.stringify(finalResult, null, 1));
+  //   exportToExcel(finalResult);
+  // })();
+
+  async function main(){
+    console.log('------------------Running Again--------------------')
+    running=true;
+    const CONCURRENCY = 15; // safe for 500 routers
     const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
     finalResult.push(...results);  
-    // console.log(JSON.stringify(finalResult, null, 2));
+    console.log(JSON.stringify(finalResult, null, 2));
     fs.writeFileSync('FinalResult.json',JSON.stringify(finalResult, null, 1));
     exportToExcel(finalResult);
-  })();
+    running=false;
+  }
+
+  function timeTest(){
+    // const now = moment("January 17th 2026, 12:33:00 pm", "MMMM Do YYYY, h:mm:ss a");
+    const now = moment();
+    const parsedNow = now.format('MMMM Do YYYY, h:mm:ss a')
+    console.log(parsedNow)
+    const prev = moment("January 17th 2026, 10:33:00 am", "MMMM Do YYYY, h:mm:ss a");
+    const duration = moment.duration(now.diff(prev));
+    const hours = Math.floor(duration.asHours());
+    const minutes = duration.minutes();
+    const diffFormatted = `${hours} hr : ${minutes.toString().padStart(2, '0')} min`;
+  
+  console.log(diffFormatted);
+  }
+  let running=false;
+
+  main();
+  // setInterval(()=>{
+  //   if(!running){
+  //     main()
+  //   }
+  //   timeTest();
+  // },1000 * 1)
+
+  
