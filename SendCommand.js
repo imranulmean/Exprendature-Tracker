@@ -7,13 +7,6 @@ import moment from 'moment';
 
 dotenv.config();
 
-const finalResult=[];
-const routersJson = fs.readFileSync('routers.json', "utf8");
-// const routersJson = fs.readFileSync('newRouter.json', "utf8");
-const parsedRouters= JSON.parse(routersJson)
-const routers=parsedRouters.routers
-console.log(routers)
-
 function exportToExcel(finalResult) {
     const rows = finalResult.map(item => {
       const r = item.result; 
@@ -285,49 +278,99 @@ async function processRouter(router) {
     return results;
   }
 
-  // ;(async () => {
-  //   const CONCURRENCY = 15; // safe for 500 routers
-  
-  //   const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
-  //   finalResult.push(...results);  
-  //   // console.log(JSON.stringify(finalResult, null, 2));
-  //   fs.writeFileSync('FinalResult.json',JSON.stringify(finalResult, null, 1));
-  //   exportToExcel(finalResult);
-  // })();
-
   async function main(){
     console.log('------------------Running Again--------------------')
     running=true;
     const CONCURRENCY = 15; // safe for 500 routers
     const results = await runWithConcurrency(routers, CONCURRENCY, processRouter);  
-    finalResult.push(...results);  
-    console.log(JSON.stringify(finalResult, null, 2));
+    finalResult.push(...results);      
     fs.writeFileSync('FinalResult.json',JSON.stringify(finalResult, null, 1));
+    console.log(`Result Written in FinalResult.json File`)
     exportToExcel(finalResult);
     running=false;
   }
 
   function timeTest(){
-    // const now = moment("January 17th 2026, 12:33:00 pm", "MMMM Do YYYY, h:mm:ss a");
     const now = moment();
     const parsedNow = now.format('MMMM Do YYYY, h:mm:ss a')
-    console.log(parsedNow)
+    console.log(parsedNow);
+    // Check if Time is before 10 am or after 6 pm
+    const tenAM = moment().hour(10).minute(0).second(0);
+    const sixPM = moment().hour(18).minute(0).second(0);    
+    // Checks
+    const isAfter10AM = now.isAfter(tenAM);   // 10:01 AM → true
+    const isAfter6PM = now.isAfter(sixPM);    // 6:01 PM → true
+    
+    console.log(isAfter10AM, isAfter6PM);    
+    ///////////////////////////
     const prev = moment("January 17th 2026, 10:33:00 am", "MMMM Do YYYY, h:mm:ss a");
     const duration = moment.duration(now.diff(prev));
     const hours = Math.floor(duration.asHours());
     const minutes = duration.minutes();
-    const diffFormatted = `${hours} hr : ${minutes.toString().padStart(2, '0')} min`;
-  
-  console.log(diffFormatted);
+    const diffFormatted = `${hours} hr : ${minutes.toString().padStart(2, '0')} min`;  
+    console.log(diffFormatted);
   }
-  let running=false;
+  
 
-  main();
-  // setInterval(()=>{
-  //   if(!running){
-  //     main()
-  //   }
-  //   timeTest();
-  // },1000 * 1)
+  let running=false;
+  const finalResult=[];
+  const routersJson = fs.readFileSync('routers.json', "utf8");
+  // const routersJson = fs.readFileSync('newRouter.json', "utf8");
+  const parsedRouters= JSON.parse(routersJson)
+  const routers=parsedRouters.routers;
+
+  // main();
+  timeTest();
+
+  setInterval(()=>{
+    // First Check if today file exists or not. if no then create the file with today date DD/MM/YYYY.json. then Read from this file
+    const today = moment();
+    const formatToday=today.format('DD-MM-YYYY')
+    if( !running && !fs.existsSync(`${formatToday}.json`)){
+      console.log(`Creating File ${formatToday}.json`)
+      const finalRouters= routers.map(rt=>{
+        let obj={
+          result:{
+            branchId:rt.branchId,
+            router:rt.name,
+            host:rt.host,
+            routerType:rt.routerType,
+            results:{
+              isp1:{
+                "name":rt.isp1Name,
+                "dest":rt.isp1Dest,
+                "source":rt.isp1Source,
+                "prevStatus":"UP",
+                "status": "UP",
+                "downTimes":[],
+                "upTimes":[],
+                "totalDownTime":""
+              },
+              "isp2": {
+                "name":rt.isp2Name,
+                "dest":rt.isp2Dest,
+                "source":rt.isp2Source,
+                "prevStatus":"UP",
+                "status":"UP",
+                "downTimes":[],
+                "upTimes":[],
+                "totalDownTime":""
+              }          
+            }
+          }
+        }
+        return obj;
+      })
+      const jsonObj={routers: finalRouters}
+      const finatRoutersJSON= fs.writeFileSync(`${formatToday}.json`, JSON.stringify(jsonObj, null, 1));
+    }
+    else{
+      if(!running){
+        main()
+      }
+    }
+
+    // timeTest();
+  },1000 * 1)
 
   
