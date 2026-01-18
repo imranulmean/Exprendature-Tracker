@@ -70,7 +70,7 @@ function exportToExcel(finalResult) {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "ISP Status");
     XLSX.writeFile(workbook, "isp_status.xlsx");
-    console.log("✅ Excel Updated");
+    console.log("✅ Excel Updated isp_status.xlsx");
 }
 
 async function isRouterAlive(host) {
@@ -82,20 +82,36 @@ async function isRouterAlive(host) {
 
 function pushConfig(router, commands) {
     return new Promise((resolve) => {
+      console.log(`🔐 Trying to enter ${router.router}`);
       const conn = new Client();
       let index = 0;
       let ispIndex = 1;
       const resData = { isp1Status: "DOWN", isp2Status: "DOWN", error: "" };
 
       conn.on("ready", () => {
+        console.log(`✅ Connection Established: ${router.router}`);
         conn.shell((err, stream) => {
-          if (err) { resData.error = err.message; return resolve(resData); }
+          if (err) { 
+            console.log(`Shell Error: ${err.message}`);
+            resData.error = err.message; 
+            return resolve(resData); 
+          }
           
-          const send = () => { if (index < commands.length) stream.write(commands[index] + "\n"); };
+          const send = () => { 
+            if (index < commands.length){
+                stream.write(commands[index] + "\n"); 
+            } 
+            else{
+                setTimeout(() => {
+                    stream.write("exit\n");
+                  }, 500);                
+            }
+          };
           send();
 
           stream.on("data", data => {
             const text = data.toString();
+            process.stdout.write(text);
             if (text.includes("% Authorization failed")) {
               resData.error = "AUTHORIZATION_FAILED";
               stream.end();
@@ -103,16 +119,21 @@ function pushConfig(router, commands) {
             if (text.includes("Success rate")) {
               const match = text.match(/Success rate is (\d+) percent/);
               resData[`isp${ispIndex}Status`] = (match && Number(match[1]) > 0) ? "UP" : "DOWN";
+              resData.error = "OK";
               index++; ispIndex++;
               stream.write("\n");
               setTimeout(send, 300);
               return;
             }
             if (text.trim().endsWith("#") && !commands[index]?.startsWith("ping")) {
+               resData.error = "OK";
               index++; setTimeout(send, 200);
             }
           });
-          stream.on("close", () => { conn.end(); resolve(resData); });
+          stream.on("close", () => { 
+            conn.end(); 
+            resolve(resData); 
+        });
         });
       }).on("error", err => {
         resData.error = err.message;
@@ -147,8 +168,7 @@ async function processRouter(routerItem) {
             const cmds = [
                 "terminal length 0", 
                 `ping ${router.results.isp1.dest} source ${router.results.isp1.source} repeat 2 timeout 1`, 
-                `ping ${router.results.isp2.dest} source ${router.results.isp2.source} repeat 2 timeout 1`, 
-                "exit"
+                `ping ${router.results.isp2.dest} source ${router.results.isp2.source} repeat 2 timeout 1`
             ];
             // pushConfig returns { isp1Status, isp2Status, error }
             fresh = await pushConfig(router, cmds);            
@@ -196,10 +216,15 @@ async function main() {
     const updated = await runWithConcurrency(data.routers, 15, processRouter);
     
     fs.writeFileSync(todayFile, JSON.stringify({ routers: updated }, null, 1));
+    console.log(`File Written to ${todayFile}`)
     exportToExcel(updated);
     
     console.log('--- Cycle Complete ---');
-    running = false;
+    console.log('--- Next Cycle Start in 10s ---');
+    setTimeout(()=>{
+        running = false;
+    },10*1000)
+    
 }
 
 // --- INITIALIZATION & INTERVAL ---
@@ -212,13 +237,13 @@ function checkAndRun() {
         console.log(`Creating ${formatToday}.json`);
         const initial = routers.map(rt => ({
             result: {
-                branchId: rt.branchId, router: rt.name, host: rt.host, routerType: rt.routerType, mikrotik: rt.mikrotik || "no",
+                branchId: rt.branchId, router: rt.name, authType:rt.authType, host: rt.host, routerType: rt.routerType, mikrotik: rt.mikrotik || "no",
                 results: {
                     isp1: { name: rt.isp1Name, dest: rt.isp1Dest, source: rt.isp1Source, prevStatus: "UP", status: "UP", downTimes: [], upTimes: [], totalDownTime: "" },
                     isp2: { name: rt.isp2Name, dest: rt.isp2Dest, source: rt.isp2Source, prevStatus: "UP", status: "UP", downTimes: [], upTimes: [], totalDownTime: "" }
                 }
             }
-        }));
+        }));        
         fs.writeFileSync(`${formatToday}.json`, JSON.stringify({ routers: initial }, null, 1));
     }
     main();
@@ -226,4 +251,15 @@ function checkAndRun() {
 
 // Start immediately and then every 5 minutes
 checkAndRun();
-// setInterval(checkAndRun, 1000 * 60 * 5);
+setInterval(()=>{
+    const nowTime = moment();
+    const nowTimeStr = nowTime.format('MMMM Do YYYY, h:mm:ss a');
+    const tenAm = moment().hour(10).minute(0).second(0);
+    const sixPm=moment().hour(18).minute(5).second(0);
+    const isAfter10 = nowTime.isAfter(tenAm);
+    const isAfter6 = nowTime.isAfter(sixPm);
+    console.log(nowTimeStr, isAfter10 , isAfter6)
+    if( isAfter10 && !isAfter6){
+        checkAndRun();
+    }
+}, 1000);
