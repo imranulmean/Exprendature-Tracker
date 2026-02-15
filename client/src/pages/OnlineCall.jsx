@@ -116,7 +116,30 @@ if (typeof global === 'undefined') {
     return (
         <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center font-sans">
           <h1 className="text-3xl font-black text-slate-800 mb-10 tracking-tight">AudioCall HD</h1>
-      
+
+            {/* Online Users List */}
+            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
+            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Active Directory</h3>
+            <div className="space-y-2">
+                {onlineUsers.length > 0 ? onlineUsers.map((userId) => (
+                <div key={userId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+                    <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        {/* <span className="text-xs font-mono text-slate-500">{userId.substring(0, 12)}...</span> */}
+                        <span className="text-xs font-mono text-slate-500">{userId}</span>
+                    </div>
+                    <button onClick={() => callUser(userId)}
+                            className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-indigo-700 transition-all shadow-md active:scale-95"
+                    >
+                        CALL
+                    </button>
+                </div>
+                )) : (
+                <p className="text-center text-slate-400 text-xs py-4">Waiting for others to log on...</p>
+                )}
+            </div>
+            </div>
+
           <div className="flex flex-wrap justify-center gap-10 mb-12">
             {/* My Profile */}
             <div className="flex flex-col items-center">
