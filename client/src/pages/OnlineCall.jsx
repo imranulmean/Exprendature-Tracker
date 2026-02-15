@@ -28,7 +28,7 @@ if (typeof global === 'undefined') {
   
     useEffect(() => {
       // Connect to Socket
-      socket.current = io.connect(BASE_API);
+      socket.current = io.connect('https://search-llm.onrender.com');
   
       // Get Camera
       navigator.mediaDevices.getUserMedia({ video: true, audio: true })
