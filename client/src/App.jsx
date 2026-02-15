@@ -19,6 +19,7 @@ import StartPractice from './components/StartPractice';
 import ReactSpeech from './components/ReactSpeech';
 import UploadFile from './pages/UploadFile';
 import Postgres from './pages/Postgres';
+import OnlineCall from './pages/OnlineCall';
 
 export default function App(){
 
@@ -32,6 +33,7 @@ export default function App(){
         <Route path='/speechTest' element={<ReactSpeech />} />v
         <Route path='/upload' element={<UploadFile />} />
         <Route path='/postgres' element={<Postgres />} />
+        <Route path='/call' element={<OnlineCall />} />
 
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />

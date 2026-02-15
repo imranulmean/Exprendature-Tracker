@@ -94,3 +94,44 @@ app.use((err, req, res, next) => {
   //   "start": "node api/index.js",
   //   "build": "npm install && npm install --prefix client && npm run build --prefix client"
   // },
+  import { Server } from "socket.io";
+
+  const users = {};
+  
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+      credentials: true
+    }
+  });
+  
+  io.on("connection", (socket) => {
+  
+    users[socket.id] = socket.id;
+    // 1. Send the connected user their unique ID
+    socket.emit("me", socket.id);
+  
+    // 2. Send the updated user list to EVERYONE
+    io.emit("updateUserList", Object.values(users));
+    socket.on("disconnect", () => {
+      delete users[socket.id]; // Remove user
+      io.emit("updateUserList", Object.values(users)); // Update everyone
+      socket.broadcast.emit("callEnded");
+    });
+  
+    // 3. User A initiates a call to User B
+    socket.on("callUser", (data) => {
+      io.to(data.userToCall).emit("callUser", { 
+              signal: data.signalData, 
+              from: data.from, 
+              name: data.name 
+          });
+    });
+  
+    // 4. User B answers the call from User A
+    socket.on("answerCall", (data) => {
+      io.to(data.to).emit("callAccepted", data.signal);
+    });
+  });
+  
