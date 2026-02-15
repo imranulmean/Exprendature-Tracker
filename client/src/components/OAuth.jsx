@@ -54,7 +54,7 @@ export default function OAuth() {
                 </Button>
                 {/* <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center" to='/startPractice'>Start Practice </Link> */}
                 {/* <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center" to='/speechTest'>Speech Test </Link> */}
-                <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center"  to='/upload'>{'Upload File >>'}</Link>
+                {/* <Link className="text-lg font-bold leading-none text-gray-900 text-black text-center"  to='/upload'>{'Upload File >>'}</Link> */}
             </Card>
         </div>
   )
