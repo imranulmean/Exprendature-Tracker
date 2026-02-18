@@ -144,8 +144,11 @@ if (typeof global === 'undefined') {
             {/* My Profile */}
             <div className="flex flex-col items-center">
                 <div className="w-32 h-32 bg-indigo-100 rounded-full flex items-center justify-center border-4 border-white shadow-lg mb-2 relative">
-                <span className="text-4xl">🎙️</span>
-                {stream && <div className="absolute bottom-0 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>}
+                    <span className="text-4xl">🎙️</span>
+                    {
+                        stream && 
+                        <div className="absolute bottom-0 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                    }
                 </div>
                 <p className="text-sm font-bold text-slate-500">You</p>
             </div>
@@ -153,15 +156,15 @@ if (typeof global === 'undefined') {
             {/* Remote Profile */}
             <div className="flex flex-col items-center">
                 <div className={`w-32 h-32 rounded-full flex items-center justify-center border-4 border-white shadow-lg mb-2 transition-all ${callAccepted ? 'bg-emerald-100 animate-pulse' : 'bg-gray-200'}`}>
-                <span className="text-4xl">{callAccepted ? '👨‍💼' : '👤'}</span>
+                    <span className="text-4xl">{callAccepted ? '👨‍💼' : '👤'}</span>
                 </div>
                 <p className="text-sm font-bold text-slate-500">
                 {callAccepted ? "Connected" : "Waiting..."}
-                </p>
-                
+                </p>                
                 {/* HIDDEN AUDIO TAG - This is what plays the sound */}
-                {callAccepted && !callEnded && (
-                <audio ref={userVideo} autoPlay /> 
+                {
+                    callAccepted && !callEnded && (
+                    <audio ref={userVideo} autoPlay /> 
                 )}
             </div>
             </div>

@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.route.js';
 import expRoutes from './routes/exp.route.js';
 import incomeRoutes from './routes/income.route.js';
 import adminRoutes from './routes/adminApi.route.js';
+import zakatRoutes from './routes/zakat.route.js';
 import postgresRoutes from './routes/postgres.route.js';
 // import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
@@ -46,8 +47,8 @@ app.use(cookieParser());
 
 
 
-server.listen(3000, () => {
-  console.log('Server is running on port 3000!');
+server.listen(3001, () => {
+  console.log('Server is running on port 3001!');
 });
 
 // app.use('/api/user', userRoutes);
@@ -55,6 +56,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expRoutes);
 app.use('/api/income', incomeRoutes);
 app.use('/api/adminApi', adminRoutes);
+app.use('/api/zakat', zakatRoutes)
 
 
 app.get("/getFiles", getFiles);

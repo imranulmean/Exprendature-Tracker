@@ -20,6 +20,8 @@ import ReactSpeech from './components/ReactSpeech';
 import UploadFile from './pages/UploadFile';
 import Postgres from './pages/Postgres';
 import OnlineCall from './pages/OnlineCall';
+import ZakatList from './pages/ZakatList';
+import AddZakatItem from './pages/AddZakatItem';
 
 export default function App(){
 
@@ -43,6 +45,8 @@ export default function App(){
           <Route path='/updateIncome/:userId/:monthName/:year' element={<UpdateIncome />} />
           <Route path='/qrCodeGenerator' element={<QRcodeGenerator />} />
           <Route path='/qrCodeReader' element={<QrReader />} />
+          <Route path='/zakats' element={<ZakatList />} />
+          <Route path='/zakats/addItem/:year/:yearlyZakatId' element={<AddZakatItem />} />
         </Route>
 
         <Route element= {<AdminPrivateRoute/>} >
