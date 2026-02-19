@@ -38,7 +38,8 @@ export default function App(){
         <Route path='/call' element={<OnlineCall />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path='/' element={<Home />} />
+          {/* <Route path='/' element={<Home />} /> */}
+          <Route path='/' element={<ZakatList />} />
           <Route path='/insertion' element={<Insertion />} />
           <Route path='/income' element={<Income />} />
           <Route path='/updateExp/:userId/:monthName/:year' element={<UpdateExp />} />

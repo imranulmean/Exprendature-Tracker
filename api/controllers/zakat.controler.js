@@ -14,7 +14,9 @@ export const createNew = async (req, res) => {
       const existingYearlyZakat = await YearlyZakat.findOne({ userId, year });
 
       if(existingYearlyZakat){
-            return res.status(401).json({ success: false, statusCode:401, message: "Already Exist"});
+        existingYearlyZakat.total= total;
+        await existingYearlyZakat.save();
+        return res.status(201).json({ success: true, statusCode:201, message: "Updated Successfully"});
       }
       const newYearlyZakat = new YearlyZakat({ userId, year, total });
       await newYearlyZakat.save(); 

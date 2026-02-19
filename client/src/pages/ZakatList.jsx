@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import Header from "../components/Header";
 
 export default function ZakatList(){
 
@@ -73,46 +74,53 @@ export default function ZakatList(){
         catch(e){
             alert(e);
         }finally{
-            setLoading(false);
+            await getZakatList();
+            setLoading(false);            
         }
 
     }
 
     return(
         <>
-            <div>
-                <Card className="max-w-sm">
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="currentYear">Year: {currentYear}</Label>
-                        </div>
-                    </div>                    
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="password1">Total: </Label>
-                        </div>
-                        <TextInput  onChange={(e)=>setTotal(e.target.value)}
-                            id="password1" type="number" required />
-                    </div>
-                    {
-                        loading ? (<p>Processing...</p>):(<Button onClick={createNew}>Create New</Button>)
-                        
-                    }                    
-                </Card>
-                {
-                    zakatList.map( z=> (
-                        //////////////////////////
-                        <Card className="w-full md:w-[350px]">
-                            <div className="mb-4 flex items-center justify-between">
-                                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">{z.year}</h5>
-                                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">{z.total}</div>
-                                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">Paid: {z.paid}</div>
+            <Header />
+            <div className="flex flex-col gap-2 justify-center items-center p-2">
+                <div className="w-full max-w-sm">
+                    <Card className="max-w-sm">
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="currentYear">Year: {currentYear}</Label>
                             </div>
-                            <Link to={`/zakats/addItem/${z.year}/${z._id}`}>Add item</Link>
-                        </Card>                          
-                        /////////////////////////
-                    ) )
-                }    
+                        </div>                    
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="password1">Total: </Label>
+                            </div>
+                            <TextInput  onChange={(e)=>setTotal(e.target.value)}
+                                id="password1" type="number" required />
+                        </div>
+                        {
+                            loading ? (<p>Processing...</p>):(<Button onClick={createNew}>New / Update</Button>)
+                            
+                        }                    
+                    </Card>
+                </div>
+                <div className="flex flex-col gap-4 w-full max-w-sm">
+                    {
+                        zakatList.map( z=> (
+                            //////////////////////////
+                            <Card className="w-full flex flex-col">
+                                <div className="mb-4 flex items-center justify-between">
+                                    <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">{z.year}</h5>
+                                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">{z.total}</div>
+                                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">Paid: {z.paid}</div>
+                                </div>
+                                <Link className="text-center px-4 py-2 bg-gray-200 rounded-lg" 
+                                    to={`/zakats/addItem/${z.year}/${z._id}`}>Add item</Link>
+                            </Card>                          
+                            /////////////////////////
+                        ) )
+                    } 
+                </div>
             </div>
         </>
     )

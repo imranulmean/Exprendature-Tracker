@@ -2,6 +2,7 @@ import { Card, TextInput, Button, Label } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import Header from "../components/Header";
 
 export default function AddZakatItem(){
 
@@ -107,61 +108,66 @@ export default function AddZakatItem(){
     
     return(
         <>
-            <Card className="max-w-sm">
-                <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="currentYear">Year: {year}</Label>
-                    </div>
-                </div>
-                <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="password1">Purpose: </Label>
-                    </div>
-                    <TextInput  onChange={(e)=>setPurpose(e.target.value)}
-                        type="text" required />
-                </div>
-                <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="password1">Total: </Label>
-                    </div>
-                    <TextInput  onChange={(e)=>setTotal(e.target.value)}
-                        id="password1" type="number" required />
-                </div>
-                {
-                    loading ? (<p>Processing...</p>):(<Button onClick={addZakatItem}>Add Zakat Item</Button>)
-                    
-                }                    
-            </Card>
-
-            <Card className="max-w-sm">
-                <div className="mb-4 flex items-center justify-between">
-                    <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">List</h5>
-                </div>
-                <div className="flow-root">
-                    <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+            <Header/>
+            <div className="flex flex-col gap-2 justify-center items-center p-2">
+                <div className="w-full max-w-sm">
+                    <Card>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="currentYear">Year: {year}</Label>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="password1">Purpose: </Label>
+                            </div>
+                            <TextInput  onChange={(e)=>setPurpose(e.target.value)}
+                                type="text" required />
+                        </div>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="password1">Total: </Label>
+                            </div>
+                            <TextInput  onChange={(e)=>setTotal(e.target.value)}
+                                id="password1" type="number" required />
+                        </div>
                         {
-                            zakatItems.map(item=>(
-                                <li className="pb-0 pt-3 sm:pt-4">
-                                    <div className="flex items-center space-x-4">
-                                        <div className="min-w-0 flex-1">
-                                            <p className="truncate text-sm font-medium text-gray-900 dark:text-white">{item.purpose}</p>
-                                            <p className="truncate text-sm text-gray-500 dark:text-gray-400">{item.createdAt}</p>
-                                        </div>
-                                        <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                            {item.paid}
-                                        </div>
-                                        <button onClick={()=>deleteZakatItem(item._id)}>
-                                            Del
-                                        </button>                                    
-                                    </div>
-                                </li>
-                            ))
-                        }
-
-                    </ul>
+                            loading ? (<p>Processing...</p>):(<Button onClick={addZakatItem}>Add Zakat Item</Button>)
+                            
+                        }                    
+                    </Card>                    
                 </div>
-            </Card>
+                <div className="flex flex-col gap-4 w-full max-w-sm">
+                    <Card className="w-full">
+                        <div className="mb-4 flex items-center justify-between">
+                            <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">List</h5>
+                        </div>
+                        <div className="flow-root">
+                            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+                                {
+                                    zakatItems.map((item, index)=>(
+                                        <li className="pb-0 pt-3 sm:pt-4">
+                                            <div className="flex items-center space-x-4">
+                                                <div className="min-w-0 flex-1">                                            
+                                                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">{index+1}.{' '}{item.purpose}</p>
+                                                    <p className="truncate text-sm text-gray-500 dark:text-gray-400">{item.createdAt}</p>
+                                                </div>
+                                                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                    {item.paid}
+                                                </div>
+                                                <button onClick={()=>deleteZakatItem(item._id)}>
+                                                    Del
+                                                </button>                                    
+                                            </div>
+                                        </li>
+                                    ))
+                                }
 
+                            </ul>
+                        </div>
+                    </Card>                    
+                </div>
+            </div>
         </>
     )
 }
