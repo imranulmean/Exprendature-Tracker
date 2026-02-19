@@ -9,6 +9,7 @@ export default function ZakatList(){
 
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const { currentUser } = useSelector((state) => state.user);
+    const navigate = useNavigate();
 
     const formatYear = (date) => {        
         const year = date.getFullYear();
@@ -21,6 +22,11 @@ export default function ZakatList(){
     const [zakatList, setZakatList] = useState([]);
 
     useEffect(()=>{
+        alert(JSON.stringify(currentUser))
+        if(!currentUser){
+            navigate('/login');
+            return;
+        }
         getZakatList();
     },[]);
 

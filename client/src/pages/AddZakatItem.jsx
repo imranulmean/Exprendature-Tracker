@@ -1,6 +1,6 @@
 import { Card, TextInput, Button, Label } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Header from "../components/Header";
 
@@ -15,8 +15,14 @@ export default function AddZakatItem(){
 
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const { currentUser } = useSelector((state) => state.user);    
+    const navigate = useNavigate();
 
     useEffect(()=>{
+        alert(JSON.stringify(currentUser))
+        if(!currentUser){
+            navigate('/login');
+            return;
+        }        
         getZakatItems();
     },[])
 
