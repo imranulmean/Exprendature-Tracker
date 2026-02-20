@@ -22,11 +22,6 @@ export default function ZakatList(){
     const [zakatList, setZakatList] = useState([]);
 
     useEffect(()=>{
-        alert(JSON.stringify(currentUser))
-        if(!currentUser){
-            navigate('/login');
-            return;
-        }
         getZakatList();
     },[]);
 
@@ -44,6 +39,9 @@ export default function ZakatList(){
             const data= await res.json();
             if(!data.success){
                 alert(data.message);
+                if(data.message === 'Unauthorised') {
+                    navigate('/login');
+                }                
                 return;
             }
             setZakatList(data.message)

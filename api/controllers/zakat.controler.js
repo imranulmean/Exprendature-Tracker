@@ -33,7 +33,7 @@ export const getZakatList = async (req, res) => {
     const { _id, isAdmin } = req.user;
 
     if( _id.toString() !== userId){      
-      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorised"});
     }
     
     try {      
@@ -52,7 +52,7 @@ export const addZakatItem = async (req, res) =>{
     const { _id, isAdmin } = req.user;
 
     if( _id.toString() !== userId){      
-      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorised"});
     }
     
     try {      
@@ -80,7 +80,7 @@ export const getZakatItems = async (req, res) =>{
     const { _id, isAdmin } = req.user;
 
     if( _id.toString() !== userId){      
-      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorised"});
     }
     
     try {      
@@ -99,7 +99,7 @@ export const deleteZakatItem = async (req, res) =>{
     const { _id, isAdmin } = req.user;
 
     if( _id.toString() !== userId){      
-      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorized: Unauthorised"});
+      return res.status(401).json({ success: false, statusCode:401, message: "Unauthorised"});
     }
     
     try {      

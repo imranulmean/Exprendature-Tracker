@@ -18,11 +18,6 @@ export default function AddZakatItem(){
     const navigate = useNavigate();
 
     useEffect(()=>{
-        alert(JSON.stringify(currentUser))
-        if(!currentUser){
-            navigate('/login');
-            return;
-        }        
         getZakatItems();
     },[])
 
@@ -39,6 +34,13 @@ export default function AddZakatItem(){
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
+            if(!data.success){                
+                alert(data.message);
+                if(data.message === 'Unauthorised') {
+                    navigate('/login');
+                }
+                return;
+            }            
             if(!data.success){
                 alert(data.message);
                 return;
