@@ -39,7 +39,7 @@ export default function ZakatList(){
             const data= await res.json();
             if(!data.success){
                 alert(data.message);
-                if(data.message === 'Unauthorised') {
+                if(data.message === 'Unauthorized') {
                     navigate('/login');
                 }                
                 return;
