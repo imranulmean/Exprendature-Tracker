@@ -35,6 +35,7 @@ export default function Header(){
           </Link>
           {/* <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/insertion'> Add/Edit <br/> Expense</Link>
           <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/income'> Add/Edit <br/> Income</Link>         */}
+          <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/startPractice'> Practice</Link>
           <div className="flex md:order-2 gap-2">
             <Dropdown
               arrowIcon={false}
@@ -57,17 +58,7 @@ export default function Header(){
               currentUser.isAdmin &&
               <AdminDrawer />
             }
-            {/* <Navbar.Toggle /> */}
           </div>          
-
-          {/* <Navbar.Collapse>
-            <Navbar.Link active as={'div'}>
-              <Link to='/'>Home</Link>
-            </Navbar.Link>
-            <Navbar.Link as={'div'}>
-              <Link to='/insertion'>Insertion</Link>
-            </Navbar.Link>
-          </Navbar.Collapse> */}
         </Navbar>
       ); 
 }
