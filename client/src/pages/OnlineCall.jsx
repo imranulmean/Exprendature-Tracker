@@ -7,8 +7,7 @@ if (typeof global === 'undefined') {
   import Peer from "simple-peer/simplepeer.min.js";
   
   export default function OnlineCall() {
-    const BASE_API = import.meta.env.VITE_API_BASE_URL;
-   
+    const BASE_API = import.meta.env.VITE_API_BASE_URL;   
     const socket = useRef();
   
     const [me, setMe] = useState("");
@@ -25,7 +24,9 @@ if (typeof global === 'undefined') {
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
-  
+
+    const ringtone = useRef(new Audio("https://notificationsounds.com/storage/sounds/file-sounds-1150-pristine.mp3"));
+    
     useEffect(() => {
       // Connect to Socket
       socket.current = io.connect('https://search-llm.onrender.com');
@@ -52,11 +53,19 @@ if (typeof global === 'undefined') {
         setReceivingCall(true);
         setCaller(data.from);
         setCallerSignal(data.signal);
+        // Play the ringtone
+        ringtone.current.play().catch(e => console.log("Audio play blocked until user interacts with page."));        
       });
   
       return () => socket.current.disconnect();
     }, [BASE_API]);
   
+
+    useEffect(() => {
+      // Set ringer to loop so it keeps playing until answered
+      ringtone.current.loop = true;
+  }, []);    
+    
     const callUser = (id) => {
       alert("Button clicked. Stream status: " + (stream ? "Ready" : "Empty"));
       if (!stream) return alert("Please wait for camera to load");
@@ -69,7 +78,6 @@ if (typeof global === 'undefined') {
   
       peer.on("signal", (data) => {
         // This alert will now work!
-        console.log("Generated Signal:", data);
         socket.current.emit("callUser", {
           userToCall: id,
           signalData: data,
@@ -92,6 +100,9 @@ if (typeof global === 'undefined') {
     };
   
     const answerCall = () => {
+      // Stop and reset ringtone
+      ringtone.current.pause();
+      ringtone.current.currentTime = 0;      
       setCallAccepted(true);
       const peer = new Peer({
         initiator: false,
