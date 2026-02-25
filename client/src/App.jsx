@@ -22,6 +22,7 @@ import Postgres from './pages/Postgres';
 import OnlineCall from './pages/OnlineCall';
 import ZakatList from './pages/ZakatList';
 import AddZakatItem from './pages/AddZakatItem';
+import CallStream from './pages/CallStream';
 
 export default function App(){
 
@@ -36,6 +37,7 @@ export default function App(){
         <Route path='/upload' element={<UploadFile />} />
         <Route path='/postgres' element={<Postgres />} />
         <Route path='/call' element={<OnlineCall />} />
+        <Route path='/callstream' element={<CallStream />} />
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}
