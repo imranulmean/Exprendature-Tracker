@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
-import { StreamVideo, StreamCall, StreamVideoClient, StreamTheme, SpeakerLayout, CallControls } from '@stream-io/video-react-sdk';
+import {
+    StreamVideo, StreamCall, StreamVideoClient,
+    StreamTheme, SpeakerLayout, CallControls
+} from '@stream-io/video-react-sdk';
 import '@stream-io/video-react-sdk/dist/css/styles.css';
 
 const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
 
-export default function CallStream() {
+export default function OnlineCall() {
     const socket = useRef();
     const [me, setMe] = useState("");
+    const [myId, setMyId] = useState("");
     const [onlineUsers, setOnlineUsers] = useState({});
     
     const [client, setClient] = useState(null);
@@ -20,7 +24,7 @@ export default function CallStream() {
 
     useEffect(() => {
         const userId = "User_" + Math.floor(Math.random() * 1000);
-        
+        setMyId(userId)
         // 1. Setup Socket
         socket.current = io('https://search-llm.onrender.com', { auth: { username: userId } });
 
@@ -30,7 +34,7 @@ export default function CallStream() {
         socket.current.on("callUser", (data) => {
             setIncomingData(data);
             setReceivingCall(true);
-            ringtone.current.play().catch(e => console.log(e));
+            ringtone.current.play().catch(() => {});
         });
 
         socket.current.on("callAccepted", () => {
@@ -50,21 +54,11 @@ export default function CallStream() {
         };
         initStream();
 
-        return () => socket.current.disconnect();
+        return () => {
+            socket.current.disconnect();
+            _client.disconnectUser();
+        }
     }, []);
-
-
-    useEffect(() => {
-        // 1. Force a permission request on load (just like your old code)
-        // This click to "Allow" the mic will unlock the Ringtone audio context
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(() => console.log("Audio Unlocked"))
-            .catch(() => console.log("User hasn't allowed mic yet"));
-    
-        // 2. Pre-load the ringtone and set loop
-        ringtone.current.load();
-        ringtone.current.loop = true;
-    }, []);    
 
     const startCall = async (targetSocketId) => {
         const callId = `call_${me}_${Date.now()}`;
@@ -102,16 +96,16 @@ export default function CallStream() {
     return (
         <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center">
             <h1 className="text-3xl font-black mb-10">AudioCall HD</h1>
-            <h1 className="text-xl font-black mb-10">My Id: {me}</h1>
+            <h1 className="text-xl font-black mb-10">My Id: {myId}</h1>
 
             {!call ? (
                 <div className="w-full max-w-md bg-white p-6 rounded-3xl shadow-sm border">
                     <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Online Now</h3>
                     <div className="space-y-2">
-                        {Object.entries(onlineUsers).map((uId) => uId !== me && (
-                            <div key={uId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+                        {Object.entries(onlineUsers).map(([sId, uId]) => sId !== me && (
+                            <div key={sId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
                                 <span className="text-xs font-mono">{uId}</span>
-                                <button onClick={() => startCall(uId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
+                                <button onClick={() => startCall(sId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
                             </div>
                         ))}
                     </div>
