@@ -157,7 +157,7 @@ export default function AddZakatItem(){
                                         <li className="pb-0 pt-3 sm:pt-4">
                                             <div className="flex items-center space-x-4">
                                                 <div className="min-w-0 flex-1">                                            
-                                                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">{index+1}.{' '}{item.purpose}</p>
+                                                    <p className="text-sm font-medium text-gray-900 dark:text-white">{index+1}.{' '}{item.purpose}</p>
                                                     <p className="truncate text-sm text-gray-500 dark:text-gray-400">{item.createdAt}</p>
                                                 </div>
                                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
