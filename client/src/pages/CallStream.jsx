@@ -26,7 +26,7 @@ import { useEffect, useState } from 'react';
         const initCall = async () => {
             try {
                 // 1. Fetch the token from your Node.js backend
-                const response = await fetch('http://localhost:3001/get-token', {
+                const response = await fetch('https://search-llm.onrender.com/get-token', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userId }),
