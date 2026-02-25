@@ -43,6 +43,7 @@ export default function OnlineCall() {
 
         // 2. Setup Stream Client
         const initStream = async () => {
+            // https://search-llm.onrender.com
             const res = await fetch('https://search-llm.onrender.com/get-token', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
