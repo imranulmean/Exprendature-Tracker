@@ -1,86 +1,240 @@
-import {
-    CallControls,
-    CallingState,
-    SpeakerLayout,
-    StreamCall,
-    StreamTheme,
-    StreamVideo,
-    StreamVideoClient,
-    useCallStateHooks
-  } from '@stream-io/video-react-sdk';
-  
-  import '@stream-io/video-react-sdk/dist/css/styles.css';
-import { useEffect, useState } from 'react';
-  import '../index.css';
-  
-  export default function CallStream() {
+import React, { useEffect, useRef, useState } from "react";
+import io from "socket.io-client";
+import { StreamVideo, StreamCall, StreamVideoClient, StreamTheme, SpeakerLayout, CallControls } from '@stream-io/video-react-sdk';
+import '@stream-io/video-react-sdk/dist/css/styles.css';
 
-    const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
+const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
 
-    const userId = 'Sneaky_Mosquito';
-    const callId = 'Ui0hPbiq4HsDnpP0P1won';  
+export default function CallStream() {
+    const socket = useRef();
+    const [me, setMe] = useState("");
+    const [onlineUsers, setOnlineUsers] = useState({});
+    
     const [client, setClient] = useState(null);
-    const [call, setCall] = useState(null);    
+    const [call, setCall] = useState(null);
+    const [receivingCall, setReceivingCall] = useState(false);
+    const [incomingData, setIncomingData] = useState(null);
+    const [isCalling, setIsCalling] = useState(false);
+
+    const ringtone = useRef(new Audio("https://notificationsounds.com/storage/sounds/file-sounds-1150-pristine.mp3"));
 
     useEffect(() => {
-        const initCall = async () => {
-            try {
-                // 1. Fetch the token from your Node.js backend
-                const response = await fetch('https://search-llm.onrender.com/get-token', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userId }),
-                });
-                const { token } = await response.json();
+        const userId = "User_" + Math.floor(Math.random() * 1000);
+        
+        // 1. Setup Socket
+        socket.current = io('https://search-llm.onrender.com', { auth: { username: userId } });
 
-                // 2. Initialize the client
-                const user = {
-                    id: userId,
-                    name: 'Oliver',
-                    image: 'https://getstream.io/random_svg/?id=oliver&name=Oliver',
-                };
-                
-                const _client = new StreamVideoClient({ apiKey, user, token });
-                const _call = _client.call('default', callId);
-                
-                // 3. Join the call
-                await _call.join({ create: true });
-                setClient(_client);
-                setCall(_call);                
+        socket.current.on("me", (id) => setMe(id));
+        socket.current.on("updateUserList", (users) => setOnlineUsers(users));
 
-            } catch (error) {
-                console.error("Failed to initialize call:", error);
-            }
+        socket.current.on("callUser", (data) => {
+            setIncomingData(data);
+            setReceivingCall(true);
+            ringtone.current.play().catch(e => console.log(e));
+        });
+
+        socket.current.on("callAccepted", () => {
+            setIsCalling(false); // Stop showing "Calling..." overlay
+        });
+
+        // 2. Setup Stream Client
+        const initStream = async () => {
+            const res = await fetch('https://search-llm.onrender.com/get-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId }),
+            });
+            const { token } = await res.json();
+            const _client = new StreamVideoClient({ apiKey, user: { id: userId }, token });
+            setClient(_client);
         };
+        initStream();
 
-        initCall();
+        return () => socket.current.disconnect();
+    }, []);
 
-        return () => {
-            if (client) client.disconnectUser();
-        };
+
+    useEffect(() => {
+        // 1. Force a permission request on load (just like your old code)
+        // This click to "Allow" the mic will unlock the Ringtone audio context
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(() => console.log("Audio Unlocked"))
+            .catch(() => console.log("User hasn't allowed mic yet"));
+    
+        // 2. Pre-load the ringtone and set loop
+        ringtone.current.load();
+        ringtone.current.loop = true;
     }, []);    
 
+    const startCall = async (targetSocketId) => {
+        const callId = `call_${me}_${Date.now()}`;
+        const _call = client.call('default', callId);
+        await _call.join({ create: true });
+        
+        socket.current.emit("callUser", {
+            userToCall: targetSocketId,
+            from: me,
+            callId: callId
+        });
+
+        setCall(_call);
+        setIsCalling(true);
+    };
+
+    const answerCall = async () => {
+        ringtone.current.pause();
+        const _call = client.call('default', incomingData.callId);
+        await _call.join();
+        
+        socket.current.emit("answerCall", { to: incomingData.from });
+        setCall(_call);
+        setReceivingCall(false);
+    };
+
+    const endCall = async () => {
+        if (call) await call.leave();
+        setCall(null);
+        setIsCalling(false);
+    };
+
+    if (!client) return <div className="p-10 text-center">Initializing...</div>;
+
     return (
-      <StreamVideo client={client}>
-        <StreamCall call={call}>
-          <MyUILayout />
-        </StreamCall>
-      </StreamVideo>
+        <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center">
+            <h1 className="text-3xl font-black mb-10">AudioCall HD</h1>
+
+            {!call ? (
+                <div className="w-full max-w-md bg-white p-6 rounded-3xl shadow-sm border">
+                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Online Now</h3>
+                    <div className="space-y-2">
+                        {Object.entries(onlineUsers).map(([sId, uId]) => sId !== me && (
+                            <div key={sId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+                                <span className="text-xs font-mono">{uId}</span>
+                                <button onClick={() => startCall(sId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div className="w-full max-w-2xl">
+                    <StreamVideo client={client}>
+                        <StreamCall call={call}>
+                            <StreamTheme>
+                                <div className="bg-white p-8 rounded-[40px] shadow-2xl border">
+                                    <SpeakerLayout />
+                                    <div className="mt-8 flex justify-center">
+                                        <CallControls onLeave={endCall} />
+                                    </div>
+                                </div>
+                            </StreamTheme>
+                        </StreamCall>
+                    </StreamVideo>
+                </div>
+            )}
+
+            {/* Incoming Call UI */}
+            {receivingCall && (
+                <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-50">
+                    <div className="bg-white p-10 rounded-[40px] text-center">
+                        <div className="text-5xl mb-4 animate-bounce">📞</div>
+                        <h2 className="text-2xl font-bold mb-8">Incoming Audio...</h2>
+                        <div className="flex gap-4">
+                            <button onClick={answerCall} className="bg-green-500 text-white px-10 py-4 rounded-full font-bold">Answer</button>
+                            <button onClick={() => {setReceivingCall(false); ringtone.current.pause();}} className="bg-slate-200 px-10 py-4 rounded-full font-bold">Ignore</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
-  }
+}
+
+// import {
+//     CallControls,
+//     CallingState,
+//     SpeakerLayout,
+//     StreamCall,
+//     StreamTheme,
+//     StreamVideo,
+//     StreamVideoClient,
+//     useCallStateHooks
+//   } from '@stream-io/video-react-sdk';
   
-  export const MyUILayout = () => {
-    const { useCallCallingState } = useCallStateHooks();
-    const callingState = useCallCallingState();
+// import '@stream-io/video-react-sdk/dist/css/styles.css';
+// import { useEffect, useState } from 'react';
+// import '../index.css';
   
-    if (callingState !== CallingState.JOINED) {
-      return <div>Loading...</div>;
-    }
-  
-    return (
-      <StreamTheme>
-        <SpeakerLayout participantsBarPosition='bottom' />
-        <CallControls />
-      </StreamTheme>
-    );
-  };
+// export default function CallStream() {
+
+//     const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
+//     console.log(apiKey);
+
+//     const userId = 'Sneaky_Mosquito';
+//     const callId = 'Ui0hPbiq4HsDnpP0P1won';  
+//     const [client, setClient] = useState(null);
+//     const [call, setCall] = useState(null);    
+
+//     useEffect(() => {
+//         const initCall = async () => {
+//             try {
+//                 // 1. Fetch the token from your Node.js backend
+//                 const response = await fetch('https://search-llm.onrender.com/get-token', {
+//                     method: 'POST',
+//                     headers: { 'Content-Type': 'application/json' },
+//                     body: JSON.stringify({ userId }),
+//                 });
+//                 const { token } = await response.json();
+
+//                 // 2. Initialize the client
+//                 const user = {
+//                     id: userId,
+//                     name: 'Oliver',
+//                     image: 'https://getstream.io/random_svg/?id=oliver&name=Oliver',
+//                 };
+                
+//                 const _client = new StreamVideoClient({ apiKey, user, token });
+//                 const _call = _client.call('default', callId);
+                
+//                 // 3. Join the call
+//                 await _call.join({ create: true });
+//                 setClient(_client);
+//                 setCall(_call);                
+
+//             } catch (error) {
+//                 console.error("Failed to initialize call:", error);
+//             }
+//         };
+
+//         initCall();
+
+//         return () => {
+//             if (client) client.disconnectUser();
+//         };
+//     }, []);    
+
+//     return (
+//         <StreamVideo client={client}>
+//         <StreamCall call={call}>
+//             <MyUILayout />
+//         </StreamCall>
+//         </StreamVideo>
+//     );
+// }
+
+// export const MyUILayout = () => {
+// const { useCallCallingState } = useCallStateHooks();
+// const callingState = useCallCallingState();
+
+// if (callingState !== CallingState.JOINED) {
+//     return <div>Loading...</div>;
+// }
+
+// return (
+//     <StreamTheme>
+//     <SpeakerLayout participantsBarPosition='bottom' />
+//     <CallControls />
+//     </StreamTheme>
+// );
+// };
+
+
