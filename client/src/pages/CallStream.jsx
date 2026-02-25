@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
   
   export default function CallStream() {
 
-    const apiKey = 'jkcwe5uw5yj5';
+    const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
 
     const userId = 'Sneaky_Mosquito';
     const callId = 'Ui0hPbiq4HsDnpP0P1won';  
