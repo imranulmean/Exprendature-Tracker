@@ -102,6 +102,7 @@ export default function CallStream() {
     return (
         <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center">
             <h1 className="text-3xl font-black mb-10">AudioCall HD</h1>
+            <h1 className="text-xl font-black mb-10">My Id: {me}</h1>
 
             {!call ? (
                 <div className="w-full max-w-md bg-white p-6 rounded-3xl shadow-sm border">
