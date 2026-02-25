@@ -108,10 +108,10 @@ export default function CallStream() {
                 <div className="w-full max-w-md bg-white p-6 rounded-3xl shadow-sm border">
                     <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Online Now</h3>
                     <div className="space-y-2">
-                        {Object.entries(onlineUsers).map(([sId, uId]) => sId !== me && (
-                            <div key={sId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+                        {Object.entries(onlineUsers).map((uId) => uId !== me && (
+                            <div key={uId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
                                 <span className="text-xs font-mono">{uId}</span>
-                                <button onClick={() => startCall(sId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
+                                <button onClick={() => startCall(uId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
                             </div>
                         ))}
                     </div>
