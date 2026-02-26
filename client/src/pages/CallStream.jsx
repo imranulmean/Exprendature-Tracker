@@ -1,29 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
-import {
-    StreamVideo, StreamCall, StreamVideoClient,
-    StreamTheme, SpeakerLayout, CallControls
-} from '@stream-io/video-react-sdk';
-import '@stream-io/video-react-sdk/dist/css/styles.css';
 
-const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
+import { useNavigate } from "react-router-dom";
+
 
 export default function OnlineCall() {
     const socket = useRef();
     const [me, setMe] = useState("");
     const [myId, setMyId] = useState("");
     const [onlineUsers, setOnlineUsers] = useState({});
-    
-    const [client, setClient] = useState(null);
-    const [call, setCall] = useState(null);
+
     const [receivingCall, setReceivingCall] = useState(false);
     const [incomingData, setIncomingData] = useState(null);
     const [isCalling, setIsCalling] = useState(false);
+    const navigate= useNavigate();
 
     const ringtone = useRef(new Audio("https://notificationsounds.com/storage/sounds/file-sounds-1150-pristine.mp3"));
 
     useEffect(() => {
         const userId = "User_" + Math.floor(Math.random() * 1000);
+        localStorage.setItem('userId',userId);
         setMyId(userId)
         // 1. Setup Socket
         socket.current = io('https://search-llm.onrender.com', { auth: { username: userId } });
@@ -41,93 +37,45 @@ export default function OnlineCall() {
             setIsCalling(false); // Stop showing "Calling..." overlay
         });
 
-        // 2. Setup Stream Client
-        const initStream = async () => {
-            // https://search-llm.onrender.com
-            const res = await fetch('https://search-llm.onrender.com/get-token', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId }),
-            });
-            const { token } = await res.json();
-            const _client = new StreamVideoClient({ apiKey, user: { id: userId }, token });
-            setClient(_client);
-        };
-        initStream();
-
         return () => {
             socket.current.disconnect();
-            _client.disconnectUser();
         }
     }, []);
 
     const startCall = async (targetSocketId) => {
-        const callId = `call_${me}_${Date.now()}`;
-        const _call = client.call('default', callId);
-        await _call.join({ create: true });
-        
+        const callId = `call_${me}_${Date.now()}`;        
         socket.current.emit("callUser", {
             userToCall: targetSocketId,            
             from: me,
             fromUserId:myId,
             callId: callId
         });
-
-        setCall(_call);
-        setIsCalling(true);
+        navigate(`/maincall/${callId}`);
     };
 
     const answerCall = async () => {
-        ringtone.current.pause();
-        const _call = client.call('default', incomingData.callId);
-        await _call.join();
-        
+        ringtone.current.pause();        
         socket.current.emit("answerCall", { to: incomingData.from });
-        setCall(_call);
         setReceivingCall(false);
-    };
+        navigate(`/maincall/${incomingData.callId}`);
 
-    const endCall = async () => {
-        if (call) await call.leave();
-        setCall(null);
-        setIsCalling(false);
     };
-
-    if (!client) return <div className="p-10 text-center">Initializing...</div>;
 
     return (
         <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center">
             <h1 className="text-3xl font-black mb-10">AudioCall HD</h1>
             <h1 className="text-xl font-black mb-10">My Id: {myId}</h1>
-
-            {!call ? (
-                <div className="w-full max-w-md bg-white p-6 rounded-3xl shadow-sm border">
-                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Online Now</h3>
-                    <div className="space-y-2">
-                        {Object.entries(onlineUsers).map(([sId, uId]) => sId !== me && (
-                            <div key={sId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
-                                <span className="text-xs font-mono">{uId}</span>
-                                <button onClick={() => startCall(sId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
-                            </div>
-                        ))}
-                    </div>
+            <div className="w-full max-w-md bg-white p-6 rounded-3xl shadow-sm border">
+                <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Online Now</h3>
+                <div className="space-y-2">
+                    {Object.entries(onlineUsers).map(([sId, uId]) => sId !== me && (
+                        <div key={sId} className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+                            <span className="text-xs font-mono">{uId}</span>
+                            <button onClick={() => startCall(sId)} className="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">CALL</button>
+                        </div>
+                    ))}
                 </div>
-            ) : (
-                <div className="w-full max-w-2xl">
-                    <StreamVideo client={client}>
-                        <StreamCall call={call}>
-                            <StreamTheme>
-                                <div className="bg-white p-8 rounded-[40px] shadow-2xl border">
-                                    <SpeakerLayout />
-                                    <div className="mt-8 flex justify-center">
-                                        <CallControls onLeave={endCall} />
-                                    </div>
-                                </div>
-                            </StreamTheme>
-                        </StreamCall>
-                    </StreamVideo>
-                </div>
-            )}
+            </div>
    
             {/* Incoming Call UI */}
             {receivingCall && (

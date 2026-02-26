@@ -23,6 +23,7 @@ import OnlineCall from './pages/OnlineCall';
 import ZakatList from './pages/ZakatList';
 import AddZakatItem from './pages/AddZakatItem';
 import CallStream from './pages/CallStream';
+import MainCall from './pages/MainCall';
 
 export default function App(){
 
@@ -38,6 +39,7 @@ export default function App(){
         <Route path='/postgres' element={<Postgres />} />
         <Route path='/call' element={<OnlineCall />} />
         <Route path='/callstream' element={<CallStream />} />
+        <Route path='/maincall/:callId' element={<MainCall />} />
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}
