@@ -67,8 +67,9 @@ export default function OnlineCall() {
         await _call.join({ create: true });
         
         socket.current.emit("callUser", {
-            userToCall: targetSocketId,
+            userToCall: targetSocketId,            
             from: me,
+            fromUserId:myId,
             callId: callId
         });
 
@@ -127,13 +128,13 @@ export default function OnlineCall() {
                     </StreamVideo>
                 </div>
             )}
-
+   
             {/* Incoming Call UI */}
             {receivingCall && (
                 <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-50">
                     <div className="bg-white p-10 rounded-[40px] text-center">
                         <div className="text-5xl mb-4 animate-bounce">📞</div>
-                        <h2 className="text-2xl font-bold mb-8">Incoming Audio...</h2>
+                        <h2 className="text-2xl font-bold mb-8">Incoming Audio... From {incomingData.fromUserId}</h2>
                         <div className="flex gap-4">
                             <button onClick={answerCall} className="bg-green-500 text-white px-10 py-4 rounded-full font-bold">Answer</button>
                             <button onClick={() => {setReceivingCall(false); ringtone.current.pause();}} className="bg-slate-200 px-10 py-4 rounded-full font-bold">Ignore</button>
