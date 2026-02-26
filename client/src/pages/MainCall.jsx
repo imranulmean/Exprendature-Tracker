@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
     StreamVideo, StreamCall, StreamVideoClient,
     StreamTheme, SpeakerLayout, CallControls
@@ -12,6 +12,7 @@ export default function MainCall(){
     const [client, setClient] = useState(null);
     const [call, setCall] = useState(null);
     const apiKey = import.meta.env.VITE_GETSTREAM_API_KEY;
+    const navigate= useNavigate();
 
     useEffect(()=>{
         const userId=localStorage.getItem('userId') || "Guest";
@@ -34,14 +35,30 @@ export default function MainCall(){
         initStream();   
         
         return () => {
-            client.disconnectUser();
+            if(client){
+                client.disconnectUser();
+            }
+            
         }        
         
     },[]);
 
     const endCall = async () => {
-        if (call) await call.leave();
-        setCall(null);
+        console.log('end call clicked')
+        navigate('/callstream')
+        // try {
+        //     if (call) {
+        //         await call.leave();
+        //         setCall(null);
+        //     }
+        //     if (client) {
+        //         await client.disconnectUser();
+        //     }            
+        //     console.log("Redirecting to dashboard...");
+
+        // } catch (error) {
+        //     console.error("Error during hangup:", error);
+        // }
     };
 
     if (!client) return <div className="p-10 text-center">Initializing...</div>;
