@@ -69,13 +69,13 @@ export default function Tasks(){
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
-            console.log(data);
             alert(data.message)
         }
         catch(e){
             alert(e);
         }finally{
             setLoading(false);
+            setPurpose('')
             await getTasks();
         }
 
@@ -115,7 +115,7 @@ export default function Tasks(){
                             <div className="mb-2 block">
                                 <Label htmlFor="password1">Purpose: </Label>
                             </div>
-                            <TextInput  onChange={(e)=>setPurpose(e.target.value)}
+                            <TextInput value={purpose} onChange={(e)=>setPurpose(e.target.value)}
                                 type="text" required />
                         </div>
                         {
