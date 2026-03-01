@@ -70,7 +70,7 @@ export default function Chat(){
     return (
         <>
             <HeaderPublic/>
-            <div className="flex bg-gray-100 font-sans overflow-hidden" style={{'height': 'calc(100vh - 71px)'}}>
+            <div className="flex bg-gray-100 font-sans overflow-hidden" style={{'height': 'calc(100vh - 100px)'}}>
             {/* SIDEBAR: List of Users */}
             <div className="w-1/3 bg-white border-r border-gray-200 flex flex-col">
                 <div className="p-6 border-b bg-gray-900 text-white">
