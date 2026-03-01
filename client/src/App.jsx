@@ -24,6 +24,7 @@ import ZakatList from './pages/ZakatList';
 import AddZakatItem from './pages/AddZakatItem';
 import CallStream from './pages/CallStream';
 import MainCall from './pages/MainCall';
+import Tasks from './pages/Tasks';
 
 export default function App(){
 
@@ -52,6 +53,7 @@ export default function App(){
           <Route path='/qrCodeReader' element={<QrReader />} />
           <Route path='/zakats' element={<ZakatList />} />
           <Route path='/zakats/addItem/:year/:yearlyZakatId' element={<AddZakatItem />} />
+          <Route path='/tasks' element={<Tasks />} />
         </Route>
 
         <Route element= {<AdminPrivateRoute/>} >

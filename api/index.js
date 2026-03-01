@@ -7,6 +7,7 @@ import expRoutes from './routes/exp.route.js';
 import incomeRoutes from './routes/income.route.js';
 import adminRoutes from './routes/adminApi.route.js';
 import zakatRoutes from './routes/zakat.route.js';
+import taskRoutes from './routes/task.route.js';
 import postgresRoutes from './routes/postgres.route.js';
 // import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
@@ -57,6 +58,7 @@ app.use('/api/expenses', expRoutes);
 app.use('/api/income', incomeRoutes);
 app.use('/api/adminApi', adminRoutes);
 app.use('/api/zakat', zakatRoutes)
+app.use('/api/tasks', taskRoutes)
 
 
 app.get("/getFiles", getFiles);
