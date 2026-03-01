@@ -36,6 +36,19 @@ export default function Header(){
           {/* <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/insertion'> Add/Edit <br/> Expense</Link>
           <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/income'> Add/Edit <br/> Income</Link>         */}
           <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/startPractice'> Practice</Link>
+          <Dropdown arrowIcon={true} label="Other Items"
+                    class='rounded-md text-sm font-medium text-gray-900 '
+          >
+            <Dropdown.Item>
+                <Link to="/callstream">Call</Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/startPractice">Practice</Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/tasks">Tasks</Link>
+            </Dropdown.Item>            
+          </Dropdown>           
           <div className="flex md:order-2 gap-2">
             <Dropdown
               arrowIcon={false}
