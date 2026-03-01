@@ -25,6 +25,7 @@ import AddZakatItem from './pages/AddZakatItem';
 import CallStream from './pages/CallStream';
 import MainCall from './pages/MainCall';
 import Tasks from './pages/Tasks';
+import Chat from './pages/Chat';
 
 export default function App(){
 
@@ -41,6 +42,7 @@ export default function App(){
         <Route path='/call' element={<OnlineCall />} />
         <Route path='/callstream' element={<CallStream />} />
         <Route path='/maincall/:callId' element={<MainCall />} />
+        <Route path='/chat' element={<Chat />} />
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}

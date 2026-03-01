@@ -17,6 +17,9 @@ export default function HeaderPublic(){
                 <Link to="/callstream">Call</Link>
             </Dropdown.Item>
             <Dropdown.Item>
+                <Link to="/chat">Chat</Link>
+            </Dropdown.Item>            
+            <Dropdown.Item>
                 <Link to="/startPractice">Practice</Link>
             </Dropdown.Item>            
           </Dropdown>                    
