@@ -9,10 +9,11 @@ export default function Tasks(){
     const [tasks, setTasks] = useState([]);    
     const [loading, setLoading]= useState(false);
     const [purpose, setPurpose]= useState('');  
-
+    
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const { currentUser } = useSelector((state) => state.user);    
-
+    const navigate = useNavigate();
+    
     useEffect(()=>{
         getTasks();
     },[])
