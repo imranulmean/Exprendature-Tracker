@@ -8,6 +8,8 @@ import incomeRoutes from './routes/income.route.js';
 import adminRoutes from './routes/adminApi.route.js';
 import zakatRoutes from './routes/zakat.route.js';
 import taskRoutes from './routes/task.route.js';
+import bazarRoutes from './routes/bazar.route.js';
+bazarRoutes
 import postgresRoutes from './routes/postgres.route.js';
 // import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
@@ -59,6 +61,7 @@ app.use('/api/income', incomeRoutes);
 app.use('/api/adminApi', adminRoutes);
 app.use('/api/zakat', zakatRoutes)
 app.use('/api/tasks', taskRoutes)
+app.use('/api/bazar', bazarRoutes)
 
 
 app.get("/getFiles", getFiles);
