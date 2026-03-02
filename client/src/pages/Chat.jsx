@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import io from "socket.io-client";
 import HeaderPublic from "../components/HeaderPublic";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 
 export default function Chat(){
 
@@ -18,7 +20,6 @@ export default function Chat(){
     const username = localStorage.getItem('username')
 
     useEffect(()=>{
-
         const userId = "User_" + Math.floor(Math.random() * 1000);
         localStorage.setItem('userId',userId);        
         setMyId(userId);
@@ -69,13 +70,28 @@ export default function Chat(){
 
     return (
         <>
-            <HeaderPublic/>
-            <div className="flex bg-gray-100 font-sans overflow-hidden" style={{'height': 'calc(100vh - 120px)'}}>
+            <div className="flex h-screen bg-gray-100 font-sans overflow-hidden">
             {/* SIDEBAR: List of Users */}
             <div className="w-1/3 bg-white border-r border-gray-200 flex flex-col">
                 <div className="p-6 border-b bg-gray-900 text-white">
                 <h1 className="text-xl font-bold">Messages</h1>
                 <p className="text-xs opacity-80">Logged in as: {myId}</p>
+                <div className="mt-1">
+                    <Link to='/chat/room' className="text-sm border rounded-md p-1">Join Room</Link>
+                </div>
+                <Dropdown arrowIcon={true} label="Items"
+                            class='rounded-md text-sm font-medium border mt-2'
+                >
+                    <Dropdown.Item>
+                        <Link to="/callstream">Call</Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                        <Link to="/chat">Chat</Link>
+                    </Dropdown.Item>            
+                    <Dropdown.Item>
+                        <Link to="/startPractice">Practice</Link>
+                    </Dropdown.Item>            
+                </Dropdown>                                     
                 </div>
                 <div className="overflow-y-auto flex-1">
                     {

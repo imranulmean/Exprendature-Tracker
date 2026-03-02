@@ -27,6 +27,7 @@ import MainCall from './pages/MainCall';
 import Tasks from './pages/Tasks';
 import Chat from './pages/Chat';
 import Bazar from './pages/Bazar';
+import ChatRoom from './pages/ChatRoom';
 
 export default function App(){
 
@@ -44,6 +45,7 @@ export default function App(){
         <Route path='/callstream' element={<CallStream />} />
         <Route path='/maincall/:callId' element={<MainCall />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/chat/room' element={<ChatRoom />} />
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}
