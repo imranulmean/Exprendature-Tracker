@@ -11,6 +11,7 @@ export default function AddZakatItem(){
     const [zakatItems, setZakatItems] = useState([]);    
     const [loading, setLoading]= useState(false);
     const [total, setTotal]= useState(0);
+    const [grandTotal, setGrandTotal]= useState(0);
     const [purpose, setPurpose]= useState('');  
 
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
@@ -46,6 +47,10 @@ export default function AddZakatItem(){
                 return;
             }
             setZakatItems(data.message)
+            const t= data.message.reduce((sum, item)=>{
+                return sum + item.paid
+            },0);
+            setGrandTotal(t);
         }
         catch(e){
             alert(e);
@@ -170,8 +175,10 @@ export default function AddZakatItem(){
                                         </li>
                                     ))
                                 }
-
                             </ul>
+                            <div className="mt-2 flex justify-end">
+                                <p className="text-base font-semibold text-gray-900">Total: {grandTotal}</p>
+                            </div>                              
                         </div>
                     </Card>                    
                 </div>
