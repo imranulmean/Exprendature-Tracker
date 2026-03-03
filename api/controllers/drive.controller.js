@@ -34,25 +34,51 @@ const storageDrive = multer.diskStorage({
 const uploadLocalMul = multer({ storage:storageLocal });  
 const uploadDriveStorage = multer({ storage:storageDrive });  
 
-const oauth2Client = new google.auth.OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    process.env.URL
-);
+const DRIVE_ACCOUNTS={
+    dad:{
+        CLIENT_ID: process.env.CLIENT_ID,
+        CLIENT_SECRET: process.env.CLIENT_SECRET,
+        refresh_token: process.env.REFRESH_TOKEN,
+        folderId: process.env.FOLDER_ID
+    },
+    arz007:{
+        CLIENT_ID: process.env.MEL_CLIENT_ID,
+        CLIENT_SECRET: process.env.MEL_CLIENT_SECRET,
+        refresh_token: process.env.MEL_REFRESH_TOKEN,
+        folderId: process.env.MEL_ARZ_FOLDER_ID
+    }    
+}
 
+const getDynamicDriveClient = (userKey) => {
+    const account = DRIVE_ACCOUNTS[userKey];
+    
+    if (!account) {
+        throw new Error(`No credentials found for: ${userKey}`);
+    }
 
-oauth2Client.setCredentials({
-    refresh_token: process.env.REFRESH_TOKEN
-});
+    // Completely fresh client with unique ID and Secret
+    const oauth2Client = new google.auth.OAuth2(
+        account.CLIENT_ID,
+        account.CLIENT_SECRET,
+        process.env.URL
+    );
 
-const drive = google.drive({ version: 'v3', auth: oauth2Client });
-const folderId = process.env.FOLDER_ID;
-  
+    oauth2Client.setCredentials({
+        refresh_token: account.refresh_token
+    });
+
+    const drive = google.drive({ version: 'v3', auth: oauth2Client });
+
+    return { drive, folderId: account.folderId, oauth2Client };
+};
+
 export const getFiles = async(req, res) =>{
     // console.log(req.headers.access_token)
     // const token= req.headers.access_token.split(' ');
     // console.log(token[1])
     // if(token[1] == 'Token') return res.status(403).json({message:"not authorised"})
+     const {userKey} = req.params;
+    const {drive, folderId}= getDynamicDriveClient(userKey)
     try {
         let fileCount = 0;
         let nextPageToken = null;
@@ -167,7 +193,8 @@ export const uploadDrive = async(req, res) =>{
 
 export const setFilePermission = async (req, res) =>{
     const { fileId } = req.body;
-
+    const {userKey} = req.params;
+    const { drive } = getDynamicDriveClient(userKey);
     try {
     
       await drive.permissions.create({
@@ -187,6 +214,8 @@ export const setFilePermission = async (req, res) =>{
 
 export const deleteFile = async (req, res) =>{
     const { fileId, userEmail } = req.body;
+    const { userKey } = req.params;
+    const {drive }= getDynamicDriveClient(userKey);
     if(!userEmail) return res.status(403).json({success:false, message:"No Email Found"});
     try {
         // This permanently deletes the file. 
@@ -235,8 +264,11 @@ export const uploadLocal = async(req, res)=>{
 
 export const getToken = async (req, res) =>{
     try {
+        const { userKey } = req.params;
+        const account = DRIVE_ACCOUNTS[userKey];
+        const {oauth2Client} = getDynamicDriveClient(userKey)
         const {token}=await oauth2Client.getAccessToken();
-        res.json({ success: true, folderId: process.env.FOLDER_ID, token });
+        res.json({ success: true, folderId: account.folderId, token });
     } catch (error) {
         console.error("Server Error:", error);
         res.status(500).json({ error: "Internal Server Error" });

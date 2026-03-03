@@ -39,7 +39,7 @@ export default function App(){
         <Route path='/login' element={<Login />} />
         <Route path='/startPractice' element={<StartPractice />} />
         <Route path='/speechTest' element={<ReactSpeech />} />v
-        <Route path='/upload' element={<UploadFile />} />
+        <Route path='/upload/:userKey' element={<UploadFile />} />
         <Route path='/postgres' element={<Postgres />} />
         <Route path='/call' element={<OnlineCall />} />
         <Route path='/callstream' element={<CallStream />} />

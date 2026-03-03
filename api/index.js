@@ -64,16 +64,16 @@ app.use('/api/tasks', taskRoutes)
 app.use('/api/bazar', bazarRoutes)
 
 
-app.get("/getFiles", getFiles);
-app.post("/setFilePermission", setFilePermission);
+app.get("/getFiles/:userKey", getFiles);
+app.post("/setFilePermission/:userKey", setFilePermission);
 app.get('/getServerAccessToken', getServerAccessToken);
 app.get('/decodeServerAccessToken', decodeServerAccessToken);
 // app.get("/getFile/:fileId", getFile);
 // app.post("/uploadDrive", uploadDrive);
 // app.post("/uploadLocal", uploadLocal);
 
-app.post("/delete-file", deleteFile);
-app.get("/getToken", getToken);
+app.post("/delete-file/:userKey", deleteFile);
+app.get("/getToken/:userKey", getToken);
 app.get("/getStorage", getStorage);
 
 // app.use('/postgres', postgresRoutes)

@@ -5,7 +5,7 @@ import { Card, TextInput, Button, Timeline, Modal, ModalBody, ModalFooter, Modal
 import { useSelector, useDispatch } from 'react-redux';
 import { HiAdjustments, HiClipboardList, HiUserCircle } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { signoutSuccess } from '../redux/user/userSlice';
 
 export default function UploadFile(){
@@ -31,6 +31,7 @@ export default function UploadFile(){
     const [images, setImages] = useState([]);
     const [videos, setVideos] = useState([]);
     const dispatch = useDispatch();
+    const { userKey } = useParams();
 
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
@@ -119,7 +120,7 @@ export default function UploadFile(){
       };    
 
     const getFiles = async() =>{
-      const res= await fetch(`${BASE_API}/getFiles`);
+      const res= await fetch(`${BASE_API}/getFiles/${userKey}`);
       const data2=await res.json();
       setDriveFiles(data2);
       const newVideos = data2.fileDetails.filter(df => df.mimeType.includes('video'));
@@ -139,7 +140,7 @@ export default function UploadFile(){
         fileId
       }
       try{
-        const res= await fetch(`${BASE_API}/delete-file`,{
+        const res= await fetch(`${BASE_API}/delete-file/${userKey}`,{
           method:'POST',
           headers: { 'Content-Type': 'application/json' },
           body:JSON.stringify(obj)
@@ -163,7 +164,7 @@ export default function UploadFile(){
 
     const getToken= async()=>{
       try{
-        const res= await fetch(`${BASE_API}/getToken`);
+        const res= await fetch(`${BASE_API}/getToken/${userKey}`);
         const result = await res.json();
         return result
 
@@ -216,7 +217,7 @@ export default function UploadFile(){
           });
     
           const fileId = uploadRes.data.id;
-          await fetch(`${BASE_API}/setFilePermission`,{
+          await fetch(`${BASE_API}/setFilePermission/${userKey}`,{
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ fileId: fileId })
@@ -264,7 +265,7 @@ export default function UploadFile(){
     return(
         <div className="w-full bg-gray-200 flex flex-col justify-center items-center p-2">
           {
-            !currentUser &&
+            (!currentUser && userKey == 'dad') &&
             <Link to='/login' state={{ from: '/upload' }}
                     className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
             >
@@ -274,7 +275,7 @@ export default function UploadFile(){
 
           {/* Profile Card           */}
           {
-            currentUser &&
+            (currentUser && userKey == 'dad') &&
             <Card className="max-w-sm">
               <div className="flex flex-col items-center">
                 <img
