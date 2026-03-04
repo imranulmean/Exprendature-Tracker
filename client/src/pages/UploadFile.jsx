@@ -13,6 +13,7 @@ export default function UploadFile(){
     
     const { currentUser } = useSelector((state) => state.user);
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
+    const VITE_ARZ007_PRI_EMAIL= import.meta.env.VITE_ARZ007_PRI_EMAIL;
     const fileInputRef = useRef(null);
     const [files, setFiles]=useState();
     const [loading, setLoading]=useState(false);
@@ -32,12 +33,20 @@ export default function UploadFile(){
     const [videos, setVideos] = useState([]);
     const dispatch = useDispatch();
     const { userKey } = useParams();
+    const [arz007, setarz007]= useState('');
 
     if (!noSleepRef.current) {
         noSleepRef.current = new NoSleep();
       }
 
       useEffect(()=>{
+        ///////// Arz Security ////////
+        // if(userKey == 'arz007'){
+        //   if(currentUser.email !== '' ){
+        //     setarz007('Only Authorized Email can access');
+        //     return;
+        //   }
+        // }
         getFiles();
       },[])
     const enableNoSleep = async () => {
@@ -262,6 +271,19 @@ export default function UploadFile(){
       }
     };    
 
+    ///////// Arz Security ////////
+    // if(arz007 !== ''){
+    //   return (        
+    //     <div className="flex flex-col p-4 items-center gap-2">
+    //       {arz007}
+    //         <Link to='/login' state={{ from: '/upload' }}
+    //                 className="bg-gray-900 px-4 py-2 rounded-lg text-white text-center"
+    //         >
+    //           Log in
+    //         </Link>                     
+    //     </div>
+    //   )
+    // }
     return(
         <div className="w-full bg-gray-200 flex flex-col justify-center items-center p-2">
           {
@@ -372,7 +394,7 @@ export default function UploadFile(){
                                   Full View
                                 </Button>                    
                               {
-                                currentUser&&
+                                (currentUser && (userKey!= 'arz007' || VITE_ARZ007_PRI_EMAIL==currentUser?.email)  ) &&
                                 <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
                                   Delete file
                                 </Button> 
@@ -401,7 +423,7 @@ export default function UploadFile(){
                               <a href={file.webViewLink} target="_blank" rel="noreferrer">View in Drive</a>
                           </Button>                  
                           {
-                            currentUser&&
+                            (currentUser && userKey!= 'arz007' || VITE_ARZ007_PRI_EMAIL==currentUser?.email ) &&
                             <Button  onClick={()=> deleteFiles(file.id)} disabled={deleting}>
                               Delete file
                             </Button> 
