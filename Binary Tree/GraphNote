@@ -1,0 +1,29 @@
+const array1 = [0, 1, 2, 3, 4, 5];
+const matrix = [
+  [0, 1, 1, 0, 0, 0],
+  [0, 0, 0, 1, 1, 0],
+  [0, 0, 0, 0, 1, 1],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0]
+];
+ does this matrix give this graph output:
+ 0->2->5
+ |  |
+ v  v
+ 1->4
+ |
+ v
+ 3
+
+ http://www.webgraphviz.com/
+ digraph G {
+  0 -> 1
+  0 -> 2
+  1 -> 3
+  1 -> 4
+  2 -> 4
+  2 -> 5
+}
+
+is it possilbe for to find the largest sum using connected paths of the 

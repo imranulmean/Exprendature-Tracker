@@ -1,0 +1,23 @@
+{
+  "name": "binarytree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "graph": "nodemon graph.js",
+    "final": "nodemon final.js",
+    "build": "nexe -t x86-8.0.0 final.js -o matrix.exe"
+  },
+  "dependencies": {
+    "nodemon": "^3.0.1",
+    "readline": "^1.3.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nexe": "^4.0.0-rc.4"
+  }
+}
