@@ -43,14 +43,14 @@ export default function AdminDrawer(){
                       <Sidebar.Item href="/" icon={HiChartPie}>
                         Dashboard
                       </Sidebar.Item>
-                      <Sidebar.Item href="/e-commerce/products" icon={HiShoppingBag}>
-                        Products
+                      <Sidebar.Item icon={HiShoppingBag}>
+                        <Link to='/upload/dad'>Dad</Link> 
                       </Sidebar.Item>
                       <Sidebar.Item icon={HiUsers}>
                         <Link to='/users'>Users list</Link>                        
                       </Sidebar.Item>
                       <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
-                        Sign in
+                        <Link to='/upload/arz007'>Arz</Link> 
                       </Sidebar.Item>
                       <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
                         Sign up
