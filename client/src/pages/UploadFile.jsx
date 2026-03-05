@@ -297,7 +297,7 @@ export default function UploadFile(){
 
           {/* Profile Card           */}
           {
-            (currentUser && userKey == 'dad') &&
+            (currentUser && userKey != 'arz007') &&
             <Card className="max-w-sm">
               <div className="flex flex-col items-center">
                 <img

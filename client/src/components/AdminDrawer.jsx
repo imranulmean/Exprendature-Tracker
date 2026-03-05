@@ -44,16 +44,16 @@ export default function AdminDrawer(){
                         Dashboard
                       </Sidebar.Item>
                       <Sidebar.Item icon={HiShoppingBag}>
-                        <Link to='/upload/dad'>Dad</Link> 
+                        <Link to='/upload/dad'>Dad Folder</Link> 
                       </Sidebar.Item>
                       <Sidebar.Item icon={HiUsers}>
                         <Link to='/users'>Users list</Link>                        
                       </Sidebar.Item>
                       <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
-                        <Link to='/upload/arz007'>Arz</Link> 
+                        <Link to='/upload/arz007'>Arz Folder</Link> 
                       </Sidebar.Item>
                       <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
-                        Sign up
+                        <Link to='/upload/4574'>Mine Folder</Link> 
                       </Sidebar.Item>
                       <Sidebar.Item href="/qrCodeGenerator">
                         QRcode Generator
