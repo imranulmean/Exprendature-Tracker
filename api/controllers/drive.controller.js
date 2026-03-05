@@ -46,7 +46,13 @@ const DRIVE_ACCOUNTS={
         CLIENT_SECRET: process.env.MEL_CLIENT_SECRET,
         refresh_token: process.env.MEL_REFRESH_TOKEN,
         folderId: process.env.MEL_ARZ_FOLDER_ID
-    }    
+    },
+    '4574':{
+        CLIENT_ID: process.env.CLIENT_ID,
+        CLIENT_SECRET: process.env.CLIENT_SECRET,
+        refresh_token: process.env.REFRESH_TOKEN,
+        folderId: process.env.MINE_FOLDER_ID        
+    }
 }
 
 const getDynamicDriveClient = (userKey) => {
