@@ -52,6 +52,12 @@ const DRIVE_ACCOUNTS={
         CLIENT_SECRET: process.env.CLIENT_SECRET,
         refresh_token: process.env.REFRESH_TOKEN,
         folderId: process.env.MINE_FOLDER_ID        
+    },
+    chacha:{
+        CLIENT_ID: process.env.CHAITY_CLIENT_ID,
+        CLIENT_SECRET: process.env.CHAITY_CLIENT_SECRET,
+        refresh_token: process.env.CHAITY_REFRESH_TOKEN,
+        folderId: process.env.CHAITY_FOLDER_ID        
     }
 }
 
