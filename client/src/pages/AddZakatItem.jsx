@@ -30,8 +30,8 @@ export default function AddZakatItem(){
         try {
             const res= await fetch(`${BASE_API}/api/zakat/getZakatItems`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -76,8 +76,8 @@ export default function AddZakatItem(){
         try {
             const res= await fetch(`${BASE_API}/api/zakat/addZakatItem`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -104,8 +104,8 @@ export default function AddZakatItem(){
         try {
             const res= await fetch(`${BASE_API}/api/zakat/deleteZakatItem`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();

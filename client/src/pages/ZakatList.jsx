@@ -32,8 +32,8 @@ export default function ZakatList(){
         try {
             const res= await fetch(`${BASE_API}/api/zakat/getZakatList`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -67,8 +67,8 @@ export default function ZakatList(){
         try {
             const res= await fetch(`${BASE_API}/api/zakat/createNew`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();

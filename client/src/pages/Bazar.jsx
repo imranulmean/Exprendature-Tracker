@@ -27,8 +27,8 @@ export default function Bazar(){
         try {
             const res= await fetch(`${BASE_API}/api/bazar/getBazarItems`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -72,8 +72,8 @@ export default function Bazar(){
         try {
             const res= await fetch(`${BASE_API}/api/bazar/addBazarItem`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -97,8 +97,8 @@ export default function Bazar(){
         try {
             const res= await fetch(`${BASE_API}/api/bazar/deleteBazarItem`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();

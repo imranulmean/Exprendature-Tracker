@@ -25,8 +25,8 @@ export default function Tasks(){
         try {
             const res= await fetch(`${BASE_API}/api/tasks/getTasks`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -65,8 +65,8 @@ export default function Tasks(){
         try {
             const res= await fetch(`${BASE_API}/api/tasks/addTask`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();
@@ -91,8 +91,8 @@ export default function Tasks(){
         try {
             const res= await fetch(`${BASE_API}/api/tasks/deleteTask`,{
                 method:"POST",
-                headers: { 'Content-Type': 'application/json' },
-                credentials: "include",
+                headers: { 'Content-Type': 'application/json', "authorization": currentUser.authorization },
+                // credentials: "include",
                 body:JSON.stringify(formData),
             })
             const data= await res.json();

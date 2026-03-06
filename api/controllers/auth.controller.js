@@ -18,13 +18,14 @@ export const google = async (req, res, next) => {
         if(isAdmin===true){
           rest['isAdmin']=isAdmin;
         }
+        rest['authorization']= token;
+        res.status(200).json(rest);
+        // res.status(200).cookie('access_token', token, {
+        //     httpOnly: true,
+        //     secure: true,  
+        //     sameSite: "None",
 
-        res.status(200).cookie('access_token', token, {
-            httpOnly: true,
-            secure: true,  
-            sameSite: "None",
-
-          }).json(rest);
+        //   }).json(rest);
       } 
       else {
         const generatedPassword =
