@@ -49,12 +49,15 @@ export default function AdminDrawer(){
                       <Sidebar.Item icon={HiUsers}>
                         <Link to='/users'>Users list</Link>                        
                       </Sidebar.Item>
-                      <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
+                      <Sidebar.Item icon={HiLogin}>
                         <Link to='/upload/arz007'>Arz Folder</Link> 
                       </Sidebar.Item>
-                      <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
+                      <Sidebar.Item icon={HiPencil}>
                         <Link to='/upload/4574'>Mine Folder</Link> 
                       </Sidebar.Item>
+                      <Sidebar.Item icon={HiPencil}>
+                        <Link to='/upload/chacha'>Chaity Folder</Link> 
+                      </Sidebar.Item>                      
                       <Sidebar.Item href="/qrCodeGenerator">
                         QRcode Generator
                       </Sidebar.Item>
