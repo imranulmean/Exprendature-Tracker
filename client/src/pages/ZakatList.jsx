@@ -97,7 +97,7 @@ export default function ZakatList(){
                         </div>                    
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="password1">Total: </Label>
+                                <Label htmlFor="password1">Input Total Zakat Amount: </Label>
                             </div>
                             <TextInput  onChange={(e)=>setTotal(e.target.value)}
                                 id="password1" type="number" required />
@@ -115,11 +115,11 @@ export default function ZakatList(){
                             <Card className="w-full flex flex-col">
                                 <div className="mb-4 flex items-center justify-between">
                                     <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">{z.year}</h5>
-                                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">{z.total}</div>
+                                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">Net: {z.total}</div>
                                     <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">Paid: {z.paid}</div>
                                 </div>
                                 <Link className="text-center px-4 py-2 bg-gray-200 rounded-lg" 
-                                    to={`/zakats/addItem/${z.year}/${z._id}`}>Add item</Link>
+                                    to={`/zakats/addItem/${z.year}/${z._id}`}>See List For {z.year}</Link>
                             </Card>                          
                             /////////////////////////
                         ) )

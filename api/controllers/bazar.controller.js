@@ -32,7 +32,7 @@ export const getBazarItems = async (req, res) =>{
     }
     
     try {      
-        const bazarItems = await Bazar.find({ userId });
+        const bazarItems = await Bazar.find({ userId }).sort({'createdAt':-1});
         res.status(201).json({ success: true, statusCode:201, message: bazarItems});
 
     } catch (error) {

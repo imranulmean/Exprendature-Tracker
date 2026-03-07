@@ -111,6 +111,12 @@ export default function Bazar(){
             await getBazarItems();
         }        
     }    
+
+    const formatDate = (dateParam) =>{
+        const formatDate= new Date(dateParam);
+        const date = new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(formatDate);
+        return date;
+    }     
     
     return(
         <>
@@ -151,7 +157,7 @@ export default function Bazar(){
                                             <div className="flex items-center space-x-4">
                                                 <div className="min-w-0 flex-1">                                            
                                                     <p className="text-sm font-medium text-gray-900 dark:text-white">{index+1}.{' '}{item.purpose}</p>
-                                                    <p className="truncate text-sm text-gray-500 dark:text-gray-400">{item.createdAt}</p>
+                                                    <p className="truncate text-sm text-gray-500 dark:text-gray-400">{formatDate(item.createdAt)}</p>
                                                 </div>
                                                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                                                     {item.paid}

@@ -37,7 +37,7 @@ export const getZakatList = async (req, res) => {
     }
     
     try {      
-      const yearlyZakats = await YearlyZakat.find({ userId });
+      const yearlyZakats = await YearlyZakat.find({ userId }).sort({'createdAt':-1});
 
       res.status(201).json({ success: true, statusCode:201, message: yearlyZakats});   
 
@@ -84,7 +84,7 @@ export const getZakatItems = async (req, res) =>{
     }
     
     try {      
-        const zakatItems = await ZakatItem.find({ yearlyZakatId });
+        const zakatItems = await ZakatItem.find({ yearlyZakatId }).sort({'createdAt':-1});
         res.status(201).json({ success: true, statusCode:201, message: zakatItems});
 
     } catch (error) {

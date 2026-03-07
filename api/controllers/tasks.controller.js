@@ -10,7 +10,7 @@ export const getTasks = async (req, res) => {
     }
     
     try {      
-      const tasks = await Tasks.find({ userId });
+      const tasks = await Tasks.find({ userId }).sort({'createdAt':-1});
 
       res.status(201).json({ success: true, statusCode:201, message: tasks});   
 
