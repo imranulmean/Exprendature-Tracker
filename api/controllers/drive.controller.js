@@ -80,8 +80,9 @@ const getDynamicDriveClient = (userKey) => {
     });
 
     const drive = google.drive({ version: 'v3', auth: oauth2Client });
+    const sheets = google.sheets({ version: 'v4', auth: oauth2Client })
 
-    return { drive, folderId: account.folderId, oauth2Client };
+    return { drive, sheets, folderId: account.folderId, oauth2Client };
 };
 
 export const getFiles = async(req, res) =>{
@@ -326,3 +327,42 @@ export const decodeServerAccessToken = async (req, res)=>{
         res.json({jwtToken:val, access:token})
     })  
 }
+
+
+export const saveToSheet = async (req, res) => {
+
+    try {
+        const { sheets } = getDynamicDriveClient('4574');
+
+        const response = await sheets.spreadsheets.values.append({
+            spreadsheetId: '1vy6dhz1rPGRM5YeFSrUNW7MmpcKlyj8z0sZKiW7bP2A',
+            range: 'Sheet1!A:Z', // Adjust based on your columns
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+                // Each inner array is a row
+                values: [['fahad', 'imranulhasan73@gmail.com', new Date().toISOString()]],
+            },
+        });
+
+        res.json({ success: true, data: response.data });
+    } catch (error) {
+        console.error("Sheets Error:", error);
+        res.status(500).json({ error});
+    }
+};
+
+export const getSheetData = async (req, res) => {
+
+    try {
+        const { sheets } = getDynamicDriveClient('4574');
+
+        const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: '1vy6dhz1rPGRM5YeFSrUNW7MmpcKlyj8z0sZKiW7bP2A',
+            range: 'Sheet1!A:Z', 
+        });
+
+        res.json({ success: true, rows: response.data.values });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch data" });
+    }
+};

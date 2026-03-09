@@ -16,7 +16,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import http from 'http';
 import cors from 'cors';
-import { decodeServerAccessToken, deleteFile, getFile, getFiles, getServerAccessToken, getStorage, getToken, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
+import { decodeServerAccessToken, deleteFile, getFile, getFiles, getServerAccessToken, getSheetData, getStorage, getToken, saveToSheet, setFilePermission, uploadDrive, uploadLocal } from './controllers/drive.controller.js';
 // import { pool } from './utils/initDb.js';
 // import { deleteTables, initializeTables } from './utils/createTables.js';
 
@@ -75,6 +75,9 @@ app.get('/decodeServerAccessToken', decodeServerAccessToken);
 app.post("/delete-file/:userKey", deleteFile);
 app.get("/getToken/:userKey", getToken);
 app.get("/getStorage", getStorage);
+
+app.get('/saveToSheet',saveToSheet)
+app.get('/getSheetData',getSheetData)
 
 // app.use('/postgres', postgresRoutes)
 
