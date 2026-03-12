@@ -53,16 +53,20 @@ export default function HeaderNews(){
                     <div className={`${menuOpen ? "block" : "hidden"} w-full md:block md:w-auto`}>
                         <ul className="font-medium flex flex-col gap-2 p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
                             <li>
-                                <Link onClick={() => setMenuOpen(false)} to="/news/aljazeera" className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/aljazeera' ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Al Jazeera</Link>
+                                <Link onClick={() => setMenuOpen(false)} to="/news/aljazeera" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/aljazeera' ? 'text-white border border-white ' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Al Jazeera</Link>
                             </li>
                             <li>
-                                <Link onClick={() => setMenuOpen(false)} to="/news/bbc" className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/bbc' ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>BBC</Link>
+                                <Link onClick={() => setMenuOpen(false)} to="/news/bbc" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/bbc' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>BBC</Link>
                             </li>
                             <li>
-                                 <Link onClick={() => setMenuOpen(false)} to="/news/cnn" className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/cnn' ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>CNN</Link>
+                                 <Link onClick={() => setMenuOpen(false)} to="/news/cnn" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/cnn' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>CNN</Link>
                             </li>
                             <li>
-                                <Link onClick={() => setMenuOpen(false)} to="/news/guardian" className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/guardian' ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>The Guardian</Link>
+                                <Link onClick={() => setMenuOpen(false)} to="/news/guardian" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/guardian' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>The Guardian</Link>
                             </li>
                         </ul>
                     </div>
