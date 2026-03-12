@@ -34,7 +34,7 @@ export default function HeaderNews(){
                     </div>
                 </div>
             </nav> */}
-            <nav className="relative bg-black sticky top-0 z-10 print:hidden">
+            <nav className="hidden md:block bg-black sticky top-0 z-10 print:hidden">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to="/news" className="flex shrink-0 items-center gap-2">
                         <span className="text-white self-center text-xl font-semibold whitespace-nowrap">The Newser</span>
@@ -72,7 +72,34 @@ export default function HeaderNews(){
                     </div>
                 </div>
             </nav>
-
+            <nav className="block md:hidden bg-black sticky top-0 z-10 print:hidden">
+                <div className="max-w-screen-xl flex flex-wrap items-center justify-center mx-auto p-2">
+                    <Link to="/news" className="flex shrink-0 items-center gap-2">
+                        <span className="text-white self-center text-xl font-semibold whitespace-nowrap">The Newser</span>
+                    </Link>
+                    {/* Menu */}
+                </div>
+                <div className="w-full md:block md:w-auto">
+                        <ul className="font-medium flex justify-center gap-2 p-4 border border-default rounded-base bg-neutral-secondary-soft">
+                            <li>
+                                <Link onClick={() => setMenuOpen(false)} to="/news/aljazeera" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/aljazeera' ? 'text-white border border-white ' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Al Jazeera</Link>
+                            </li>
+                            <li>
+                                <Link onClick={() => setMenuOpen(false)} to="/news/bbc" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/bbc' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>BBC</Link>
+                            </li>
+                            <li>
+                                 <Link onClick={() => setMenuOpen(false)} to="/news/cnn" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/cnn' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>CNN</Link>
+                            </li>
+                            <li>
+                                <Link onClick={() => setMenuOpen(false)} to="/news/guardian" 
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news/guardian' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>The Guardian</Link>
+                            </li>
+                        </ul>
+                    </div>                
+            </nav>              
         </>
         
       ); 
