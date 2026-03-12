@@ -340,7 +340,7 @@ export const saveToSheet = async (req, res) => {
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 // Each inner array is a row
-                values: [['fahad', 'imranulhasan73@gmail.com', new Date().toISOString()]],
+                values: [['test', 'test@gmail.com', new Date().toISOString()]],
             },
         });
 

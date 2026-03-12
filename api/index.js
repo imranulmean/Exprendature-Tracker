@@ -76,8 +76,10 @@ app.post("/delete-file/:userKey", deleteFile);
 app.get("/getToken/:userKey", getToken);
 app.get("/getStorage", getStorage);
 
-app.get('/saveToSheet',saveToSheet)
-app.get('/getSheetData',getSheetData)
+// app.get('/saveToSheet',saveToSheet)
+// app.get('/getSheetData',getSheetData)
+
+app.get('/getNews/:source', getNews)
 
 // app.use('/postgres', postgresRoutes)
 
@@ -105,6 +107,7 @@ app.use((err, req, res, next) => {
   //   "build": "npm install && npm install --prefix client && npm run build --prefix client"
   // },
   import { Server } from "socket.io";
+import { getNews } from './controllers/news.controller.js';
 
   const users = {};
   
