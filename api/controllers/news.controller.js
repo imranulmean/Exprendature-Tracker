@@ -34,8 +34,8 @@ const getImage = async(pageLink) =>{
 function getSourceName(source) {
     switch (source) {
       case 'bbc': return 'BBC';
-      case 'aljazeera': return 'Al Jazeera';
-      case 'guardian': return 'The Guardian';
+      case 'aljazeera': return 'ALJAZEERA';
+      case 'guardian': return 'The GUARDIAN';
       case 'cnn': return 'CNN';
     }
 }
