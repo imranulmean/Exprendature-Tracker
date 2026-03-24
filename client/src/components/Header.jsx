@@ -53,7 +53,10 @@ export default function Header(){
             </Dropdown.Item>
             <Dropdown.Item>
                 <Link to="/bazar">Bazar</Link>
-            </Dropdown.Item>            
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/sura">Audio Sura</Link>
+            </Dropdown.Item>
           </Dropdown>           
           <div className="flex md:order-2 gap-2">
             <Dropdown

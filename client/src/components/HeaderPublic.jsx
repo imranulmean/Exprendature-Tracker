@@ -21,7 +21,10 @@ export default function HeaderPublic(){
             </Dropdown.Item>            
             <Dropdown.Item>
                 <Link to="/startPractice">Practice</Link>
-            </Dropdown.Item>            
+            </Dropdown.Item>  
+            <Dropdown.Item>
+                <Link to="/sura">Audio Sura</Link>
+            </Dropdown.Item>                      
           </Dropdown>                    
         </Navbar>      
       </>

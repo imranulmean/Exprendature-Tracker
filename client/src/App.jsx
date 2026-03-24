@@ -29,6 +29,7 @@ import Chat from './pages/Chat';
 import Bazar from './pages/Bazar';
 import ChatRoom from './pages/ChatRoom';
 import News from './pages/News';
+import SuraAudio from './pages/SuraAudio';
 
 export default function App(){
 
@@ -49,6 +50,7 @@ export default function App(){
         <Route path='/chat/room' element={<ChatRoom />} />
         <Route path='/news' element={<News />} />
         <Route path='/news/:source' element={<News />} />
+        <Route path='/sura' element={<SuraAudio />} />
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}
