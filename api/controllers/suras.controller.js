@@ -32,7 +32,7 @@ export const getSuras = async (req, res) =>{
 
 export const getSuraDetails = async (req, res) =>{
     try {
-        const pageHTML1 = await axios.get(`${mainSource}/${req.params[0]}`,{
+        const pageHTML1 = await axios.get(`${mainSource}${req.params[0]}`,{
             'headers':{
               'Content-Type': 'application/json',
             }
