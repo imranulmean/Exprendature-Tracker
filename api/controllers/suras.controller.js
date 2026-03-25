@@ -35,13 +35,7 @@ export const getSuraDetails = async (req, res) =>{
               'Content-Type': 'application/json',
             }
         });
-        //////////////////////////
-        // let ayats= Array.from(document.querySelectorAll('.zoomIntoThisAyah'))
-        // let verses= ayats.map(ayat=>(
-        //     ayat.closest('.style-ayah').innerText
-        // ))
-        // console.log(verses)        
-        ////////////////////////////
+
         const $ = cheerio.load(pageHTML1.data);
         let ayats= Array.from($('.zoomIntoThisAyah'))
         let verses= ayats.map(ayat=>(
