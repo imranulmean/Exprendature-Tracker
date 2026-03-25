@@ -27,7 +27,7 @@ export default function SuraAudio(){
     const getSuraDetails = async()=>{
         try {
             setLoading(true); 
-           const res= await fetch(`${BASE_API}/getSuraDetails/${pathname}`);
+           const res= await fetch(`${BASE_API}/getSuraDetails${pathname}`);
            const data= await res.json();
            setAyats(data.message)
         } catch (error) {
