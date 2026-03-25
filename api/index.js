@@ -80,6 +80,9 @@ app.get("/getStorage", getStorage);
 // app.get('/getSheetData',getSheetData)
 
 app.get('/getNews/:source', getNews)
+app.get('/getSuras', getSuras)
+app.get('/getSuraDetails/*', getSuraDetails)
+
 
 // app.use('/postgres', postgresRoutes)
 
@@ -108,6 +111,7 @@ app.use((err, req, res, next) => {
   // },
   import { Server } from "socket.io";
 import { getNews } from './controllers/news.controller.js';
+import { getSuraDetails, getSuras } from './controllers/suras.controller.js';
 
   const users = {};
   
