@@ -53,13 +53,8 @@ export default function SuraAudio(){
                                                         : 'bg-white border-slate-200 hover:bg-blue-50 hover:border-blue-400 text-blue-700'
                                                     }`}
                                         >
-                                            Ayat: {index+1} Play
-                                        </button>
-                                        <button  onClick={()=>playAyat(item, index+1)}                                    
-                                                className={`p-4 flex items-center justify-center rounded-lg border font-medium text-sm transition-all duration-150bg-white border-slate-200 hover:bg-blue-50 hover:border-blue-400 text-blue-700`}
-                                        >
-                                            Audio Off 
-                                        </button>                                         
+                                            Ayat: {index+1} Play / OFF
+                                        </button>                                        
                                     </div>
                                 </div>
                             </a>                             
