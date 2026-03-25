@@ -52,7 +52,7 @@ export default function App(){
         <Route path='/news' element={<News />} />
         <Route path='/news/:source' element={<News />} />
         <Route path='/suras' element={<Suras />} />
-        <Route path='/sura' element={<SuraAudio />} />
+        <Route path='/surah/:ayatNumber' element={<SuraAudio />} />
 
 
         <Route element={<PrivateRoute />}>

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+const mainSource='https://alquran.cloud';
+
 export const getSuras = async (req, res) =>{
     try {
-        const pageHTML1 = await axios.get(`https://alquran.cloud/surahs`,{
+        const pageHTML1 = await axios.get(`${mainSource}/surahs`,{
             'headers':{
               'Content-Type': 'application/json',
             }
@@ -13,7 +15,7 @@ export const getSuras = async (req, res) =>{
         let names= suras.map(sura=>(     
              {
                 name: $(sura).find('.lead').text().replace(/[\n\t\r\s]+/g, ' ').trim(),
-                link: "https://alquran.cloud"+$(sura).find('a').attr('href') 
+                link: $(sura).find('a').attr('href') 
         
              }
         ))
@@ -30,7 +32,7 @@ export const getSuras = async (req, res) =>{
 
 export const getSuraDetails = async (req, res) =>{
     try {
-        const pageHTML1 = await axios.get(`https://alquran.cloud/${req.params[0]}`,{
+        const pageHTML1 = await axios.get(`${mainSource}/${req.params[0]}`,{
             'headers':{
               'Content-Type': 'application/json',
             }
