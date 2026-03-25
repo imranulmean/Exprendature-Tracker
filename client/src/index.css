@@ -3,6 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Kitab';
+  src: url("//cdn.alquran.cloud/public/fonts/Kitab-Regular.ttf");
+}
+
+.font-kitab {
+  font-family: 'Kitab';
+}
+
+@font-face {
+  font-family: 'Kitab Bold';
+  src: url("//cdn.alquran.cloud/public/fonts/Kitab-Bold.ttf");
+}
+
+.font-kitab-bold {
+  font-family: 'Kitab Bold';
+}
+
 *{
     margin: 0;
     padding: 0;
