@@ -74,7 +74,7 @@ export default function SuraAudio(){
                         return(
                             <a class="flex flex-col items-center bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs md:flex-row md:max-w-xl md:flex-row md:max-w-xl">
                                 <div class="flex flex-col justify-center items-center md:p-4 leading-normal">
-                                    <h5 class="font-kitab mb-2 text-3xl font-medium tracking-tight text-heading">{item.ayat}</h5>
+                                    <h5 class="font-kitab mb-2 text-4xl font-medium tracking-tight text-heading">{item.ayat}</h5>
                                     <div className="flex gap-2">
                                         <button  onClick={()=>playAyat(item.ayatNumber, index+1)}                                    
                                                 className={`p-4 flex items-center justify-center rounded-lg border font-medium text-sm transition-all duration-150
