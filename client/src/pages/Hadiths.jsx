@@ -30,7 +30,7 @@ export default function Hadiths(){
         <>
             <HeaderPublic />
             {
-                loading && <p>Fetcing Suras</p>
+                loading && <p>Fetcing Hadiths</p>
             }
             {
                 !loading && 

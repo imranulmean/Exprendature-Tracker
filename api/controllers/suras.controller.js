@@ -102,7 +102,28 @@ export const getHadits = async (req, res) =>{
                 name:'সুনান আবূ দাউদ',
                 nameEnglish:'Sunan Abu Daud',
                 link:'/hadithContent/sunan_abu_daud'
-            }            
+            },
+            {
+                name:'সুনান আত তিরমিজী',
+                nameEnglish:'Sunan At Tirmizi',
+                link:'/hadithContent/sunan_at_tirmizi'
+            },
+            {
+                name:'সুনান ইবনু মাজাহ',
+                nameEnglish:'Sunan Abn Mazah',
+                link:'/hadithContent/sunan_ibn_mazah'
+            },
+            {
+                name:'সুনান আন-নাসায়ী',
+                nameEnglish:'Sunan An Nasai',
+                link:'/hadithContent/sunan_an_nasai'
+            },
+            {
+                name:'মিশকাতুল মাসাবীহ',
+                nameEnglish:'Mishkatul Misbah',
+                link:'/hadithContent/mishkatul_misbah'
+            }
+            
             
         ] 
         res.status(200).json({
