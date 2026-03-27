@@ -5,8 +5,6 @@ import { useLocation } from "react-router-dom"
 export default function SuraAudio(){
 
     const {pathname}= useLocation();
-    console.log(pathname)
-
     // const [ayats, setAyats]= useState(
     //     ['5448', '5449', '5450', '5451', '5452', '5453', '5454', '5455', '5456', '5457', '5458', '5459', '5460', '5461', '5462', '5463', '5464', '5465', '5466', '5467', '5468', '5469', '5470', '5471', '5472', '5473', '5474', '5475']        
     // )
@@ -74,7 +72,7 @@ export default function SuraAudio(){
                         return(
                             <a class="flex flex-col items-center bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs md:flex-row md:max-w-xl md:flex-row md:max-w-xl">
                                 <div class="flex flex-col justify-center items-center md:p-4 leading-normal">
-                                    <h5 class="font-kitab mb-2 text-4xl font-medium tracking-tight text-heading">{item.ayat}</h5>
+                                    <h5 class="arabic-text mb-2 text-4xl font-medium tracking-tight text-heading">{item.ayat}</h5>
                                     <div className="flex gap-2">
                                         <button  onClick={()=>playAyat(item.ayatNumber, index+1)}                                    
                                                 className={`p-4 flex items-center justify-center rounded-lg border font-medium text-sm transition-all duration-150

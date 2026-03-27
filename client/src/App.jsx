@@ -31,6 +31,8 @@ import ChatRoom from './pages/ChatRoom';
 import News from './pages/News';
 import Suras from './pages/Suras';
 import SuraAudio from './pages/SuraAudio';
+import HadithContent from './pages/HadithContent';
+import Hadiths from './pages/Hadiths';
 
 export default function App(){
 
@@ -53,6 +55,8 @@ export default function App(){
         <Route path='/news/:source' element={<News />} />
         <Route path='/suras' element={<Suras />} />
         <Route path='/surah/:ayatNumber' element={<SuraAudio />} />
+        <Route path='/hadiths' element={<Hadiths />} />
+        <Route path='/hadithContent/:bookName' element={<HadithContent />} />
 
 
         <Route element={<PrivateRoute />}>

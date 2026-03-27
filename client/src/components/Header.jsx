@@ -57,6 +57,9 @@ export default function Header(){
             <Dropdown.Item>
                 <Link to="/suras">Audio Sura</Link>
             </Dropdown.Item>
+            <Dropdown.Item>
+                <Link to="/hadiths">Hadiths</Link>
+            </Dropdown.Item>            
           </Dropdown>           
           <div className="flex md:order-2 gap-2">
             <Dropdown
