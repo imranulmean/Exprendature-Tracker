@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import HeaderPublic from "../components/HeaderPublic"
 import { useLocation } from "react-router-dom"
+import HeaderLibrary from "../components/HeaderLibrary";
 
 export default function SuraAudio(){
 
@@ -94,7 +95,7 @@ export default function SuraAudio(){
 
     return (
         <>
-            <HeaderPublic />
+            <HeaderLibrary />
             <div>
                 {/* Fixed audio player at bottom */}
                 {selected && (

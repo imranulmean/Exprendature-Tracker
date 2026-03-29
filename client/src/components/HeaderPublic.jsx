@@ -23,6 +23,9 @@ export default function HeaderPublic(){
                 <Link to="/startPractice">Practice</Link>
             </Dropdown.Item>  
             <Dropdown.Item>
+                <Link to="/news">World News</Link>
+            </Dropdown.Item>            
+            <Dropdown.Item>
                 <Link to="/suras">Audio Sura</Link>
             </Dropdown.Item>  
             <Dropdown.Item>

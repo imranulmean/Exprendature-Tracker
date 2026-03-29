@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import HeaderPublic from "../components/HeaderPublic";
+import HeaderLibrary from "../components/HeaderLibrary";
 
 
 export default function Suras(){
@@ -29,7 +30,7 @@ export default function Suras(){
 
     return(
         <>
-            <HeaderPublic />
+            <HeaderLibrary />
             {
                 loading && <p>Fetcing Suras</p>
             }

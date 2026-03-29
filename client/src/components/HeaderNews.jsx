@@ -12,28 +12,6 @@ export default function HeaderNews(){
            
     return (
         <>
-            {/* <nav class="relative bg-black sticky top-0 z-10 print:hidden">
-                <div class="w-full px-2 sm:px-6 lg:px-8">
-                    <div class="relative flex h-16 items-center justify-between">
-                        <div class="flex flex-1 items-center justify-between sm:items-stretch">
-                            <div class="flex shrink-0 items-center gap-2">
-                                <Link to="/news" class="flex shrink-0 items-center gap-2">
-                                    <span class="text-white self-center text-xl text-heading font-semibold whitespace-nowrap">The Newser</span>
-                                </Link>
-                                
-                            </div>
-                            <div class="sm:ml-6 sm:block">
-                                <div class="flex space-x-4">
-                                    <Link to="/news/aljazeera" class={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname==='/news/aljazeera'|| location.pathname==='/' ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'} `}>Al Jajera</Link>
-                                    <Link to="/news/bbc" class={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname==='/news/bbc'? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'} `}>BBC</Link>
-                                    <Link to="/news/cnn" class={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname==='/news/cnn'? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'} `}>CNN</Link>
-                                    <Link to="/news/guardian" class={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname==='/news/guardian'? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'} `}>The Guardian</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav> */}
             <nav className="hidden md:block bg-black sticky top-0 z-10 print:hidden">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to="/news" className="flex shrink-0 items-center gap-2">

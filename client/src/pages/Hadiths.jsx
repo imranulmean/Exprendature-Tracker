@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import HeaderPublic from "../components/HeaderPublic";
+import HeaderLibrary from "../components/HeaderLibrary";
 
 
 export default function Hadiths(){
@@ -28,7 +29,7 @@ export default function Hadiths(){
 
     return(
         <>
-            <HeaderPublic />
+            <HeaderLibrary />
             {
                 loading && <p>Fetcing Hadiths</p>
             }

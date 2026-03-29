@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import HeaderPublic from "../components/HeaderPublic";
 import { useSearchParams } from 'react-router-dom';
+import HeaderLibrary from "../components/HeaderLibrary";
 
 export default function HadithContent() {
 
@@ -50,7 +51,7 @@ export default function HadithContent() {
 
     return (
         <>
-            <HeaderPublic />
+            <HeaderLibrary />
 
             {loading && (
                 <div className="flex justify-center items-center p-10">
@@ -108,7 +109,7 @@ export default function HadithContent() {
                             disabled={page === 1}
                             className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
                         >
-                            Previous
+                            {'<'}
                         </button>
 
                         {/* page numbers */}
@@ -119,7 +120,7 @@ export default function HadithContent() {
                                 <button
                                     key={pageNum}
                                     onClick={() => changePage(pageNum)}
-                                    className={`px-4 py-2 text-sm border rounded-base transition-all
+                                    className={`px-2 py-2 text-sm border rounded-base transition-all
                                         ${page === pageNum
                                             ? 'bg-blue-100 border-blue-500 text-blue-700'
                                             : 'border-default hover:bg-neutral-secondary-medium'
@@ -132,14 +133,14 @@ export default function HadithContent() {
 
                         {/* ... separator — only show if last page is far away */}
                         {page + 3 < totalPages && (
-                            <span className="px-2 text-sm text-gray-400">...</span>
+                            <span className="px-2 text-sm text-gray-400">.</span>
                         )}
 
                         {/* last page button — only show if not already visible in the 5 buttons */}
                         {page + 2 < totalPages && (
                             <button
                                 onClick={() => changePage(totalPages)}
-                                className={`px-4 py-2 text-sm border rounded-base transition-all
+                                className={`px-1 py-2 text-sm border rounded-base transition-all
                                     ${page === totalPages
                                         ? 'bg-blue-100 border-blue-500 text-blue-700'
                                         : 'border-default hover:bg-neutral-secondary-medium'
@@ -156,7 +157,7 @@ export default function HadithContent() {
                             disabled={page === totalPages}
                             className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
                         >
-                            Next
+                            {'>'}
                         </button>
                     </div>
 
