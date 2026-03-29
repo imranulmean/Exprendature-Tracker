@@ -7,4 +7,13 @@ const hadithSchema = new mongoose.Schema({
     bookName: String
 });
 
-export default mongoose.model('Hadith', hadithSchema);
+
+const englishHadithSchema = new mongoose.Schema({
+    englishTitle: [String],
+    englishText: String,
+    bookName: String
+});
+
+
+export const Hadith = mongoose.model('Hadith', hadithSchema);
+export const EnglishHadith = mongoose.model('EnglishHadith', englishHadithSchema);

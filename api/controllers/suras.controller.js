@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import fs from 'fs';
-import Hadith from '../models/hadith.model.js';
+import { Hadith, EnglishHadith } from '../models/hadith.model.js';
 
 const mainSource='https://alquran.cloud';
 
@@ -85,6 +85,25 @@ import { fileURLToPath } from 'url';
 // console.log(texts)
 
 
+// English Text Scrapper
+// let myHadithTabContent= Array.from(document.querySelectorAll('#myHadithTabContent'));
+// let texts= myHadithTabContent.map(tab=>{
+//     let englishTitleElem=tab.querySelector('.my-2');
+//     let englishTitle= englishTitleElem?.innerText || "No Title";
+
+//     let englishTextElem = englishTitleElem?.nextElementSibling;
+//     let englishText = englishTextElem?.innerText.trim() 
+//         || tab.querySelector('[aria-labelledby="English hadith area"] p')?.innerText.trim() 
+//         || "No Text";
+
+//     let obj={
+//         englishTitle,
+//         englishText,
+//     }
+//     return obj
+// })
+// console.log(texts)
+
 export const getHadits = async (req, res) =>{
     try {
         let names=[
@@ -150,13 +169,18 @@ export const getHadithContent = async (req, res) => {
             .skip(skip)
             .limit(limit);
 
+        const englishHadiths = await EnglishHadith.find({ bookName })
+            .skip(skip)
+            .limit(limit);            
+
         res.status(200).json({
             success: true,
             total,
             page,
             limit,
             totalPages: Math.ceil(total / limit),
-            message: hadiths
+            message: hadiths,
+            englishHadiths
         });
 
     } catch (error) {

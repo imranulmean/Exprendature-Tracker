@@ -8,11 +8,14 @@ export default function HadithContent() {
 
     const {pathname} = useLocation();
     console.log(pathname)
+    const book_name=pathname.split('/')[2];
+    const contentName=`hadith/${book_name}`
 
     const BASE_API = import.meta.env.VITE_API_BASE_URL;
     const [hadiths, setHadiths] = useState([]);
+    const [englishHadiths, setEnglishHadiths] = useState([]);
     const [loading, setLoading] = useState(false);
-    // const [page, setPage] = useState(1);
+    const [lang, setLang]=useState('bn')
     const [totalPages, setTotalPages] = useState(0);
     const [total, setTotal] = useState(0);
     const LIMIT = 20;
@@ -35,6 +38,7 @@ export default function HadithContent() {
                 return
             }
             setHadiths(data.message);
+            setEnglishHadiths(data.englishHadiths)
             setTotalPages(data.totalPages);
             setTotal(data.total);
         } catch (error) {
@@ -63,10 +67,25 @@ export default function HadithContent() {
                 <div className="flex flex-col justify-center items-center">
 
                     {/* total count */}
-                    <p className="text-sm text-gray-400 mt-4">
-                        Showing {(page - 1) * LIMIT + 1}–{Math.min(page * LIMIT, total)} of {total} Hadiths
-                    </p>
-
+                    <div className="w-full flex justify-around md:justify-center gap-2 mt-4 mb-4">
+                        <p className="text-sm text-gray-900 ">
+                            {contentName}
+                        </p>
+                        <p className="text-sm text-gray-900 ">
+                            Showing {(page - 1) * LIMIT + 1}–{Math.min(page * LIMIT, total)} of {total} 
+                        </p>
+                    </div>
+                    
+                    <div className="flex gap-2">
+                        <button onClick={()=>setLang('bn')}
+                            class="inline-flex items-center w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                            Bangla
+                        </button> 
+                        <button onClick={()=>setLang('en')}
+                            class="inline-flex items-center w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                            English
+                        </button>                                                
+                    </div>
                     {/* hadith cards */}
                     <div className="flex gap-4 flex-wrap justify-center p-4">
                         {hadiths.map((item, index) => (
@@ -76,7 +95,9 @@ export default function HadithContent() {
                             >
                                 {/* title */}
                                 <h5 className="mb-3 text-lg font-semibold tracking-tight text-heading">
-                                    {item.title}
+                                    {
+                                        lang=='bn' ? item.title : englishHadiths[index]?.englishTitle
+                                    }
                                 </h5>
 
                                 {/* arabic text */}
@@ -91,11 +112,17 @@ export default function HadithContent() {
                                 )}
 
                                 {/* bangla text */}
-                                {item.banglaText?.length > 0 && (
+                                {lang === 'bn' ? (
+                                    item.banglaText?.length > 0 && (
+                                        <div className="text-sm text-body leading-relaxed">
+                                            {item.banglaText.map((text, i) => (
+                                                <p key={i} className="mb-2">{text}</p>
+                                            ))}
+                                        </div>
+                                    )
+                                ) : (
                                     <div className="text-sm text-body leading-relaxed">
-                                        {item.banglaText.map((text, i) => (
-                                            <p key={i} className="mb-2">{text}</p>
-                                        ))}
+                                        <p className="mb-2">{englishHadiths[index]?.englishText}</p>
                                     </div>
                                 )}
                             </div>
