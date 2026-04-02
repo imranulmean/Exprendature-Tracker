@@ -116,13 +116,13 @@ export default function HadithContent() {
                                     item.banglaText?.length > 0 && (
                                         <div className="text-sm text-body leading-relaxed">
                                             {item.banglaText.map((text, i) => (
-                                                <p key={i} className="mb-2">{text}</p>
+                                                <p key={i} className="mb-2 text-xl">{text}</p>
                                             ))}
                                         </div>
                                     )
                                 ) : (
                                     <div className="text-sm text-body leading-relaxed">
-                                        <p className="mb-2">{englishHadiths[index]?.englishText}</p>
+                                        <p className="mb-2 text-xl">{englishHadiths[index]?.englishText}</p>
                                     </div>
                                 )}
                             </div>
