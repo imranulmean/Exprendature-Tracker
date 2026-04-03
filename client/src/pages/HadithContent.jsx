@@ -74,6 +74,17 @@ export default function HadithContent() {
         alert("Bookmarked Saved");
     }    
 
+    function copyLink(index) {
+        const page = searchParams.get('page');
+        const path = page && page > 1 ? `${pathname}?page=${page}#hadith-${index}` : `${pathname}#hadith-${index}`;
+        const fullUrl = `${window.location.origin}${path}`;
+
+        navigator.clipboard.writeText(fullUrl).then(() => {
+            alert("Link Copied!");
+        });        
+        
+    }    
+
     return (
         <>
             <HeaderLibrary />
@@ -185,10 +196,17 @@ export default function HadithContent() {
                                         lang=='bn' ? item.title : englishHadiths[index]?.englishTitle
                                     }
                                 </h5>
-                                <button onClick={()=>saveBookmark(index)}
-                                    class="bg-green-900 px-4 py-2 text-white mb-2">
-                                    Track Record
-                                </button>
+                                <div className="flex gap-2 justify-center">
+                                    <button onClick={()=>saveBookmark(index)}
+                                        class="bg-green-900 px-4 py-2 text-white mb-2">
+                                        Track Record
+                                    </button>
+                                    <button onClick={()=>copyLink(index)}
+                                        class="bg-green-900 px-4 py-2 text-white mb-2">
+                                        Copy Link
+                                    </button>
+                                </div>
+                                
                                 {/* arabic text */}
                                 {item.arabicText?.length > 0 && (
                                     <div className="mb-3 p-4 bg-gray-50 border border-gray-200 rounded-lg text-right">
