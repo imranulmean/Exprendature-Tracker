@@ -188,7 +188,7 @@ export default function HadithContent() {
                     <div className="flex gap-4 flex-wrap justify-center p-4">
                         {hadiths.map((item, index) => (
                             <div key={index} id={`hadith-${index}`}
-                                className="flex flex-col bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs max-w-sm"
+                                className="flex flex-col bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs"
                             >
                                 {/* title */}
                                 <h5 className="mb-3 text-lg font-semibold tracking-tight text-heading">
@@ -207,31 +207,36 @@ export default function HadithContent() {
                                     </button>
                                 </div>
                                 
-                                {/* arabic text */}
-                                {item.arabicText?.length > 0 && (
-                                    <div className="mb-3 p-4 bg-gray-50 border border-gray-200 rounded-lg text-right">
-                                        {item.arabicText.map((text, i) => (
-                                            <p key={i} className="text-2xl leading-loose arabic-text" dir="rtl" lang="ar">
-                                                {text}
-                                            </p>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {/* bangla text */}
-                                {lang === 'bn' ? (
-                                    item.banglaText?.length > 0 && (
-                                        <div className="text-sm text-body leading-relaxed">
-                                            {item.banglaText.map((text, i) => (
-                                                <p key={i} className="mb-2 text-xl">{text}</p>
+                                <div className="flex flex-col md:flex-row md:gap-2">
+                                    {/* /////////////////////// */}
+                                    {/* arabic text */}
+                                    {item.arabicText?.length > 0 && (
+                                        <div className="mb-3 p-4 bg-gray-50 border border-gray-200 rounded-lg text-right md:max-w-md">
+                                            {item.arabicText.map((text, i) => (
+                                                <p key={i} className="text-2xl leading-loose arabic-text" dir="rtl" lang="ar">
+                                                    {text}
+                                                </p>
                                             ))}
                                         </div>
-                                    )
-                                ) : (
-                                    <div className="text-sm text-body leading-relaxed">
-                                        <p className="mb-2 text-xl">{englishHadiths[index]?.englishText}</p>
-                                    </div>
-                                )}
+                                    )}
+
+                                    {/* bangla text */}
+                                    {lang === 'bn' ? (
+                                        item.banglaText?.length > 0 && (
+                                            <div className="text-sm text-body leading-relaxed md:max-w-md">
+                                                {item.banglaText.map((text, i) => (
+                                                    <p key={i} className="mb-2 text-xl">{text}</p>
+                                                ))}
+                                            </div>
+                                        )
+                                    ) : (
+                                        <div className="text-sm text-body leading-relaxed md:max-w-md">
+                                            <p className="mb-2 text-xl">{englishHadiths[index]?.englishText}</p>
+                                        </div>
+                                    )}
+                                    {/* ////////////////////// */}
+                                </div>
+
                             </div>
                             
                         ))}
