@@ -187,7 +187,7 @@ export default function HadithContent() {
                     {/* hadith cards */}
                     <div className="flex gap-4 flex-wrap justify-center p-4">
                         {hadiths.map((item, index) => (
-                            <div key={index} id={`hadith-${index}`}
+                            <div key={index} id={`hadith-${index+1}`}
                                 className="flex flex-col bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs"
                             >
                                 {/* title */}
