@@ -28,6 +28,15 @@ export default function HadithContent() {
         getHadiths();
     }, [page]);
 
+    // Go to users tracked hadith    
+    useEffect(() => {
+        console.log('')
+        if (hadiths.length > 0 && location.hash) {
+            const el = document.getElementById(location.hash.replace('#', ''));
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [hadiths]);    
+
     const getHadiths = async () => {
         try {
             setLoading(true);
@@ -52,6 +61,14 @@ export default function HadithContent() {
     const changePage = (newPage) => {
         setSearchParams({ page: newPage });
     };
+
+    // save bookmark
+    function saveBookmark(index) {
+        const page = searchParams.get('page');
+        const path = page && page > 1 ? `${pathname}?page=${page}#hadith-${index}` : `${pathname}#hadith-${index}`;
+        localStorage.setItem('lastHadith', path);
+        alert("Bookmarked Saved");
+    }    
 
     return (
         <>
@@ -84,13 +101,78 @@ export default function HadithContent() {
                         <button onClick={()=>setLang('en')}
                             class="inline-flex items-center w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                             English
-                        </button>                                                
+                        </button>
+                        {localStorage.getItem('lastHadith') && (
+                            <Link
+                                to={localStorage.getItem('lastHadith')}
+                                className="inline-flex items-center w-auto text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                            >
+                                📖 Go to Last Read
+                            </Link>
+                        )}                        
                     </div>
+                    {/* pagination buttons */}
+                    <div className="flex gap-2 items-center p-6">
+                        <button
+                            onClick={() => changePage(Math.max(page - 1, 1))}
+                            disabled={page === 1}
+                            className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
+                        >
+                            {'<'}
+                        </button>
+
+                        {/* page numbers */}
+                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                            const pageNum = Math.max(1, page - 2) + i;
+                            if (pageNum > totalPages) return null;
+                            return (
+                                <button
+                                    key={pageNum}
+                                    onClick={() => changePage(pageNum)}
+                                    className={`px-2 py-2 text-sm border rounded-base transition-all
+                                        ${page === pageNum
+                                            ? 'bg-blue-100 border-blue-500 text-blue-700'
+                                            : 'border-default hover:bg-neutral-secondary-medium'
+                                        }`}
+                                >
+                                    {pageNum}
+                                </button>
+                            );
+                        })}
+
+                        {/* ... separator — only show if last page is far away */}
+                        {page + 3 < totalPages && (
+                            <span className="px-2 text-sm text-gray-400">.</span>
+                        )}
+
+                        {/* last page button — only show if not already visible in the 5 buttons */}
+                        {page + 2 < totalPages && (
+                            <button
+                                onClick={() => changePage(totalPages)}
+                                className={`px-1 py-2 text-sm border rounded-base transition-all
+                                    ${page === totalPages
+                                        ? 'bg-blue-100 border-blue-500 text-blue-700'
+                                        : 'border-default hover:bg-neutral-secondary-medium'
+                                    }`}
+                            >
+                                {totalPages}
+                            </button>
+                        )}
+
+                        {/* Next */}
+
+                        <button
+                            onClick={() => changePage(Math.min(page + 1, totalPages))}
+                            disabled={page === totalPages}
+                            className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
+                        >
+                            {'>'}
+                        </button>
+                    </div>                    
                     {/* hadith cards */}
                     <div className="flex gap-4 flex-wrap justify-center p-4">
                         {hadiths.map((item, index) => (
-                            <div
-                                key={index}
+                            <div key={index} id={`hadith-${index}`}
                                 className="flex flex-col bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs max-w-sm"
                             >
                                 {/* title */}
@@ -99,12 +181,15 @@ export default function HadithContent() {
                                         lang=='bn' ? item.title : englishHadiths[index]?.englishTitle
                                     }
                                 </h5>
-
+                                <button onClick={()=>saveBookmark(index)}
+                                    class="bg-green-900 px-4 py-2 text-white mb-2">
+                                    Track Record
+                                </button>
                                 {/* arabic text */}
                                 {item.arabicText?.length > 0 && (
                                     <div className="mb-3 p-4 bg-gray-50 border border-gray-200 rounded-lg text-right">
                                         {item.arabicText.map((text, i) => (
-                                            <p key={i} className="text-3xl leading-loose arabic-text" dir="rtl" lang="ar">
+                                            <p key={i} className="text-2xl leading-loose arabic-text" dir="rtl" lang="ar">
                                                 {text}
                                             </p>
                                         ))}
@@ -126,6 +211,7 @@ export default function HadithContent() {
                                     </div>
                                 )}
                             </div>
+                            
                         ))}
                     </div>
 
