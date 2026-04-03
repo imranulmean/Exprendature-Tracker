@@ -11,8 +11,9 @@ export default function Suras(){
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
+        document.title = 'Islamic Library';
         getSuras();
-    },[])
+    },[])    
 
     const getSuras = async(source)=>{
         try {

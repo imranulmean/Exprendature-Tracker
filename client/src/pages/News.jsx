@@ -22,6 +22,10 @@ export default function News(){
         }
     },[location.pathname])
 
+    useEffect(() => {
+        document.title = 'World News';
+    }, []);       
+
     const getNews = async(source)=>{
         try {
             setLoading(true); 

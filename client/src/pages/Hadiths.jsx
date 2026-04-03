@@ -10,6 +10,7 @@ export default function Hadiths(){
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
+         document.title = 'Islamic Library';
         getSuras();
     },[])
 

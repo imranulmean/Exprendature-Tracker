@@ -16,6 +16,7 @@ export default function SuraAudio(){
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        document.title = 'Islamic Library';        
         getSuraDetails();
     }, [])
 

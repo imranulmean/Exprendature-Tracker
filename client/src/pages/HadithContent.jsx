@@ -20,9 +20,13 @@ export default function HadithContent() {
     const [total, setTotal] = useState(0);
     const LIMIT = 20;
 
-        // ✅ get and set page from URL
+    // ✅ get and set page from URL
     const [searchParams, setSearchParams] = useSearchParams();
     const page = parseInt(searchParams.get('page')) || 1;
+
+    useEffect(() => {
+        document.title = 'Islamic Library';
+    }, []);    
 
     useEffect(() => {
         getHadiths();
