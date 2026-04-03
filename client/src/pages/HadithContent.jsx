@@ -197,7 +197,7 @@ export default function HadithContent() {
                                     {
                                         lang=='bn' ? item.title : englishHadiths[index]?.englishTitle
                                     }
-                                    {' '}page no:{page}, Hadith:{index+1} 
+                                    <br/>page no:{page}, Hadith:{index+1} 
                                 </h5>
                                 <div className="flex gap-2 justify-center">
                                     <button onClick={()=>saveBookmark(index+1)}
