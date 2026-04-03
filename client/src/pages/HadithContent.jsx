@@ -68,6 +68,7 @@ export default function HadithContent() {
 
     // save bookmark
     function saveBookmark(index) {
+        
         const page = searchParams.get('page');
         const path = page && page > 1 ? `${pathname}?page=${page}#hadith-${index}` : `${pathname}#hadith-${index}`;
         localStorage.setItem('lastHadith', path);
@@ -75,6 +76,7 @@ export default function HadithContent() {
     }    
 
     function copyLink(index) {
+        console.log(index)
         const page = searchParams.get('page');
         const path = page && page > 1 ? `${pathname}?page=${page}#hadith-${index}` : `${pathname}#hadith-${index}`;
         const fullUrl = `${window.location.origin}${path}`;
@@ -198,11 +200,11 @@ export default function HadithContent() {
                                     {' '}page no:{page}, Hadith:{index+1} 
                                 </h5>
                                 <div className="flex gap-2 justify-center">
-                                    <button onClick={()=>saveBookmark(index)}
+                                    <button onClick={()=>saveBookmark(index+1)}
                                         class="bg-green-900 px-4 py-2 text-white mb-2">
                                         Track Record
                                     </button>
-                                    <button onClick={()=>copyLink(index)}
+                                    <button onClick={()=>copyLink(index+1)}
                                         class="bg-green-900 px-4 py-2 text-white mb-2">
                                         Copy Link
                                     </button>
