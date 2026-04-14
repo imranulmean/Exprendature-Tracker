@@ -7,7 +7,6 @@ import HeaderLibrary from "../components/HeaderLibrary";
 export default function HadithContent() {
 
     const {pathname} = useLocation();
-    console.log(pathname)
     const book_name=pathname.split('/')[2];
     const contentName=`hadith/${book_name}`
 
@@ -44,7 +43,8 @@ export default function HadithContent() {
     const getHadiths = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`${BASE_API}/getHadithContent${pathname}?page=${page}&limit=${LIMIT}`);
+            // const res = await fetch(`${BASE_API}/getHadithContent${pathname}?page=${page}&limit=${LIMIT}`);
+            const res = await fetch(`https://pink-coyote-271434.hostingersite.com/apis/getHadithContent.php?bookName=${book_name}&page=${page}&limit=${LIMIT}`);
             const data = await res.json();
             if(!data.success){
                 alert(data.message)
@@ -55,7 +55,7 @@ export default function HadithContent() {
             setTotalPages(data.totalPages);
             setTotal(data.total);
         } catch (error) {
-            alert(error);
+            alert(error);            
         } finally {
             setLoading(false);
         }
@@ -195,7 +195,7 @@ export default function HadithContent() {
                                 {/* title */}
                                 <h5 className="mb-3 text-lg font-semibold tracking-tight text-heading">
                                     {
-                                        lang=='bn' ? item.title : englishHadiths[index]?.englishTitle
+                                        lang=='bn' ? item.title : item.englishTitle
                                     }
                                     <br/>page no:{page}, Hadith:{index+1} 
                                 </h5>
@@ -234,7 +234,7 @@ export default function HadithContent() {
                                         )
                                     ) : (
                                         <div className="text-sm text-body leading-relaxed md:max-w-md">
-                                            <p className="mb-2 text-xl">{englishHadiths[index]?.englishText}</p>
+                                            <p className="mb-2 text-xl">{item.englishText}</p>
                                         </div>
                                     )}
                                     {/* ////////////////////// */}
