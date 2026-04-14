@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import HeaderPublic from "../components/HeaderPublic";
 import { useSearchParams } from 'react-router-dom';
 import HeaderLibrary from "../components/HeaderLibrary";
+import PaginationButtons from "../components/PaginationButtons";
 
 export default function HadithContent() {
 
@@ -129,63 +130,7 @@ export default function HadithContent() {
                         )}                        
                     </div>
                     {/* pagination buttons */}
-                    <div className="flex gap-2 items-center p-6">
-                        <button
-                            onClick={() => changePage(Math.max(page - 1, 1))}
-                            disabled={page === 1}
-                            className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
-                        >
-                            {'<'}
-                        </button>
-
-                        {/* page numbers */}
-                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                            const pageNum = Math.max(1, page - 2) + i;
-                            if (pageNum > totalPages) return null;
-                            return (
-                                <button
-                                    key={pageNum}
-                                    onClick={() => changePage(pageNum)}
-                                    className={`px-2 py-2 text-sm border rounded-base transition-all
-                                        ${page === pageNum
-                                            ? 'bg-blue-100 border-blue-500 text-blue-700'
-                                            : 'border-default hover:bg-neutral-secondary-medium'
-                                        }`}
-                                >
-                                    {pageNum}
-                                </button>
-                            );
-                        })}
-
-                        {/* ... separator — only show if last page is far away */}
-                        {page + 3 < totalPages && (
-                            <span className="px-2 text-sm text-gray-400">.</span>
-                        )}
-
-                        {/* last page button — only show if not already visible in the 5 buttons */}
-                        {page + 2 < totalPages && (
-                            <button
-                                onClick={() => changePage(totalPages)}
-                                className={`px-1 py-2 text-sm border rounded-base transition-all
-                                    ${page === totalPages
-                                        ? 'bg-blue-100 border-blue-500 text-blue-700'
-                                        : 'border-default hover:bg-neutral-secondary-medium'
-                                    }`}
-                            >
-                                {totalPages}
-                            </button>
-                        )}
-
-                        {/* Next */}
-
-                        <button
-                            onClick={() => changePage(Math.min(page + 1, totalPages))}
-                            disabled={page === totalPages}
-                            className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
-                        >
-                            {'>'}
-                        </button>
-                    </div>                    
+                        <PaginationButtons page={page} totalPages={totalPages} changePage={changePage} />
                     {/* hadith cards */}
                     <div className="flex gap-4 flex-wrap justify-center p-4">
                         {hadiths.map((item, index) => (
@@ -246,63 +191,7 @@ export default function HadithContent() {
                     </div>
 
                     {/* pagination buttons */}
-                    <div className="flex gap-2 items-center p-6">
-                        <button
-                            onClick={() => changePage(Math.max(page - 1, 1))}
-                            disabled={page === 1}
-                            className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
-                        >
-                            {'<'}
-                        </button>
-
-                        {/* page numbers */}
-                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                            const pageNum = Math.max(1, page - 2) + i;
-                            if (pageNum > totalPages) return null;
-                            return (
-                                <button
-                                    key={pageNum}
-                                    onClick={() => changePage(pageNum)}
-                                    className={`px-2 py-2 text-sm border rounded-base transition-all
-                                        ${page === pageNum
-                                            ? 'bg-blue-100 border-blue-500 text-blue-700'
-                                            : 'border-default hover:bg-neutral-secondary-medium'
-                                        }`}
-                                >
-                                    {pageNum}
-                                </button>
-                            );
-                        })}
-
-                        {/* ... separator — only show if last page is far away */}
-                        {page + 3 < totalPages && (
-                            <span className="px-2 text-sm text-gray-400">.</span>
-                        )}
-
-                        {/* last page button — only show if not already visible in the 5 buttons */}
-                        {page + 2 < totalPages && (
-                            <button
-                                onClick={() => changePage(totalPages)}
-                                className={`px-1 py-2 text-sm border rounded-base transition-all
-                                    ${page === totalPages
-                                        ? 'bg-blue-100 border-blue-500 text-blue-700'
-                                        : 'border-default hover:bg-neutral-secondary-medium'
-                                    }`}
-                            >
-                                {totalPages}
-                            </button>
-                        )}
-
-                        {/* Next */}
-
-                        <button
-                            onClick={() => changePage(Math.min(page + 1, totalPages))}
-                            disabled={page === totalPages}
-                            className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
-                        >
-                            {'>'}
-                        </button>
-                    </div>
+                    <PaginationButtons page={page} totalPages={totalPages} changePage={changePage} />
 
                 </div>
             )}

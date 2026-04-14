@@ -17,7 +17,8 @@ export default function Hadiths(){
     const getSuras = async(source)=>{
         try {
             setLoading(true); 
-           const res= await fetch(`${BASE_API}/getHadits`);
+        //    const res= await fetch(`${BASE_API}/getHadits`);
+        const res= await fetch(`https://library.sysnolodge.com.au/apis/getHadiths.php`);        
            const data= await res.json();
            setHadiths(data.message)
         } catch (error) {
