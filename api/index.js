@@ -42,7 +42,7 @@ const app = express();
 const server= http.createServer(app);
 
 app.use(cors({
-  origin: ['http://localhost:5173',"https://exp-tracker-face.vercel.app"],
+  origin: ['http://localhost:5173',"https://exp-tracker-face.vercel.app", "https://library.sysnolodge.com.au"],
   credentials: true, 
 }));
 app.use(express.json());
