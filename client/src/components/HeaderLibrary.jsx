@@ -26,11 +26,11 @@ export default function HeaderLibrary(){
                                     className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/hadiths' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Hadiths</Link>
                             </li>
                             <li>
-                                <Link onClick={() => setMenuOpen(false)} to="https://exp-tracker-face.vercel.app/suras" 
+                                <Link onClick={() => setMenuOpen(false)} to="/suras" 
                                     className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/suras' ? 'text-white border border-white ' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Surah</Link>
                             </li>                            
                             <li>
-                                 <Link onClick={() => setMenuOpen(false)} to="https://exp-tracker-face.vercel.app/news" 
+                                 <Link onClick={() => setMenuOpen(false)} to="/news" 
                                     className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>World News</Link>
                             </li>
                         </ul>
@@ -80,11 +80,11 @@ export default function HeaderLibrary(){
                             </li>
                             <li>
                                 <Link onClick={() => setMenuOpen(false)} to="/suras" 
-                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === 'https://exp-tracker-face.vercel.app/suras' ? 'text-white border border-white ' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Surah</Link>
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/suras' ? 'text-white border border-white ' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>Surah</Link>
                             </li>
                             <li>
                                  <Link onClick={() => setMenuOpen(false)} to="/news" 
-                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === 'https://exp-tracker-face.vercel.app/news' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>World News</Link>
+                                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === '/news' ? 'text-white border border-white' : 'text-gray-300 hover:bg-white/5 hover:text-white'}`}>World News</Link>
                             </li>
                         </ul>
                     </div>                

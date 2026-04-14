@@ -44,7 +44,7 @@ export default function HadithContent() {
         try {
             setLoading(true);
             // const res = await fetch(`${BASE_API}/getHadithContent${pathname}?page=${page}&limit=${LIMIT}`);
-            const res = await fetch(`https://pink-coyote-271434.hostingersite.com/apis/getHadithContent.php?bookName=${book_name}&page=${page}&limit=${LIMIT}`);
+            const res = await fetch(`https://library.sysnolodge.com.au/apis/getHadithContent.php?bookName=${book_name}&page=${page}&limit=${LIMIT}`);
             const data = await res.json();
             if(!data.success){
                 alert(data.message)
