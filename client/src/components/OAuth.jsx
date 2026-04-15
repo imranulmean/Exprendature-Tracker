@@ -37,7 +37,7 @@ export default function OAuth() {
             setLoading(false);
             if (res.ok){
                 dispatch(signInSuccess(data))
-                const targetDestination = location.state?.from || '/';
+                const targetDestination = location.state?.from || '/zakats';
                 navigate(targetDestination, { replace: true });
             }
         } catch (error) {

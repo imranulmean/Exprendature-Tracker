@@ -41,6 +41,7 @@ export default function App(){
       {/* <Megamenu /> */}
       {/* <Leftbar /> */}
       <Routes>        
+        <Route path='/' element={<Hadiths />} />
         <Route path='/login' element={<Login />} />
         <Route path='/startPractice' element={<StartPractice />} />
         <Route path='/speechTest' element={<ReactSpeech />} />v
@@ -61,7 +62,7 @@ export default function App(){
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}
-          <Route path='/' element={<ZakatList />} />
+          {/* <Route path='/' element={<ZakatList />} /> */}
           <Route path='/insertion' element={<Insertion />} />
           <Route path='/income' element={<Income />} />
           <Route path='/updateExp/:userId/:monthName/:year' element={<UpdateExp />} />
