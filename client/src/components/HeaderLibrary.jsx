@@ -42,7 +42,7 @@ export default function HeaderLibrary(){
             
             <nav className="block md:hidden bg-green-900 sticky top-0 z-10 print:hidden">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-center mx-auto p-2">
-                    <Link to="/hadiths" className="flex shrink-0 items-center gap-2">
+                    <Link to="/" className="flex shrink-0 items-center gap-2">
                         <span className="text-white self-center text-xl font-semibold whitespace-nowrap">Islamic Library</span>
                     </Link>
                     {/* Hamburger Button */}
