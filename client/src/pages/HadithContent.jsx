@@ -34,11 +34,22 @@ export default function HadithContent() {
 
     // Go to users tracked hadith    
     useEffect(() => {
-        console.log('')
-        if (hadiths.length > 0 && location.hash) {
-            const el = document.getElementById(location.hash.replace('#', ''));
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        
+        // if (hadiths.length > 0 && location.hash) {
+        //     const el = document.getElementById(location.hash.replace('#', ''));
+        //     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // }
+        const params = new URLSearchParams(location.search);
+        const hadithId = params.get('hadithIndex');
+    
+        if (hadiths.length > 0 && hadithId) {
+            const el = document.getElementById(`hadith-${hadithId}`);
+            if (el) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }        
     }, [hadiths]);    
 
     const getHadiths = async () => {
@@ -71,7 +82,7 @@ export default function HadithContent() {
     function saveBookmark(index) {
         
         const page = searchParams.get('page');
-        const path = page && page > 1 ? `${pathname}?page=${page}#hadith-${index}` : `${pathname}#hadith-${index}`;
+        const path = page && page > 1 ? `${pathname}?page=${page}&hadithIndex=${index}` : `${pathname}?hadithIndex=${index}`;
         localStorage.setItem('lastHadith', path);
         alert("Bookmarked Saved");
     }    
@@ -79,11 +90,12 @@ export default function HadithContent() {
     function copyLink(index) {
         console.log(index)
         const page = searchParams.get('page');
-        const path = page && page > 1 ? `${pathname}?page=${page}#hadith-${index}` : `${pathname}#hadith-${index}`;
+        const path = page && page > 1 ? `${pathname}?page=${page}&hadithIndex=${index}` : `${pathname}?hadithIndex=${index}`;
+        console.log(path);
         const fullUrl = `${window.location.origin}${path}`;
 
         navigator.clipboard.writeText(fullUrl).then(() => {
-            alert("Link Copied!");
+            alert("Hadith Link Copied!");
         });        
         
     }    
