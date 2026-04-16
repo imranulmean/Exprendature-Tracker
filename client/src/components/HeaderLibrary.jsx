@@ -12,7 +12,7 @@ export default function HeaderLibrary(){
            
     return (
         <>
-            <nav className="hidden md:block bg-green-900 sticky top-0 z-10 print:hidden">
+            <nav className="hidden md:block bg-green-900 sticky top-0 z-50 print:hidden">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to="/" className="flex shrink-0 items-center gap-2">
                         <span className="text-white self-center text-xl font-semibold whitespace-nowrap">Islamic Library</span>
@@ -40,7 +40,7 @@ export default function HeaderLibrary(){
 
             {/* Mobile Header */}
             
-            <nav className="block md:hidden bg-green-900 sticky top-0 z-10 print:hidden">
+            <nav className="block md:hidden bg-green-900 sticky top-0 z-50 print:hidden">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-center mx-auto p-2">
                     <Link to="/" className="flex shrink-0 items-center gap-2">
                         <span className="text-white self-center text-xl font-semibold whitespace-nowrap">Islamic Library</span>
