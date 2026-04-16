@@ -97,10 +97,10 @@ export default function SuraAudio(){
     return (
         <>
             <HeaderLibrary />
-            <div>
+            <div className="bg-[#0C171A] text-gray-200">
                 {/* Fixed audio player at bottom */}
                 {selected && (
-                    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 shadow-lg px-4 py-3 flex items-center gap-4">
+                    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-slate-200 shadow-lg px-4 py-3 flex items-center gap-4 bg-[#0C171A] text-gray-200">
                         <div className="flex flex-col min-w-fit">
                             <span className="text-xs text-slate-400">Now Playing</span>
                             <span className="text-sm font-medium text-blue-700">
@@ -126,7 +126,11 @@ export default function SuraAudio(){
                 )}
 
                 <div className={`${selected ? 'pb-20' : ''}`}>
-                    {loading && <p className="text-center text-slate-400 p-10">Loading...</p>}
+                    {loading && (
+                        <div className="h-screen flex justify-center items-center p-10 bg-[#0C171A] text-gray-200">
+                            <p className="text-lg">Fetching Sura...</p>
+                        </div>
+                    )}                    
                     <div className="flex flex-wrap gap-2 justify-center items-center p-4">
                         {ayats.map((item, index) => (
                             <a
@@ -134,7 +138,7 @@ export default function SuraAudio(){
                                 key={index}
                                 className={`flex flex-col items-center p-6 border rounded-base shadow-xs md:flex-row md:max-w-xl transition-all duration-300
                                     ${selectedIndex === index + 1
-                                        ? 'bg-blue-50 border-blue-400'
+                                        ? 'bg-neutral-primary-soft border-blue-400 border-8'
                                         : 'bg-neutral-primary-soft border-default'
                                     }`}
                             >

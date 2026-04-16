@@ -34,12 +34,14 @@ export default function Suras(){
         <>
             <HeaderLibrary />
             <Banner/>
-            {
-                loading && <p>Fetcing Suras</p>
-            }
+            {loading && (
+                <div className="h-screen flex justify-center items-center p-10 bg-[#0C171A] text-gray-200">
+                    <p className="text-lg">Fetching Suras...</p>
+                </div>
+            )}
             {
                 !loading && 
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center bg-[#0C171A] text-gray-200">
                     <div className="flex gap-2 flex-wrap justify-center p-4">                    
                         {
                             suras.map(item=>{

@@ -105,13 +105,13 @@ export default function HadithContent() {
             <HeaderLibrary />
 
             {loading && (
-                <div className="flex justify-center items-center p-10">
-                    <p className="text-gray-500 text-sm">Fetching Hadiths...</p>
+                <div className="h-screen flex justify-center items-center p-10 bg-[#0C171A] text-gray-200">
+                    <p className="text-lg">Fetching Hadiths...</p>
                 </div>
             )}
 
             {!loading && (
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center bg-[#0C171A] text-gray-200">
 
                     {/* total count */}
                     <div className="w-full flex justify-around md:justify-center gap-2 mt-4 mb-4">
@@ -171,7 +171,7 @@ export default function HadithContent() {
                                     {/* /////////////////////// */}
                                     {/* arabic text */}
                                     {item.arabicText?.length > 0 && (
-                                        <div className="mb-3 p-4 bg-gray-50 border border-gray-200 rounded-lg text-right md:max-w-md">
+                                        <div className="mb-3 p-4 border border-gray-200 rounded-lg text-right md:max-w-md">
                                             {item.arabicText.map((text, i) => (
                                                 <p key={i} className="text-2xl leading-loose arabic-text" dir="rtl" lang="ar">
                                                     {text}
