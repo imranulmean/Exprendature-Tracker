@@ -115,10 +115,10 @@ export default function HadithContent() {
 
                     {/* total count */}
                     <div className="w-full flex justify-around md:justify-center gap-2 mt-4 mb-4">
-                        <p className="text-sm text-gray-900 ">
+                        <p className="text-sm text-gray-200 ">
                             {contentName}
                         </p>
-                        <p className="text-sm text-gray-900 ">
+                        <p className="text-sm text-gray-200 ">
                             Showing {(page - 1) * LIMIT + 1}–{Math.min(page * LIMIT, total)} of {total} 
                         </p>
                     </div>
