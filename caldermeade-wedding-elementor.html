@@ -265,7 +265,7 @@
       color: var(--green-dark) !important;
       line-height: 1.6 !important;
     }
-    .micro-wedding-note strong { font-weight: 500; display: block; margin-bottom: 4px; }
+    .micro-wedding-note strong { font-weight: 500!; display: block; margin-bottom: 4px; }
 
     /* ── CALCULATOR ── */
     .calc-layout {
@@ -603,7 +603,171 @@
     }
     .form-control{
       width: 100%;
+    }
+    /* Order Summery CSS Style Start */
+
+    .os-wrap {
+      margin-top: 40px;
+      border: 1px solid rgba(45,74,45,0.15) !important;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 780px;
+    }
+
+    /* Meta grid */
+    .os-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(45,74,45,0.12);
+      background: white;
+    }
+    @media(max-width: 600px) {
+      .os-meta { grid-template-columns: repeat(2, 1fr); }
+      .os-meta-item:nth-child(2) { border-right: none; }
+      .os-meta-item:nth-child(3) { border-top: 1px solid rgba(45,74,45,0.12); }
+      .os-meta-item:nth-child(4) { border-top: 1px solid rgba(45,74,45,0.12); border-right: none; }
+    }
+    @media(max-width: 380px) {
+      .os-meta { grid-template-columns: 1fr; }
+      .os-meta-item { border-right: none !important; border-top: 1px solid rgba(45,74,45,0.12) !important; }
+      .os-meta-item:first-child { border-top: none !important; }
+    }
+
+    .os-meta-item {
+      padding: 10px 20px;
+      border-right: 1px solid rgba(45,74,45,0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .os-meta-item:last-child { border-right: none; }
+
+    .os-meta-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #1e3a1e;
+    }
+
+    .os-meta-value {
+      font-family: futura-pt, sans-serif;
+      font-size: 17px;
+      color: #1e3a1e;
+      line-height: 1.3;
+    }
+
+    /* Breakdown rows */
+    .os-rows { background: #ffffff; }
+
+    .os-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 24px;
+      border-bottom: 1px solid rgba(45,74,45,0.08);
+      gap: 16px;
+    }
+
+    .os-row-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .os-row-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1e3a1e;
+    }
+
+    .os-row-desc {
+      font-size: 13px;
+      color: #1e3a1e;
+    }
+
+    .os-row-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      color: #1e3a1e;
+      white-space: nowrap;
+    }
+
+    /* Extras ul li — your existing JS injects pkg-includes ul inside #summery_extras */
+    #summery_extras ul {
+      list-style: none;
+      padding: 0;
+      margin: 6px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    #summery_extras ul li {
+      font-size: 12px;
+      color: #4a7c4a;
+      padding: 6px 10px 6px 26px;
+      background: #f4f7f2;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    #summery_extras ul li::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: #4a7c4a;
+      border-radius: 50%;
+    }
+
+    /* Total bar */
+    .os-total {
+      background: white;
+      padding: 10px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    @media(max-width: 480px) {
+      .os-total { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    .os-total-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .os-total-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e3a1e;
+      letter-spacing: 0.03em;
+    }
+
+    .os-total-note {
+      font-size: 11px;
+      color: #1e3a1e;
+    }
+
+    .os-total-amount {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: #1e3a1e;
+      line-height: 1;
+    }
+    @media(max-width: 480px) {
+      .os-total-amount { font-size: 32px; }
     }    
+    /* Order Summery CSS Style End */
+
   </style>
   
     <!-- HERO -->
@@ -835,6 +999,9 @@
               </div>
               <input type="range" min="5" max="80" value="40" step="1" id="guest-slider" oninput="update()">
               <div class="slider-range-labels"><span>5 guests</span><span>80 guests</span></div>
+              <div class="micro-wedding-note" id="guest_change_notification" style="display: none; opacity: 0; transition: opacity 0.8s;">
+                <span id="notification_text"></span>
+              </div>
               <div class="micro-wedding-note">
                 <strong>Guests more than 80?</strong>
                 Contact Anne on 5997-5000 or 0404.885 299, Email: anne.dewinter@caldermeadefarm.com 
@@ -964,17 +1131,72 @@
   <section class="hero" style="color:#1e3a1e">
     <h1 style="font-weight: 300 !important">Summery Of Order</h1>
     <div class="summery_container">
-      <div class="pkg-card">
-        <p class="pkg-radio-name">Day Type: <span id="summery_day"></span></p>
-        <p class="pkg-radio-name">Wedding Date: <span id="summery_wedding_date"></span></p>      
-        <p class="pkg-radio-name">Guests: <span id="summery_guests"></span></p>
-        <p class="pkg-radio-name">Package: <span id="summery_pkg"></span></p>
-        <p class="pkg-radio-name">Package Cost Total: <span id="summery_pkg_total_cost"></span></p>
-        <p class="pkg-radio-name">Extras: <span id="summery_extras"></span></p>
-        <p class="pkg-radio-name">Extras Cost Total: <span id="summery_extras_total_cost"></span></p>
-        <p class="pkg-radio-name">Venue Hire: <span id="summery_venue_hire"></span></p>
-        <p class="pkg-radio-name">Total Cost: <span id="summery_total_cost"></span></p>
-      </div>
+      <div class="os-wrap">
+
+        <!-- Top meta band -->
+        <div class="os-meta">
+
+          <div class="os-meta-item">
+            <span class="os-meta-label">Day Type</span>
+            <span class="os-meta-value" id="summery_day">Weekend</span>
+          </div>
+
+          <div class="os-meta-item">
+            <span class="os-meta-label">Wedding Date</span>
+            <span class="os-meta-value" id="summery_wedding_date">—</span>
+          </div>
+
+          <div class="os-meta-item">
+            <span class="os-meta-label">Guests</span>
+            <span class="os-meta-value" id="summery_guests">40</span>
+          </div>
+
+          <div class="os-meta-item">
+            <span class="os-meta-label">Package</span>
+            <span class="os-meta-value" id="summery_pkg">The Fancy Farmer</span>
+          </div>
+
+        </div>
+
+        <!-- Breakdown rows -->
+        <div class="os-rows">
+
+          <div class="os-row">
+            <div class="os-row-left">
+              <span class="os-row-name">Venue Hire</span>
+              <span class="os-row-desc">The Stables at Caldermeade Farm</span>
+            </div>
+            <span class="os-row-price" id="summery_venue_hire">$4,600</span>
+          </div>
+
+          <div class="os-row">
+            <div class="os-row-left">
+              <span class="os-row-name">Package Cost</span>
+              <span class="os-row-desc">Food &amp; beverage total</span>
+            </div>
+            <span class="os-row-price" id="summery_pkg_total_cost">$4,400</span>
+          </div>
+
+          <div class="os-row">
+            <div class="os-row-left">
+              <span class="os-row-name">Optional Extras</span>
+              <span id="summery_extras"></span>
+            </div>
+            <span class="os-row-price" id="summery_extras_total_cost">$0</span>
+          </div>
+
+        </div>
+
+        <!-- Total bar -->
+        <div class="os-total">
+          <div class="os-total-left">
+            <span class="os-total-label">Estimated Total</span>
+            <span class="os-total-note">Indicative estimate · excludes GST</span>
+          </div>
+          <span class="os-total-amount" id="summery_total_cost">$9,000</span>
+        </div>
+
+      </div>      
       <div>
         [contact-form-7 id="4d9c191" title="Wedding Form"]    
       </div>
@@ -1165,18 +1387,23 @@
             document.getElementById('bartab-wrap-card').style.display = extras[key] ? 'block' : 'none';
             
             if (!extras[key]) document.getElementById('bartab-amt').value = '';
+            if (!extras[key]) document.getElementById('bartab-amt-card').value = '';            
           }
           update();
         }
       
 
-        function update() {
+        // Keep track of the state OUTSIDE the function
+        let lastNotificationState = null; // Can be 'small' or 'large'     
 
+        function update() {
           console.log("update calling")
           let sliderElement = document.getElementById('guest-slider');
           let guests = parseInt(sliderElement.value);
           const cocktailCard = document.getElementById('pkg-cocktail');
           let isSmallParty = guests < 40 ;
+          let notificationElem= document.getElementById('guest_change_notification');
+          let textElem = document.getElementById('notification_text');
 
           if (isSmallParty) {
             guests = parseInt(sliderElement.value);
@@ -1185,6 +1412,11 @@
               return;
             }
             VENUE = 1500;
+            // 1. Show it
+            if (lastNotificationState !== 'small') {
+              showToast(notificationElem, textElem, "Your package changed to <b>Garden Party Cocktail Style Wedding</b>");
+              lastNotificationState = 'small';
+            }                        
           } 
           else {
             if (pkg === 'cocktail') {
@@ -1192,6 +1424,11 @@
               return;
             }
             VENUE = 4600;
+            // ONLY SHOW IF we haven't already shown the 'large' notification
+            if (lastNotificationState !== 'large' && lastNotificationState !== null) {
+                showToast(notificationElem, textElem, "Your package changed to <b>The Fancy Farmer</b>");
+                lastNotificationState = 'large';
+            }            
           }
           document.getElementById('guest-display').textContent = guests;
           // calculate
@@ -1227,7 +1464,21 @@
           const percent = ((guests - min) / (max - min)) * 100;
           sliderElement.style.background = `linear-gradient(to right, #1e3a1e ${percent}%, #ede9e0 ${percent}%)`;
         }
-
+        // Helper function to handle the animation
+        function showToast(elem, textContainer, message) {
+            textContainer.innerHTML = message;
+            elem.style.display = "block";
+            setTimeout(() => {
+                elem.style.opacity = "1";
+            }, 10);
+         
+            setTimeout(() => {
+                elem.style.opacity = "0";
+                setTimeout(() => {
+                    elem.style.display = "none";
+                }, 800);
+            }, 3000);
+        }
         function showSummeryValues(summery_pkg_total_cost, guests, extras_names_strings, extraTotal, venue_hire, totalCost){
           document.getElementById("summery_day").textContent=day;
           document.getElementById("summery_pkg").textContent=RATES[pkg].pkgName;

@@ -25,11 +25,12 @@ export default function HadithContent() {
     const page = parseInt(searchParams.get('page')) || 1;
 
     useEffect(() => {
-        document.title = 'Islamic Library';
+        document.title = 'Islamic Library';        
     }, []);    
 
     useEffect(() => {
         getHadiths();
+        window.scrollTo(0,0)
     }, [page]);
 
     // Go to users tracked hadith    
