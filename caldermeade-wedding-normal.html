@@ -1057,16 +1057,16 @@
 
     if (isSmallParty) {
       // show cocktail, disable other 3
-      cocktailCard.classList.remove('pkg-disabled');
-      cocktailCard.style.pointerEvents = 'auto';
-      cocktailCard.style.opacity = '1';
+      // cocktailCard.classList.remove('pkg-disabled');
+      // cocktailCard.style.pointerEvents = 'auto';
+      // cocktailCard.style.opacity = '1';
 
-      ['fancy','grazing','feast'].forEach(k => {
-        const card = document.getElementById('pkg-' + k);
-        card.classList.add('pkg-disabled');
-        card.style.pointerEvents = 'none';
-        card.style.opacity = '0.35';
-      });
+      // ['fancy','grazing','feast'].forEach(k => {
+      //   const card = document.getElementById('pkg-' + k);
+      //   card.classList.add('pkg-disabled');
+      //   card.style.pointerEvents = 'none';
+      //   card.style.opacity = '0.35';
+      // });
 
       // if current pkg is not cocktail, force switch to cocktail
       if (pkg !== 'cocktail') {
@@ -1078,16 +1078,16 @@
 
     } else {
       // show all 3, disable cocktail
-      cocktailCard.classList.add('pkg-disabled');
-      cocktailCard.style.pointerEvents = 'none';
-      cocktailCard.style.opacity = '0.35';
+      // cocktailCard.classList.add('pkg-disabled');
+      // cocktailCard.style.pointerEvents = 'none';
+      // cocktailCard.style.opacity = '0.35';
 
-      ['fancy','grazing','feast'].forEach(k => {
-        const card = document.getElementById('pkg-' + k);
-        card.classList.remove('pkg-disabled');
-        card.style.pointerEvents = 'auto';
-        card.style.opacity = '1';
-      });
+      // ['fancy','grazing','feast'].forEach(k => {
+      //   const card = document.getElementById('pkg-' + k);
+      //   card.classList.remove('pkg-disabled');
+      //   card.style.pointerEvents = 'auto';
+      //   card.style.opacity = '1';
+      // });
 
       // if current pkg is cocktail, force switch to fancy
       if (pkg === 'cocktail') {

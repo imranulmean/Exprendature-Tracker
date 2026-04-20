@@ -1,3 +1,4 @@
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -180,7 +181,10 @@
       text-align: center;
     }
     .venue-price-label { font-size: 11px !important; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-muted) !important; margin-bottom: 8px; padding-bottom: 0px !important }
-    .venue-price-amount { font-family: var(--font-display) !important; font-size: 52px !important; font-weight: 300 !important; color: #f0ede6 !important; line-height: 1 !important; margin-bottom: 0px; padding-bottom:0px !important;}
+    .venue-price-amount { 
+      /* font-family: var(--font-display) !important;  */
+      font-size: 30px !important; 
+      font-weight: 300 !important; color: #f0ede6 !important; line-height: 1 !important; margin-bottom: 0px; padding-bottom:0px !important;}
     .venue-price-gst { font-size: 12px !important; color: var(--green-muted) !important; margin-top: 6px; margin-bottom: 0px;
       padding-bottom:0px !important;}
     .venue-price-note { font-size: 16px !important; color: rgba(255,255,255,0.5) !important; line-height: 1.5 !important; padding-bottom:0px !important;}
@@ -234,7 +238,10 @@
     .pkg-price-row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--border); }
     .pkg-price-row:last-child { border-bottom: none; }
     .pkg-price-day { font-size: 16px; color: var(--text-mid); }
-    .pkg-price-amt { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: var(--green-dark); }
+    .pkg-price-amt { 
+      /* font-family: var(--font-display);  */
+      font-size: 13px; 
+      font-weight: 400; color: var(--green-dark); }
     .pkg-price-per { font-size: 16px; color: var(--text-light); }
 
     .pkg-includes { list-style: none; }
@@ -311,7 +318,10 @@
     .slider-wrap { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
     .slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
     .slider-header span { font-size: 15px; color: var(--text-mid); }
-    .slider-value { font-family: var(--font-display); font-size: 32px !important; font-weight: 300; color: var(--green-dark) !important; }
+    .slider-value { 
+      /* font-family: var(--font-display);  */
+      font-size: 20px !important; 
+      font-weight: 300; color: var(--green-dark) !important; }
 
     input[type=range] {
       width: 100%;
@@ -441,6 +451,7 @@
       background: var(--white);
       outline: none;
       transition: border-color 0.2s;
+      letter-spacing: 2px !important;
     }
     .bartab-input:focus { border-color: var(--green-light); }
 
@@ -454,12 +465,12 @@
     }
     .summary-eyebrow { font-size: 10px !important; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-muted) !important; margin-bottom: 6px; }
     .summary-total {
-      font-family: var(--font-display) !important;
-      font-size: 52px !important;
+      /* font-family: var(--font-display) !important; */
+      font-size: 35px !important;
       font-weight: 300 !important;
       color: #f0ede6 !important;
       line-height: 1 !important;
-      margin-bottom: 28px;
+      margin-bottom: 10px;
     }
     .summary-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 16px 0; }
     .summary-line { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; }
@@ -467,7 +478,10 @@
     .summary-line-value { font-size: 16px; color: rgba(255,255,255,0.85); font-weight: 500; }
     .summary-total-line { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0 0; margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); }
     .summary-total-label { font-size: 16px; color: #f0ede6; font-weight: 500; }
-    .summary-total-value { font-family: var(--font-display); font-size: 24px; color: #f0ede6; }
+    .summary-total-value { 
+      /* font-family: var(--font-display);  */
+      font-size: 20px; color: #f0ede6; 
+    }
     .summary-disclaimer { font-size: 14px !important; color: rgba(255,255,255,0.35) !important; margin-top: 20px; 
       line-height: 1.6 !important; }
 
@@ -590,13 +604,15 @@
       cursor: pointer !important;
       color:var(--text-dark) !important;
       background: var(--white) !important;
+      letter-spacing: 0px !important;
     }
     .summery_container{
       display: grid;
       gap: 10px;
       grid-template-columns: repeat(2, 1fr);
+      max-width: 1000px;
     }
-    @media(max-width: 500px) { .summery_container { grid-template-columns: 1fr; } }
+    @media(max-width: 760px) { .summery_container { grid-template-columns: 1fr; } }
 
     .wpcf7-response-output{
       color:#f0ede6 !important;
@@ -634,7 +650,7 @@
     }
 
     .os-meta-item {
-      padding: 10px 20px;
+      padding: 10px;
       border-right: 1px solid white;
       display: flex;
       flex-direction: column;
@@ -651,10 +667,10 @@
     }
 
     .os-meta-value {
-      font-family: futura-pt, sans-serif;
+      /* font-family: var(--font-display) !important; */
       font-size: 17px;
       color: white;
-      line-height: 1.3;
+      line-height: 1;
     }
 
     /* Breakdown rows */
@@ -688,13 +704,16 @@
     }
 
     .os-row-price {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 22px;
+      /* font-family: 'Cormorant Garamond', Georgia, serif; */
+      font-size: 18px;
       color: white;
       white-space: nowrap;
     }
 
     /* Extras ul li — your existing JS injects pkg-includes ul inside #summery_extras */
+    #summery_extras .pkg-includes{
+      align-items: center;
+    }
     #summery_extras ul {
       list-style: none;
       padding: 0;
@@ -706,11 +725,12 @@
 
     #summery_extras ul li {
       font-size: 12px;
-      color: #4a7c4a;
+      color: #4a7c4a !important;
       padding: 6px 10px 6px 26px;
       background: #f4f7f2;
       border-radius: 4px;
       position: relative;
+      max-width: 300px;
     }
 
     #summery_extras ul li::before {
@@ -723,6 +743,7 @@
       height: 6px;
       background: #4a7c4a;
       border-radius: 50%;
+      display: none;
     }
 
     /* Total bar */
@@ -734,7 +755,7 @@
       gap: 16px;
     }
     @media(max-width: 480px) {
-      .os-total { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .os-total { align-items: flex-start; gap: 8px; }
     }
 
     .os-total-left {
@@ -756,25 +777,29 @@
     }
 
     .os-total-amount {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 32px;
+      /* font-family: 'Cormorant Garamond', Georgia, serif; */
+      font-size: 20px;
       font-weight: 300;
       color: white;
       line-height: 1;
     }
-    @media(max-width: 480px) {
+    /* @media(max-width: 480px) {
       .os-total-amount { font-size: 32px; }
-    }    
+    }     */
     /* Order Summery CSS Style End */
 
   </style>
   
     <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow">The Stables at Caldermeade Farm · Gippsland, Victoria</p>
-    <h1 style="font-weight: 300 !important">Plan Your<br><em>Caldermeade Farm</em><br>Wedding</h1>
-    <p class="hero-sub">Celebrate your wedding surrounded by the open farmland of Gippsland, with flexible packages covering venue hire, food and drinks.</p>
-    <a href="#calculator" class="hero-cta" style="font-weight: 300 !important">Estimate your investment</a>
+  <section class="hero !bg-[url('https://karenwillisholmes.com/wp-content/uploads/2021/05/JUB9421-1200x800.jpg')] !bg-cover !bg-center !bg-no-repeat">
+    <div class="absolute inset-0 bg-[#00000080]"></div>
+    <div class="relative z-10">
+      <p class="hero-eyebrow">The Stables at Caldermeade Farm · Gippsland, Victoria</p>
+      <h1 style="font-weight: 300 !important">Plan Your<br><em>Caldermeade Farm</em><br>Wedding</h1>
+      <p class="hero-sub">Celebrate your wedding surrounded by the open farmland of Gippsland, with flexible packages covering venue hire, food and drinks.</p>
+      <a href="#calculator" class="hero-cta" style="font-weight: 300 !important">Estimate your investment</a>
+    </div>
+
   </section>
 
   <!-- VENUE HIRE -->
@@ -916,7 +941,7 @@
   </section>
 
   <!-- ENHANCE -->
-  <section class="section section-alt">
+  <section class="section section-alt" style="padding-top: 0px;">
     <div class="section-inner">
       <span class="section-tag">Enhance Your Experience</span>
       <h2 class="section-title" style="font-weight: 300 !important;">Add a Little Extra Magic</h2>
@@ -985,7 +1010,7 @@
           <div class="field-group">
             <span class="field-label">Preferred Wedding Date: </span>
             <div class="form-group">
-              <input type="text" id="preferred-wedding-date">
+              <input type="text" id="preferred-wedding-date" placeholder="Pick a date">
             </div>
           </div>
           <!-- Guest Count -->
@@ -1127,7 +1152,7 @@
     </div>
   </section>
 
-  <section class="hero" style="color:#1e3a1e">
+  <section class="hero" style="color:#1e3a1e; display: flex; flex-direction: column; align-items: center;">
     <h1 style="font-weight: 300 !important">Summery Of Order</h1>
     <div class="summery_container">
       <div class="os-wrap">
@@ -1305,9 +1330,9 @@
             }
         });
 
-        var toFormatted = jQuery.datepicker.formatDate('MM d, yy', tomorrow);
-        jQuery('#preferred-wedding-date').val(toFormatted);
-        preferred_wedding_date = toFormatted; 
+        // var toFormatted = jQuery.datepicker.formatDate('MM d, yy', tomorrow);
+        jQuery('#preferred-wedding-date').val('Pick a date');
+        // preferred_wedding_date = toFormatted; 
         
         /////////////////After JQUERY Loads///////////////
         update();
@@ -1425,7 +1450,7 @@
             VENUE = 4600;
             // ONLY SHOW IF we haven't already shown the 'large' notification
             if (lastNotificationState !== 'large' && lastNotificationState !== null) {
-                showToast(notificationElem, textElem, "Your package changed to <b>The Fancy Farmer</b>");
+                showToast(notificationElem, textElem, `Your package changed to <b>${RATES[pkg].pkgName}</b>`);
                 lastNotificationState = 'large';
             }            
           }
