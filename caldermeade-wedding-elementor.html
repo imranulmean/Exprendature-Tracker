@@ -510,6 +510,7 @@
 
     /* ── ENQUIRY FORM ── */
     .enquiry-form { margin-top: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    #modalBackdrop .enquiry-form { margin-top: 0px !important;}
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     @media(max-width: 500px) { .form-grid { grid-template-columns: 1fr; } }
 
@@ -536,7 +537,7 @@
     .form-group textarea { resize: vertical; min-height: 100px !important; }
 
     .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media(max-width: 500px) { .form-grid-2 { grid-template-columns: 1fr; } }
+    /* @media(max-width: 500px) { .form-grid-2 { grid-template-columns: 1fr; } } */
 
     .submit-btn {
       width: 100%;
@@ -783,6 +784,20 @@
       color: white;
       line-height: 1;
     }
+    input[name='custom-wedding-date']{
+      max-width: 350px !important;
+      width: 100% !important;
+    }    
+    /*
+    #ui-datepicker-div{
+      top: 50% !important;
+      left: 50% !important;      
+    }
+    @media (max-width:600px)  {
+      #ui-datepicker-div{       
+        left: 0 !important;      
+      }
+    } */
     /* @media(max-width: 480px) {
       .os-total-amount { font-size: 32px; }
     }     */
@@ -1152,6 +1167,7 @@
     </div>
   </section>
 
+  <!-- SUMMERY OF ORDER -->
   <section class="hero" style="padding: 50px 24px 64px !important ;color:#1e3a1e; display: flex; flex-direction: column; align-items: center;">
     <h1 style="font-weight: 300 !important; font-size: 35px !important;">Summery Of Order</h1>
     <div class="summery_container">
@@ -1229,7 +1245,28 @@
     
   </section>  
 
+  <!-- GUESTS MORE THAN 80 MODAL CONTACT FORM  -->
+  <div 
+    id="modalBackdrop" 
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+  >
+    <div 
+      id="modalContent"
+      class="relative w-full max-w-md transform overflow-hidden rounded-2xl bg-[var(--green-dark)] p-6 text-left align-middle shadow-xl transition-all"
+    >
+      <div class="flex items-center justify-end border-b pb-1">
+        <button id="closeModalX" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
 
+      <div class="mt-1">
+        [contact-form-7 id="8cda961" title="Wedding Form More Than 80"]
+      </div>
+    </div>
+  </div>  
   <!-- <section class="hero">
     <h1 style="font-weight: 300 !important">Ready to Start Planning?</h1>
     <p class="hero-sub">We would love to show you around the farm and help you create a wedding cleberation that feels warm, relaxed and uniquely yours</p>
@@ -1311,9 +1348,7 @@
 
 
   <script>
-
     let preferred_wedding_date = "";
-
     jQuery(window).on('load', function() {
         var today = new Date();
         var tomorrow = new Date(today);
@@ -1331,7 +1366,7 @@
         });
 
         // var toFormatted = jQuery.datepicker.formatDate('MM d, yy', tomorrow);
-        jQuery('#preferred-wedding-date').val('Pick a date');
+        jQuery('#preferred-wedding-date').val('Pick A Date');
         // preferred_wedding_date = toFormatted; 
         
         /////////////////After JQUERY Loads///////////////
@@ -1347,198 +1382,222 @@
         update();
         /////////////////////////////////
     });
-        let VENUE = 4600;
-        const RATES = {
-          fancy:   { weekend: 110, weekday: 85, pkgName:"The Fancy Farmer" },
-          grazing: { weekend: 82,  weekday: 62, pkgName:"The Grazing Farmer" },
-          feast:   { weekend: 93,  weekday: 72, pkgName:"The Farmer's Feast"},
-          cocktail: { weekend: 95,  weekday: 95, pkgName: "Garden Party Cocktail Style Wedding"}
-        };
-        let EXTRAS_PER_GUEST = { canapes: 55, gelato: 6, cocktails: 18, bartab: 0 };
+    let VENUE = 4600;
+    const RATES = {
+      fancy:   { weekend: 110, weekday: 85, pkgName:"The Fancy Farmer" },
+      grazing: { weekend: 82,  weekday: 62, pkgName:"The Grazing Farmer" },
+      feast:   { weekend: 93,  weekday: 72, pkgName:"The Farmer's Feast"},
+      cocktail: { weekend: 95,  weekday: 95, pkgName: "Garden Party Cocktail Style Wedding"}
+    };
+    let EXTRAS_PER_GUEST = { canapes: 55, gelato: 6, cocktails: 18, bartab: 0 };
 
-        let day = 'weekend';
-        let pkg = 'fancy';
-        let extras = { canapes: false, gelato: false, cocktails: false, bartab: false };
-        let extras_names = { 
-          canapes: 'Pre-reception roving canapés', 
-          gelato: 'Caldermeade Farm Jersey Milk Gelato', 
-          cocktails: 'Arrival cocktails', 
-          bartab: 'Bar tab' 
-        };
-        let lastNotificationState = null; // Can be 'small' or 'large'             
-        // Sync the two bar tab inputs 
+    let day = 'weekend';
+    let pkg = 'fancy';
+    let extras = { canapes: false, gelato: false, cocktails: false, bartab: false };
+    let extras_names = { 
+      canapes: 'Pre-reception roving canapés', 
+      gelato: 'Caldermeade Farm Jersey Milk Gelato', 
+      cocktails: 'Arrival cocktails', 
+      bartab: 'Bar tab' 
+    };
+    let lastNotificationState = null; // Can be 'small' or 'large'             
+    // Sync the two bar tab inputs 
 
-        function fmt(n) {
-          return '$' + Math.round(n).toLocaleString('en-AU');
-        }
+    function fmt(n) {
+      return '$' + Math.round(n).toLocaleString('en-AU');
+    }
 
-        function setDay(d) {
-          day = d;
-          document.getElementById('btn-weekend').classList.toggle('active', d === 'weekend');
-          document.getElementById('btn-weekday').classList.toggle('active', d === 'weekday');
-          update();
-        }
+    function setDay(d) {
+      day = d;
+      document.getElementById('btn-weekend').classList.toggle('active', d === 'weekend');
+      document.getElementById('btn-weekday').classList.toggle('active', d === 'weekday');
+      update();
+    }
 
-        function setPkg(p) {
-          pkg = p;
-          let sliderElement = document.getElementById('guest-slider');
-          let guests = parseInt(sliderElement.value);
+    function setPkg(p) {
+      pkg = p;
+      let sliderElement = document.getElementById('guest-slider');
+      let guests = parseInt(sliderElement.value);
 
-          // ✅ If cocktail selected → force slider below 40
-          if (pkg === 'cocktail' && guests >= 40) {
-            sliderElement.value = 30; // or 39 if you prefer max allowed
-          }
+      // ✅ If cocktail selected → force slider below 40
+      if (pkg === 'cocktail' && guests >= 40) {
+        sliderElement.value = 30; // or 39 if you prefer max allowed
+      }
 
-          // ✅ If switching away from cocktail → ensure valid value
-          if (pkg !== 'cocktail' && guests < 40) {
-            sliderElement.value = 40;
-          }      
-          
-          ['fancy','grazing','feast', 'cocktail'].forEach(k => {
-            document.getElementById('pkg-' + k).classList.toggle('active', k === p); 
-            document.getElementById('pkgCard-' + k).classList.toggle('active', k === p);
-          });
-          update();
-        }
-
-        function toggleExtra(key) {
-          extras[key] = !extras[key];
-          const el = document.getElementById('chk-' + key);
-          el.classList.toggle('checked', extras[key]);
-          document.getElementById('extraCard-' + key).classList.toggle('active');
-          if (key === 'bartab') {
-            document.getElementById('bartab-wrap').style.display = extras[key] ? 'block' : 'none';
-            document.getElementById('bartab-wrap-card').style.display = extras[key] ? 'block' : 'none';
-            
-            if (!extras[key]) document.getElementById('bartab-amt').value = '';
-            if (!extras[key]) document.getElementById('bartab-amt-card').value = '';            
-          }
-          update();
-        }
-
-        function update() {
-          console.log("update calling")
-          let sliderElement = document.getElementById('guest-slider');
-          let guests = parseInt(sliderElement.value);
-          const cocktailCard = document.getElementById('pkg-cocktail');
-          let isSmallParty = guests < 40 ;
-          let notificationElem= document.getElementById('guest_change_notification');
-          let textElem = document.getElementById('notification_text');
-
-          if (isSmallParty) {
-            guests = parseInt(sliderElement.value);
-            if (pkg !== 'cocktail') {
-              setPkg('cocktail');
-              return;
-            }
-            VENUE = 1500;
-            // 1. Show it
-            if (lastNotificationState !== 'small') {
-              showToast(notificationElem, textElem, "Your package changed to <b>Garden Party Cocktail Style Wedding</b>");
-              lastNotificationState = 'small';
-            }                        
-          } 
-          else {
-            if (pkg === 'cocktail') {
-              setPkg('fancy');
-              return;
-            }
-            VENUE = 4600;
-            // ONLY SHOW IF we haven't already shown the 'large' notification
-            if (lastNotificationState !== 'large' && lastNotificationState !== null) {
-                showToast(notificationElem, textElem, `Your package changed to <b>${RATES[pkg].pkgName}</b>`);
-                lastNotificationState = 'large';
-            }            
-          }
-          document.getElementById('guest-display').textContent = guests;
-          // calculate
-          const rate = guests*RATES[pkg][day];      
-          const fb = rate;
-
-          let extraTotal = 0;
-          let extras_names_strings="";
-          for(let [extra, value] of Object.entries(extras)){
-            if(value===true) extraTotal += guests*EXTRAS_PER_GUEST[extra];
-            if(value===true) extras_names_strings += `${extras_names[extra]}, `;
-          }
-          if (extras.bartab) {                  
-            const bt = parseFloat(document.getElementById('bartab-amt').value) || 0;
-            extraTotal += bt;
-          }
-          // const grand = VENUE + fb + extraTotal;      
-          let grand= VENUE + fb + extraTotal;
-          let per_persont_cost= (grand-VENUE)/guests;
-          
-          document.getElementById('venue-hire').textContent = fmt(VENUE);
-          document.getElementById('sum-total').textContent = fmt(per_persont_cost);
-          document.getElementById('sum-fb').textContent = fmt(fb);
-          document.getElementById('sum-extras').textContent = fmt(extraTotal);
-          document.getElementById('sum-grand').textContent = fmt(grand);
-          //////////////// User Order Summery ///////
-          showSummeryValues(fmt(fb),guests, extras_names_strings, fmt(extraTotal), fmt(VENUE), fmt(grand));    
-
-          // update slider track fill
-
-          const min = sliderElement.min;
-          const max = sliderElement.max;
-          const percent = ((guests - min) / (max - min)) * 100;
-          sliderElement.style.background = `linear-gradient(to right, #1e3a1e ${percent}%, #ede9e0 ${percent}%)`;
-        }
-        // Helper function to handle the animation
-        function showToast(elem, textContainer, message) {
-            textContainer.innerHTML = message;
-            elem.style.display = "block";
-            setTimeout(() => {
-                elem.style.opacity = "1";
-            }, 10);
-         
-            setTimeout(() => {
-                elem.style.opacity = "0";
-                setTimeout(() => {
-                    elem.style.display = "none";
-                }, 800);
-            }, 3000);
-        }
-        function showSummeryValues(summery_pkg_total_cost, guests, extras_names_strings, extraTotal, venue_hire, totalCost){
-          document.getElementById("summery_day").textContent=day;
-          document.getElementById("summery_pkg").textContent=RATES[pkg].pkgName;
-          document.getElementById("summery_pkg_total_cost").textContent=summery_pkg_total_cost;
-          document.getElementById("summery_wedding_date").textContent=preferred_wedding_date;
-          document.getElementById("summery_guests").textContent=guests
-          let extras_names_array = extras_names_strings.replace(/, $/, "");
-          extras_names_strings = extras_names_strings.replace(/, $/, "");
-          // 2. Convert string to Array and map it to <li> tags
-          if (extras_names_array.length > 0) {
-              let listItems = extras_names_array.split(', ').map(item => {
-                  return `<li>${item}</li>`;
-              }).join('');
-              document.getElementById("summery_extras").innerHTML = `<ul class="pkg-includes">${listItems}</ul>`;
-          } else {
-              document.getElementById("summery_extras").innerHTML = "";
-          }          
-          document.getElementById("summery_extras_total_cost").textContent=extraTotal;
-          document.getElementById("summery_venue_hire").textContent=venue_hire
-          document.getElementById("summery_total_cost").textContent=totalCost
-
-
-          //   Inject Values into CF7 Hidden Inputs (What the email receives)
-          // Note: We use .value for inputs, not .textContent
+      // ✅ If switching away from cocktail → ensure valid value
+      if (pkg !== 'cocktail' && guests < 40) {
+        sliderElement.value = 40;
+      }      
       
-          document.getElementById("cf7_summery_day").value=day;
-          document.getElementById("cf7_summery_pkg").value=RATES[pkg].pkgName;
-          document.getElementById("cf7_summery_pkg_total_cost").value=summery_pkg_total_cost;
-          document.getElementById("cf7_summery_wedding_date").value=preferred_wedding_date;
-          document.getElementById("cf7_summery_guests").value=guests
-          document.getElementById("cf7_summery_extras").value = extras_names_strings;          
-          document.getElementById("cf7_summery_extras_total_cost").value=extraTotal;
-          document.getElementById("cf7_summery_venue_hire").value=venue_hire
-          document.getElementById("cf7_summery_total_cost").value=totalCost
+      ['fancy','grazing','feast', 'cocktail'].forEach(k => {
+        document.getElementById('pkg-' + k).classList.toggle('active', k === p); 
+        document.getElementById('pkgCard-' + k).classList.toggle('active', k === p);
+      });
+      update();
+    }
 
+    function toggleExtra(key) {
+      extras[key] = !extras[key];
+      const el = document.getElementById('chk-' + key);
+      el.classList.toggle('checked', extras[key]);
+      document.getElementById('extraCard-' + key).classList.toggle('active');
+      if (key === 'bartab') {
+        document.getElementById('bartab-wrap').style.display = extras[key] ? 'block' : 'none';
+        document.getElementById('bartab-wrap-card').style.display = extras[key] ? 'block' : 'none';
+        
+        if (!extras[key]) document.getElementById('bartab-amt').value = '';
+        if (!extras[key]) document.getElementById('bartab-amt-card').value = '';            
+      }
+      update();
+    }
+
+    function update() {
+      console.log("update calling")
+      let sliderElement = document.getElementById('guest-slider');
+      let guests = parseInt(sliderElement.value);
+      const cocktailCard = document.getElementById('pkg-cocktail');
+      let isSmallParty = guests < 40 ;
+      let notificationElem= document.getElementById('guest_change_notification');
+      let textElem = document.getElementById('notification_text');
+
+      if (isSmallParty) {
+        guests = parseInt(sliderElement.value);
+        if (pkg !== 'cocktail') {
+          setPkg('cocktail');
+          return;
         }
+        VENUE = 1500;
+        // 1. Show it
+        if (lastNotificationState !== 'small') {
+          showToast(notificationElem, textElem, "Your package changed to <b>Garden Party Cocktail Style Wedding</b>");
+          lastNotificationState = 'small';
+        }                        
+      } 
+      else {
+        if (pkg === 'cocktail') {
+          setPkg('fancy');
+          return;
+        }
+        VENUE = 4600;
+        // ONLY SHOW IF we haven't already shown the 'large' notification
+        if (lastNotificationState !== 'large' && lastNotificationState !== null) {
+            showToast(notificationElem, textElem, `Your package changed to <b>${RATES[pkg].pkgName}</b>`);
+            lastNotificationState = 'large';
+        }            
+      }
+      document.getElementById('guest-display').textContent = guests;
+      // calculate
+      const rate = guests*RATES[pkg][day];      
+      const fb = rate;
 
-        function submitEnquiry() {
-          document.getElementById('enquiry-form-wrap').style.display = 'none';
-          document.getElementById('success-msg').style.display = 'block';
-        }        
+      let extraTotal = 0;
+      let extras_names_strings="";
+      for(let [extra, value] of Object.entries(extras)){
+        if(value===true) extraTotal += guests*EXTRAS_PER_GUEST[extra];
+        if(value===true) extras_names_strings += `${extras_names[extra]}, `;
+      }
+      if (extras.bartab) {                  
+        const bt = parseFloat(document.getElementById('bartab-amt').value) || 0;
+        extraTotal += bt;
+      }
+      // const grand = VENUE + fb + extraTotal;      
+      let grand= VENUE + fb + extraTotal;
+      let per_persont_cost= (grand-VENUE)/guests;
+      
+      document.getElementById('venue-hire').textContent = fmt(VENUE);
+      document.getElementById('sum-total').textContent = fmt(per_persont_cost);
+      document.getElementById('sum-fb').textContent = fmt(fb);
+      document.getElementById('sum-extras').textContent = fmt(extraTotal);
+      document.getElementById('sum-grand').textContent = fmt(grand);
+      //////////////// User Order Summery ///////
+      showSummeryValues(fmt(fb),guests, extras_names_strings, fmt(extraTotal), fmt(VENUE), fmt(grand));    
 
+      // update slider track fill
+
+      const min = sliderElement.min;
+      const max = sliderElement.max;
+      const percent = ((guests - min) / (max - min)) * 100;
+      sliderElement.style.background = `linear-gradient(to right, #1e3a1e ${percent}%, #ede9e0 ${percent}%)`;
+    }
+    // Helper function to handle the animation
+    function showToast(elem, textContainer, message) {
+        textContainer.innerHTML = message;
+        elem.style.display = "block";
+        setTimeout(() => {
+            elem.style.opacity = "1";
+        }, 10);
+      
+        setTimeout(() => {
+            elem.style.opacity = "0";
+            setTimeout(() => {
+                elem.style.display = "none";
+            }, 800);
+        }, 3000);
+    }
+    function showSummeryValues(summery_pkg_total_cost, guests, extras_names_strings, extraTotal, venue_hire, totalCost){
+      document.getElementById("summery_day").textContent=day;
+      document.getElementById("summery_pkg").textContent=RATES[pkg].pkgName;
+      document.getElementById("summery_pkg_total_cost").textContent=summery_pkg_total_cost;
+      document.getElementById("summery_wedding_date").textContent=preferred_wedding_date;
+      document.getElementById("summery_guests").textContent=guests
+      let extras_names_array = extras_names_strings.replace(/, $/, "");
+      extras_names_strings = extras_names_strings.replace(/, $/, "");
+      // 2. Convert string to Array and map it to <li> tags
+      if (extras_names_array.length > 0) {
+          let listItems = extras_names_array.split(', ').map(item => {
+              return `<li>${item}</li>`;
+          }).join('');
+          document.getElementById("summery_extras").innerHTML = `<ul class="pkg-includes">${listItems}</ul>`;
+      } else {
+          document.getElementById("summery_extras").innerHTML = "";
+      }          
+      document.getElementById("summery_extras_total_cost").textContent=extraTotal;
+      document.getElementById("summery_venue_hire").textContent=venue_hire
+      document.getElementById("summery_total_cost").textContent=totalCost
+
+
+      //   Inject Values into CF7 Hidden Inputs (What the email receives)
+      // Note: We use .value for inputs, not .textContent
+  
+      document.getElementById("cf7_summery_day").value=day;
+      document.getElementById("cf7_summery_pkg").value=RATES[pkg].pkgName;
+      document.getElementById("cf7_summery_pkg_total_cost").value=summery_pkg_total_cost;
+      document.getElementById("cf7_summery_wedding_date").value=preferred_wedding_date;
+      document.getElementById("cf7_summery_guests").value=guests
+      document.getElementById("cf7_summery_extras").value = extras_names_strings;          
+      document.getElementById("cf7_summery_extras_total_cost").value=extraTotal;
+      document.getElementById("cf7_summery_venue_hire").value=venue_hire
+      document.getElementById("cf7_summery_total_cost").value=totalCost
+
+    }
+
+    function submitEnquiry() {
+      document.getElementById('enquiry-form-wrap').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }        
+
+    ///////////// Guests More than 80 Modal Contact Form
+    document.addEventListener('DOMContentLoaded',()=>{
+      const modal = document.getElementById('modalBackdrop');
+      const openBtn = document.getElementById('openModal');
+      const closeX = document.getElementById('closeModalX');
+
+      // Function to toggle modal
+      const toggleModal = () => {
+        console.log("Modal Action")
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('flex');
+      };
+
+      openBtn.addEventListener('click', toggleModal);
+      closeX.addEventListener('click', toggleModal);
+
+      // Close modal if user clicks the dark backdrop
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          toggleModal();
+        }
+      }); 
+    })
+   
   </script>  
