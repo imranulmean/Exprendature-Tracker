@@ -33,6 +33,7 @@ import Suras from './pages/Suras';
 import SuraAudio from './pages/SuraAudio';
 import HadithContent from './pages/HadithContent';
 import Hadiths from './pages/Hadiths';
+import Game from './pages/Game';
 
 export default function App(){
 
@@ -58,7 +59,7 @@ export default function App(){
         <Route path='/surah/:ayatNumber' element={<SuraAudio />} />
         <Route path='/hadiths' element={<Hadiths />} />
         <Route path='/hadithContent/:bookName' element={<HadithContent />} />
-
+        <Route path='/game' element={<Game />} />
 
         <Route element={<PrivateRoute />}>
           {/* <Route path='/' element={<Home />} /> */}

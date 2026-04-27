@@ -1,4 +1,139 @@
 import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+
+export function HeroWave() {
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        let fluid = null;
+        let isDestroyed = false;
+        let prevX = 0;
+        let prevY = 0;
+        let hasPrev = false;
+        let cleanupFns = [];
+
+        import('webgl-fluid-enhanced').then(({ default: WebGLFluidEnhanced }) => {
+            if (isDestroyed) return;
+
+            fluid = new WebGLFluidEnhanced(container);
+
+            container.style.position = 'absolute';
+            container.style.inset = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.display = 'block';
+            container.style.overflow = 'hidden';
+
+            const canvas = container.querySelector('canvas');
+            if (canvas) canvas.style.pointerEvents = 'none';
+
+            fluid.setConfig({
+                transparent: true,
+                backgroundColor: '#000000',
+                colorful: false,
+                colorPalette: ['ffffff'],
+                brightness: 0.15,
+                densityDissipation: 0.94,
+                velocityDissipation: 0.95,
+                splatRadius: 0.1,
+                splatForce: 3000,
+                simResolution: 128,
+                dyeResolution: 512,
+                pressureIterations: 20,
+                curl: 12,
+                shading: false,
+                bloom: false,
+                sunrays: false,
+                hover: false,
+            });
+
+            fluid.start();
+            fluid.multipleSplats(1);
+
+            const onMouseMove = (e) => {
+                if (!fluid || !container) return;
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                if (x < 0 || x > rect.width || y < 0 || y > rect.height) {
+                    hasPrev = false;
+                    return;
+                }
+
+                if (!hasPrev) {
+                    prevX = e.clientX;
+                    prevY = e.clientY;
+                    hasPrev = true;
+                    return;
+                }
+
+                const dx = e.clientX - prevX;
+                const dy = e.clientY - prevY;
+                prevX = e.clientX;
+                prevY = e.clientY;
+
+                const speed = Math.sqrt(dx * dx + dy * dy);
+                if (speed < 2) return;
+
+                const scale = Math.min(speed * 0.15, 4);
+                fluid.splatAtLocation(x, y, dx * scale, dy * scale);
+            };
+
+            const onTouchMove = (e) => {
+                if (!fluid || !container) return;
+                const t = e.touches[0];
+                const rect = container.getBoundingClientRect();
+                const x = t.clientX - rect.left;
+                const y = t.clientY - rect.top;
+                if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+
+                const dx = t.clientX - prevX;
+                const dy = t.clientY - prevY;
+                prevX = t.clientX;
+                prevY = t.clientY;
+                fluid.splatAtLocation(x, y, dx * 8, dy * 8);
+            };
+
+            const onVisibility = () => {
+                if (!fluid) return;
+                if (document.hidden) fluid.stop();
+                else fluid.start();
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('touchmove', onTouchMove, { passive: true });
+            document.addEventListener('visibilitychange', onVisibility);
+
+            cleanupFns = [
+                () => window.removeEventListener('mousemove', onMouseMove),
+                () => window.removeEventListener('touchmove', onTouchMove),
+                () => document.removeEventListener('visibilitychange', onVisibility),
+            ];
+        });
+
+        return () => {
+            isDestroyed = true;
+            cleanupFns.forEach((fn) => fn());
+            if (fluid) {
+                fluid.stop();
+                fluid = null;
+            }
+        };
+    }, []);
+
+    return (
+        <div
+            ref={containerRef}
+            className="absolute inset-0 w-full h-full"
+            style={{ pointerEvents: 'none', zIndex: 20 }}
+            aria-hidden="true"
+        />
+    );
+}
 
 export default function Banner(){
     return(
@@ -9,7 +144,7 @@ export default function Banner(){
                     
                     {/* Dark Overlay - ensures text is readable regardless of the image brightness */}
                     <div className="absolute inset-0 bg-[#00000080]"></div>
-
+                    <HeroWave/> 
                     {/* Text Content */}
                     <div className="relative z-10 text-center px-4">
                         <h1 className="mb-4 text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">

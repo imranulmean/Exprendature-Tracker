@@ -30,7 +30,7 @@ export default function Header(){
     
     return (
         <Navbar fluid className="bg-white border-b border-gray-400 sticky top-0 z-10 print:hidden">
-          <Link to="/">
+          <Link to="/zakats">
             <img src="/logo.PNG" className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
           </Link>
           {/* <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/insertion'> Add/Edit <br/> Expense</Link>
