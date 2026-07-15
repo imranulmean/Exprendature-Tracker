@@ -9,7 +9,7 @@ import adminRoutes from './routes/adminApi.route.js';
 import zakatRoutes from './routes/zakat.route.js';
 import taskRoutes from './routes/task.route.js';
 import bazarRoutes from './routes/bazar.route.js';
-bazarRoutes
+import hadithAppRoutes from './routes/hadithApp.route.js';
 import postgresRoutes from './routes/postgres.route.js';
 // import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
@@ -62,6 +62,7 @@ app.use('/api/adminApi', adminRoutes);
 app.use('/api/zakat', zakatRoutes)
 app.use('/api/tasks', taskRoutes)
 app.use('/api/bazar', bazarRoutes)
+app.use('/hadithApp', hadithAppRoutes)
 
 
 app.get("/getFiles/:userKey", getFiles);
