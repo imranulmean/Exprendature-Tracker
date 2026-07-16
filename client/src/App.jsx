@@ -34,7 +34,7 @@ import SuraAudio from './pages/SuraAudio';
 import HadithContent from './pages/HadithContent';
 import Hadiths from './pages/Hadiths';
 import Game from './pages/Game';
-import HadithAppUsers from './pages/hadithAppUsers';
+import HadithAppUsers from './pages/HadithAppUsers';
 
 export default function App(){
 
