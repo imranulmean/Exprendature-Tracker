@@ -20,7 +20,7 @@ export const checkActivation = async (req, res) => {
             const today = new Date();
 
             const trialEnd = new Date(today);
-            trialEnd.setDate(trialEnd.getDate() + 2);
+            trialEnd.setDate(trialEnd.getDate() + 1);
 
             device = await hadithAppActivation.create({
                 deviceId,
@@ -74,6 +74,7 @@ export const getAllDevice = async(req, res)=>{
 
 export const extendActivation = async(req, res)=>{
     const { deviceId, extentionDays } = req.body;
+    console.log("deviceId:", deviceId)
     try{
         let device = await hadithAppActivation.findOne({ deviceId });
         if (!device) {
@@ -87,6 +88,19 @@ export const extendActivation = async(req, res)=>{
         device.activated = 1;
         await device.save();
         res.json({ success: true, message:device });
+    }catch(err){
+        res.json({success: false, message: err.message })
+    }
+}
+
+export const deleteDevice = async(req, res)=>{
+    const { deviceId } = req.body;
+    try{
+        let device = await hadithAppActivation.findOneAndDelete({ deviceId });
+        if (!device) {
+            return res.json({success: false, message:"No device Found"});
+        }
+        res.json({ success: true, message:"Device Deleted" });
     }catch(err){
         res.json({success: false, message: err.message })
     }

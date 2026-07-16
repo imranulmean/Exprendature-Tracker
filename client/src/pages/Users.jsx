@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Jumbotron from "../components/Jumbotron";
 import { Card, TextInput, Button, Timeline  } from "flowbite-react";
+import { useSelector } from 'react-redux';
 
 export default function Users(){
 
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const [userList, setUserList]= useState([]);
+    const { currentUser } = useSelector((state) => state.user);   
 
     useEffect(()=>{
         getUsers();
@@ -17,7 +19,9 @@ export default function Users(){
         try {
             const res= await fetch(`${BASE_API}/api/adminApi/getUsers`,{
               method:"GET",
-              credentials: "include"
+              headers: {
+                "authorization": currentUser.authorization 
+                },
             });
 
             if(!res.ok){

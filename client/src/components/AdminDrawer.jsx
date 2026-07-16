@@ -49,6 +49,9 @@ export default function AdminDrawer(){
                       <Sidebar.Item icon={HiUsers}>
                         <Link to='/users'>Users list</Link>                        
                       </Sidebar.Item>
+                      <Sidebar.Item icon={HiUsers}>
+                        <Link to='/hadithAppUsers'>Hadith App Users list</Link>                        
+                      </Sidebar.Item>                      
                       <Sidebar.Item icon={HiLogin}>
                         <Link to='/upload/arz007'>Arz Folder</Link> 
                       </Sidebar.Item>

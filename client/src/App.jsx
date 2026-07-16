@@ -34,6 +34,7 @@ import SuraAudio from './pages/SuraAudio';
 import HadithContent from './pages/HadithContent';
 import Hadiths from './pages/Hadiths';
 import Game from './pages/Game';
+import HadithAppUsers from './pages/hadithAppUsers';
 
 export default function App(){
 
@@ -78,6 +79,7 @@ export default function App(){
 
         <Route element= {<AdminPrivateRoute/>} >
           <Route path='/users' element={<Users />} />
+          <Route path='/hadithAppUsers' element={<HadithAppUsers />} />
         </Route> 
 
         <Route path="*" element={<Navigate to="/" />} />   
