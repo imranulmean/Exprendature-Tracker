@@ -85,6 +85,13 @@ export default function HadithAppUsers(){
         }
     }
 
+    function trialDuration(trialStart, trialEnd){
+        const start= moment(trialStart);
+        const end= moment(trialEnd);
+        const days = moment.duration(end.diff(start)).asDays();
+        return `${days} days`;
+    }
+
     return(
         <>
           <Header />
@@ -95,12 +102,13 @@ export default function HadithAppUsers(){
                     return(
                         <>
                             <div className="w-full max-w-sm flex flex-col border border-gray-400 p-2 rounded-lg">
-                                <p>Deveice ID: {e.deviceId}</p>
-                                <p>firstInstall: {e.firstInstall}</p>
-                                <p>Trial Start: {moment(e.trialStart).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                <p>Trial End: {moment(e.trialEnd).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                <p>Activated: {e.activated}</p>
-                                <p>Extend Days</p>
+                                <p className="text-sm">Deveice ID: {e.deviceId}</p>
+                                <p className="text-sm">firstInstall: {e.firstInstall}</p>
+                                <p className="text-sm">Trial Start: {moment(e.trialStart).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                                <p className="text-sm">Trial End: {moment(e.trialEnd).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                                <p className="text-sm">Duration: {trialDuration(e.trialStart,e.trialEnd)}</p>
+                                <p className="text-sm">Activated: {e.activated}</p>
+                                <p className="text-sm">Extend Days</p>
                                 <select value={extentionDays} onChange={(e) => handleSelect(e.target.value, index)}
                                     className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-xs outline-none focus:border-green-500"
                                 >
