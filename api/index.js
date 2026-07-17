@@ -53,8 +53,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-
-
 server.listen(3001, "0.0.0.0", () => {
   console.log('Server is running on port 3001!');
 });

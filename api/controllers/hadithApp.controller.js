@@ -3,7 +3,7 @@ import { hadithAppActivation } from "../models/hadithAppActivation.model.js";
 export const checkActivation = async (req, res) => {
     try {
 
-        const { deviceId } = req.params;
+        const { deviceId } = req.body;
 
         if (!deviceId || deviceId === undefined || deviceId === "" || deviceId === 'undefined') {
             return res.status(400).json({
