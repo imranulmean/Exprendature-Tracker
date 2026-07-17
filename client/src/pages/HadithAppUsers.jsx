@@ -89,54 +89,36 @@ export default function HadithAppUsers(){
         <>
           <Header />
           <Jumbotron />
-          <div className="w-full flex-col p-4">
-            <Card className="w-full ">
-              <div className="mb-4 flex items-center justify-between">
-                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Hadih App Users</h5>
-                <button onClick={getUsers} disabled={loading}
-                    className="bg-green-900 border p-2 text-gray-200 mt-2">Reload
-                </button>                  
-              </div>
-                
-              <div className="flow-root ">
-                  <ul className="divide-y divide-gray-200 dark:divide-gray-700 ">
-                      {
-                          userList.map((e,index)=>{
-                              return(
-                                  <>
-                                      <li className="py-3 sm:py-4">
-                                          <div className="flex items-center space-x-4">                                              
-                                              <div className="min-w-0 flex-1">
-                                                <p>Deveice ID: {e.deviceId}</p>
-                                                <p>firstInstall: {e.firstInstall}</p>
-                                                <p>Trial Start: {moment(e.trialStart).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                                <p>Trial End: {moment(e.trialEnd).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                                                <p>Activated: {e.activated}</p>
-                                                <p>Extend Days</p>
-                                                <select value={extentionDays} onChange={(e) => handleSelect(e.target.value, index)}
-                                                    className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-xs outline-none focus:border-green-500"
-                                                >
-                                                    {days.map((item) => (
-                                                        <option key={item} value={item}>{item}</option>
-                                                    ))}
-                                                </select> 
-                                                <button onClick={()=>extendActivation(e.deviceId)} disabled={loading}
-                                                    className="bg-green-900 border p-2 text-gray-200 mt-2">Update Trail
-                                                </button>
-                                                <button onClick={()=>deleteDevice(e.deviceId)} disabled={loading}
-                                                    className="bg-green-900 border p-2 text-gray-200 mt-2">Delete Device
-                                                </button>                                                                                               
-                                              </div>
-                                              
-                                          </div>
-                                      </li>                                    
-                                  </>
-                              )
-                          })
-                      }                        
-                  </ul>
-              </div>                     
-            </Card>  
+          <div className="w-full flex flex-wrap p-4 gap-2 justify-center">
+            {
+                userList.map((e,index)=>{
+                    return(
+                        <>
+                            <div className="w-full max-w-sm flex flex-col border border-gray-400 p-2 rounded-lg">
+                                <p>Deveice ID: {e.deviceId}</p>
+                                <p>firstInstall: {e.firstInstall}</p>
+                                <p>Trial Start: {moment(e.trialStart).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                                <p>Trial End: {moment(e.trialEnd).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                                <p>Activated: {e.activated}</p>
+                                <p>Extend Days</p>
+                                <select value={extentionDays} onChange={(e) => handleSelect(e.target.value, index)}
+                                    className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-xs outline-none focus:border-green-500"
+                                >
+                                    {days.map((item) => (
+                                        <option key={item} value={item}>{item}</option>
+                                    ))}
+                                </select> 
+                                <button onClick={()=>extendActivation(e.deviceId)} disabled={loading}
+                                    className="bg-green-900 border p-2 text-gray-200 mt-2">Update Trail
+                                </button>
+                                <button onClick={()=>deleteDevice(e.deviceId)} disabled={loading}
+                                    className="bg-green-900 border p-2 text-gray-200 mt-2">Delete Device
+                                </button>
+                            </div>                                    
+                        </>
+                    )
+                })
+            }    
           </div>
  
         </>
