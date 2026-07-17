@@ -41,48 +41,21 @@ const __dirname = path.resolve();
 const app = express();
 const server= http.createServer(app);
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
+// app.use(cors());
 app.use(cors({
-  origin: '*'
+  origin: ["https://localhost" ,"http://localhost:5173", "https://localhost:5174", "https://library.sysnolodge.com.au", "https://exp-tracker-face.vercel.app"],
 }));
-
-// const allowedOrigins = [
-//     "http://localhost",
-//     "https://localhost",
-//     "http://localhost:5173",
-//     "https://localhost:5174",
-//     "https://library.sysnolodge.com.au",
-//     "https://exp-tracker-face.vercel.app",
-//     "capacitor://localhost"
-// ];
-
-// app.use(cors({
-//     origin: function (origin, callback) {
-
-//         // Mobile apps / Postman may send no Origin header
-//         if (!origin) {
-//             return callback(null, true);
-//         }
-
-//         if (allowedOrigins.includes(origin)) {
-//             return callback(null, true);
-//         }
-
-//         callback(new Error("Not allowed by CORS"));
-//     },
-//     credentials: true
-// }));
-
-
-// app.use(cors({
-//   origin: ["https://localhost", "http://localhost" ,"http://localhost:5173", "https://localhost:5174", "https://library.sysnolodge.com.au", "https://exp-tracker-face.vercel.app"],
-//   credentials: true, 
-// }));
 app.use(express.json());
 app.use(cookieParser());
 
 
 
-server.listen(3001, () => {
+server.listen(3001, "0.0.0.0", () => {
   console.log('Server is running on port 3001!');
 });
 
