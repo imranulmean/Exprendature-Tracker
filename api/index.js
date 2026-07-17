@@ -42,8 +42,8 @@ const app = express();
 const server= http.createServer(app);
 
 app.use(cors({
-  origin: '*',
-  credentials: true, 
+  origin: '*'
+  // credentials: true, 
 }));
 app.use(express.json());
 app.use(cookieParser());
