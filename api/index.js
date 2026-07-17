@@ -41,32 +41,36 @@ const __dirname = path.resolve();
 const app = express();
 const server= http.createServer(app);
 
-const allowedOrigins = [
-    "http://localhost",
-    "https://localhost",
-    "http://localhost:5173",
-    "https://localhost:5174",
-    "https://library.sysnolodge.com.au",
-    "https://exp-tracker-face.vercel.app",
-    "capacitor://localhost"
-];
-
 app.use(cors({
-    origin: function (origin, callback) {
-
-        // Mobile apps / Postman may send no Origin header
-        if (!origin) {
-            return callback(null, true);
-        }
-
-        if (allowedOrigins.includes(origin)) {
-            return callback(null, true);
-        }
-
-        callback(new Error("Not allowed by CORS"));
-    },
-    credentials: true
+  origin: '*'
 }));
+
+// const allowedOrigins = [
+//     "http://localhost",
+//     "https://localhost",
+//     "http://localhost:5173",
+//     "https://localhost:5174",
+//     "https://library.sysnolodge.com.au",
+//     "https://exp-tracker-face.vercel.app",
+//     "capacitor://localhost"
+// ];
+
+// app.use(cors({
+//     origin: function (origin, callback) {
+
+//         // Mobile apps / Postman may send no Origin header
+//         if (!origin) {
+//             return callback(null, true);
+//         }
+
+//         if (allowedOrigins.includes(origin)) {
+//             return callback(null, true);
+//         }
+
+//         callback(new Error("Not allowed by CORS"));
+//     },
+//     credentials: true
+// }));
 
 
 // app.use(cors({
