@@ -113,7 +113,16 @@ export const getDevsPhone= async(req, res) =>{
         if (!device) {
             return res.json({success: false, message:"No device Found"});
         }
-        const nums=['01918686394', '01628102974'];
+        const nums=[
+            {
+                'name':"Number 1",
+                'num':'+8801771946713' 
+            },
+            {
+                'name':"Number 2",
+                'num':'+8801918686394' 
+            },             
+        ];
 
         res.json({ success: true, message:nums });
     }catch(err){
