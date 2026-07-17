@@ -20,7 +20,7 @@ export const checkActivation = async (req, res) => {
             const today = new Date();
 
             const trialEnd = new Date(today);
-            trialEnd.setDate(trialEnd.getDate() + 1);
+            trialEnd.setDate(trialEnd.getDate() + 3);
 
             device = await hadithAppActivation.create({
                 deviceId,
