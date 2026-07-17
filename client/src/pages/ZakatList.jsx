@@ -24,7 +24,7 @@ export default function ZakatList(){
     useEffect(()=>{
         getZakatList();
     },[]);
-
+ 
     const getZakatList = async() =>{
         const formData={
             userId:currentUser._id
