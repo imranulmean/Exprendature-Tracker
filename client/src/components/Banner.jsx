@@ -144,7 +144,7 @@ export default function Banner(){
                     
                     {/* Dark Overlay - ensures text is readable regardless of the image brightness */}
                     <div className="absolute inset-0 bg-[#00000080]"></div>
-                    <HeroWave/> 
+                    {/* <HeroWave/>  */}
                     {/* Text Content */}
                     <div className="relative z-10 text-center px-4">
                         <h1 className="mb-4 text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg">

@@ -74,7 +74,6 @@ export const getAllDevice = async(req, res)=>{
 
 export const extendActivation = async(req, res)=>{
     const { deviceId, extentionDays } = req.body;
-    console.log("deviceId:", deviceId)
     try{
         let device = await hadithAppActivation.findOne({ deviceId });
         if (!device) {

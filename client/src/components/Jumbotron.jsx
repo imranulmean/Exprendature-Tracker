@@ -21,13 +21,13 @@ export default function Jumbotron(){
     return(
         <>
             <div className="w-full flex flex-col bg-gray-900 p-2">
-                <div className="w-full flex flex-col justify-center items-center">
-                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 text-white">
-                        {ctime}
-                    </h5>
+                <div className="w-full flex justify-center items-center gap-2">
                     <p className="text-sm font-normal text-white">
                         {date}
-                    </p>
+                    </p>                    
+                    <h5 className="text-sm font-normal tracking-tight text-gray-900 text-white">
+                        {ctime}
+                    </h5>
                 </div>
             </div>            
         </>
