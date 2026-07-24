@@ -9,8 +9,7 @@ export default function HadithAppUsers(){
 
     const BASE_API=import.meta.env.VITE_API_BASE_URL;
     const [userList, setUserList]= useState([]);
-    const { currentUser } = useSelector((state) => state.user);
-    const days=[90, 180, 365, 500, 1000];
+    const { currentUser } = useSelector((state) => state.user);    
     const [extentionDays, setExtentionDays] = useState(90);
     const [loading, setLoading] = useState(false);
     const [searchText, setSearchText] = useState('');
@@ -113,8 +112,17 @@ export default function HadithAppUsers(){
           <Header />
           <Jumbotron />
           <div className="flex flex-col items-center mt-2">
-            <input type='text' className="rounded-lg" placeholder="Device Id" onChange={(e)=>setSearchText(e.target.value)}/>
-            <p className="text-xs text-gray-600">Showing: {filtered.length}</p>
+            <div className="flex items-start gap-2">
+
+                <div className="flex flex-col gap-2">
+                    <input type='text' className="rounded-lg" placeholder="Device Id" onChange={(e)=>setSearchText(e.target.value)}/>
+                    <p className="text-xs text-gray-600">Showing: {filtered.length}</p>
+                </div>
+
+                <button onClick={getUsers}
+                    className="bg-green-900 border p-2 text-gray-200">Reload</button>
+            </div>
+
             <div className="w-full flex flex-wrap px-4 py-2 gap-2 justify-center">
                 {
                     filtered.map((e,index)=>{
@@ -129,13 +137,9 @@ export default function HadithAppUsers(){
                                     <p className="text-sm">Remaining: {trialRemaining(e.trialEnd)}</p>
                                     <p className="text-sm">Activated: {e.activated}</p>
                                     <p className="text-sm">Extend Days</p>
-                                    <select value={extentionDays} onChange={(e) => handleSelect(e.target.value, index)}
+                                    <input tyep="number" onChange={(e) => handleSelect(e.target.value, index)}
                                         className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-xs outline-none focus:border-green-500"
-                                    >
-                                        {days.map((item) => (
-                                            <option key={item} value={item}>{item}</option>
-                                        ))}
-                                    </select> 
+                                    /> 
                                     <button onClick={()=>extendActivation(e.deviceId)} disabled={loading}
                                         className="bg-green-900 border p-2 text-gray-200 mt-2">Update Trail
                                     </button>
