@@ -65,7 +65,6 @@ export default function HadithAppUsers(){
     }
 
     const deleteDevice = async(deviceId)=>{
-        console.log(deviceId)
         setLoading(true);
         try{
             const res= await fetch(`${BASE_API}/hadithApp/deleteDevice`,{
@@ -134,8 +133,8 @@ export default function HadithAppUsers(){
                     <p className="text-xs text-gray-600">Showing: {filtered.length}</p>
                 </div>
 
-                <button onClick={getUsers}
-                    className="bg-green-900 border p-2 text-gray-200">Reload</button>
+                <button onClick={getUsers} disabled={loading}
+                    className="bg-green-900 border p-2 text-gray-200">{ loading ? 'loading...' : 'Reload'}</button>
             </div>
 
             <div className="w-full flex flex-wrap px-4 py-2 gap-2 justify-center">
