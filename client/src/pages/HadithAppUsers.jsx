@@ -92,15 +92,30 @@ export default function HadithAppUsers(){
         return `${days} days`;
     }
 
-    function trialRemaining(trialEnd){
+    function trialRemaining(trialEnd) {
+        const now = moment();
+        const end = moment(trialEnd);
 
-        const duration = moment.duration( moment(trialEnd).diff(moment()) );
-        const days = Math.floor(duration.asDays());
-        const hours = duration.hours();
-        const minutes = duration.minutes();
-        const seconds = duration.seconds();
-        return (`${days} days ${hours} hr ${minutes} min`)        
-    }    
+        if (end.isAfter(now)) {
+            // Trial still active
+            const duration = moment.duration(end.diff(now));
+
+            const days = Math.floor(duration.asDays());
+            const hours = duration.hours();
+            const minutes = duration.minutes();
+
+            return `Remaining: ${days} days ${hours} hr ${minutes} min`;
+        } else {
+            // Trial expired
+            const duration = moment.duration(now.diff(end));
+
+            const days = Math.floor(duration.asDays());
+            const hours = duration.hours();
+            const minutes = duration.minutes();
+
+            return `Expired: ${days} days ${hours} hr ${minutes} min ago`;
+        }
+    }   
 
     const filtered = userList.filter((user)=>{
         if(!searchText) return user;
@@ -134,7 +149,7 @@ export default function HadithAppUsers(){
                                     <p className="text-sm">Trial Start: {moment(e.trialStart).format('MMMM Do YYYY, h:mm a')}</p>
                                     <p className="text-sm">Trial End: {moment(e.trialEnd).format('MMMM Do YYYY, h:mm a')}</p>
                                     <p className="text-sm">Duration: {trialDuration(e.trialStart,e.trialEnd)}</p>
-                                    <p className="text-sm">Remaining: {trialRemaining(e.trialEnd)}</p>
+                                    <p className="text-sm">{trialRemaining(e.trialEnd)}</p>
                                     <p className="text-sm">Activated: {e.activated}</p>
                                     <p className="text-sm">Extend Days</p>
                                     <input tyep="number" onChange={(e) => handleSelect(e.target.value, index)}
