@@ -20,33 +20,28 @@ export const google = async (req, res, next) => {
         }
         rest['authorization']= token;
         res.status(200).json(rest);
-        // res.status(200).cookie('access_token', token, {
-        //     httpOnly: true,
-        //     secure: true,  
-        //     sameSite: "None",
 
-        //   }).json(rest);
       } 
-      else {
-        const generatedPassword =
-          Math.random().toString(36).slice(-8) +
-          Math.random().toString(36).slice(-8);
-        const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
-        const newUser = new User({
-          displayName,
-          email,
-          password: hashedPassword,
-          profilePicture: googlePhotoUrl,
-        });
-        await newUser.save();
-        userId=newUser._id;
-        const token = jwt.sign(
-          { id: newUser._id },
-          process.env.JWT_SECRET
-        );
-        const { password, isAdmin, ...rest } = newUser._doc;
-        res.status(200).cookie('access_token', token, {httpOnly: true,}).json(rest);
-      }
+      // else {
+      //   const generatedPassword =
+      //     Math.random().toString(36).slice(-8) +
+      //     Math.random().toString(36).slice(-8);
+      //   const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+      //   const newUser = new User({
+      //     displayName,
+      //     email,
+      //     password: hashedPassword,
+      //     profilePicture: googlePhotoUrl,
+      //   });
+      //   await newUser.save();
+      //   userId=newUser._id;
+      //   const token = jwt.sign(
+      //     { id: newUser._id },
+      //     process.env.JWT_SECRET
+      //   );
+      //   const { password, isAdmin, ...rest } = newUser._doc;
+      //   res.status(200).cookie('access_token', token, {httpOnly: true,}).json(rest);
+      // }
       const existingTotalCash = await TotalCashDetail.findOne({ userId});
       if(!existingTotalCash){
         const newTotalCash = new TotalCashDetail({
@@ -70,3 +65,53 @@ export const google = async (req, res, next) => {
       next(error);
     }
   };
+
+  export const createHadithBlogUser = async(req, res)=>{
+
+    try {
+      const {email, password, displayName} = req.body;
+      const hashedPass= bcryptjs.hashSync(password, 10);
+      const user = await User.findOne({ email });
+      if(user){
+          return res.json({success: true, message: "User Already Exists"});
+      }
+      const userObj= { email, password: hashedPass, displayName};
+      const newUser = new User(userObj);
+      const userRes= await newUser.save();
+      res.json({success: true, message: "User Created", userRes});
+    } catch (error) {
+      res.json({success: false, message: error.message});
+    }
+  }
+
+  export const updateHadithBlogUser = async(req, res)=>{
+
+    try {
+      const {userId, updatedPass} = req.body;
+      const updatedField={};
+      if(updatedPass) updatedField.password=bcryptjs.hashSync(updatedPass, 10)
+      const validUser = await User.findByIdAndUpdate( 
+          {_id:userId}, 
+          {$set:updatedField}, 
+          { new:true } 
+      ).select('-password');
+      if(!validUser){
+          return res.json({success: false, message: "User Not Found"});
+      }
+      res.json({success: true, message: "User Update Success",validUser});
+    } catch (error) {
+      res.json({success: false, message: error.message});
+    }
+  }  
+
+  export const deleteHadithBlogUser = async(req, res)=>{
+
+    try {
+      const {userId} = req.body;
+
+      const validUser = await User.findByIdAndDelete({_id:userId});
+      res.json({success: true, message: "User Delete Success"});
+    } catch (error) {
+      res.json({success: false, message: error.message});
+    }
+  }    

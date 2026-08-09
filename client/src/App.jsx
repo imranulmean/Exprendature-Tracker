@@ -35,6 +35,9 @@ import HadithContent from './pages/HadithContent';
 import Hadiths from './pages/Hadiths';
 import Game from './pages/Game';
 import HadithAppUsers from './pages/HadithAppUsers';
+import CreateHadithBlog from './pages/HadithBlogsPages/CreateHadithBlog';
+import GetHadithBlogs from './pages/HadithBlogsPages/GetHadithBlogs';
+import UpdateHadithBlog from './pages/HadithBlogsPages/UpdateHadithBlog';
 
 export default function App(){
 
@@ -82,6 +85,9 @@ export default function App(){
           <Route path='/hadithAppUsers' element={<HadithAppUsers />} />
         </Route> 
 
+        <Route path="/getHadithBlogs" element={<GetHadithBlogs />} />
+        <Route path="/createHadithBlog" element={<CreateHadithBlog />} />
+        <Route path="/updateHadithBlog/:id" element={<UpdateHadithBlog />} />
         <Route path="*" element={<Navigate to="/" />} />   
       </Routes>
     </BrowserRouter>    

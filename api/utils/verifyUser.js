@@ -21,3 +21,10 @@ export const verifyToken = (req, res, next) => {
     next();
   });
 };
+
+export const checkIsAdmin = (req, res, next) =>{
+  if(!req.user.isAdmin){
+    return next(errorHandler(401, 'Unauthorized'));
+  }
+  next();
+}

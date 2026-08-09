@@ -1,4 +1,5 @@
 import { hadithAppActivation } from "../models/hadithAppActivation.model.js";
+import HadithBlog from "../models/hadithBlog.model.js";
 
 export const checkActivation = async (req, res) => {
     try {
@@ -126,5 +127,60 @@ export const getDevsPhone= async(req, res) =>{
         res.json({ success: true, message:nums });
     }catch(err){
         res.json({success: false, message: err.message })
+    }
+}
+
+
+export const getHadithBlogs = async(req, res)=>{
+    try{
+        const hadithBlogs= await HadithBlog.find({}, "userId title shortDesc tags createdAt updatedAt");
+        res.json({success: true, message: hadithBlogs});
+    }catch(error){
+        res.json({success: false, message: error.message});
+    }
+}
+
+export const getSingleHadithBlog = async(req, res)=>{
+    try{
+        const { id }= req.params;
+        const hadithBlog= await HadithBlog.findOne({ _id: id });
+        res.json({success: true, message: hadithBlog});
+    }catch(error){
+        res.json({success: false, message: error.message});
+    }
+}
+
+export const createHadithBlog = async(req, res)=>{
+    try{
+        const newHadithBlog= new HadithBlog(req.body);
+        await newHadithBlog.save();
+        res.json({success: true, message: 'Blog Created'});
+    }catch(error){
+        res.json({success: false, message: error.message});
+    }
+
+} 
+
+export const updateHadithBlog = async(req, res)=>{
+    try{
+        const {blogId, ...rest} = req.body;
+        const existingBlog= await HadithBlog.findByIdAndUpdate(
+            {_id:blogId},
+            {$set:rest}, 
+            { new:true }
+        );
+        res.json({success: true, message: 'Blog Created'});
+    }catch(error){
+        res.json({success: false, message: error.message});
+    }
+}
+
+export const deleteHadithBlog = async(req, res)=>{
+    try{
+        const {blogId} = req.body;
+        const existingBlog= await HadithBlog.findByIdAndDelete({_id:blogId});
+        res.json({success: true, message: 'Blog Deleted'});
+    }catch(error){
+        res.json({success: false, message: error.message});
     }
 }

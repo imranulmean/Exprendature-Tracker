@@ -14,8 +14,7 @@ export default function Header(){
     const handleSignout = async () => {
         try {
           const res = await fetch(`${BASE_API}/api/auth/signout`, {
-            method: 'POST',
-            credentials: "include",
+            method: 'POST'
           });
           const data = await res.json();
           if (!res.ok) {
