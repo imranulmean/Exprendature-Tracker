@@ -133,8 +133,44 @@ export const getDevsPhone= async(req, res) =>{
 
 export const getHadithBlogs = async(req, res)=>{
     try{
-        const hadithBlogs= await HadithBlog.find({}, "userId title shortDesc tags createdAt updatedAt");
-        res.json({success: true, message: hadithBlogs});
+
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 20;
+        const skip = (page - 1) * limit;
+
+        const q = req.query.q || "all";
+
+        let filter = {};
+
+        if (q !== "all") {
+            filter = {
+                tags: {
+                    $regex: `^${q}$`,
+                    $options: "i"
+                }
+            };
+        }
+
+        const total = await HadithBlog.countDocuments(filter);
+
+        const hadithBlogs = await HadithBlog
+            .find(
+                filter,
+                "userId title shortDesc tags createdAt updatedAt"
+            )
+            .skip(skip)
+            .limit(limit)
+            .sort({ updatedAt: -1 });
+
+        return res.json({
+            success: true,
+            message: hadithBlogs,
+            totalPages: Math.ceil(total / limit),
+            total,
+            page,
+            limit
+        });
+        
     }catch(error){
         res.json({success: false, message: error.message});
     }
@@ -163,13 +199,12 @@ export const createHadithBlog = async(req, res)=>{
 
 export const updateHadithBlog = async(req, res)=>{
     try{
-        const {blogId, ...rest} = req.body;
         const existingBlog= await HadithBlog.findByIdAndUpdate(
-            {_id:blogId},
-            {$set:rest}, 
+            {_id: req.body._id},
+            { $set: req.body }, 
             { new:true }
         );
-        res.json({success: true, message: 'Blog Created'});
+        res.json({success: true, message: 'Blog Update'});
     }catch(error){
         res.json({success: false, message: error.message});
     }
@@ -184,3 +219,27 @@ export const deleteHadithBlog = async(req, res)=>{
         res.json({success: false, message: error.message});
     }
 }
+
+export const getUniqueHadithBlogTags = async (req, res) => {
+
+    try {
+
+        const tags = await HadithBlog.aggregate([
+            { $unwind: "$tags" },
+            {
+                $group: {
+                    _id: { $toLower: "$tags" },
+                    tag: { $first: "$tags" }
+                }
+            },
+            { $sort: { tag: 1 } }
+        ]);
+
+        res.json({ success: true, message: tags.map(item => item.tag)});
+
+    } catch (error) {
+
+        res.json({ success: false, message: error.message });
+
+    }
+};

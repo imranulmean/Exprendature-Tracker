@@ -115,3 +115,39 @@ export const google = async (req, res, next) => {
       res.json({success: false, message: error.message});
     }
   }    
+
+  export const hadithBlogLogin = async(req, res)=>{
+
+    try {
+      const {email, password} = req.body;
+      const validUser = await User.findOne({ email });
+      if(!validUser){
+          return res.json({success: false, message: "User Not Found"});
+      }
+
+      const validPassword = bcryptjs.compareSync(password, validUser.password);
+      if (!validPassword) {
+          return res.json({success: false, message: "Userid or Password is wrong"});
+        }   
+
+      const token = jwt.sign({ id: validUser._id, role: validUser.role},
+                    process.env.JWT_SECRET,
+                    { expiresIn:"1h" }
+      );
+
+      const { password: pass, ...rest } = validUser._doc;
+      res.json({success: true, message: "User Login Success", rest, token});
+    } catch (error) {
+      res.json({success: false, message: error.message});
+    }
+  }
+
+  export const hadithBlogValidateUser = async(req, res)=>{
+
+    try {
+      res.json({success: true, message: "User Validate Success"});
+    } catch (error) {
+      console.log('hittin')
+      res.json({success: false, message: error.message});
+    }
+  }  

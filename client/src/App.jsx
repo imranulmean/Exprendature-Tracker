@@ -38,6 +38,7 @@ import HadithAppUsers from './pages/HadithAppUsers';
 import CreateHadithBlog from './pages/HadithBlogsPages/CreateHadithBlog';
 import GetHadithBlogs from './pages/HadithBlogsPages/GetHadithBlogs';
 import UpdateHadithBlog from './pages/HadithBlogsPages/UpdateHadithBlog';
+import HadithBlogLogin from './pages/HadithBlogsPages/HadithBlogLogin';
 
 export default function App(){
 
@@ -85,6 +86,7 @@ export default function App(){
           <Route path='/hadithAppUsers' element={<HadithAppUsers />} />
         </Route> 
 
+        <Route path="/hadithBlogLogin" element={<HadithBlogLogin />} />
         <Route path="/getHadithBlogs" element={<GetHadithBlogs />} />
         <Route path="/createHadithBlog" element={<CreateHadithBlog />} />
         <Route path="/updateHadithBlog/:id" element={<UpdateHadithBlog />} />

@@ -4,15 +4,22 @@ import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import HadithBlogHeader from "./HadithBlogHeader";
+import HadithBlogProtetion from "./HadithBlogProtetion";
+import { useNavigate } from "react-router-dom";
 
-
-const quillModules = {
+export const quillModules = {
   toolbar: [
-    [{ header: [2, 3, false] }],
+    [{ font: [] }, { size: [] }],
+    [{ header: [1, 2, 3, false] }],
     ["bold", "italic", "underline", "strike"],
-    [{ align: [] }],
-    ["blockquote", "link"],
+    [{ color: [] }, { background: [] }],
+    [{ script: "sub" }, { script: "super" }],
     [{ list: "ordered" }, { list: "bullet" }],
+    [{ indent: "-1" }, { indent: "+1" }],
+    [{ align: [] }],
+    ["blockquote", "code-block"],
+    ["link"],
     ["clean"],
   ],
 };
@@ -24,15 +31,21 @@ export default function UpdateHadithBlog() {
     const [tags, setTags] = useState("");
     const [details, setDetails] = useState("");
 
-  const [hadithBlog, setHadithBlog] = useState({}); 
-  const BASE_API=import.meta.env.VITE_API_BASE_URL;
-  const { currentUser } = useSelector((state) => state.user);    
-  const [loading, setLoading] = useState(false);
+    const [hadithBlog, setHadithBlog] = useState({}); 
+    const BASE_API=import.meta.env.VITE_API_BASE_URL;
+    const { currentUser } = useSelector((state) => state.user);    
+    const [loading, setLoading] = useState(false);
+
+    const [existingTags, setExistingTags] = useState([]);
+    const [selectedTag, setSelectedTag] = useState("");
+    const [manualTag, setManualTag] = useState("");
+    const navigate= useNavigate();
   
   const {id} = useParams();
 
   useEffect(()=>{
     getSingleHadithBlog();
+    getUniqueHadithBlogTags();
 },[])
 
     const getSingleHadithBlog=async()=>{
@@ -45,7 +58,7 @@ export default function UpdateHadithBlog() {
                 },
             });
 
-            const data= await res.json();
+            const data= await res.json();            
             setHadithBlog(data.message);
         }
         catch(e){
@@ -55,99 +68,188 @@ export default function UpdateHadithBlog() {
         }
     }  
 
-  const handleSubmit = async() => {
-
-    // if(!title || !shortDesc || !tags || !details){
-    //     alert("Fields cannot be null")
-    //     return;
-    // }
-    // const obj={
-    //     userId: currentUser._id,
-    //     title: title.trim(), 
-    //     shortDesc: shortDesc.trim(),
-    //     tags: tags.split(",").map(t => t.trim()), 
-    //     details: details.trim()
-    // };
-    console.log(hadithBlog)
-    return;
+  const  getUniqueHadithBlogTags= async()=>{
     setLoading(true);
     try {
-        const res= await fetch(`${BASE_API}/hadithApp/createHadithBlog`,{
-            method:"POST",
+        const res= await fetch(`${BASE_API}/hadithApp/getUniqueHadithBlogTags`,{
+            method:"GET",
             headers: { 
               "authorization": currentUser.authorization,
               "Content-Type": "application/json"
-             },
-            body: JSON.stringify(obj)
+             }
         })
         const data= await res.json();
-        alert(data.message);
+        if(data.success){
+             setExistingTags(data.message);
+        }
+        
     } catch (error) {
         alert(error)
     }
     finally{
         setLoading(false);
+    }     
+  }    
+    
+  const handleSubmit = async() => {
+    
+    if(hadithBlog.tags.length<1){
+        alert("Filed not empty")
+        return;
+    }
+    setLoading(true);
+
+    try {
+        const res= await fetch(`${BASE_API}/hadithApp/updateHadithBlog`,{
+            method:"POST",
+            headers: { 
+              "authorization": currentUser.authorization,
+              "Content-Type": "application/json"
+             },
+            body: JSON.stringify(hadithBlog)
+        })
+        const data= await res.json();
+        alert(data.message);
+        if(data.message === 'Unauthorized'){
+            localStorage.removeItem('hadithBlogLoginSession');
+            localStorage.removeItem('hadithBlogUserInfo');
+            navigate('/hadithBlogLogin');
+        }        
+    } catch (error) {
+        alert(error)
+    }
+    finally{
+        setLoading(false);
+        getSingleHadithBlog();
     }    
   }
+
+    const addTag = (tagName) => {
+
+        const newTag = tagName.toLowerCase().trim();
+
+        if (!newTag) {
+            return;
+        }
+        const alreadyExists = hadithBlog.tags.some(
+            tag => tag.trim().toLowerCase() === newTag
+        );
+
+        if (alreadyExists) {
+            alert(`Tag "${newTag}" already exists`);
+            return;
+        }
+        let blogTags= hadithBlog.tags;
+        blogTags.push(newTag);
+        setHadithBlog(prev=>({...prev, tags:blogTags}))
+        setManualTag(''); 
+        setSelectedTag('');        
+    };  
+  
   return (
     <>
-        <div className="p-4">
-            <Card className="max-w-2xl mx-auto">
-                <div className="space-y-5">
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="title">Title:</Label>
-                        </div>
-                        <TextInput value={hadithBlog.title} type="text" placeholder="Title" required
-                                onChange={(e)=>{ 
-                                    setHadithBlog((prev) => ({...prev, title: e.target.value.trim()})) 
-                                }}
-                        />
-                    </div>
-
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="shortDesc">Short Description</Label>
-                        </div>
-                        <TextInput value={hadithBlog.shortDesc} type="text" placeholder="Short Description" required  
-                                onChange={(e)=>{ 
-                                    setHadithBlog((prev) => ({...prev, shortDesc: e.target.value.trim()})) 
-                                }}
-                        />
-                    </div>
-
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="tags">Tags:</Label>
-                        </div>
-                        <TextInput value={hadithBlog.tags} type="text" placeholder="e.g. Bukhari, Prayer, Sincerity" required
+        <HadithBlogHeader />
+        <HadithBlogProtetion>            
+            <div className="p-4">
+                <Card className="max-w-2xl mx-auto">
+                    <div className="space-y-5">
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="title">Title:</Label>
+                            </div>
+                            <TextInput value={hadithBlog.title} type="text" placeholder="Title" required
                                     onChange={(e)=>{ 
-                                        setHadithBlog((prev) => ({...prev, tags: (e.target.value).split(' ,').map( t=> t.trim())})) 
-                                    }}                                    
-                        />
-                    </div>
+                                        setHadithBlog((prev) => ({...prev, title: e.target.value})) 
+                                    }}
+                            />
+                        </div>
 
-                    <div>
-                    <div className="mb-2 block">
-                        <Label htmlFor="details">Details:</Label>
-                    </div>
-                        <ReactQuill
-                            theme="snow"
-                            value={hadithBlog.details}
-                            onChange={(e)=>{ 
-                                setHadithBlog((prev) => ({...prev, details: e.target.value.trim()})) 
-                            }}
-                            modules={quillModules}
-                            placeholder="Start Writing"
-                        />
-                    </div>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="shortDesc">Short Description</Label>
+                            </div>
+                            <TextInput value={hadithBlog.shortDesc} type="text" placeholder="Short Description" required  
+                                    onChange={(e)=>{ 
+                                        setHadithBlog((prev) => ({...prev, shortDesc: e.target.value})) 
+                                    }}
+                            />
+                        </div>
 
-                    <Button onClick={handleSubmit} disabled={loading}>
-                        {loading ? 'loading...' : 'Update Post'}
-                    </Button>
-                </div>
-            </Card>
-        </div>    
+                        <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="tags">Tags:</Label>
+                            </div>
+
+                            {/* ////////////////////////// */}
+                            <div className="flex gap-2">
+                                <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
+                                        className="border rounded-lg px-3 py-2"
+                                >
+                                    <option value="">Select existing tag</option>
+
+                                    {existingTags.map(tag => (
+                                        <option key={tag} value={tag}> {tag}</option>
+                                    ))}
+                                </select>
+                                <Button  type="button" onClick={()=>addTag(selectedTag)} disabled={!selectedTag}>
+                                    Add
+                                </Button>
+                            </div>
+                            <div className="flex gap-2 mt-2">
+                                <TextInput value={manualTag} type="text" placeholder="Type Single Manual Tag" onChange={(e) => setManualTag(e.target.value)} />
+                                <Button  type="button" onClick={()=> addTag(manualTag) } disabled={!manualTag}>
+                                    Add
+                                </Button>                                
+                            </div>
+                            <p className="flex flex-wrap gap-2">
+                                {
+                                    (hadithBlog && hadithBlog?.tags?.length>0) &&
+                                    hadithBlog.tags.map((t, index)=>{
+                                        return(
+                                            <>
+                                                <p>{t}</p>
+                                                <button type="button"
+                                                    onClick={() => {
+                                                        setHadithBlog(prev => ({
+                                                            ...prev,
+                                                            tags: prev.tags.filter((_, i) => i !== index)
+                                                        }));
+                                                    }}
+                                                    className="ml-1 font-bold text-red-500 hover:text-red-700"
+                                                >
+                                                    ×
+                                                </button>
+                                            </>
+                                        )
+                                    })
+                                }
+                            </p>                                                         
+                            {/* ///////////////////// */}
+                        </div>
+
+                        <div>
+                        <div className="mb-2 block">
+                            <Label htmlFor="details">Details:</Label>
+                        </div>
+                            <ReactQuill
+                                theme="snow"
+                                value={hadithBlog.details}
+                                onChange={(content)=>{ 
+                                    setHadithBlog((prev) => ({...prev, details: content})) 
+                                }}
+                                modules={quillModules}
+                                placeholder="Start Writing"
+                            />
+                        </div>
+
+                        <Button onClick={handleSubmit} disabled={loading}>
+                            {loading ? 'loading...' : 'Update Post'}
+                        </Button>
+                    </div>
+                </Card>
+            </div>
+        </HadithBlogProtetion>
+    
     </>
 
 

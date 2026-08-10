@@ -1,5 +1,5 @@
 import express from 'express';
-import { checkActivation, createHadithBlog, deleteDevice, deleteHadithBlog, extendActivation, getAllDevice, getDevsPhone, getHadithBlogs, getSingleHadithBlog, updateHadithBlog } from '../controllers/hadithApp.controller.js';
+import { checkActivation, createHadithBlog, deleteDevice, deleteHadithBlog, extendActivation, getAllDevice, getDevsPhone, getHadithBlogs, getSingleHadithBlog, getUniqueHadithBlogTags, updateHadithBlog } from '../controllers/hadithApp.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
@@ -14,5 +14,7 @@ router.get('/getSingleHadithBlog/:id', getSingleHadithBlog);
 router.post('/createHadithBlog', verifyToken, createHadithBlog);
 router.post('/updateHadithBlog', verifyToken, updateHadithBlog);
 router.post('/deleteHadithBlog', verifyToken, deleteHadithBlog);
+
+router.get("/getUniqueHadithBlogTags", getUniqueHadithBlogTags);
 
 export default router;
