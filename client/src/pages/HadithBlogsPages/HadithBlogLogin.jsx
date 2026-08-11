@@ -45,14 +45,14 @@ export default function HadithBlogLogin(){
       };    
 
     return(
-        <div className="flex flex-col w-full h-[100vh]" 
+        <div className="flex flex-col w-full h-[100vh] p-2" 
             style={{'justify-content': 'center', 'align-items': 'center', 'background':'url(/login-bg-new.jpg)', 'background-repeat': 'no-repeat', 'background-position': 'center', 'background-size': 'cover' }}>
-            <div className="w-full max-w-sm bg-white p-10 rounded-lg">
+            <div className="max-w-sm w-full bg-white p-10 rounded-lg">
                 <div className="flex justify-center">
                     {/* <img  src="/watchdog.jpg" alt="Your Company" class="h-auto w-32" /> */}
                     <span class="text-cyan-900 self-center text-3xl text-heading font-semibold whitespace-nowrap">Admin Login</span>
                 </div>
-                <form className="flex max-w-md flex-col gap-4" onSubmit={handleSubmit}>
+                <form className="flex max-w-sm w-full flex-col gap-4" onSubmit={handleSubmit}>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="email1">User ID: </Label>
