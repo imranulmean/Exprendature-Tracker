@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const quillModules = {
   toolbar: [
-    [{ font: [] }, { size: [] }],
+    [{ font: [] }],
     [{ header: [1, 2, 3, false] }],
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
@@ -146,7 +146,16 @@ export default function UpdateHadithBlog() {
         setManualTag(''); 
         setSelectedTag('');        
     };  
-  
+
+    if(loading){
+        return(
+            <>
+                <HadithBlogHeader />
+                Processing data ....
+            </>
+        )
+    }    
+    
   return (
     <>
         <HadithBlogHeader />
@@ -184,7 +193,7 @@ export default function UpdateHadithBlog() {
                             {/* ////////////////////////// */}
                             <div className="flex gap-2">
                                 <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
-                                        className="border rounded-lg px-3 py-2"
+                                        className="max-w-sm w-full border rounded-lg px-3 py-2"
                                 >
                                     <option value="">Select existing tag</option>
 
@@ -202,13 +211,13 @@ export default function UpdateHadithBlog() {
                                     Add
                                 </Button>                                
                             </div>
-                            <p className="flex flex-wrap gap-2">
+                            <p className="flex flex-wrap gap-2 mt-2">
                                 {
                                     (hadithBlog && hadithBlog?.tags?.length>0) &&
                                     hadithBlog.tags.map((t, index)=>{
                                         return(
                                             <>
-                                                <p>{t}</p>
+                                                <p className="border-b border-gray-400 text-sm break-all">{t}</p>
                                                 <button type="button"
                                                     onClick={() => {
                                                         setHadithBlog(prev => ({

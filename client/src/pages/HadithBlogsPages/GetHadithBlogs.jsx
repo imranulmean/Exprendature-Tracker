@@ -16,7 +16,7 @@ export default function GetHadithBlogs(){
     const [searchParams, setSearchParams] = useSearchParams();
     const hadithBlogLoginSession= localStorage.getItem('hadithBlogLoginSession')
     const navigate= useNavigate();
-    const [selectedTag, setSelectedTag] = useState(searchParams.get("q") || "all");
+    const [selectedTag, setSelectedTag] = useState("");
     const [existingTags, setExistingTags] = useState([]);
 
     const [limit, setLimit] = useState(6);
@@ -29,6 +29,8 @@ export default function GetHadithBlogs(){
     useEffect(() => {
 
         window.scrollTo(0,0)
+        setSelectedTag(q);
+        
         getHadithBlogs();
 
     }, [searchParams]);      
@@ -121,7 +123,6 @@ export default function GetHadithBlogs(){
     };    
 
     const handleChange= (selectedValue)=>{
-        console.log(selectedValue)
         setSelectedTag(selectedValue);
         setSearchParams({ q:selectedValue });
     }
@@ -140,22 +141,22 @@ export default function GetHadithBlogs(){
             {/* <HadithBlogProtetion>                 */}
                 <div className="flex flex-col items-center">
                     {/* total count */}
-                    <div className="w-full flex justify-around md:justify-center gap-2 mt-4 mb-4">
-                        <div className="flex gap-2">
-                            <select value={selectedTag} onChange={(e)=>handleChange(e.target.value)}
-                                    className="border rounded-lg px-3 py-2"
-                            >
-                                <option value="all">All</option>
 
-                                {existingTags.map(tag => (
-                                    <option key={tag} value={tag}> {tag}</option>
-                                ))}
-                            </select>
-                        </div>                        
+                    <div className="flex flex-col gap-2 mt-4 px-4">
+                        <select value={selectedTag} onChange={(e)=>handleChange(e.target.value)}
+                                className="max-w-sm w-full border rounded-lg px-3 py-2"
+                        >
+                            <option value="all">All</option>
+
+                            {existingTags.map(tag => (
+                                <option key={tag} value={tag}> {tag}</option>
+                            ))}
+                        </select>
                         <p className="text-sm text-gray-900 ">
                             Showing {(page - 1) * limit + 1}–{Math.min(page * limit, total)} of {total} 
-                        </p>
-                    </div>                    
+                        </p>                            
+                    </div>                        
+  
                     <div className="w-full flex flex-wrap px-4 py-2 gap-2 justify-center">
                         {
                             hadithBlogs.map((e,index)=>{
@@ -169,7 +170,9 @@ export default function GetHadithBlogs(){
                                                 Tags:
                                                 {
                                                     e.tags.map((tag)=>{
-                                                        return <Link to={`/getHadithBlogs/?q=${tag}`} >{tag}</Link>
+                                                        return <Link to={`/getHadithBlogs/?q=${tag}`} 
+                                                                className="border-b border-gray-400 text-sm break-all"
+                                                                >{tag}</Link>
                                                     })
                                                 }
                                             </p>

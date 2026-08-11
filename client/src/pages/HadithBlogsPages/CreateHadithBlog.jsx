@@ -142,7 +142,7 @@ export default function CreateHadithBlog() {
                             </div>
                             <div className="flex gap-2">
                                 <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
-                                        className="border rounded-lg px-3 py-2"
+                                        className="max-w-sm w-full border rounded-lg px-3 py-2"
                                 >
                                     <option value="">Select existing tag</option>
 
@@ -161,12 +161,12 @@ export default function CreateHadithBlog() {
                                 </Button>                                
                             </div>        
 
-                            <p className="flex flex-wrap gap-2">
+                            <p className="flex flex-wrap gap-2 mt-2">
                                 {
                                     tags.map((t, index)=>{
                                         return(
                                             <>
-                                                <p>{t}</p>
+                                                <p className="border-b border-gray-400 text-sm break-all">{t}</p>
                                                 <button type="button"
                                                     onClick={() => {
                                                         setTags(prev =>
