@@ -103,6 +103,7 @@ export default function CreateHadithBlog() {
             localStorage.removeItem('hadithBlogUserInfo');
             navigate('/hadithBlogLogin');
         }
+        navigate('/getHadithBlogs');
     } catch (error) {
         alert(error)
     }
