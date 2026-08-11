@@ -4,31 +4,31 @@ export default function PaginationButtons({page, totalPages, changePage}){
             <div className="flex gap-2 items-center pt-2">
                 <button
                     onClick={() => changePage(1)}
-                    className={`px-2 py-2 text-sm border rounded-base transition-all
+                    className={`px-2 py-2 text-sm border rounded-md transition-all
                         ${page === 1
-                            ? 'bg-blue-100 border-blue-500 text-blue-700'
+                            ? 'bg-gray-900 border-blue-500 text-white'
                             : 'border-default hover:bg-neutral-secondary-medium'
                         }`}
                 >
-                    First Page
+                    First
                 </button>
                 <button
                     key={totalPages}
                     onClick={() => changePage(totalPages)}
-                    className={`px-2 py-2 text-sm border rounded-base transition-all
+                    className={`px-2 py-2 text-sm border rounded-md transition-all
                         ${page === totalPages
-                            ? 'bg-blue-100 border-blue-500 text-blue-700'
+                            ? 'bg-gray-900 border-blue-500 text-white'
                             : 'border-default hover:bg-neutral-secondary-medium'
                         }`}
                 >
-                    Last Page
+                    Last
                 </button>                        
             </div>
             <div className="flex gap-2 items-center p-2">
                 <button
                     onClick={() => changePage(Math.max(page - 1, 1))}
                     disabled={page === 1}
-                    className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
+                    className="px-4 py-2 text-sm border border-default rounded-md disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
                 >
                     {'<'}
                 </button>
@@ -53,10 +53,10 @@ export default function PaginationButtons({page, totalPages, changePage}){
                         <button
                             key={pageNum}
                             onClick={() => changePage(pageNum)}
-                            className={`px-2 py-2 text-sm border rounded-base transition-all
+                            className={`px-2 py-2 text-sm border rounded-md transition-all
                                 ${
                                     page === pageNum
-                                        ? 'bg-blue-100 border-blue-500 text-blue-700'
+                                        ? 'bg-gray-900 border-blue-500 text-white'
                                         : 'border-default hover:bg-neutral-secondary-medium'
                                 }`}
                         >
@@ -92,7 +92,7 @@ export default function PaginationButtons({page, totalPages, changePage}){
                 <button
                     onClick={() => changePage(Math.min(page + 1, totalPages))}
                     disabled={page === totalPages}
-                    className="px-4 py-2 text-sm border border-default rounded-base disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
+                    className="px-4 py-2 text-sm border border-default rounded-md disabled:opacity-40 hover:bg-neutral-secondary-medium transition-all"
                 >
                     {'>'}
                 </button>

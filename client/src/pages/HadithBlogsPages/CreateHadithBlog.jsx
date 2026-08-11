@@ -23,6 +23,7 @@ export default function CreateHadithBlog() {
   const [selectedTag, setSelectedTag] = useState("");
   const [manualTag, setManualTag] = useState("");
   const navigate= useNavigate();
+  const hadithBlogLoginSession= localStorage.getItem('hadithBlogLoginSession')
 
   useEffect(()=>{
     getUniqueHadithBlogTags();
@@ -34,7 +35,7 @@ export default function CreateHadithBlog() {
         const res= await fetch(`${BASE_API}/hadithApp/getUniqueHadithBlogTags`,{
             method:"GET",
             headers: { 
-              "authorization": currentUser.authorization,
+              "authorization": hadithBlogLoginSession,
               "Content-Type": "application/json"
              }
         })
@@ -90,7 +91,7 @@ export default function CreateHadithBlog() {
         const res= await fetch(`${BASE_API}/hadithApp/createHadithBlog`,{
             method:"POST",
             headers: { 
-              "authorization": currentUser.authorization,
+              "authorization": hadithBlogLoginSession,
               "Content-Type": "application/json"
              },
             body: JSON.stringify(obj)

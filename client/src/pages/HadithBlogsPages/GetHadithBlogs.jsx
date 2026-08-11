@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from 'moment';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HadithBlogHeader from "./HadithBlogHeader";
 import HadithBlogProtetion from "./HadithBlogProtetion";
 import { useSearchParams } from "react-router-dom";
@@ -14,9 +14,12 @@ export default function GetHadithBlogs(){
     const [loading, setLoading] = useState(false);
     const [hadithBlogs, setHadithBlogs]= useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
+    const hadithBlogLoginSession= localStorage.getItem('hadithBlogLoginSession')
+    const navigate= useNavigate();
+    const [selectedTag, setSelectedTag] = useState(searchParams.get("q") || "all");
+    const [existingTags, setExistingTags] = useState([]);
 
     const [limit, setLimit] = useState(6);
-
     const [totalPages, setTotalPages] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -30,13 +33,39 @@ export default function GetHadithBlogs(){
 
     }, [searchParams]);      
 
+    const  getUniqueHadithBlogTags= async()=>{
+        setLoading(true);
+        try {
+            const res= await fetch(`${BASE_API}/hadithApp/getUniqueHadithBlogTags`,{
+                method:"GET",
+                headers: { 
+                "authorization": hadithBlogLoginSession,
+                "Content-Type": "application/json"
+                }
+            })
+            const data= await res.json();
+            if(data.success){
+                setExistingTags(data.message);
+            }
+            
+        } catch (error) {
+            alert(error)
+        }
+        finally{
+            setLoading(false);
+        }     
+    }    
+
     const getHadithBlogs=async()=>{
+        setHadithBlogs([]);
         setLoading(true)
         try {
+
+            await getUniqueHadithBlogTags();
             const res= await fetch(`${BASE_API}/hadithApp/getHadithBlogs?q=${q}&page=${page}&limit=${limit}`,{
               method:"GET",
               headers: {
-                "authorization": currentUser.authorization 
+                "authorization": hadithBlogLoginSession
                 },
             });
 
@@ -65,7 +94,7 @@ export default function GetHadithBlogs(){
             const res= await fetch(`${BASE_API}/hadithApp/deleteHadithBlog`,{
                 method:"POST",
                 headers: {
-                "authorization": currentUser.authorization,
+                "authorization": hadithBlogLoginSession,
                 "Content-Type": "application/json",
                 },
                 body: JSON.stringify(obj)                
@@ -77,7 +106,7 @@ export default function GetHadithBlogs(){
                 localStorage.removeItem('hadithBlogLoginSession');
                 localStorage.removeItem('hadithBlogUserInfo');
                 navigate('/hadithBlogLogin');
-            }             
+            }              
         }
         catch(e){
             console.log(e);
@@ -90,6 +119,12 @@ export default function GetHadithBlogs(){
     const changePage = (newPage) => {
         setSearchParams({ q:q, page: newPage });
     };    
+
+    const handleChange= (selectedValue)=>{
+        console.log(selectedValue)
+        setSelectedTag(selectedValue);
+        setSearchParams({ q:selectedValue });
+    }
 
     if(loading){
         return(
@@ -106,7 +141,17 @@ export default function GetHadithBlogs(){
                 <div className="flex flex-col items-center">
                     {/* total count */}
                     <div className="w-full flex justify-around md:justify-center gap-2 mt-4 mb-4">
+                        <div className="flex gap-2">
+                            <select value={selectedTag} onChange={(e)=>handleChange(e.target.value)}
+                                    className="border rounded-lg px-3 py-2"
+                            >
+                                <option value="all">All</option>
 
+                                {existingTags.map(tag => (
+                                    <option key={tag} value={tag}> {tag}</option>
+                                ))}
+                            </select>
+                        </div>                        
                         <p className="text-sm text-gray-900 ">
                             Showing {(page - 1) * limit + 1}–{Math.min(page * limit, total)} of {total} 
                         </p>

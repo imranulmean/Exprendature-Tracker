@@ -187,7 +187,7 @@ export default function Users(){
               </div>
                 
               <div className="flow-root ">
-                  <ul className="divide-y divide-gray-200 dark:divide-gray-700 overflow-y-auto h-[300px] ">
+                  <ul className="divide-y divide-gray-200 dark:divide-gray-700 overflow-y-auto md:h-[300px] ">
                       {
                           userList.map((e,index)=>{
                               return(
