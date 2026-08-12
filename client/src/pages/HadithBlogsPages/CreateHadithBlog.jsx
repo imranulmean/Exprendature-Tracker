@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Card, TextInput, Label, Button } from "flowbite-react";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
-import { useSelector } from "react-redux";
 import { quillModules } from "./UpdateHadithBlog";
 import HadithBlogHeader from "./HadithBlogHeader";
 import HadithBlogProtetion from "./HadithBlogProtetion";
@@ -17,13 +16,13 @@ export default function CreateHadithBlog() {
   const [details, setDetails] = useState("");
 
   const BASE_API=import.meta.env.VITE_API_BASE_URL;
-  const { currentUser } = useSelector((state) => state.user);    
   const [loading, setLoading] = useState(false);
   const [existingTags, setExistingTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState("");
   const [manualTag, setManualTag] = useState("");
   const navigate= useNavigate();
   const hadithBlogLoginSession= localStorage.getItem('hadithBlogLoginSession')
+  const hadithBlogUserInfo= JSON.parse(localStorage.getItem('hadithBlogUserInfo'));
 
   useEffect(()=>{
     getUniqueHadithBlogTags();
@@ -80,7 +79,7 @@ export default function CreateHadithBlog() {
             return;
         }
         const obj={
-            userId: currentUser._id,
+            userId: hadithBlogUserInfo._id,
             title: title.trim(), 
             shortDesc: shortDesc.trim(),
             tags: tags, 
