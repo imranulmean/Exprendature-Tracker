@@ -73,21 +73,21 @@ export default function CreateHadithBlog() {
     };
 
   const handleSubmit = async() => {
-    
-    if(!title || !shortDesc || tags.length<1 || !details){
-        alert("Fields cannot be null")
-        return;
-    }
-    const obj={
-        userId: currentUser._id,
-        title: title.trim(), 
-        shortDesc: shortDesc.trim(),
-        tags: tags, 
-        details: details.trim()
-    };
-    setLoading(true);
-
+    alert('clicked')
     try {
+        if(!title || !shortDesc || tags.length<1 || !details){
+            alert("Fields cannot be null")
+            return;
+        }
+        const obj={
+            userId: currentUser._id,
+            title: title.trim(), 
+            shortDesc: shortDesc.trim(),
+            tags: tags, 
+            details: details.trim()
+        };
+
+        setLoading(true);
         const res= await fetch(`${BASE_API}/hadithApp/createHadithBlog`,{
             method:"POST",
             headers: { 
