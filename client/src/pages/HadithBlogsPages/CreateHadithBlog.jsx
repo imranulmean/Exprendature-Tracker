@@ -72,7 +72,6 @@ export default function CreateHadithBlog() {
     };
 
   const handleSubmit = async() => {
-    alert('clicked')
     try {
         if(!title || !shortDesc || tags.length<1 || !details){
             alert("Fields cannot be null")
