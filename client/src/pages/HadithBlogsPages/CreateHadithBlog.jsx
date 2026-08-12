@@ -116,94 +116,92 @@ export default function CreateHadithBlog() {
         <HadithBlogHeader />
         <HadithBlogProtetion>
             
-            <div className="p-4">
-                <Card className="max-w-2xl mx-auto">
-                    <div className="space-y-5">
-                        <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="title">Title:</Label>
-                            </div>
-                            <TextInput type="text" placeholder="Title" required
-                                        onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </div>
-
-                        <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="shortDesc">Short Description</Label>
-                            </div>
-                            <TextInput type="text" placeholder="Short Description" required  
-                                        onChange={(e) => setShortDesc(e.target.value)}
-                            />
-                        </div>
-
-                        <div>
-                            <div className="mb-2 block">
-                                <Label htmlFor="tags">Tags:</Label>
-                            </div>
-                            <div className="flex gap-2">
-                                <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
-                                        className="max-w-sm w-full border rounded-lg px-3 py-2"
-                                >
-                                    <option value="">Select existing tag</option>
-
-                                    {existingTags.map(tag => (
-                                        <option key={tag} value={tag}> {tag}</option>
-                                    ))}
-                                </select>
-                                <Button  type="button" onClick={()=>addTag(selectedTag)} disabled={!selectedTag}>
-                                    Add
-                                </Button>
-                            </div>
-                            <div className="flex gap-2 mt-2">
-                                <TextInput value={manualTag} type="text" placeholder="Type Single Manual Tag" onChange={(e) => setManualTag(e.target.value)} />
-                                <Button  type="button" onClick={()=> addTag(manualTag) } disabled={!manualTag}>
-                                    Add
-                                </Button>                                
-                            </div>        
-
-                            <p className="flex flex-wrap gap-2 mt-2">
-                                {
-                                    tags.map((t, index)=>{
-                                        return(
-                                            <>
-                                                <p className="border-b border-gray-400 text-sm break-all">{t}</p>
-                                                <button type="button"
-                                                    onClick={() => {
-                                                        setTags(prev =>
-                                                            prev.filter((_, i) => i !== index)
-                                                        );
-                                                    }}
-                                                    className="ml-1 font-bold text-red-500 hover:text-red-700"
-                                                >
-                                                    ×
-                                                </button>
-                                            </>
-                                        )
-                                    })
-                                }
-                            </p>
-
-                        </div>
-
-                        <div>
+            <div className="px-2 py-4">
+                <div className="space-y-5">
+                    <div>
                         <div className="mb-2 block">
-                            <Label htmlFor="details">Details:</Label>
+                            <Label htmlFor="title">Title:</Label>
                         </div>
-                            <ReactQuill
-                                theme="snow"
-                                value={details}
-                                onChange={setDetails}
-                                modules={quillModules}
-                                placeholder="Start Writing"
-                            />
-                        </div>
-
-                        <Button onClick={handleSubmit} disabled={loading}>
-                            {loading ? 'loading...' : 'Publish Post'}
-                        </Button>
+                        <TextInput type="text" placeholder="Title" required
+                                    onChange={(e) => setTitle(e.target.value)}
+                        />
                     </div>
-                </Card>
+
+                    <div>
+                        <div className="mb-2 block">
+                            <Label htmlFor="shortDesc">Short Description</Label>
+                        </div>
+                        <TextInput type="text" placeholder="Short Description" required  
+                                    onChange={(e) => setShortDesc(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <div className="mb-2 block">
+                            <Label htmlFor="tags">Tags:</Label>
+                        </div>
+                        <div className="flex gap-2">
+                            <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
+                                    className="max-w-sm w-full border rounded-lg px-3 py-2"
+                            >
+                                <option value="">Select existing tag</option>
+
+                                {existingTags.map(tag => (
+                                    <option key={tag} value={tag}> {tag}</option>
+                                ))}
+                            </select>
+                            <Button  type="button" onClick={()=>addTag(selectedTag)} disabled={!selectedTag}>
+                                Add
+                            </Button>
+                        </div>
+                        <div className="flex gap-2 mt-2">
+                            <TextInput value={manualTag} type="text" placeholder="Type Single Manual Tag" onChange={(e) => setManualTag(e.target.value)} />
+                            <Button  type="button" onClick={()=> addTag(manualTag) } disabled={!manualTag}>
+                                Add
+                            </Button>                                
+                        </div>        
+
+                        <p className="flex flex-wrap gap-2 mt-2">
+                            {
+                                tags.map((t, index)=>{
+                                    return(
+                                        <>
+                                            <p className="border-b border-gray-400 text-sm break-all">{t}</p>
+                                            <button type="button"
+                                                onClick={() => {
+                                                    setTags(prev =>
+                                                        prev.filter((_, i) => i !== index)
+                                                    );
+                                                }}
+                                                className="ml-1 font-bold text-red-500 hover:text-red-700"
+                                            >
+                                                ×
+                                            </button>
+                                        </>
+                                    )
+                                })
+                            }
+                        </p>
+
+                    </div>
+
+                    <div>
+                    <div className="mb-2 block">
+                        <Label htmlFor="details">Details:</Label>
+                    </div>
+                        <ReactQuill
+                            theme="snow"
+                            value={details}
+                            onChange={setDetails}
+                            modules={quillModules}
+                            placeholder="Start Writing"
+                        />
+                    </div>
+
+                    <Button onClick={handleSubmit} disabled={loading}>
+                        {loading ? 'loading...' : 'Publish Post'}
+                    </Button>
+                </div>
             </div>             
         </HadithBlogProtetion>
    

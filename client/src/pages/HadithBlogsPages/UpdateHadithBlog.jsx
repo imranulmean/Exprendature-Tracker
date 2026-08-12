@@ -185,102 +185,100 @@ export default function UpdateHadithBlog() {
                         </div>                        
                     </TabItem>                    
                     <TabItem  title={`Update`}>
-                        <Card className="max-w-2xl mx-auto">
-                            <div className="space-y-5">
-                                <div>
-                                    <div className="mb-2 block">
-                                        <Label htmlFor="title">Title:</Label>
-                                    </div>
-                                    <TextInput value={hadithBlog.title} type="text" placeholder="Title" required
-                                            onChange={(e)=>{ 
-                                                setHadithBlog((prev) => ({...prev, title: e.target.value})) 
-                                            }}
-                                    />
-                                </div>
-
-                                <div>
-                                    <div className="mb-2 block">
-                                        <Label htmlFor="shortDesc">Short Description</Label>
-                                    </div>
-                                    <TextInput value={hadithBlog.shortDesc} type="text" placeholder="Short Description" required  
-                                            onChange={(e)=>{ 
-                                                setHadithBlog((prev) => ({...prev, shortDesc: e.target.value})) 
-                                            }}
-                                    />
-                                </div>
-
-                                <div>
-                                    <div className="mb-2 block">
-                                        <Label htmlFor="tags">Tags:</Label>
-                                    </div>
-
-                                    {/* ////////////////////////// */}
-                                    <div className="flex gap-2">
-                                        <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
-                                                className="max-w-sm w-full border rounded-lg px-3 py-2"
-                                        >
-                                            <option value="">Select existing tag</option>
-
-                                            {existingTags.map(tag => (
-                                                <option key={tag} value={tag}> {tag}</option>
-                                            ))}
-                                        </select>
-                                        <Button  type="button" onClick={()=>addTag(selectedTag)} disabled={!selectedTag}>
-                                            Add
-                                        </Button>
-                                    </div>
-                                    <div className="flex gap-2 mt-2">
-                                        <TextInput value={manualTag} type="text" placeholder="Type Single Manual Tag" onChange={(e) => setManualTag(e.target.value)} />
-                                        <Button  type="button" onClick={()=> addTag(manualTag) } disabled={!manualTag}>
-                                            Add
-                                        </Button>                                
-                                    </div>
-                                    <p className="flex flex-wrap gap-2 mt-2">
-                                        {
-                                            (hadithBlog && hadithBlog?.tags?.length>0) &&
-                                            hadithBlog.tags.map((t, index)=>{
-                                                return(
-                                                    <>
-                                                        <p className="border-b border-gray-400 text-sm break-all">{t}</p>
-                                                        <button type="button"
-                                                            onClick={() => {
-                                                                setHadithBlog(prev => ({
-                                                                    ...prev,
-                                                                    tags: prev.tags.filter((_, i) => i !== index)
-                                                                }));
-                                                            }}
-                                                            className="ml-1 font-bold text-red-500 hover:text-red-700"
-                                                        >
-                                                            ×
-                                                        </button>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </p>                                                         
-                                    {/* ///////////////////// */}
-                                </div>
-
-                                <div>
+                        <div className="space-y-5">
+                            <div>
                                 <div className="mb-2 block">
-                                    <Label htmlFor="details">Details:</Label>
+                                    <Label htmlFor="title">Title:</Label>
                                 </div>
-                                    <ReactQuill
-                                        theme="snow"
-                                        value={hadithBlog.details}
-                                        onChange={(content)=>{ 
-                                            setHadithBlog((prev) => ({...prev, details: content})) 
+                                <TextInput value={hadithBlog.title} type="text" placeholder="Title" required
+                                        onChange={(e)=>{ 
+                                            setHadithBlog((prev) => ({...prev, title: e.target.value})) 
                                         }}
-                                        modules={quillModules}
-                                        placeholder="Start Writing"
-                                    />
+                                />
+                            </div>
+
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label htmlFor="shortDesc">Short Description</Label>
+                                </div>
+                                <TextInput value={hadithBlog.shortDesc} type="text" placeholder="Short Description" required  
+                                        onChange={(e)=>{ 
+                                            setHadithBlog((prev) => ({...prev, shortDesc: e.target.value})) 
+                                        }}
+                                />
+                            </div>
+
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label htmlFor="tags">Tags:</Label>
                                 </div>
 
-                                <Button onClick={handleSubmit} disabled={loading}>
-                                    {loading ? 'loading...' : 'Update Post'}
-                                </Button>
+                                {/* ////////////////////////// */}
+                                <div className="flex gap-2">
+                                    <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}
+                                            className="max-w-sm w-full border rounded-lg px-3 py-2"
+                                    >
+                                        <option value="">Select existing tag</option>
+
+                                        {existingTags.map(tag => (
+                                            <option key={tag} value={tag}> {tag}</option>
+                                        ))}
+                                    </select>
+                                    <Button  type="button" onClick={()=>addTag(selectedTag)} disabled={!selectedTag}>
+                                        Add
+                                    </Button>
+                                </div>
+                                <div className="flex gap-2 mt-2">
+                                    <TextInput value={manualTag} type="text" placeholder="Type Single Manual Tag" onChange={(e) => setManualTag(e.target.value)} />
+                                    <Button  type="button" onClick={()=> addTag(manualTag) } disabled={!manualTag}>
+                                        Add
+                                    </Button>                                
+                                </div>
+                                <p className="flex flex-wrap gap-2 mt-2">
+                                    {
+                                        (hadithBlog && hadithBlog?.tags?.length>0) &&
+                                        hadithBlog.tags.map((t, index)=>{
+                                            return(
+                                                <>
+                                                    <p className="border-b border-gray-400 text-sm break-all">{t}</p>
+                                                    <button type="button"
+                                                        onClick={() => {
+                                                            setHadithBlog(prev => ({
+                                                                ...prev,
+                                                                tags: prev.tags.filter((_, i) => i !== index)
+                                                            }));
+                                                        }}
+                                                        className="ml-1 font-bold text-red-500 hover:text-red-700"
+                                                    >
+                                                        ×
+                                                    </button>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </p>                                                         
+                                {/* ///////////////////// */}
                             </div>
-                        </Card>
+
+                            <div>
+                            <div className="mb-2 block">
+                                <Label htmlFor="details">Details:</Label>
+                            </div>
+                                <ReactQuill
+                                    theme="snow"
+                                    value={hadithBlog.details}
+                                    onChange={(content)=>{ 
+                                        setHadithBlog((prev) => ({...prev, details: content})) 
+                                    }}
+                                    modules={quillModules}
+                                    placeholder="Start Writing"
+                                />
+                            </div>
+
+                            <Button onClick={handleSubmit} disabled={loading}>
+                                {loading ? 'loading...' : 'Update Post'}
+                            </Button>
+                        </div>
                     </TabItem>
                 </Tabs> 
             </div>            
