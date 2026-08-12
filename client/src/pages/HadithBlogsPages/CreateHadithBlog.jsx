@@ -116,7 +116,7 @@ export default function CreateHadithBlog() {
         <HadithBlogHeader />
         <HadithBlogProtetion>
             
-            <div className="px-2 py-4">
+            <div className="p-4">
                 <div className="space-y-5">
                     <div>
                         <div className="mb-2 block">
