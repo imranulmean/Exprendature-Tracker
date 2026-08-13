@@ -162,22 +162,25 @@ export default function GetHadithBlogs(){
                             hadithBlogs.map((e,index)=>{
                                 return(
                                     <>
-                                        <div className="w-full max-w-md flex flex-col border border-gray-400 p-2 rounded-lg">
-                                            <p className="text-sm">Id: {e._id}</p>
-                                            <p className="text-sm">Title: {e.title}</p>
-                                            <p className="text-sm">Short Desc: {e.shortDesc}</p>
-                                            <p className="text-sm flex flex-wrap gap-2">
-                                                Tags:
-                                                {
-                                                    e.tags.map((tag)=>{
-                                                        return <Link to={`/getHadithBlogs/?q=${tag}`} 
-                                                                className="border-b border-gray-400 text-sm break-all"
-                                                                >{tag}</Link>
-                                                    })
-                                                }
-                                            </p>
-                                            <p className="text-sm">Created At: {moment(e.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
-                                            <p className="text-sm">Updated At: {moment(e.updatedAt).format('MMMM Do YYYY, h:mm a')}</p>
+                                        <div className="w-full max-w-md flex flex-col justify-between border border-gray-400 p-2 rounded-lg">
+                                            <div>
+                                                {/* <p className="text-sm text-center">{e._id}</p> */}
+                                                <p className="text-center text-lg text-gray-900 font-bold border-b border-gray-400">{e.title}</p>
+                                                <p className="text-md text-gray-900 border-b border-gray-400">{e.shortDesc}</p>
+                                                <p className="text-sm text-gray-900 flex flex-wrap gap-2">
+                                                    Tags:
+                                                    {
+                                                        e.tags.map((tag)=>{
+                                                            return <Link to={`/getHadithBlogs/?q=${tag}`} 
+                                                                    className="border-b border-gray-400 text-sm break-all"
+                                                                    >{tag}</Link>
+                                                        })
+                                                    }
+                                                </p>
+                                                <p className="text-sm text-gray-900">Created At: {moment(e.createdAt).format('MMMM Do YYYY, h:mm a')}</p>
+                                                <p className="text-sm text-gray-900">Updated At: {moment(e.updatedAt).format('MMMM Do YYYY, h:mm a')}</p>
+                                            </div>
+
                                             <div className="flex gap-2">
                                                 <Link to={`/updateHadithBlog/${e._id}`} disabled={loading}
                                                     className="w-[50%] bg-gray-900 border p-2 text-gray-200 mt-2 rounded-lg text-center">Update Blog
