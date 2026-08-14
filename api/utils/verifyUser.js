@@ -16,6 +16,9 @@ export const verifyToken = (req, res, next) => {
     if(!validUser){
       return next(errorHandler(401, 'Unauthorized'));
     }
+    if(validUser.disabled){
+      return next(errorHandler(401, 'Unauthorized'));
+    }    
     req.user = validUser;
     next();
   });

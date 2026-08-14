@@ -14,7 +14,8 @@ export default function Users(){
     const [password, setPassword]=useState('');
     const [displayName, setDisplayName]=useState('');
     const [loading, setLoading]= useState(false);
-    const [updatedPass, setUpdatedPass] = useState();    
+    const [updatedPass, setUpdatedPass] = useState();
+    const [updatedStatus, setUpdatedStatus] = useState();
 
     useEffect(()=>{
         getUsers();
@@ -79,11 +80,11 @@ export default function Users(){
     };    
 
     const updateHadithBlogUser= async(userId)=>{
-      if(!updatedPass){
-          alert("Empty Filed")
-          return;
-      }
-      const obj={userId, updatedPass}
+    //   if(!updatedPass){
+    //       alert("Empty Filed")
+    //       return;
+    //   }
+      const obj={userId, updatedPass, updatedStatus}
       setLoading(true);
       try {
           const res= await fetch(`${BASE_API}/api/auth/updateHadithBlogUser`,{
@@ -103,6 +104,7 @@ export default function Users(){
           setLoading(false);
           await getUsers();
           setUpdatedPass('')
+          setUpdatedStatus('');
       }
 
   } 
@@ -202,9 +204,16 @@ export default function Users(){
                                                   <p className="truncate text-sm font-medium text-gray-900 dark:text-white">{e._id}</p>
                                                   <p className="truncate text-sm font-medium text-gray-900 dark:text-white">{e.displayName}</p>
                                                   <p className="truncate text-sm text-gray-500 dark:text-gray-400">{e.email}</p>
-                                                  <input type="password"  onChange={(e)=>setUpdatedPass(e.target.value)} placeholder="new password"
+                                                  <input value={updatedPass} type="password"  onChange={(e)=>setUpdatedPass(e.target.value)} placeholder="new password"
                                                       className="w-full px-2 py-1.5 border border-gray-300 rounded-lg text-xs outline-none focus:border-green-500"
                                                   />
+                                                  <p className="text-sm text-gray-800">Disabled: { e.disabled ? 'True' : 'False'}</p>
+                                                  <select value={updatedStatus} onChange={(e)=> setUpdatedStatus(e.target.value)}
+                                                          className="p-1 border border-gray-400 rounded-lg text-sm text-gray-700"  >
+                                                    <option value=''>Update Status</option>                                                            
+                                                    <option value='true'>True</option>
+                                                    <option value='false'>False</option>
+                                                  </select>                                                    
                                                   <div className="flex gap-2 justify-center">
                                                     <button onClick={() => updateHadithBlogUser(e._id)} disabled={loading}
                                                           className="bg-gray-900 text-gray-200 text-center text-sm font-medium p-2 rounded-md">

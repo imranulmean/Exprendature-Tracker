@@ -87,9 +87,10 @@ export const google = async (req, res, next) => {
   export const updateHadithBlogUser = async(req, res)=>{
 
     try {
-      const {userId, updatedPass} = req.body;
+      const {userId, updatedPass, updatedStatus} = req.body;
       const updatedField={};
       if(updatedPass) updatedField.password=bcryptjs.hashSync(updatedPass, 10)
+      if(updatedStatus) updatedField.disabled=updatedStatus;
       const validUser = await User.findByIdAndUpdate( 
           {_id:userId}, 
           {$set:updatedField}, 
@@ -129,7 +130,10 @@ export const google = async (req, res, next) => {
       if (!validPassword) {
           return res.json({success: false, message: "Userid or Password is wrong"});
         }   
-
+      
+      if(validUser.disabled){
+        return res.json({success: false, message: "User Disabled"});
+      }  
       const token = jwt.sign({ id: validUser._id, role: validUser.role},
                     process.env.JWT_SECRET,
                     { expiresIn:"1h" }
