@@ -28,15 +28,16 @@ export default function Header(){
       };    
     
     return (
-        <Navbar fluid className="bg-white border-b border-gray-400 sticky top-0 z-10 print:hidden">
-          <Link to="/zakats">
-            <img src="/logo.PNG" className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" />
+        <Navbar fluid className="bg-cyan-900 border-b border-gray-400 sticky top-0 z-10 print:hidden">
+          <Link to="/zakats" className="flex shrink-0 items-center gap-2">
+            {/* <img src="/logo.PNG" className="mr-3 h-[50px] w-[50px]" alt="Flowbite React Logo" /> */}
+            <span className="text-white self-center text-xl font-semibold whitespace-nowrap">Exp</span>
           </Link>
           {/* <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/insertion'> Add/Edit <br/> Expense</Link>
           <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/income'> Add/Edit <br/> Income</Link>         */}
           <Link className="text-sm font-medium leading-none text-gray-900 text-white text-center" to='/startPractice'> Practice</Link>
           <Dropdown arrowIcon={true} label="Other Items"
-                    class='rounded-md text-sm font-medium text-gray-900 '
+                    class='rounded-md text-sm font-medium text-gray-200 '
           >
             <Dropdown.Item>
                 <Link to="/callstream">Call</Link>

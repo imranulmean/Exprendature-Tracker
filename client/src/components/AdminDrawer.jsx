@@ -22,9 +22,12 @@ export default function AdminDrawer(){
     return (
       <>
         <div className="flex items-center justify-center">
-          <Button onClick={() => setIsOpen(true)} className='bg-gray-900'>
+          <button onClick={() => setIsOpen(true)} className='bg-cyan-900 px-2 py-1 rounded-sm'>
+            <FaAlignJustify className="text-white"/>
+          </button>          
+          {/* <Button onClick={() => setIsOpen(true)} className='bg-gray-900'>
             <FaAlignJustify />
-          </Button>
+          </Button> */}
         </div>
         <Drawer open={isOpen} onClose={handleClose}>
           <Drawer.Header title="MENU" titleIcon={() => <></>} />
