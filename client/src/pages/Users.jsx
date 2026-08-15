@@ -179,9 +179,9 @@ export default function Users(){
                      
             </div>             
 
-            <Card className="max-w-md w-full">
+            <div className="max-w-md w-full border border-gray-400 rounded-lg p-2">
               <div className="mb-4 flex items-center justify-between">
-                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Users</h5>
+                <h5 className="text-lg font-bold leading-none text-gray-900 dark:text-white">Users</h5>
                 <button onClick={getUsers} disabled={loading}
                       className="bg-gray-900 text-gray-200 text-center text-sm font-medium px-2 py-1 rounded-md">
                       {loading ? 'loading...' : 'Reload'}
@@ -235,7 +235,7 @@ export default function Users(){
                       }                        
                   </ul>
               </div>                     
-            </Card>
+            </div>
 
           </div>
  

@@ -47,7 +47,7 @@ export default function App(){
       {/* <Megamenu /> */}
       {/* <Leftbar /> */}
       <Routes>        
-        <Route path='/' element={<Hadiths />} />
+        <Route path='/' element={<ZakatList />} />
         <Route path='/login' element={<Login />} />
         <Route path='/startPractice' element={<StartPractice />} />
         <Route path='/speechTest' element={<ReactSpeech />} />v
