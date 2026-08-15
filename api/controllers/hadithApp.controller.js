@@ -199,6 +199,7 @@ export const createHadithBlog = async(req, res)=>{
 
 export const updateHadithBlog = async(req, res)=>{
     try{
+        
         const existingBlog= await HadithBlog.findByIdAndUpdate(
             {_id: req.body._id},
             { $set: req.body }, 

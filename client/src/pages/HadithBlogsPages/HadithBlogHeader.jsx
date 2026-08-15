@@ -30,21 +30,29 @@ export default function HadithBlogHeader(){
                     <Link to="/getHadithBlogs" className="flex shrink-0 items-center gap-2">
                         <span className="text-white self-center text-xl font-semibold whitespace-nowrap">Islamic Library</span>
                     </Link>
-                    <div className="absolute right-2 md:right-5">
-                        <Dropdown arrowIcon={false} inline
-                                label={
-                                    <Avatar alt='user' img={hadithBlogUserInfo?.profilePicture} rounded size="sm" />
-                                }
-                            >
-                                <Dropdown.Header>
-                                    <span className="block text-sm">{hadithBlogUserInfo?.displayName}</span>
-                                    <span className="block truncate text-sm font-medium">{hadithBlogUserInfo?.email}</span>
-                                </Dropdown.Header>
+                    {
+                        hadithBlogUserInfo ?
 
-                                <Dropdown.Divider />
-                                <Dropdown.Item onClick={handleSignout}>Logout</Dropdown.Item>
-                        </Dropdown> 
-                    </div>
+                        <div className="absolute right-2 md:right-5">
+                            <Dropdown arrowIcon={false} inline
+                                    label={
+                                        <Avatar alt='user' img={hadithBlogUserInfo?.profilePicture} rounded size="sm" />
+                                    }
+                                >
+                                    <Dropdown.Header>
+                                        <span className="block text-sm">{hadithBlogUserInfo?.displayName}</span>
+                                        <span className="block truncate text-sm font-medium">{hadithBlogUserInfo?.email}</span>
+                                    </Dropdown.Header>
+
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item onClick={handleSignout}>Logout</Dropdown.Item>
+                            </Dropdown> 
+                        </div>
+                        :
+                        <Link to='/hadithBlogLogin' className="absolute right-3 text-white text-sm py-1 px-2 rounded-md border border-default">Login</Link>
+
+                    }
+
                    
                 </div>
 

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { errorHandler } from './error.js';
 import User from '../models/user.model.js';
+import HadithBlog from '../models/hadithBlog.model.js';
 
 export const verifyToken = (req, res, next) => {
    const token = req.headers.authorization;
@@ -29,4 +30,24 @@ export const checkIsAdmin = (req, res, next) =>{
     return next(errorHandler(401, 'Unauthorized'));
   }
   next();
+}
+
+export const admin_or_owner = async(req, res, next) =>{
+  if(req.user.isAdmin){
+    return next();
+  }
+  else{
+    const blogId= req.body._id || req.body.blogId;
+    const existingBlog=await HadithBlog.findById({_id:blogId});
+    if (!existingBlog) {
+      return next(errorHandler(404, 'No Blog Found'));
+    }    
+    if(existingBlog.userId === req.user._id.toString()){
+      return next();
+    }
+    else{
+      return next(errorHandler(401, 'You Are not Allowed'));
+    }
+  }
+  
 }
