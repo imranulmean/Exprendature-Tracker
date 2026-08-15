@@ -4,6 +4,20 @@ import { useEffect, useRef, useState } from "react";
 import HadithBlogProtetion from "./HadithBlogProtetion";
 
 
+export const isTokenExpired = (token) => {
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        console.log(payload)
+        if (!payload.exp) {
+            return true;
+        }
+
+        return Date.now() >= payload.exp * 1000;
+    } catch (error) {
+        return true;
+    }
+};  
+
 export default function HadithBlogHeader(){
 
     const navigate = useNavigate();
@@ -11,10 +25,41 @@ export default function HadithBlogHeader(){
     const location = useLocation();   
     const [menuOpen, setMenuOpen] = useState(false);
     const [hadithBlogUserInfo, setHadithBlogUserInfo]=useState({});
+    const hadithBlogLoginSession= localStorage.getItem('hadithBlogLoginSession');
+  
+    const hadithBlogValidateUser= async() =>{
+        try {
+            const res= await fetch(`${BASE_API}/api/auth/hadithBlogValidateUser`,{
+                method:"GET",
+                headers: {
+                    "authorization": hadithBlogLoginSession, 
+                    "Content-Type": "application/json"
+                },
+            })
+            const data= await res.json();
+            if(!data.success){                    
+                localStorage.removeItem('hadithBlogLoginSession');
+                localStorage.removeItem('hadithBlogUserInfo');
+                setHadithBlogUserInfo('');
+            }                
+
+        } catch (error) {
+            alert(error)
+        }
+    }    
+  
 
     useState(()=>{
-        setHadithBlogUserInfo(JSON.parse(localStorage.getItem('hadithBlogUserInfo')));
+
+        const hadith_blog_user_info= localStorage.getItem('hadithBlogUserInfo');
+        setHadithBlogUserInfo(JSON.parse(hadith_blog_user_info));
+
+        if(isTokenExpired(hadithBlogLoginSession)){
+            hadithBlogValidateUser();
+        }
+     
     },[])
+
 
 
     const handleSignout=()=>{

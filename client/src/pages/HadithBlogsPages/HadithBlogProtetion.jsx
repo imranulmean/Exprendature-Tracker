@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isTokenExpired } from "./HadithBlogHeader";
 
 export default function HadithBlogProtetion({children}){
     
@@ -10,7 +11,12 @@ export default function HadithBlogProtetion({children}){
     const [validated, setValidated]= useState(false);
 
     useEffect(()=>{
-        hadithBlogValidateUser();
+        if(isTokenExpired(hadithBlogLoginSession)){
+            hadithBlogValidateUser();
+        }
+        else{
+            setValidated(true);
+        }
     },[])
 
     const hadithBlogValidateUser= async() =>{
