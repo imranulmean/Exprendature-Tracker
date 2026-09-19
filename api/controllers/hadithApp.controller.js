@@ -1,6 +1,5 @@
 import { hadithAppActivation } from "../models/hadithAppActivation.model.js";
 import HadithBlog from "../models/hadithBlog.model.js";
-import { surahAudioLinks } from "./surahAudioLink.js";
 
 export const checkActivation = async (req, res) => {
     try {
