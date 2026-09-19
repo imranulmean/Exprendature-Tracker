@@ -1,5 +1,6 @@
 import { hadithAppActivation } from "../models/hadithAppActivation.model.js";
 import HadithBlog from "../models/hadithBlog.model.js";
+import { surahAudioLinks } from "./surahAudioLink.js";
 
 export const checkActivation = async (req, res) => {
     try {
@@ -244,3 +245,18 @@ export const getUniqueHadithBlogTags = async (req, res) => {
 
     }
 };
+
+
+export const getAudio= async(req, res) =>{
+    const { deviceId } = req.body;
+    try{
+        let device = await hadithAppActivation.findOne({ deviceId });
+        if (!device) {
+            return res.json({success: false, message:"No device Found"});
+        }
+
+        res.json({ success: true, message: surahAudioLinks });
+    }catch(err){
+        res.json({success: false, message: err.message })
+    }
+}
