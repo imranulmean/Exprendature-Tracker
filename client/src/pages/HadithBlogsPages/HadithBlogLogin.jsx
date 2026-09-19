@@ -59,7 +59,7 @@ export default function HadithBlogLogin(){
                         <div className="mb-2 block">
                             <Label htmlFor="email1">User ID: </Label>
                         </div>
-                        <TextInput onChange={(e)=>setUsername(e.target.value)} id="email1" type="text" placeholder="User ID" required 
+                        <TextInput value={username} onChange={(e)=>setUsername(e.target.value)} id="email1" type="text" placeholder="User ID" required 
                          style={{'border':'none', 'border-radius':'0px', 'border-bottom':'1px solid #E5E7EB', 'background':'white', 'box-shadow':'none'}} 
                         />
                     </div>
@@ -67,7 +67,7 @@ export default function HadithBlogLogin(){
                         <div className="mb-2 block">
                         <Label htmlFor="password1">password</Label>
                         </div>
-                        <TextInput onChange={(e)=>setPassword(e.target.value)} id="password1" type="password" placeholder="Password" required 
+                        <TextInput value={password} onChange={(e)=>setPassword(e.target.value)} id="password1" type="password" placeholder="Password" required 
                          style={{'border':'none', 'border-radius':'0px', 'border-bottom':'1px solid #E5E7EB', 'background':'white', 'box-shadow':'none'}} 
                         />
                     </div>
