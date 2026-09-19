@@ -6,6 +6,7 @@ import HadithBlogProtetion from "./HadithBlogProtetion";
 
 export const isTokenExpired = (token) => {
     try {
+        // if(!token) return;
         const payload = JSON.parse(atob(token.split('.')[1]));
         console.log(payload)
         if (!payload.exp) {
@@ -53,7 +54,7 @@ export default function HadithBlogHeader(){
 
         const hadith_blog_user_info= localStorage.getItem('hadithBlogUserInfo');
         setHadithBlogUserInfo(JSON.parse(hadith_blog_user_info));
-
+        
         if(isTokenExpired(hadithBlogLoginSession)){
             hadithBlogValidateUser();
         }

@@ -120,7 +120,7 @@ export const getDevsPhone= async(req, res) =>{
             // },
             {
                 'name':"Number 1",
-                'num':'+8801918686394' 
+                'num':'+8801628102974' 
             },             
         ];
 

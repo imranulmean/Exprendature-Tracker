@@ -41,6 +41,8 @@ export default function HadithBlogLogin(){
         }
         finally{
             setLoading(false);
+            setUsername('');
+            setPassword('')
         }
       };    
 
