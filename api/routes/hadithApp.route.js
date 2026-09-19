@@ -1,5 +1,5 @@
 import express from 'express';
-import { checkActivation, createHadithBlog, deleteDevice, deleteHadithBlog, extendActivation, getAllDevice, getAudio, getDevsPhone, getHadithBlogs, getSingleHadithBlog, getUniqueHadithBlogTags, updateHadithBlog } from '../controllers/hadithApp.controller.js';
+import { checkActivation, createHadithBlog, deleteDevice, deleteHadithBlog, extendActivation, getAllDevice, getDevsPhone, getHadithBlogs, getSingleHadithBlog, getUniqueHadithBlogTags, updateHadithBlog } from '../controllers/hadithApp.controller.js';
 import { admin_or_owner, verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
