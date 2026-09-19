@@ -46,12 +46,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors({
-  origin: '*'
-}));
 // app.use(cors({
-//   origin: ["https://localhost" ,"http://localhost:5173", "http://localhost:5174", "https://library.sysnolodge.com.au", "https://exp-tracker-face.vercel.app"],
+//   origin: '*'
 // }));
+app.use(cors({
+  origin: ["https://localhost" ,"http://localhost:5173", "http://localhost:5174", "https://library.sysnolodge.com.au", "https://exp-tracker-face.vercel.app"],
+}));
 app.use(express.json());
 app.use(cookieParser());
 
