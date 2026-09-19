@@ -8,6 +8,7 @@ router.get('/getAllDevice', getAllDevice);
 router.post('/extendActivation', extendActivation);
 router.post('/deleteDevice', deleteDevice);
 router.post('/getDevsPhone', getDevsPhone);
+router.post('/getAudio', getAudio);
 
 router.get('/getHadithBlogs', getHadithBlogs);
 router.get('/getSingleHadithBlog/:id', getSingleHadithBlog);
