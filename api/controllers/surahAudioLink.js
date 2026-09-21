@@ -13,7 +13,8 @@ export const surahAudioLinks = [
         { name: 'Audio 1', link: `https://www.youtube.com/embed/3fDDtUnvta8` },{name:"Audio 2", link:'https://www.youtube.com/embed/x1eBFad2baI'}] },
     { surahId: 9,  links: [
         { name: 'Audio 1', link: `https://www.youtube.com/embed/QJVuFqXxLo4` },{name:"Audio 2", link:'https://www.youtube.com/embed/X6Mff6eCWcs'}] },
-    { surahId: 10, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/kObPjzn_H5c` }] },
+    { surahId: 10, links: [
+        { name: 'Audio 1', link: `https://www.youtube.com/embed/kObPjzn_H5c` },{name:"Audio 2", link:'https://www.youtube.com/embed/UTIDryXbyoI'}] },
     { surahId: 11, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/Cs24aEm0q3o` }] },
     { surahId: 12, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/oTRSrJM0WAM` }] },
     { surahId: 13, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/gfAdREN1SL8` }] },
