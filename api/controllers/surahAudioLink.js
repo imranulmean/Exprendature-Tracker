@@ -2,7 +2,7 @@ export const surahAudioLinks = [
     { surahId: 1,  links: [
         { name: 'Audio 1', link: `https://www.youtube.com/embed/ZYaZ6Odbx_Y` }, { name: 'Audio 2', link: `https://www.youtube.com/embed/Isi5PJVN9S0` }] },
     { surahId: 2,  links: [
-        { name: 'Audio 1', link: `https://www.youtube.com/embed/8x_URBJW5Dk` }, {name:'Audio 2', link:`https://www.youtube.com/embed/D5pWGzYBrXc`}] },
+        { name: 'Audio 1', link: `https://www.youtube.com/embed/8x_URBJW5Dk` }, {name:'Audio 2', link:`https://www.youtube.com/embed/Isi5PJVN9S0`}] },
     { surahId: 3,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/mNqoSW_5SmA` }, { name: 'Audio 2', link: `https://www.youtube.com/embed/D5pWGzYBrXc` }] },
     { surahId: 4,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/fMo163Ya3SY` }] },
     { surahId: 5,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/9zqVkeoAP7U` }] },
