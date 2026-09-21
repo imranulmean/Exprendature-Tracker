@@ -4,7 +4,7 @@ export const surahAudioLinks = [
     { surahId: 2,  links: [
         { name: 'Audio 1', link: `https://www.youtube.com/embed/8x_URBJW5Dk` }, {name:'Audio 2', link:`https://www.youtube.com/embed/Isi5PJVN9S0`}] },
     { surahId: 3,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/mNqoSW_5SmA` }, { name: 'Audio 2', link: `https://www.youtube.com/embed/D5pWGzYBrXc` }] },
-    { surahId: 4,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/fMo163Ya3SY` }] },
+    { surahId: 4,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/fMo163Ya3SY` }, {name:'Audio 2', link:"https://www.youtube.com/embed/1fCtE2E4IUs"}] },
     { surahId: 5,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/9zqVkeoAP7U` }] },
     { surahId: 6,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/liK3RH8f8QA` }] },
     { surahId: 7,  links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/_JFNbs6IUgU` }] },
