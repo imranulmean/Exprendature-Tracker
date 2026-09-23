@@ -115,8 +115,8 @@ export const surahAudioLinks = [
     { surahId: 108, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/gguAmbBNhJQ` },{name:"Audio 2", link:'https://www.youtube.com/embed/qGCxBeFpl0A'}] },
     { surahId: 109, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/4CvUCt_7t9Y` },{name:"Audio 2", link:'https://www.youtube.com/embed/t6viY2rkFdM'}] },
     { surahId: 110, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/MVE1Mozt23w` },{name:"Audio 2", link:'https://www.youtube.com/embed/JuskIaPO5Wg'}] },
-    { surahId: 111, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/M3dBqRX32fI` }] },
-    { surahId: 112, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/fyub76Z1YW8` }] },
-    { surahId: 113, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/MaOepE0iVP0` }] },
-    { surahId: 114, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/5UTXy190B-I` }] }       
+    { surahId: 111, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/M3dBqRX32fI` },{name:"Audio 2", link:'https://www.youtube.com/embed/aYs5tIlN4l8'}] },
+    { surahId: 112, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/fyub76Z1YW8` },{name:"Audio 2", link:'https://www.youtube.com/embed/N4diUcuNVic'}] },
+    { surahId: 113, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/MaOepE0iVP0` },{name:"Audio 2", link:'https://www.youtube.com/embed/jEZZ4UX7d2A'}] },
+    { surahId: 114, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/5UTXy190B-I` },{name:"Audio 2", link:'https://www.youtube.com/embed/GVk5KmQKgAw'}] }       
 ];
