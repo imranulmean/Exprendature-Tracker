@@ -2,6 +2,23 @@ import { hadithAppActivation } from "../models/hadithAppActivation.model.js";
 import HadithBlog from "../models/hadithBlog.model.js";
 import { surahAudioLinks } from "./surahAudioLink.js";
 
+
+const checkIfDevice= async(deviceId)=>{
+    try{
+        if (!deviceId || deviceId === undefined || deviceId === "" || deviceId === 'undefined') {
+            return false;
+        }        
+        let device = await hadithAppActivation.findOne({ deviceId });
+        if (!device) {
+            return false;
+        } 
+        return true;
+    }catch(err){
+        return false;        
+    }
+   
+}
+
 export const checkActivation = async (req, res) => {
     try {
 
@@ -111,14 +128,18 @@ export const getDevsPhone= async(req, res) =>{
     const { deviceId } = req.body;
     
     try{
-        
-        if (!deviceId || deviceId === undefined || deviceId === "" || deviceId === 'undefined') {
+
+        const ifDevice = await checkIfDevice(deviceId);
+        if(!ifDevice){
             return res.status(400).json({ success: false, message: "Device ID is required" });
-        }        
-        let device = await hadithAppActivation.findOne({ deviceId });
-        if (!device) {
-            return res.json({success: false, message:"No device Found"});
-        }
+        } 
+        // if (!deviceId || deviceId === undefined || deviceId === "" || deviceId === 'undefined') {
+        //     return res.status(400).json({ success: false, message: "Device ID is required" });
+        // }        
+        // let device = await hadithAppActivation.findOne({ deviceId });
+        // if (!device) {
+        //     return res.json({success: false, message:"No device Found"});
+        // }
         const nums=[
             // {
             //     'name':"Number 1",
