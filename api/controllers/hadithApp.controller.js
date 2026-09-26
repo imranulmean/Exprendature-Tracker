@@ -109,7 +109,12 @@ export const deleteDevice = async(req, res)=>{
 
 export const getDevsPhone= async(req, res) =>{
     const { deviceId } = req.body;
+    
     try{
+        
+        if (!deviceId || deviceId === undefined || deviceId === "" || deviceId === 'undefined') {
+            return res.status(400).json({ success: false, message: "Device ID is required" });
+        }        
         let device = await hadithAppActivation.findOne({ deviceId });
         if (!device) {
             return res.json({success: false, message:"No device Found"});
