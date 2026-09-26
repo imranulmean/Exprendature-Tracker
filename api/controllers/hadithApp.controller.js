@@ -1,6 +1,6 @@
 import { hadithAppActivation } from "../models/hadithAppActivation.model.js";
 import HadithBlog from "../models/hadithBlog.model.js";
-import { surahAudioLinks } from "./surahAudioLink.js";
+import { onlineSurasMp3, surahAudioLinks } from "./surahAudioLink.js";
 
 
 const checkIfDevice= async(deviceId)=>{
@@ -158,6 +158,19 @@ export const getAudio= async(req, res) =>{
             return res.status(400).json({ success: false, message: "Device ID is required" });
         } 
         res.json({ success: true, message: surahAudioLinks });
+    }catch(err){
+        res.json({success: false, message: err.message })
+    }
+}
+
+export const getAudioMp3= async(req, res) =>{
+    const { deviceId } = req.body;
+    try{
+        // const ifDevice = await checkIfDevice(deviceId);
+        // if(!ifDevice){
+        //     return res.status(400).json({ success: false, message: "Device ID is required" });
+        // } 
+        res.json({ success: true, message: onlineSurasMp3 });
     }catch(err){
         res.json({success: false, message: err.message })
     }

@@ -120,3 +120,26 @@ export const surahAudioLinks = [
     { surahId: 113, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/MaOepE0iVP0` },{name:"Audio 2", link:'https://www.youtube.com/embed/jEZZ4UX7d2A'}] },
     { surahId: 114, links: [{ name: 'Audio 1', link: `https://www.youtube.com/embed/5UTXy190B-I` },{name:"Audio 2", link:'https://www.youtube.com/embed/GVk5KmQKgAw'}] }       
 ];
+
+export const onlineSurasMp3=[];
+for(let i=1; i<=114; i++){
+
+    let surahMp3=String(i).padStart(3, '0');
+    const obj={
+        surahId: i,
+        links: [
+            { id:'mishary', name: 'Mishari Al-afasi', link: `https://server8.mp3quran.net/afs/${surahMp3}.mp3` },
+            { id:'maher', name: 'Maher Al Muaiqly', link: `https://server12.mp3quran.net/maher/${surahMp3}.mp3` },
+            { id:'balila', name: 'Bandar Balila', link: `https://ia601409.us.archive.org/34/items/alfirdwsiy1433_gmail_0356835683568568356856802/${surahMp3}.mp3` },
+            { id:'khalid', name: 'Khalid Al Jalil', link: `https://server10.mp3quran.net/jleel/${surahMp3}.mp3` },
+            { id:'fareed', name: 'Hatem Fareed Al Waer', link: `https://server11.mp3quran.net/hatem/${surahMp3}.mp3` },
+            { id:'khalifa', name: 'Khalifa Al Tunaiji', link: `https://server12.mp3quran.net/tnjy/${surahMp3}.mp3` },
+            { id:'ghamdi', name: 'Saad Al Ghamdi', link: `https://server7.mp3quran.net/s_gmd/${surahMp3}.mp3` },
+            { id:'shuraim', name: 'Saud Al Shuraim', link: `https://server7.mp3quran.net/shur/${surahMp3}.mp3` },
+            { id:'shatri', name: 'Al Shatri', link: `https://server11.mp3quran.net/shatri/${surahMp3}.mp3` },
+            { id:'bukhatir', name: 'Salah Bukhatir', link: `https://server8.mp3quran.net/bu_khtr/${surahMp3}.mp3` },
+            
+        ]                 
+    }
+    onlineSurasMp3.push(obj);
+}  
