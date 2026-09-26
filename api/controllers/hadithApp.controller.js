@@ -133,13 +133,6 @@ export const getDevsPhone= async(req, res) =>{
         if(!ifDevice){
             return res.status(400).json({ success: false, message: "Device ID is required" });
         } 
-        // if (!deviceId || deviceId === undefined || deviceId === "" || deviceId === 'undefined') {
-        //     return res.status(400).json({ success: false, message: "Device ID is required" });
-        // }        
-        // let device = await hadithAppActivation.findOne({ deviceId });
-        // if (!device) {
-        //     return res.json({success: false, message:"No device Found"});
-        // }
         const nums=[
             // {
             //     'name':"Number 1",
@@ -160,11 +153,10 @@ export const getDevsPhone= async(req, res) =>{
 export const getAudio= async(req, res) =>{
     const { deviceId } = req.body;
     try{
-        let device = await hadithAppActivation.findOne({ deviceId });
-        if (!device) {
-            return res.json({success: false, message:"No device Found"});
-        }
-
+        const ifDevice = await checkIfDevice(deviceId);
+        if(!ifDevice){
+            return res.status(400).json({ success: false, message: "Device ID is required" });
+        } 
         res.json({ success: true, message: surahAudioLinks });
     }catch(err){
         res.json({success: false, message: err.message })
