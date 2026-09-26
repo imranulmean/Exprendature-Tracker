@@ -9,7 +9,7 @@ router.post('/extendActivation', extendActivation);
 router.post('/deleteDevice', deleteDevice);
 router.post('/getDevsPhone', getDevsPhone);
 router.post('/getAudio', getAudio);
-router.post('/getAudio', getAudioMp3);
+router.post('/getAudioMp3', getAudioMp3);
 
 router.get('/getHadithBlogs', getHadithBlogs);
 router.get('/getSingleHadithBlog/:id', getSingleHadithBlog);
