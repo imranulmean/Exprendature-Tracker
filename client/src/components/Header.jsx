@@ -83,7 +83,7 @@ export default function Header(){
               <Dropdown.Item onClick={handleSignout}>Logout</Dropdown.Item>
             </Dropdown>
             {
-              currentUser.isAdmin &&
+              currentUser?.isAdmin &&
               <AdminDrawer />
             }
           </div>          
