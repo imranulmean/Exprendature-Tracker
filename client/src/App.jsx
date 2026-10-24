@@ -47,12 +47,11 @@ export default function App(){
       {/* <Megamenu /> */}
       {/* <Leftbar /> */}
       <Routes>        
-        {/* <Route path='/' element={<ZakatList />} /> */}
         <Route path='/login' element={<Login />} />
         <Route path='/startPractice' element={<StartPractice />} />
         <Route path='/speechTest' element={<ReactSpeech />} />v
         <Route path='/upload/:userKey' element={<UploadFile />} />
-        <Route path='/postgres' element={<Postgres />} />
+        {/* <Route path='/postgres' element={<Postgres />} /> */}
         <Route path='/call' element={<OnlineCall />} />
         <Route path='/callstream' element={<CallStream />} />
         <Route path='/maincall/:callId' element={<MainCall />} />
@@ -60,10 +59,10 @@ export default function App(){
         <Route path='/chat/room' element={<ChatRoom />} />
         <Route path='/news' element={<News />} />
         <Route path='/news/:source' element={<News />} />
-        <Route path='/suras' element={<Suras />} />
+        {/* <Route path='/suras' element={<Suras />} />
         <Route path='/surah/:ayatNumber' element={<SuraAudio />} />
         <Route path='/hadiths' element={<Hadiths />} />
-        <Route path='/hadithContent/:bookName' element={<HadithContent />} />
+        <Route path='/hadithContent/:bookName' element={<HadithContent />} /> */}
         <Route path='/game' element={<Game />} />
 
         <Route element={<PrivateRoute />}>
